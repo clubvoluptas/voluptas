@@ -294,6 +294,69 @@ a { text-decoration: none; }
   .v-gate-card { padding: 40px 24px; }
 
 }
+
+/* ── ORIGIN + SECRET DOOR ── */
+.v-origin {
+  background: #0d0a07;
+  padding: 80px 24px;
+  border-top: 1px solid rgba(184,148,63,0.08);
+}
+.v-origin-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+}
+.v-origin-text {
+  flex: 1;
+  min-width: 0;
+}
+.v-origin-p1 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+  color: rgba(242,237,228,0.5);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.v-origin-p2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.9;
+  color: rgba(242,237,228,0.35);
+}
+.v-secret-door {
+  display: block;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 160px;
+}
+.v-secret-door img {
+  width: 160px;
+  height: 210px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: sepia(0.4) brightness(0.65) saturate(0.8);
+}
+@media (max-width: 640px) {
+  .v-origin-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .v-secret-door {
+    width: 130px;
+    align-self: flex-end;
+  }
+  .v-secret-door img {
+    width: 130px;
+    height: 170px;
+  }
+}
 </style>
 </head>
 <body>
