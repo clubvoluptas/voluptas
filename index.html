@@ -36,7 +36,9 @@ html, body {
   color: var(--cream);
   font-family: 'Cormorant Garamond', serif;
   width: 100%;
+  height: auto;
   overflow-x: hidden;
+  overflow-y: visible;
 }
 
 a { text-decoration: none; }
@@ -358,6 +360,7 @@ a { text-decoration: none; }
   }
 }
 </style>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=V4pwpB"></script>
 </head>
 <body>
 
@@ -529,50 +532,57 @@ function vGate() {
     fbq('track', 'Lead', { content_name: 'Voluptas Gate Form' });
   }
 
-  var payload = {
-    data: {
-      type: 'profile',
-      attributes: {
-        email: email,
-        first_name: his,
-        last_name: her,
-        properties: { his_first_name: his, her_first_name: her, lead_source: 'Website Gate Form' }
-      }
-    }
-  };
+  // Klaviyo client-side identify + list subscribe (no CORS issues, no auth header needed)
+  var _learnq = window._learnq || [];
+  window._learnq = _learnq;
 
-  fetch('https://a.klaviyo.com/api/profiles/', {
+  _learnq.push(['identify', {
+    '$email': email,
+    '$first_name': his,
+    'Her_First_Name': her,
+    'Lead_Source': 'Website Gate Form'
+  }]);
+
+  // Subscribe to list via Klaviyo's subscribe endpoint (CORS-safe)
+  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=V4pwpB', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Klaviyo-API-Key pk_4cd74e914e302f74c2d4d95101f3515fbf',
-      'revision': '2024-02-15'
-    },
-    body: JSON.stringify(payload)
+    headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+    body: JSON.stringify({
+      data: {
+        type: 'subscription',
+        attributes: {
+          list_id: 'VhmpLv',
+          email: email,
+          custom_source: 'Website Gate Form',
+          properties: {
+            first_name: his,
+            her_first_name: her
+          }
+        }
+      }
+    })
   })
-  .then(function(r){ return r.json(); })
-  .then(function(d){
-    var pid = d && d.data && d.data.id;
-    if (!pid && d && d.errors && d.errors[0] && d.errors[0].meta) {
-      pid = d.errors[0].meta.duplicate_profile_id;
-    }
-    if (pid) {
-      return fetch('https://a.klaviyo.com/api/lists/VhmpLv/relationships/profiles/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Klaviyo-API-Key pk_4cd74e914e302f74c2d4d95101f3515fbf',
-          'revision': '2024-02-15'
-        },
-        body: JSON.stringify({ data: [{ type: 'profile', id: pid }] })
-      });
-    }
-  })
-  .catch(function(e){ console.warn('Klaviyo:', e); })
+  .catch(function(e){ console.warn('Klaviyo subscribe:', e); })
   .finally(function(){
-    window.location.href = 'https://voluptas.scoreapp.com/';
+    setTimeout(function(){
+      window.location.href = 'https://voluptas.scoreapp.com/';
+    }, 800);
   });
 }
+</script>
+
+<script>
+// Tell parent iframe to match our full content height
+function notifyHeight() {
+  var h = document.body.scrollHeight || document.documentElement.scrollHeight;
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'resize', height: h }, '*');
+  }
+}
+window.addEventListener('load', notifyHeight);
+window.addEventListener('resize', notifyHeight);
+setTimeout(notifyHeight, 500);
+setTimeout(notifyHeight, 1500);
 </script>
 </body>
 </html>
