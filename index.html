@@ -360,7 +360,6 @@ a { text-decoration: none; }
   }
 }
 </style>
-<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=V4pwpB"></script>
 </head>
 <body>
 
@@ -532,55 +531,16 @@ function vGate() {
     fbq('track', 'Lead', { content_name: 'Voluptas Gate Form' });
   }
 
-  // Klaviyo onsite JS identify (loads via klaviyo.js snippet)
-  var _learnq = window._learnq || [];
-  window._learnq = _learnq;
-
-  _learnq.push(['identify', {
-    '$email': email,
-    '$first_name': his,
-    'Her_First_Name': her,
-    'Lead_Source': 'Website Gate Form'
-  }]);
-
-  // Klaviyo client subscriptions API - correct payload structure
-  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=V4pwpB', {
+  // Send to Zapier webhook -> Klaviyo
+  fetch('https://hooks.zapier.com/hooks/catch/26450064/u0chu81/', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/vnd.api+json',
-      'revision': '2024-10-15'
-    },
-    body: JSON.stringify({
-      data: {
-        type: 'subscription',
-        attributes: {
-          list_id: 'VhmpLv',
-          custom_source: 'Website Gate Form',
-          profile: {
-            data: {
-              type: 'profile',
-              attributes: {
-                email: email,
-                first_name: his,
-                properties: {
-                  her_first_name: her,
-                  lead_source: 'Website Gate Form'
-                }
-              }
-            }
-          }
-        }
-      }
-    })
+    body: JSON.stringify({ email: email, first_name: his, her_first_name: her })
   })
-  .then(function(r){
-    if (!r.ok) { r.text().then(function(t){ console.warn('Klaviyo error:', t); }); }
-  })
-  .catch(function(e){ console.warn('Klaviyo subscribe:', e); })
+  .catch(function(e){ console.warn('Zapier:', e); })
   .finally(function(){
     setTimeout(function(){
       window.location.href = 'https://voluptas.scoreapp.com/';
-    }, 1000);
+    }, 800);
   });
 }
 </script>
