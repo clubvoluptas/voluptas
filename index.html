@@ -532,7 +532,7 @@ function vGate() {
     fbq('track', 'Lead', { content_name: 'Voluptas Gate Form' });
   }
 
-  // Klaviyo client-side identify + list subscribe (no CORS issues, no auth header needed)
+  // Klaviyo onsite JS identify (loads via klaviyo.js snippet)
   var _learnq = window._learnq || [];
   window._learnq = _learnq;
 
@@ -543,30 +543,44 @@ function vGate() {
     'Lead_Source': 'Website Gate Form'
   }]);
 
-  // Subscribe to list via Klaviyo's subscribe endpoint (CORS-safe)
+  // Klaviyo client subscriptions API - correct payload structure
   fetch('https://a.klaviyo.com/client/subscriptions/?company_id=V4pwpB', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+    headers: {
+      'Content-Type': 'application/vnd.api+json',
+      'revision': '2024-10-15'
+    },
     body: JSON.stringify({
       data: {
         type: 'subscription',
         attributes: {
           list_id: 'VhmpLv',
-          email: email,
           custom_source: 'Website Gate Form',
-          properties: {
-            first_name: his,
-            her_first_name: her
+          profile: {
+            data: {
+              type: 'profile',
+              attributes: {
+                email: email,
+                first_name: his,
+                properties: {
+                  her_first_name: her,
+                  lead_source: 'Website Gate Form'
+                }
+              }
+            }
           }
         }
       }
     })
   })
+  .then(function(r){
+    if (!r.ok) { r.text().then(function(t){ console.warn('Klaviyo error:', t); }); }
+  })
   .catch(function(e){ console.warn('Klaviyo subscribe:', e); })
   .finally(function(){
     setTimeout(function(){
       window.location.href = 'https://voluptas.scoreapp.com/';
-    }, 800);
+    }, 1000);
   });
 }
 </script>
