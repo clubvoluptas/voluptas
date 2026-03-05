@@ -277,15 +277,12 @@
     font-weight: 300;
   }
 
-  /* Active tier - full brightness */
   .tier-row.active .tier-name { color: var(--cream); }
   .tier-row.active .tier-price { color: var(--gold-light); }
 
-  /* Closed tier */
   .tier-row.closed .tier-name { text-decoration: line-through; color: var(--text-dim); opacity: 0.55; }
   .tier-row.closed .tier-price { text-decoration: line-through; color: var(--text-dim); opacity: 0.45; }
 
-  /* Upcoming tiers - visible but clearly future */
   .tier-row.upcoming .tier-name { color: var(--text-mid); }
   .tier-row.upcoming .tier-price { color: var(--gold-dim); opacity: 0.7; }
   .tier-row.upcoming .tier-cta { opacity: 0.65; }
@@ -325,7 +322,6 @@
 
   .auth-form { display: none; }
 
-  /* ARRIVAL + REFUND */
   .arrival-section {
     padding: 48px 0;
     border-top: 1px solid rgba(201, 169, 110, 0.08);
@@ -343,7 +339,6 @@
   .refund-section { padding: 36px 0; border-top: 1px solid rgba(201, 169, 110, 0.06); }
   .refund-section p { font-size: 14px; color: var(--text-dim); font-style: italic; }
 
-  /* HOTELS */
   .hotels-section {
     padding: 56px 0;
     border-top: 1px solid rgba(201, 169, 110, 0.08);
@@ -351,7 +346,6 @@
   }
   .hotels-section p { font-size: 16px; color: var(--text-dim); font-style: italic; }
 
-  /* NUDGE */
   .nudge-section p { font-size: 17px; color: var(--text-dim); }
   .nudge-section a {
     color: var(--gold-dim);
@@ -514,7 +508,6 @@
 <!-- MAIN CONTENT -->
 <div id="content">
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="page-wrap">
       <img class="header-logo" src="images/Logo.png">
@@ -524,7 +517,6 @@
     </div>
   </header>
 
-  <!-- PRIVATE LETTER -->
   <section class="letter-section">
     <div class="page-wrap">
       <div class="section-eyebrow fade-in">The Private Letter</div>
@@ -533,7 +525,6 @@
     </div>
   </section>
 
-  <!-- MOVEMENT I: FEMININE BRUNCH -->
   <section class="movement">
     <div class="page-wrap">
       <div class="movement-label fade-in">Movement I</div>
@@ -545,32 +536,23 @@
     </div>
   </section>
 
-  <!-- MOVEMENT II: THE GATHERING -->
   <section class="movement">
     <div class="page-wrap">
       <div class="movement-label fade-in">Movement II</div>
       <h2 class="fade-in">The Gathering</h2>
       <p class="fade-in">The penthouse has been reserved entirely for the Society. No outside guests. No strangers. Only the couples who belong in this room.</p>
-
       <p class="fade-in"><em>The Space</em><br>Floor-to-ceiling views of the Las Vegas skyline. Warm light tuned to make everyone look exactly the way they want to be seen. Intimate corners. Open space to move through. A room designed so that desire has somewhere to go.</p>
-
       <p class="fade-in"><em>The Music</em><br>A live erotic DJ set, not background sound, not a playlist. A soundscape built in movements, from the warmth of arrival through slow, building tension into something that makes the body want to stay and the mind want to let go.</p>
-
       <p class="fade-in"><em>The Art</em><br>Live erotic art installations work through the evening, capturing the energy of the room. Never identity. Never faces. The feeling, preserved while you are still inside it.</p>
-
       <p class="fade-in"><em>The Bar</em><br>Complimentary and premium throughout the night. Champagne on arrival. Curated cocktails. Our staff is professionally invisible when they should be.</p>
-
       <p class="fade-in"><em>Your Masks</em><br>Included with every circle. Yours arrive with your confirmation. They are not costumes, they are a language. The mask system removes social pressure from the entire room so that desire can move freely without negotiation.</p>
-
       <p class="fade-in">Black mask: I am here to witness. I am not inviting approach.<br>
       Red mask: I am open to energy, to flirtation, to what the evening offers.<br><br>
       You choose. You can change your mind at any moment. Nothing is spoken. Nothing is required.</p>
-
       <p class="fade-in"><em>The Ring Ceremony</em><br>At a specific moment in the evening, the room gathers. This is the threshold, the passage from social gathering into something charged and intentional. Every person is seen. The question of whether you belong here is answered for good. What follows the ceremony is open. Entirely yours.</p>
     </div>
   </section>
 
-  <!-- MOVEMENT III: SUNDAY AFTERGLOW -->
   <section class="movement">
     <div class="page-wrap">
       <div class="movement-label fade-in">Movement III</div>
@@ -583,7 +565,6 @@
     </div>
   </section>
 
-  <!-- INCLUSIONS -->
   <section class="inclusions">
     <div class="page-wrap">
       <h2 class="fade-in">What Is Included</h2>
@@ -605,21 +586,17 @@
     </div>
   </section>
 
-  <!-- HOTELS NOTE -->
   <section class="hotels-section">
     <div class="page-wrap">
       <p class="fade-in" style="font-size: 15px; color: var(--text-dim); font-style: italic; letter-spacing: 0.06em;">Suggested hotels will be sent to you personally after you have secured your invitation.</p>
     </div>
   </section>
 
-  <!-- PRICING -->
   <section class="pricing-section">
     <div class="page-wrap">
       <div class="section-label fade-in">Claim Your Circle</div>
-
       <div class="tier-table fade-in">
 
-        <!-- THE FIRST: 3 remaining, no auto link -->
         <div class="tier-row" id="tier-first" style="opacity: 0.55;">
           <div class="tier-name" style="color: var(--text-mid);">
             The First
@@ -629,11 +606,10 @@
           <div class="tier-cta"><span class="cta-closed">Contact Us</span></div>
         </div>
 
-        <!-- INNER RING: active -->
         <div class="tier-row active" id="tier-inner">
           <div class="tier-name">
             Inner Ring Member
-            <span class="remaining" id="inner-remaining"></span>
+            <span class="remaining" id="inner-remaining" style="display:none;"></span>
           </div>
           <div class="tier-price">$1,400</div>
           <div class="tier-cta">
@@ -641,14 +617,12 @@
           </div>
         </div>
 
-        <!-- OBSERVER RING: upcoming -->
         <div class="tier-row upcoming" id="tier-observer">
           <div class="tier-name">Observer Ring</div>
           <div class="tier-price">$1,650</div>
           <div class="tier-cta"><span class="cta-soon" id="observer-status">Opens when Inner Ring closes.</span></div>
         </div>
 
-        <!-- FINAL CIRCLE: upcoming -->
         <div class="tier-row upcoming" id="tier-final">
           <div class="tier-name">Final Circle</div>
           <div class="tier-price">$2,000</div>
@@ -657,13 +631,11 @@
 
       </div>
 
-      <!-- ARRIVAL WINDOWS -->
       <div class="arrival-section fade-in">
         <div class="section-label">Arrival Windows</div>
         <p>Your arrival window is selected after your circle is confirmed. Earlier tiers access the evening first, when the room is at its most intimate, the energy still gathering, and your presence shapes what follows.</p>
       </div>
 
-      <!-- REFUND -->
       <div class="refund-section fade-in">
         <p>All circle claims are final. Because your place was held exclusively for you, we are unable to transfer or refund your investment. In the rare event of a documented emergency, we will carry your circle forward to the next gathering at our discretion.</p>
       </div>
@@ -671,7 +643,6 @@
     </div>
   </section>
 
-  <!-- MEMBERSHIP NUDGE -->
   <section class="nudge-section">
     <div class="page-wrap">
       <p class="fade-in">Not yet an Inner Ring member? The pricing above tells you what you need to know. Inner Ring members had first access to this page, and paid less for the same room.<br><br>
@@ -679,14 +650,12 @@
     </div>
   </section>
 
-  <!-- DEEPER LEVEL -->
   <section class="deeper-section">
     <div class="page-wrap">
       <p class="fade-in">For the couples who wish to go further inside the Society, there is a level beyond the Inner Ring. It is not listed here. If you feel called to it, you already know how to reach us.</p>
     </div>
   </section>
 
-  <!-- DISCRETION -->
   <section class="discretion-section">
     <div class="page-wrap">
       <div class="section-label fade-in">A Note on Discretion</div>
@@ -695,23 +664,21 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="page-wrap">
       <p class="fade-in">Club Voluptas &nbsp;&middot;&nbsp; Private Society &nbsp;&middot;&nbsp; By Invitation Only</p>
       <p class="fade-in" style="margin-top: 16px; font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.08em; text-transform: none; font-style: italic;">
-        <a href="/cdn-cgi/l/email-protection#016b646f6f41626d7463776e6d74717560722f626e6c">Email Jenn</a>
+        <a href="mailto:jenn@clubvoluptas.com">Email Jenn</a>
       </p>
     </div>
   </footer>
 
 </div><!-- /content -->
 
-<!-- NDA MODAL -->
+<!-- NDA MODAL — display:none in inline style so it cannot override the CSS -->
 <div class="modal-overlay" id="ndaModal" style="display:none; align-items: flex-start; padding: 0; overflow-y: auto;">
   <div style="width: 100%; max-width: 780px; margin: 0 auto; background: var(--near-black); border: 1px solid rgba(201,169,110,0.2); display: flex; flex-direction: column; min-height: 100vh;">
 
-    <!-- Modal Header -->
     <div style="padding: 32px 40px 24px; border-bottom: 1px solid rgba(201,169,110,0.12); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
       <div>
         <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">Society Agreement</div>
@@ -720,7 +687,6 @@
       <button onclick="closeNDA()" style="background: none; border: none; color: var(--text-dim); font-family: Cormorant Garamond, serif; font-size: 13px; letter-spacing: 0.15em; font-style: italic; cursor: pointer; padding: 8px 0;">close</button>
     </div>
 
-    <!-- Adobe Sign iFrame -->
     <div style="flex: 1; padding: 0;">
       <iframe
         src="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhC823h_38rtNWJZC_Nhq31ZHY1_sajgtmiouugziO6vKW6283N9U11Vuh2p2DdqR2U*&hosted=false"
@@ -732,7 +698,6 @@
       </iframe>
     </div>
 
-    <!-- After signing instruction -->
     <div style="padding: 28px 40px; border-top: 1px solid rgba(201,169,110,0.1); text-align: center; flex-shrink: 0;">
       <p style="font-size: 14px; color: var(--text-dim); font-style: italic; margin-bottom: 20px;">Once both spouses have signed above, your payment link will activate.</p>
       <div class="modal-actions" style="justify-content: center;">
@@ -782,189 +747,192 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-// PASSWORD
-var CORRECT_KEY = 'Devotion2desire';
-var keyInput = document.getElementById('keyInput');
-var gateError = document.getElementById('gateError');
-var gate = document.getElementById('gate');
-var content = document.getElementById('content');
+  // PASSWORD GATE
+  var CORRECT_KEY = 'Devotion2desire';
+  var keyInput = document.getElementById('keyInput');
+  var gateError = document.getElementById('gateError');
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
 
-if (!keyInput) { console.error('keyInput not found'); return; }
-
-keyInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkKey(); });
-keyInput.addEventListener('input', function() {
-  gateError.classList.remove('visible');
-  if (this.value === CORRECT_KEY) checkKey();
-});
-
-function checkKey() {
-  if (keyInput.value === CORRECT_KEY) {
-    gate.style.opacity = '0';
-    gate.style.transition = 'opacity 0.8s ease';
-    setTimeout(function() {
-      gate.style.display = 'none';
-      content.style.display = 'block';
-      setTimeout(function() { content.classList.add('visible'); initFadeIns(); }, 50);
-    }, 800);
-  } else {
-    gateError.classList.add('visible');
-    keyInput.value = '';
-    keyInput.style.borderBottomColor = '#8a2020';
-    setTimeout(function() { keyInput.style.borderBottomColor = 'var(--gold-dim)'; }, 1000);
-  }
-}
-
-// FADE INS
-function initFadeIns() {
-  var els = document.querySelectorAll('.fade-in');
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) { entry.target.classList.add('appeared'); obs.unobserve(entry.target); }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
-}
-
-// NDA FLOW
-var currentTier = null;
-
-function openNDA(tier) { currentTier = tier; var m = document.getElementById('ndaModal'); m.style.display = 'flex'; m.classList.add('open'); }
-function closeNDA() { var m = document.getElementById('ndaModal'); m.style.display = 'none'; m.classList.remove('open'); currentTier = null; }
-
-function submitPayment() {
-  if (currentTier === 'inner') document.forms['form-inner'].submit();
-  else if (currentTier === 'observer') document.forms['form-observer'].submit();
-  else if (currentTier === 'final') document.forms['form-final'].submit();
-}
-
-function unlockPayment() {
-  var btn = document.getElementById('paymentBtn');
-  if (btn) {
-    btn.style.opacity = '1';
-    btn.style.pointerEvents = 'auto';
-    btn.textContent = 'Proceed to Payment';
-  }
-}
-
-// Listen for Adobe Sign completion
-window.addEventListener('message', function(e) {
-  if (e.origin && e.origin.indexOf('documents.adobe.com') !== -1) {
-    try {
-      var data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-      if (data && (data.type === 'ESIGN' || data.esignEvent === 'AGREEMENT_COMPLETE' ||
-          (data.event && data.event.indexOf('COMPLETE') !== -1))) {
-        unlockPayment();
-      }
-    } catch(err) { /* non-JSON, ignore */ }
-  }
-});
-
-// Admin manual unlock: type manualUnlock() in browser console
-function manualUnlock() { unlockPayment(); }
-
-// TIER TOGGLE
-var tierState = { innerSoldOut: false, observerSoldOut: false, showRemaining: false, remainingCount: 5 };
-
-function toggleTier(tier) {
-  if (tier === 'inner') {
-    tierState.innerSoldOut = !tierState.innerSoldOut;
-    document.getElementById('toggle-inner').classList.toggle('on', tierState.innerSoldOut);
-  } else {
-    tierState.observerSoldOut = !tierState.observerSoldOut;
-    document.getElementById('toggle-observer').classList.toggle('on', tierState.observerSoldOut);
-  }
-  applyTierStates();
-}
-
-function toggleRemaining() {
-  tierState.showRemaining = !tierState.showRemaining;
-  document.getElementById('toggle-remaining').classList.toggle('on', tierState.showRemaining);
-  applyTierStates();
-}
-
-function updateRemaining() {
-  tierState.remainingCount = parseInt(document.getElementById('remaining-count').value) || 5;
-  applyTierStates();
-}
-
-function applyTierStates() {
-  var innerRow = document.getElementById('tier-inner');
-  var observerRow = document.getElementById('tier-observer');
-  var finalRow = document.getElementById('tier-final');
-  var innerRemaining = document.getElementById('inner-remaining');
-
-  // Inner Ring
-  if (tierState.innerSoldOut) {
-    innerRow.className = 'tier-row closed';
-    var btn = innerRow.querySelector('.cta-btn');
-    if (btn) btn.style.display = 'none';
-    if (!innerRow.querySelector('.dyn-closed')) {
-      var cl = document.createElement('span');
-      cl.className = 'cta-closed dyn-closed';
-      cl.textContent = 'Closed';
-      innerRow.querySelector('.tier-cta').appendChild(cl);
-    }
-    observerRow.className = 'tier-row active';
-    document.getElementById('observer-status').style.display = 'none';
-    if (!observerRow.querySelector('.cta-btn')) {
-      var ob = document.createElement('button');
-      ob.className = 'cta-btn';
-      ob.textContent = 'Claim Your Circle';
-      ob.onclick = function() { openNDA('observer'); };
-      observerRow.querySelector('.tier-cta').appendChild(ob);
-    }
-  } else {
-    innerRow.className = 'tier-row active';
-    var dc = innerRow.querySelector('.dyn-closed');
-    if (dc) dc.remove();
-    var ib = innerRow.querySelector('.cta-btn');
-    if (ib) ib.style.display = '';
-    observerRow.className = 'tier-row upcoming';
-    document.getElementById('observer-status').style.display = '';
-    var ob2 = observerRow.querySelector('.cta-btn');
-    if (ob2) ob2.remove();
-  }
-
-  // Observer -> Final
-  if (tierState.innerSoldOut && tierState.observerSoldOut) {
-    observerRow.className = 'tier-row closed';
-    finalRow.className = 'tier-row active';
-    document.getElementById('final-status').style.display = 'none';
-    if (!finalRow.querySelector('.cta-btn')) {
-      var fb = document.createElement('button');
-      fb.className = 'cta-btn';
-      fb.textContent = 'Claim Your Circle';
-      fb.onclick = function() { openNDA('final'); };
-      finalRow.querySelector('.tier-cta').appendChild(fb);
-    }
-  } else {
-    if (!tierState.innerSoldOut) finalRow.className = 'tier-row upcoming';
-    document.getElementById('final-status').style.display = '';
-    var fb2 = finalRow.querySelector('.cta-btn');
-    if (fb2) fb2.remove();
-  }
-
-  // Remaining count
-  if (tierState.showRemaining && !tierState.innerSoldOut) {
-    innerRemaining.style.display = 'block';
-    innerRemaining.textContent = tierState.remainingCount + ' remaining';
-  } else {
-    innerRemaining.style.display = 'none';
-  }
-}
-
-// ADMIN TOGGLE: Shift+A
-document.addEventListener('keydown', function(e) {
-  if (e.shiftKey && e.key === 'A') document.getElementById('admin-panel').classList.toggle('open');
-});
-
-// CLOSE MODAL ON OVERLAY CLICK
-var ndaModal = document.getElementById('ndaModal');
-if (ndaModal) {
-  ndaModal.addEventListener('click', function(e) {
-    if (e.target === this) closeNDA();
+  keyInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkKey();
   });
-}
+  keyInput.addEventListener('input', function() {
+    gateError.classList.remove('visible');
+    if (this.value === CORRECT_KEY) checkKey();
+  });
+
+  function checkKey() {
+    if (keyInput.value === CORRECT_KEY) {
+      gate.style.opacity = '0';
+      gate.style.transition = 'opacity 0.8s ease';
+      setTimeout(function() {
+        gate.style.display = 'none';
+        content.style.display = 'block';
+        setTimeout(function() { content.classList.add('visible'); initFadeIns(); }, 50);
+      }, 800);
+    } else {
+      gateError.classList.add('visible');
+      keyInput.value = '';
+      keyInput.style.borderBottomColor = '#8a2020';
+      setTimeout(function() { keyInput.style.borderBottomColor = 'var(--gold-dim)'; }, 1000);
+    }
+  }
+
+  // FADE INS
+  function initFadeIns() {
+    var els = document.querySelectorAll('.fade-in');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('appeared'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
+  }
+
+  // NDA FLOW
+  var currentTier = null;
+
+  window.openNDA = function(tier) {
+    currentTier = tier;
+    var m = document.getElementById('ndaModal');
+    m.style.display = 'flex';
+  };
+
+  window.closeNDA = function() {
+    var m = document.getElementById('ndaModal');
+    m.style.display = 'none';
+    currentTier = null;
+  };
+
+  window.submitPayment = function() {
+    if (currentTier === 'inner') document.forms['form-inner'].submit();
+    else if (currentTier === 'observer') document.forms['form-observer'].submit();
+    else if (currentTier === 'final') document.forms['form-final'].submit();
+  };
+
+  window.unlockPayment = function() {
+    var btn = document.getElementById('paymentBtn');
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+      btn.textContent = 'Proceed to Payment';
+    }
+  };
+
+  // Adobe Sign completion listener
+  window.addEventListener('message', function(e) {
+    if (e.origin && e.origin.indexOf('documents.adobe.com') !== -1) {
+      try {
+        var data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data && (data.type === 'ESIGN' || data.esignEvent === 'AGREEMENT_COMPLETE' ||
+            (data.event && data.event.indexOf('COMPLETE') !== -1))) {
+          window.unlockPayment();
+        }
+      } catch(err) {}
+    }
+  });
+
+  // Manual unlock via console
+  window.manualUnlock = function() { window.unlockPayment(); };
+
+  // TIER TOGGLE (admin)
+  var tierState = { innerSoldOut: false, observerSoldOut: false, showRemaining: false, remainingCount: 5 };
+
+  window.toggleTier = function(tier) {
+    if (tier === 'inner') {
+      tierState.innerSoldOut = !tierState.innerSoldOut;
+      document.getElementById('toggle-inner').classList.toggle('on', tierState.innerSoldOut);
+    } else {
+      tierState.observerSoldOut = !tierState.observerSoldOut;
+      document.getElementById('toggle-observer').classList.toggle('on', tierState.observerSoldOut);
+    }
+    applyTierStates();
+  };
+
+  window.toggleRemaining = function() {
+    tierState.showRemaining = !tierState.showRemaining;
+    document.getElementById('toggle-remaining').classList.toggle('on', tierState.showRemaining);
+    applyTierStates();
+  };
+
+  window.updateRemaining = function() {
+    tierState.remainingCount = parseInt(document.getElementById('remaining-count').value) || 5;
+    applyTierStates();
+  };
+
+  function applyTierStates() {
+    var innerRow = document.getElementById('tier-inner');
+    var observerRow = document.getElementById('tier-observer');
+    var finalRow = document.getElementById('tier-final');
+    var innerRemaining = document.getElementById('inner-remaining');
+
+    if (tierState.innerSoldOut) {
+      innerRow.className = 'tier-row closed';
+      var btn = innerRow.querySelector('.cta-btn');
+      if (btn) btn.style.display = 'none';
+      if (!innerRow.querySelector('.dyn-closed')) {
+        var cl = document.createElement('span');
+        cl.className = 'cta-closed dyn-closed';
+        cl.textContent = 'Closed';
+        innerRow.querySelector('.tier-cta').appendChild(cl);
+      }
+      observerRow.className = 'tier-row active';
+      document.getElementById('observer-status').style.display = 'none';
+      if (!observerRow.querySelector('.cta-btn')) {
+        var ob = document.createElement('button');
+        ob.className = 'cta-btn';
+        ob.textContent = 'Claim Your Circle';
+        ob.onclick = function() { window.openNDA('observer'); };
+        observerRow.querySelector('.tier-cta').appendChild(ob);
+      }
+    } else {
+      innerRow.className = 'tier-row active';
+      var dc = innerRow.querySelector('.dyn-closed');
+      if (dc) dc.remove();
+      var ib = innerRow.querySelector('.cta-btn');
+      if (ib) ib.style.display = '';
+      observerRow.className = 'tier-row upcoming';
+      document.getElementById('observer-status').style.display = '';
+      var ob2 = observerRow.querySelector('.cta-btn');
+      if (ob2) ob2.remove();
+    }
+
+    if (tierState.innerSoldOut && tierState.observerSoldOut) {
+      observerRow.className = 'tier-row closed';
+      finalRow.className = 'tier-row active';
+      document.getElementById('final-status').style.display = 'none';
+      if (!finalRow.querySelector('.cta-btn')) {
+        var fb = document.createElement('button');
+        fb.className = 'cta-btn';
+        fb.textContent = 'Claim Your Circle';
+        fb.onclick = function() { window.openNDA('final'); };
+        finalRow.querySelector('.tier-cta').appendChild(fb);
+      }
+    } else {
+      if (!tierState.innerSoldOut) finalRow.className = 'tier-row upcoming';
+      document.getElementById('final-status').style.display = '';
+      var fb2 = finalRow.querySelector('.cta-btn');
+      if (fb2) fb2.remove();
+    }
+
+    if (tierState.showRemaining && !tierState.innerSoldOut) {
+      innerRemaining.style.display = 'block';
+      innerRemaining.textContent = tierState.remainingCount + ' remaining';
+    } else {
+      innerRemaining.style.display = 'none';
+    }
+  }
+
+  // Admin panel: Shift+A
+  document.addEventListener('keydown', function(e) {
+    if (e.shiftKey && e.key === 'A') document.getElementById('admin-panel').classList.toggle('open');
+  });
+
+  // Close modal on overlay click
+  document.getElementById('ndaModal').addEventListener('click', function(e) {
+    if (e.target === this) window.closeNDA();
+  });
 
 }); // end DOMContentLoaded
 </script>
