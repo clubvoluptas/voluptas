@@ -60,7 +60,6 @@ a { text-decoration: none; }
   background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,148,63,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
-/* Static particles */
 .v-p {
   position: absolute;
   width: 1px;
@@ -295,7 +294,6 @@ a { text-decoration: none; }
 @media (max-width: 640px) {
   .v-row { grid-template-columns: 1fr; }
   .v-gate-card { padding: 40px 24px; }
-
 }
 
 /* ── ORIGIN + SECRET DOOR ── */
@@ -332,9 +330,11 @@ a { text-decoration: none; }
   line-height: 1.9;
   color: rgba(242,237,228,0.35);
 }
+
+/* SECRET DOOR: no cursor change, no visual affordance — just a silent portal */
 .v-secret-door {
   display: block;
-  cursor: pointer;
+  cursor: default;
   flex-shrink: 0;
   width: 160px;
 }
@@ -346,6 +346,7 @@ a { text-decoration: none; }
   display: block;
   filter: sepia(0.4) brightness(0.65) saturate(0.8);
 }
+
 @media (max-width: 640px) {
   .v-origin-inner {
     flex-direction: column;
@@ -368,7 +369,6 @@ a { text-decoration: none; }
 <div class="v-hero">
   <div class="v-hero-glow"></div>
 
-  <!-- 14 static candle particles -->
   <div class="v-p" style="left:8%;top:20%;height:60px;animation-delay:0s;animation-duration:4s"></div>
   <div class="v-p" style="left:15%;top:55%;height:45px;animation-delay:0.3s;animation-duration:5s"></div>
   <div class="v-p" style="left:22%;top:35%;height:70px;animation-delay:0.7s;animation-duration:3.5s"></div>
@@ -389,7 +389,6 @@ a { text-decoration: none; }
     <h1 class="v-h1">Most marriages choose comfort.<br><em>A rare few choose aliveness.</em></h1>
     <p class="v-hero-sub">For couples who flirt with desire and refuse to let it fade.</p>
   </div>
-
 
   <div class="v-scroll-line"></div>
 </div>
@@ -500,15 +499,18 @@ a { text-decoration: none; }
       <p class="v-origin-p1">Voluptas takes her name from Roman myth, where devotion and desire were never meant to be separate.</p>
       <p class="v-origin-p2">Voluptas, daughter of Psyche and Eros, embodies loving pleasure and devoted desire. We honor her lineage: a discreet society for couples craving mystery and play, your bond primary, curiosity an art.</p>
     </div>
-    <a class="v-secret-door" href="/voluptasexperience.html">
-      <img src="images/Voluptas.jpg">
+    <!-- Silent portal: no cursor change, no hover tell -->
+    <a class="v-secret-door" href="https://society.clubvoluptas.com">
+      <img src="images/Voluptas.jpg" alt="">
     </a>
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- FOOTER LOGO: silent portal to the experience page -->
 <div style="text-align:center; padding: 48px 0 8px; opacity: 0.18;">
-  <img src="images/Logo.png">
+  <a href="https://clubvoluptas.com/voluptasexperience" style="cursor:default;">
+    <img src="images/Logo.png" style="width: 120px; height: auto;">
+  </a>
 </div>
 <div class="v-footer">
   <span class="v-footer-logo">V O L U P T A S</span>
@@ -535,7 +537,6 @@ function vGate() {
     fbq('track', 'Lead', { content_name: 'Voluptas Gate Form' });
   }
 
-  // Send to Zapier webhook -> Klaviyo, redirect only after fetch completes
   fetch('https://hooks.zapier.com/hooks/catch/26450064/u0cr6mr/', {
     method: 'POST',
     body: JSON.stringify({ email: email, first_name: his, her_first_name: her })
@@ -548,7 +549,6 @@ function vGate() {
 </script>
 
 <script>
-// Tell parent iframe to match our full content height
 function notifyHeight() {
   var h = document.body.scrollHeight || document.documentElement.scrollHeight;
   if (window.parent && window.parent !== window) {
