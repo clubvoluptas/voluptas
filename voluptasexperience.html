@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Club Voluptas</title>
+<link rel="icon" type="image/png" href="images/Favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -953,4 +954,10 @@ document.addEventListener('keydown', function(e) {
   if (e.shiftKey && e.key === 'A') document.getElementById('admin-panel').classList.toggle('open');
 });
 
-// CLOSE MODAL ON OVER
+// CLOSE MODAL ON OVERLAY CLICK
+document.getElementById('ndaModal').addEventListener('click', function(e) {
+  if (e.target === this) closeNDA();
+});
+</script>
+</body>
+</html>
