@@ -780,12 +780,16 @@
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+
 // PASSWORD
 var CORRECT_KEY = 'Devotion2desire';
 var keyInput = document.getElementById('keyInput');
 var gateError = document.getElementById('gateError');
 var gate = document.getElementById('gate');
 var content = document.getElementById('content');
+
+if (!keyInput) { console.error('keyInput not found'); return; }
 
 keyInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkKey(); });
 keyInput.addEventListener('input', function() {
@@ -955,9 +959,14 @@ document.addEventListener('keydown', function(e) {
 });
 
 // CLOSE MODAL ON OVERLAY CLICK
-document.getElementById('ndaModal').addEventListener('click', function(e) {
-  if (e.target === this) closeNDA();
-});
+var ndaModal = document.getElementById('ndaModal');
+if (ndaModal) {
+  ndaModal.addEventListener('click', function(e) {
+    if (e.target === this) closeNDA();
+  });
+}
+
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>
