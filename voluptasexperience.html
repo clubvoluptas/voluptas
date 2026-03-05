@@ -708,7 +708,7 @@
 </div><!-- /content -->
 
 <!-- NDA MODAL -->
-<div class="modal-overlay" id="ndaModal" style="align-items: flex-start; padding: 0; overflow-y: auto;">
+<div class="modal-overlay" id="ndaModal" style="display:none; align-items: flex-start; padding: 0; overflow-y: auto;">
   <div style="width: 100%; max-width: 780px; margin: 0 auto; background: var(--near-black); border: 1px solid rgba(201,169,110,0.2); display: flex; flex-direction: column; min-height: 100vh;">
 
     <!-- Modal Header -->
@@ -824,8 +824,8 @@ function initFadeIns() {
 // NDA FLOW
 var currentTier = null;
 
-function openNDA(tier) { currentTier = tier; document.getElementById('ndaModal').classList.add('open'); }
-function closeNDA() { document.getElementById('ndaModal').classList.remove('open'); currentTier = null; }
+function openNDA(tier) { currentTier = tier; var m = document.getElementById('ndaModal'); m.style.display = 'flex'; m.classList.add('open'); }
+function closeNDA() { var m = document.getElementById('ndaModal'); m.style.display = 'none'; m.classList.remove('open'); currentTier = null; }
 
 function submitPayment() {
   if (currentTier === 'inner') document.forms['form-inner'].submit();
