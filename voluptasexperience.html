@@ -117,7 +117,7 @@
 
   /* HEADER */
   .site-header {
-    padding: 80px 0 64px;
+    padding: 80px 0 40px;
     text-align: center;
     border-bottom: 1px solid rgba(201, 169, 110, 0.12);
   }
@@ -161,8 +161,12 @@
   /* SECTIONS */
   .letter-section, .movement, .inclusions, .pricing-section,
   .nudge-section, .deeper-section, .discretion-section {
-    padding: 80px 0;
+    padding: 60px 0;
     border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+  }
+
+  .letter-section {
+    padding: 40px 0 60px;
   }
 
   .section-eyebrow {
@@ -334,9 +338,9 @@
     text-transform: uppercase;
     margin-bottom: 24px;
   }
-  .arrival-section p { font-size: 16px; color: var(--text-dim); font-style: italic; }
+  .arrival-section p { font-size: 17px; color: var(--text-body); font-style: italic; }
 
-  .refund-section { padding: 36px 0; border-top: 1px solid rgba(201, 169, 110, 0.06); }
+  .refund-section { padding: 24px 0; border-top: 1px solid rgba(201, 169, 110, 0.06); }
   .refund-section p { font-size: 14px; color: var(--text-dim); font-style: italic; }
 
   .hotels-section {
@@ -521,7 +525,6 @@
     <div class="page-wrap">
       <div class="section-eyebrow fade-in">The Private Letter</div>
       <p class="fade-in">What follows is known only to members. The date, the location, the offer...none of it exists outside this page.</p>
-      <p class="fade-in">Read it the way it was written. Slowly.</p>
     </div>
   </section>
 
@@ -577,76 +580,72 @@
         <li class="fade-in">Live erotic DJ set</li>
         <li class="fade-in">Live erotic art installations</li>
         <li class="fade-in">The Ring Ceremony</li>
-        <li class="fade-in">Sunday Afterglow, rooftop deck access with breakfast<span class="weather-note" style="margin:0;">* Weather permitting</span></li>
-        <li class="fade-in">
-          Priority arrival window
-          <span class="inclusion-perk">Those who reserve earlier select their arrival window first, shaping the room from the moment the evening begins. This is one of the quiet privileges of acting early.</span>
+        <li class="fade-in">Sunday Afterglow, rooftop deck &amp; hot tub access<span class="weather-note" style="margin:0;">* Weather permitting</span></li>
+        <li class="fade-in">Priority arrival window</li>
+        <li class="fade-in" style="border-bottom: none; padding-top: 4px;">
+          <p style="font-size: 15px; color: var(--text-dim); font-style: italic; letter-spacing: 0.06em; margin: 0; line-height: 1.8;">Each couple is given an arrival window so the evening unfolds with intention. Couples who secure their place earlier receive greater choice over their arrival moment, allowing them to shape how their evening begins.</p>
         </li>
       </ul>
     </div>
   </section>
 
-  <section class="hotels-section">
-    <div class="page-wrap">
-      <p class="fade-in" style="font-size: 15px; color: var(--text-dim); font-style: italic; letter-spacing: 0.06em;">Suggested hotels will be sent to you personally after you have secured your invitation.</p>
-    </div>
-  </section>
-
   <section class="pricing-section">
     <div class="page-wrap">
-      <div class="section-label fade-in">Claim Your Circle</div>
+      <h2 class="fade-in" style="margin-bottom: 56px; text-align: center;">Invitations</h2>
       <div class="tier-table fade-in">
 
-        <div class="tier-row" id="tier-first" style="opacity: 0.55;">
-          <div class="tier-name" style="color: var(--text-mid);">
+        <!-- THE FIRST: active, 3 remaining -->
+        <div class="tier-row active" id="tier-first">
+          <div class="tier-name">
             The First
-            <span class="remaining" style="color: var(--text-dim);">3 of 5 remaining &nbsp;&middot;&nbsp; By invitation only</span>
+            <span class="remaining">3 remaining</span>
           </div>
-          <div class="tier-price" style="color: var(--gold-dim);">$1,250</div>
-          <div class="tier-cta"><span class="cta-closed">Contact Us</span></div>
+          <div class="tier-price">$1,250</div>
+          <div class="tier-cta">
+            <form name="form-first" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx" style="margin:0;">
+              <input type="hidden" name="LinkId" value="b6f75022-0f9a-4582-95e1-b19ad095c6ae">
+              <button type="submit" class="cta-btn">Request Invitation</button>
+            </form>
+          </div>
         </div>
 
-        <div class="tier-row active" id="tier-inner">
+        <!-- INNER RING: upcoming, not yet open -->
+        <div class="tier-row upcoming" id="tier-inner">
           <div class="tier-name">
-            Inner Ring Member
+            Inner Ring
             <span class="remaining" id="inner-remaining" style="display:none;"></span>
           </div>
           <div class="tier-price">$1,400</div>
           <div class="tier-cta">
-            <button class="cta-btn" onclick="openNDA('inner')">Claim Your Circle</button>
+            <button class="cta-btn" onclick="openNDA('inner')">Request Invitation</button>
           </div>
         </div>
 
+        <!-- OBSERVER RING: upcoming -->
         <div class="tier-row upcoming" id="tier-observer">
           <div class="tier-name">Observer Ring</div>
           <div class="tier-price">$1,650</div>
           <div class="tier-cta"><span class="cta-soon" id="observer-status">Opens when Inner Ring closes.</span></div>
         </div>
 
+        <!-- FINAL CIRCLE: upcoming -->
         <div class="tier-row upcoming" id="tier-final">
-          <div class="tier-name">Final Circle</div>
+          <div class="tier-name">The Final</div>
           <div class="tier-price">$2,000</div>
           <div class="tier-cta"><span class="cta-soon" id="final-status">Opens when Observer closes.</span></div>
         </div>
 
       </div>
 
-      <div class="arrival-section fade-in">
-        <div class="section-label">Arrival Windows</div>
-        <p>Your arrival window is selected after your circle is confirmed. Earlier tiers access the evening first, when the room is at its most intimate, the energy still gathering, and your presence shapes what follows.</p>
-      </div>
-
       <div class="refund-section fade-in">
         <p>All circle claims are final. Because your place was held exclusively for you, we are unable to transfer or refund your investment. In the rare event of a documented emergency, we will carry your circle forward to the next gathering at our discretion.</p>
       </div>
 
-    </div>
-  </section>
+      <div class="fade-in" style="padding: 24px 0 0; border-top: 1px solid rgba(201,169,110,0.06);">
+        <p style="font-size: 18px; color: var(--text-body); margin-bottom: 8px; line-height: 1.65;">Not yet an Inner Ring member? The pricing above tells you what you need to know. Inner Ring members had first access to this page, and paid less for the same room.</p>
+        <a href="https://society.clubvoluptas.com/c/the-inner-ring/the-inner-ring" style="color: var(--gold-dim); text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.3); font-size: 16px; font-style: italic; letter-spacing: 0.06em;">Learn about Inner Ring membership</a>
+      </div>
 
-  <section class="nudge-section">
-    <div class="page-wrap">
-      <p class="fade-in">Not yet an Inner Ring member? The pricing above tells you what you need to know. Inner Ring members had first access to this page, and paid less for the same room.<br><br>
-      <a href="#">Learn about Inner Ring membership</a></p>
     </div>
   </section>
 
@@ -668,7 +667,7 @@
     <div class="page-wrap">
       <p class="fade-in">Club Voluptas &nbsp;&middot;&nbsp; Private Society &nbsp;&middot;&nbsp; By Invitation Only</p>
       <p class="fade-in" style="margin-top: 16px; font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.08em; text-transform: none; font-style: italic;">
-        <a href="mailto:jenn@clubvoluptas.com">Email Jenn</a>
+        <a href="mailto:jenn@clubvoluptas.com">Inquire</a>
       </p>
     </div>
   </footer>
@@ -689,22 +688,25 @@
 
     <div style="flex: 1; padding: 0;">
       <iframe
-        src="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhC823h_38rtNWJZC_Nhq31ZHY1_sajgtmiouugziO6vKW6283N9U11Vuh2p2DdqR2U*&hosted=false"
+        src="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhBPdzgrkMnFl-Qedm0wdaXiRhWg_w00F2csDzSk_jSfD_W4KXK1qKXWe28U9cmZWa0*&hosted=false"
         width="100%"
-        height="700px"
+        height="100%"
         frameborder="0"
-        style="border: 0; display: block; min-height: 600px;"
+        style="border: 0; display: block; min-height: 500px; min-width: 600px;"
         id="adobeSignFrame">
       </iframe>
     </div>
 
     <div style="padding: 28px 40px; border-top: 1px solid rgba(201,169,110,0.1); text-align: center; flex-shrink: 0;">
-      <p style="font-size: 14px; color: var(--text-dim); font-style: italic; margin-bottom: 20px;">Once both spouses have signed above, your payment link will activate.</p>
+      <p style="font-size: 14px; color: var(--text-dim); font-style: italic; margin-bottom: 20px;">Once both spouses have signed and confirmed via email, check the box below to proceed.</p>
+      <label style="display: inline-flex; align-items: center; gap: 12px; cursor: pointer; margin-bottom: 24px; font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--text-body); font-style: italic; letter-spacing: 0.06em;">
+        <input type="checkbox" id="signedConfirm" onchange="togglePaymentBtn()" style="width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0;">
+        Both spouses have signed and confirmed.
+      </label>
       <div class="modal-actions" style="justify-content: center;">
         <button class="btn-sign" id="paymentBtn" onclick="submitPayment()" style="opacity: 0.35; pointer-events: none;">Proceed to Payment</button>
         <button class="btn-cancel" onclick="closeNDA()">Not yet</button>
       </div>
-      <p style="font-size: 12px; color: var(--text-dim); font-style: italic; margin-top: 16px; letter-spacing: 0.05em;">Button activates after both signatures are received.</p>
     </div>
 
   </div>
@@ -803,12 +805,23 @@ document.addEventListener('DOMContentLoaded', function() {
     var m = document.getElementById('ndaModal');
     m.style.display = 'none';
     currentTier = null;
+    var cb = document.getElementById('signedConfirm');
+    if (cb) cb.checked = false;
+    var btn = document.getElementById('paymentBtn');
+    if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
   };
 
   window.submitPayment = function() {
     if (currentTier === 'inner') document.forms['form-inner'].submit();
     else if (currentTier === 'observer') document.forms['form-observer'].submit();
     else if (currentTier === 'final') document.forms['form-final'].submit();
+  };
+
+  window.togglePaymentBtn = function() {
+    var checked = document.getElementById('signedConfirm').checked;
+    var btn = document.getElementById('paymentBtn');
+    btn.style.opacity = checked ? '1' : '0.35';
+    btn.style.pointerEvents = checked ? 'auto' : 'none';
   };
 
   window.unlockPayment = function() {
