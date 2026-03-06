@@ -524,7 +524,7 @@
   <section class="letter-section">
     <div class="page-wrap">
       <div class="section-eyebrow fade-in">The Private Letter</div>
-      <p class="fade-in">What follows is known only to members. The date, the location, the offer...none of it exists outside this page.</p>
+      <p class="fade-in">What follows is known only to members. The Invitation, the possibility, what awaits you...none of it exists outside this page.</p>
     </div>
   </section>
 
@@ -544,15 +544,15 @@
       <div class="movement-label fade-in">Movement II</div>
       <h2 class="fade-in">The Gathering</h2>
       <p class="fade-in">The penthouse has been reserved entirely for the Society. No outside guests. No strangers. Only the couples who belong in this room.</p>
-      <p class="fade-in"><em>The Space</em><br>Floor-to-ceiling views of the Las Vegas skyline. Warm light tuned to make everyone look exactly the way they want to be seen. Intimate corners. Open space to move through. A room designed so that desire has somewhere to go.</p>
+      <p class="fade-in"><em>The Space</em><br>We have our own space high above the Las Vegas skyline, floor-to-ceiling views of the city. Intimate corners. Hidden moments. Open space to drift through. A space designed not for crowds, but for encounters. A place where desire has somewhere to go.</p>
       <p class="fade-in"><em>The Music</em><br>A live erotic DJ set, not background sound, not a playlist. A soundscape built in movements, from the warmth of arrival through slow, building tension into something that makes the body want to stay and the mind want to let go.</p>
-      <p class="fade-in"><em>The Art</em><br>Live erotic art installations work through the evening, capturing the energy of the room. Never identity. Never faces. The feeling, preserved while you are still inside it.</p>
+      <p class="fade-in"><em>The Art</em><br>Living, breathing human experiences unfold around you across the evening, erotic, unhurried, and completely unbothered by your presence. Not performances. Not a show. Curated moments of raw human desire, building an atmosphere so charged that by the time the night reaches its crescendo, you won't remember being nervous. You'll only remember how alive you felt.</p>
       <p class="fade-in"><em>The Bar</em><br>Complimentary and premium throughout the night. Champagne on arrival. Curated cocktails. Our staff is professionally invisible when they should be.</p>
-      <p class="fade-in"><em>Your Masks</em><br>Included with every circle. Yours arrive with your confirmation. They are not costumes, they are a language. The mask system removes social pressure from the entire room so that desire can move freely without negotiation.</p>
+      <p class="fade-in"><em>Your Masks</em><br>They are not costumes, they are a language. Visual consent that removes social pressure so desire can move freely.</p>
       <p class="fade-in">Black mask: I am here to witness. I am not inviting approach.<br>
       Red mask: I am open to energy, to flirtation, to what the evening offers.<br><br>
       You choose. You can change your mind at any moment. Nothing is spoken. Nothing is required.</p>
-      <p class="fade-in"><em>The Ring Ceremony</em><br>At a specific moment in the evening, the room gathers. This is the threshold, the passage from social gathering into something charged and intentional. Every person is seen. The question of whether you belong here is answered for good. What follows the ceremony is open. Entirely yours.</p>
+      <p class="fade-in"><em>The Ring Ceremony</em><br>At a specific moment in the evening, the room gathers for the passage from social gathering into something charged and intentional. By the time the ceremony closes and you turn to face your partner the velvet rope will be gone. What happens next belongs entirely to you, at whatever pace your desire leads. The evening opens. Completely.</p>
     </div>
   </section>
 
@@ -575,7 +575,7 @@
       <ul class="inclusion-list">
         <li class="fade-in">The Feminine Brunch, luxury brunch, guest speaker, and curated gift bag</li>
         <li class="fade-in">Full access to the Saturday evening gathering</li>
-        <li class="fade-in">Your personalized mask set, one pair per couple, included</li>
+        <li class="fade-in">Your personalized mask set, one pair per Invitation, included</li>
         <li class="fade-in">Complimentary premium open bar throughout the evening</li>
         <li class="fade-in">Live erotic DJ set</li>
         <li class="fade-in">Live erotic art installations</li>
@@ -602,10 +602,7 @@
           </div>
           <div class="tier-price">$1,250</div>
           <div class="tier-cta">
-            <form name="form-first" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx" style="margin:0;">
-              <input type="hidden" name="LinkId" value="b6f75022-0f9a-4582-95e1-b19ad095c6ae">
-              <button type="submit" class="cta-btn">Request Invitation</button>
-            </form>
+            <button class="cta-btn" onclick="openNDA('first')">Request Invitation</button>
           </div>
         </div>
 
@@ -638,11 +635,11 @@
       </div>
 
       <div class="refund-section fade-in">
-        <p>All circle claims are final. Because your place was held exclusively for you, we are unable to transfer or refund your investment. In the rare event of a documented emergency, we will carry your circle forward to the next gathering at our discretion.</p>
+        <p>All Invitation claims are final. Because your place was held exclusively for you, we are unable to transfer or refund your investment. In the rare event of a documented emergency, we will carry your Invitation forward to the next gathering at our discretion.</p>
       </div>
 
       <div class="fade-in" style="padding: 24px 0 0; border-top: 1px solid rgba(201,169,110,0.06);">
-        <p style="font-size: 18px; color: var(--text-body); margin-bottom: 8px; line-height: 1.65;">Not yet an Inner Ring member? The pricing above tells you what you need to know. Inner Ring members had first access to this page, and paid less for the same room.</p>
+        <p style="font-size: 18px; color: var(--text-body); margin-bottom: 8px; line-height: 1.65;">Not yet an Inner Ring member? The pricing above tells you what you need to know. Inner Ring members had first access.</p>
         <a href="https://society.clubvoluptas.com/c/the-inner-ring/the-inner-ring" style="color: var(--gold-dim); text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.3); font-size: 16px; font-style: italic; letter-spacing: 0.06em;">Learn about Inner Ring membership</a>
       </div>
 
@@ -676,34 +673,75 @@
 
 <!-- NDA MODAL — display:none in inline style so it cannot override the CSS -->
 <div class="modal-overlay" id="ndaModal" style="display:none; align-items: flex-start; padding: 0; overflow-y: auto;">
-  <div style="width: 100%; max-width: 780px; margin: 0 auto; background: var(--near-black); border: 1px solid rgba(201,169,110,0.2); display: flex; flex-direction: column; min-height: 100vh;">
+  <div style="width: 100%; max-width: 680px; margin: 0 auto; background: var(--near-black); border: 1px solid rgba(201,169,110,0.2); display: flex; flex-direction: column; min-height: 100vh;">
 
-    <div style="padding: 32px 40px 24px; border-bottom: 1px solid rgba(201,169,110,0.12); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+    <!-- Modal Header -->
+    <div style="padding: 40px 48px 32px; border-bottom: 1px solid rgba(201,169,110,0.12); display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0;">
       <div>
-        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">Society Agreement</div>
-        <div style="font-family: Cinzel, serif; font-size: 17px; color: var(--cream); letter-spacing: 0.1em;">Both spouses must sign to continue.</div>
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 12px;">Before You Join</div>
+        <div style="font-family: Cinzel, serif; font-size: clamp(18px, 3vw, 26px); color: var(--cream); letter-spacing: 0.08em; line-height: 1.3;">A few things to understand<br>before completing your membership.</div>
       </div>
-      <button onclick="closeNDA()" style="background: none; border: none; color: var(--text-dim); font-family: Cormorant Garamond, serif; font-size: 13px; letter-spacing: 0.15em; font-style: italic; cursor: pointer; padding: 8px 0;">close</button>
+      <button onclick="closeNDA()" style="background: none; border: none; color: var(--text-dim); font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.15em; font-style: italic; cursor: pointer; padding: 8px 0; flex-shrink: 0; margin-left: 24px;">close</button>
     </div>
 
-    <div style="flex: 1; padding: 0;">
-      <iframe
-        src="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhBPdzgrkMnFl-Qedm0wdaXiRhWg_w00F2csDzSk_jSfD_W4KXK1qKXWe28U9cmZWa0*&hosted=false"
-        width="100%"
-        height="100%"
-        frameborder="0"
-        style="border: 0; display: block; min-height: 500px; min-width: 600px;"
-        id="adobeSignFrame">
-      </iframe>
+    <!-- Intro -->
+    <div style="padding: 32px 48px 0; flex-shrink: 0;">
+      <p style="font-size: 16px; color: var(--text-dim); font-style: italic; line-height: 1.9; margin-bottom: 0;">The items below are the conditions of your membership. Your agreement to them is required before payment is accepted.</p>
     </div>
 
-    <div style="padding: 28px 40px; border-top: 1px solid rgba(201,169,110,0.1); text-align: center; flex-shrink: 0;">
-      <p style="font-size: 14px; color: var(--text-dim); font-style: italic; margin-bottom: 20px;">Once both spouses have signed and confirmed via email, check the box below to proceed.</p>
-      <label style="display: inline-flex; align-items: center; gap: 12px; cursor: pointer; margin-bottom: 24px; font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--text-body); font-style: italic; letter-spacing: 0.06em;">
-        <input type="checkbox" id="signedConfirm" onchange="togglePaymentBtn()" style="width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0;">
-        Both spouses have signed and confirmed.
+    <!-- Terms List -->
+    <div style="padding: 24px 48px; flex: 1;">
+
+      <div style="padding: 20px 0; border-bottom: 1px solid rgba(201,169,110,0.08);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">01 &mdash; Private Gathering</div>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.85; margin: 0;">The Voluptas Experience is a private, invitation-only social gathering of Club Voluptas members — not a ticketed event. The venue, schedule, and guest list are confidential and disclosed to registered members only.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid rgba(201,169,110,0.08);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">02 &mdash; Married Couples Only</div>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.85; margin: 0;">Club Voluptas is exclusively for married, heterosexual couples. Both partners must attend together. Membership may be revoked if this is found to be misrepresented at any time.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid rgba(201,169,110,0.08);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">03 &mdash; Absolute Confidentiality</div>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.85; margin: 0;">You will not identify, photograph, tag, or discuss any other member — in person, online, or anywhere else — without their explicit written consent. This obligation has no expiration date.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid rgba(201,169,110,0.08);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">04 &mdash; No Recording. Ever.</div>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.85; margin: 0;">Phones are collected at The Gathering. No photography or recording of any kind is permitted at any Voluptas experience, and the venue location may never be shared publicly. These rules are absolute.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid rgba(201,169,110,0.08);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">05 &mdash; Consent Is the Architecture</div>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.85; margin: 0;">Everything at Voluptas is built around choice. Nothing is expected. Nothing is required. Consent is ongoing and reversible at any time. Anyone who disregards another member's boundaries is permanently removed.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid rgba(201,169,110,0.08);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">06 &mdash; Attire Matters</div>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.85; margin: 0;">Appropriate attire is required for entry to The Gathering. A style reference is available in the member society. Entry may be denied for attire that does not meet the standard — for either partner.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid rgba(201,169,110,0.08);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 8px;">07 &mdash; All Fees Are Non-Refundable</div>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.85; margin: 0;">Membership fees reflect curation, coordination, and access — not a ticket. If you need to cancel, fees are non-refundable. If Voluptas cancels, you choose between a full refund or credit. If force majeure intervenes, a 24-month credit is issued.</p>
+      </div>
+
+      <!-- What comes next -->
+      <div style="margin-top: 32px; padding: 28px 32px; border: 1px solid rgba(201,169,110,0.2); background: rgba(201,169,110,0.04);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; margin-bottom: 14px;">One More Thing Before You Pay</div>
+        <p style="font-size: 16px; color: var(--cream); line-height: 1.9; margin: 0;">After payment is confirmed, both partners will receive a full Participant Agreement by email. It must be signed individually by each spouse before your arrival window is released to you. This is not a formality — it is the foundation the Society is built on.</p>
+      </div>
+
+    </div>
+
+    <!-- Checkbox + CTA -->
+    <div style="padding: 28px 48px 40px; border-top: 1px solid rgba(201,169,110,0.12); flex-shrink: 0;">
+      <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; margin-bottom: 28px;">
+        <input type="checkbox" id="signedConfirm" onchange="togglePaymentBtn()" style="width: 16px; height: 16px; margin-top: 3px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0;">
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--text-body); font-style: italic; line-height: 1.7; letter-spacing: 0.04em;">I have read and understood the above. I am entering this membership freely and agree to be bound by these terms. I understand a full Participant Agreement will follow, and that both partners must sign independently before the event.</span>
       </label>
-      <div class="modal-actions" style="justify-content: center;">
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
         <button class="btn-sign" id="paymentBtn" onclick="submitPayment()" style="opacity: 0.35; pointer-events: none;">Proceed to Payment</button>
         <button class="btn-cancel" onclick="closeNDA()">Not yet</button>
       </div>
@@ -713,6 +751,9 @@
 </div>
 
 <!-- HIDDEN PAYMENT FORMS -->
+<form name="form-first" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="b6f75022-0f9a-4582-95e1-b19ad095c6ae">
+</form>
 <form name="form-inner" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
   <input type="hidden" name="LinkId" value="7d5a9348-6b42-43f8-8a33-085eed1eb924">
 </form>
@@ -812,7 +853,8 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.submitPayment = function() {
-    if (currentTier === 'inner') document.forms['form-inner'].submit();
+    if (currentTier === 'first') document.forms['form-first'].submit();
+    else if (currentTier === 'inner') document.forms['form-inner'].submit();
     else if (currentTier === 'observer') document.forms['form-observer'].submit();
     else if (currentTier === 'final') document.forms['form-final'].submit();
   };
@@ -833,20 +875,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
-  // Adobe Sign completion listener
-  window.addEventListener('message', function(e) {
-    if (e.origin && e.origin.indexOf('documents.adobe.com') !== -1) {
-      try {
-        var data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-        if (data && (data.type === 'ESIGN' || data.esignEvent === 'AGREEMENT_COMPLETE' ||
-            (data.event && data.event.indexOf('COMPLETE') !== -1))) {
-          window.unlockPayment();
-        }
-      } catch(err) {}
-    }
-  });
-
-  // Manual unlock via console
+  // Manual unlock via console (kept for admin use)
   window.manualUnlock = function() { window.unlockPayment(); };
 
   // TIER TOGGLE (admin)
