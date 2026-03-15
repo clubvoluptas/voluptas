@@ -703,7 +703,7 @@
     <div class="page-wrap">
       <p class="fade-in">Club Voluptas &nbsp;&middot;&nbsp; Private Society &nbsp;&middot;&nbsp; By Invitation Only</p>
       <p class="fade-in" style="margin-top: 16px; font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.08em; text-transform: none; font-style: italic;">
-        <a href="mailto:jenn@clubvoluptas.com">Inquire</a>
+        <a href="/cdn-cgi/l/email-protection#2a404f44446a49465f485c45465f5a5e4b5904494547">Inquire</a>
       </p>
     </div>
   </footer>
@@ -844,96 +844,94 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // PASSWORD GATE
-  var CORRECT_KEY = 'Devotion2desire';
-  var keyInput = document.getElementById('keyInput');
-  var gateError = document.getElementById('gateError');
-  var gate = document.getElementById('gate');
-  var content = document.getElementById('content');
+  // ── TIER STATE ──────────────────────────────────────────────
+  var savedState = {};
+  try { savedState = JSON.parse(localStorage.getItem('cv_tierState') || '{}'); } catch(e) {}
+  var tierState = {
+    firstSoldOut:    !!savedState.firstSoldOut,
+    innerSoldOut:    !!savedState.innerSoldOut,
+    observerSoldOut: !!savedState.observerSoldOut,
+    showRemaining:   !!savedState.showRemaining,
+    remainingCount:  savedState.remainingCount || 5
+  };
 
-  keyInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') checkKey();
-  });
-  keyInput.addEventListener('input', function() {
-    gateError.classList.remove('visible');
-    if (this.value === CORRECT_KEY) checkKey();
-  });
+  function saveTierState() {
+    try { localStorage.setItem('cv_tierState', JSON.stringify(tierState)); } catch(e) {}
+  }
 
-  function checkKey() {
-    if (keyInput.value === CORRECT_KEY) {
-      gate.style.opacity = '0';
-      gate.style.transition = 'opacity 0.8s ease';
-      setTimeout(function() {
-        gate.style.display = 'none';
-        content.style.display = 'block';
-        setTimeout(function() { content.classList.add('visible'); initFadeIns(); }, 50);
-      }, 800);
+  function applyTierStates() {
+    var firstRow     = document.getElementById('tier-first');
+    var innerRow     = document.getElementById('tier-inner');
+    var observerRow  = document.getElementById('tier-observer');
+    var finalRow     = document.getElementById('tier-final');
+    var innerRemaining = document.getElementById('inner-remaining');
+
+    // THE FIRST
+    if (tierState.firstSoldOut) {
+      firstRow.className = 'tier-row first-closed';
+      var fb = firstRow.querySelector('.cta-btn');
+      if (fb) { fb.className = 'cta-btn-dead'; fb.textContent = 'Invitation  Closed'; fb.removeAttribute('onclick'); }
+      var rem = firstRow.querySelector('.remaining');
+      if (rem) rem.style.display = 'none';
     } else {
-      gateError.classList.add('visible');
-      keyInput.value = '';
-      keyInput.style.borderBottomColor = '#8a2020';
-      setTimeout(function() { keyInput.style.borderBottomColor = 'var(--gold-dim)'; }, 1000);
+      firstRow.className = 'tier-row active';
+      var fbd = firstRow.querySelector('.cta-btn-dead');
+      if (fbd) { fbd.className = 'cta-btn'; fbd.textContent = 'Request Invitation'; fbd.setAttribute('onclick', "openNDA('first')"); }
+      var rem2 = firstRow.querySelector('.remaining');
+      if (rem2) rem2.style.display = '';
+    }
+
+    // INNER RING
+    if (tierState.innerSoldOut) {
+      innerRow.className = 'tier-row closed';
+      var ib = innerRow.querySelector('.cta-btn'); if (ib) ib.style.display = 'none';
+      if (!innerRow.querySelector('.dyn-closed')) {
+        var cl = document.createElement('span');
+        cl.className = 'cta-closed dyn-closed'; cl.textContent = 'Closed';
+        innerRow.querySelector('.tier-cta').appendChild(cl);
+      }
+      observerRow.className = 'tier-row active';
+      document.getElementById('observer-status').style.display = 'none';
+      if (!observerRow.querySelector('.cta-btn')) {
+        var ob = document.createElement('button');
+        ob.className = 'cta-btn'; ob.textContent = 'Claim Your Circle';
+        ob.onclick = function() { window.openNDA('observer'); };
+        observerRow.querySelector('.tier-cta').appendChild(ob);
+      }
+    } else {
+      innerRow.className = tierState.firstSoldOut ? 'tier-row active' : 'tier-row upcoming';
+      var dc = innerRow.querySelector('.dyn-closed'); if (dc) dc.remove();
+      var ib2 = innerRow.querySelector('.cta-btn'); if (ib2) ib2.style.display = '';
+      observerRow.className = 'tier-row upcoming';
+      document.getElementById('observer-status').style.display = '';
+      var ob2 = observerRow.querySelector('.cta-btn'); if (ob2) ob2.remove();
+    }
+
+    // OBSERVER + FINAL
+    if (tierState.innerSoldOut && tierState.observerSoldOut) {
+      observerRow.className = 'tier-row closed';
+      finalRow.className = 'tier-row active';
+      document.getElementById('final-status').style.display = 'none';
+      if (!finalRow.querySelector('.cta-btn')) {
+        var ff = document.createElement('button');
+        ff.className = 'cta-btn'; ff.textContent = 'Claim Your Circle';
+        ff.onclick = function() { window.openNDA('final'); };
+        finalRow.querySelector('.tier-cta').appendChild(ff);
+      }
+    } else {
+      if (!tierState.innerSoldOut) finalRow.className = 'tier-row upcoming';
+      document.getElementById('final-status').style.display = '';
+      var ff2 = finalRow.querySelector('.cta-btn'); if (ff2) ff2.remove();
+    }
+
+    // REMAINING COUNT
+    if (tierState.showRemaining && !tierState.innerSoldOut) {
+      innerRemaining.style.display = 'block';
+      innerRemaining.textContent = tierState.remainingCount + ' remaining';
+    } else {
+      innerRemaining.style.display = 'none';
     }
   }
-
-  // FADE INS
-  function initFadeIns() {
-    var els = document.querySelectorAll('.fade-in');
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) { entry.target.classList.add('appeared'); obs.unobserve(entry.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
-  }
-
-  // NDA FLOW
-  var currentTier = null;
-
-  window.openNDA = function(tier) {
-    currentTier = tier;
-    var m = document.getElementById('ndaModal');
-    m.style.display = 'flex';
-  };
-
-  window.closeNDA = function() {
-    var m = document.getElementById('ndaModal');
-    m.style.display = 'none';
-    currentTier = null;
-    var cb = document.getElementById('signedConfirm');
-    if (cb) cb.checked = false;
-    var btn = document.getElementById('paymentBtn');
-    if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
-  };
-
-  window.submitPayment = function() {
-    if (currentTier === 'first') document.forms['form-first'].submit();
-    else if (currentTier === 'inner') document.forms['form-inner'].submit();
-    else if (currentTier === 'observer') document.forms['form-observer'].submit();
-    else if (currentTier === 'final') document.forms['form-final'].submit();
-  };
-
-  window.togglePaymentBtn = function() {
-    var checked = document.getElementById('signedConfirm').checked;
-    var btn = document.getElementById('paymentBtn');
-    btn.style.opacity = checked ? '1' : '0.35';
-    btn.style.pointerEvents = checked ? 'auto' : 'none';
-  };
-
-  window.unlockPayment = function() {
-    var btn = document.getElementById('paymentBtn');
-    if (btn) {
-      btn.style.opacity = '1';
-      btn.style.pointerEvents = 'auto';
-      btn.textContent = 'Proceed to Payment';
-    }
-  };
-
-  // Manual unlock via console (kept for admin use)
-  window.manualUnlock = function() { window.unlockPayment(); };
-
-  // TIER TOGGLE (admin)
-  var tierState = { firstSoldOut: false, innerSoldOut: false, observerSoldOut: false, showRemaining: false, remainingCount: 5 };
 
   window.toggleTier = function(tier) {
     if (tier === 'first') {
@@ -946,113 +944,108 @@ document.addEventListener('DOMContentLoaded', function() {
       tierState.observerSoldOut = !tierState.observerSoldOut;
       document.getElementById('toggle-observer').classList.toggle('on', tierState.observerSoldOut);
     }
-    applyTierStates();
+    saveTierState(); applyTierStates();
   };
 
   window.toggleRemaining = function() {
     tierState.showRemaining = !tierState.showRemaining;
     document.getElementById('toggle-remaining').classList.toggle('on', tierState.showRemaining);
-    applyTierStates();
+    saveTierState(); applyTierStates();
   };
 
   window.updateRemaining = function() {
     tierState.remainingCount = parseInt(document.getElementById('remaining-count').value) || 5;
-    applyTierStates();
+    saveTierState(); applyTierStates();
   };
 
-  function applyTierStates() {
-    var firstRow = document.getElementById('tier-first');
-    var innerRow = document.getElementById('tier-inner');
-    var observerRow = document.getElementById('tier-observer');
-    var finalRow = document.getElementById('tier-final');
-    var innerRemaining = document.getElementById('inner-remaining');
+  // ── PASSWORD GATE ────────────────────────────────────────────
+  var CORRECT_KEY = 'Devotion2desire';
+  var keyInput = document.getElementById('keyInput');
+  var gateError = document.getElementById('gateError');
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
 
-    // THE FIRST: sold out state — dim it, dead button, no strikethrough
-    if (tierState.firstSoldOut) {
-      firstRow.className = 'tier-row first-closed';
-      var firstBtn = firstRow.querySelector('.cta-btn');
-      if (firstBtn) {
-        firstBtn.className = 'cta-btn-dead';
-        firstBtn.textContent = 'Invitation  Closed';
-        firstBtn.removeAttribute('onclick');
-      }
-      // Remove the "3 remaining" span
-      var rem = firstRow.querySelector('.remaining');
-      if (rem) rem.style.display = 'none';
-      // Inner Ring becomes active
-      if (!tierState.innerSoldOut) {
-        innerRow.className = 'tier-row active';
-      }
-    } else {
-      firstRow.className = 'tier-row active';
-      var firstDeadBtn = firstRow.querySelector('.cta-btn-dead');
-      if (firstDeadBtn) {
-        firstDeadBtn.className = 'cta-btn';
-        firstDeadBtn.textContent = 'Request Invitation';
-        firstDeadBtn.setAttribute('onclick', "openNDA('first')");
-      }
-      var rem2 = firstRow.querySelector('.remaining');
-      if (rem2) rem2.style.display = '';
-    }
+  keyInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkKey(); });
+  keyInput.addEventListener('input', function() {
+    gateError.classList.remove('visible');
+    if (this.value === CORRECT_KEY) checkKey();
+  });
 
-    if (tierState.innerSoldOut) {
-      innerRow.className = 'tier-row closed';
-      var btn = innerRow.querySelector('.cta-btn');
-      if (btn) btn.style.display = 'none';
-      if (!innerRow.querySelector('.dyn-closed')) {
-        var cl = document.createElement('span');
-        cl.className = 'cta-closed dyn-closed';
-        cl.textContent = 'Closed';
-        innerRow.querySelector('.tier-cta').appendChild(cl);
-      }
-      observerRow.className = 'tier-row active';
-      document.getElementById('observer-status').style.display = 'none';
-      if (!observerRow.querySelector('.cta-btn')) {
-        var ob = document.createElement('button');
-        ob.className = 'cta-btn';
-        ob.textContent = 'Claim Your Circle';
-        ob.onclick = function() { window.openNDA('observer'); };
-        observerRow.querySelector('.tier-cta').appendChild(ob);
-      }
+  function checkKey() {
+    if (keyInput.value === CORRECT_KEY) {
+      gate.style.opacity = '0';
+      gate.style.transition = 'opacity 0.8s ease';
+      setTimeout(function() {
+        gate.style.display = 'none';
+        content.style.display = 'block';
+        setTimeout(function() {
+          content.classList.add('visible');
+          initFadeIns();
+          document.getElementById('toggle-first').classList.toggle('on', tierState.firstSoldOut);
+          document.getElementById('toggle-inner').classList.toggle('on', tierState.innerSoldOut);
+          document.getElementById('toggle-observer').classList.toggle('on', tierState.observerSoldOut);
+          document.getElementById('toggle-remaining').classList.toggle('on', tierState.showRemaining);
+          document.getElementById('remaining-count').value = tierState.remainingCount;
+          applyTierStates();
+        }, 50);
+      }, 800);
     } else {
-      innerRow.className = tierState.firstSoldOut ? 'tier-row active' : 'tier-row upcoming';
-      var dc = innerRow.querySelector('.dyn-closed');
-      if (dc) dc.remove();
-      var ib = innerRow.querySelector('.cta-btn');
-      if (ib) ib.style.display = '';
-      observerRow.className = 'tier-row upcoming';
-      document.getElementById('observer-status').style.display = '';
-      var ob2 = observerRow.querySelector('.cta-btn');
-      if (ob2) ob2.remove();
-    }
-
-    if (tierState.innerSoldOut && tierState.observerSoldOut) {
-      observerRow.className = 'tier-row closed';
-      finalRow.className = 'tier-row active';
-      document.getElementById('final-status').style.display = 'none';
-      if (!finalRow.querySelector('.cta-btn')) {
-        var fb = document.createElement('button');
-        fb.className = 'cta-btn';
-        fb.textContent = 'Claim Your Circle';
-        fb.onclick = function() { window.openNDA('final'); };
-        finalRow.querySelector('.tier-cta').appendChild(fb);
-      }
-    } else {
-      if (!tierState.innerSoldOut) finalRow.className = 'tier-row upcoming';
-      document.getElementById('final-status').style.display = '';
-      var fb2 = finalRow.querySelector('.cta-btn');
-      if (fb2) fb2.remove();
-    }
-
-    if (tierState.showRemaining && !tierState.innerSoldOut) {
-      innerRemaining.style.display = 'block';
-      innerRemaining.textContent = tierState.remainingCount + ' remaining';
-    } else {
-      innerRemaining.style.display = 'none';
+      gateError.classList.add('visible');
+      keyInput.value = '';
+      keyInput.style.borderBottomColor = '#8a2020';
+      setTimeout(function() { keyInput.style.borderBottomColor = 'var(--gold-dim)'; }, 1000);
     }
   }
 
-  // Admin panel: Shift+A with inline PIN
+  // ── FADE INS ─────────────────────────────────────────────────
+  function initFadeIns() {
+    var els = document.querySelectorAll('.fade-in');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('appeared'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
+  }
+
+  // ── NDA FLOW ─────────────────────────────────────────────────
+  var currentTier = null;
+
+  window.openNDA = function(tier) {
+    currentTier = tier;
+    document.getElementById('ndaModal').style.display = 'flex';
+  };
+
+  window.closeNDA = function() {
+    document.getElementById('ndaModal').style.display = 'none';
+    currentTier = null;
+    var cb = document.getElementById('signedConfirm'); if (cb) cb.checked = false;
+    var btn = document.getElementById('paymentBtn');
+    if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
+  };
+
+  window.submitPayment = function() {
+    if (currentTier === 'first')    document.forms['form-first'].submit();
+    else if (currentTier === 'inner')    document.forms['form-inner'].submit();
+    else if (currentTier === 'observer') document.forms['form-observer'].submit();
+    else if (currentTier === 'final')    document.forms['form-final'].submit();
+  };
+
+  window.togglePaymentBtn = function() {
+    var checked = document.getElementById('signedConfirm').checked;
+    var btn = document.getElementById('paymentBtn');
+    btn.style.opacity = checked ? '1' : '0.35';
+    btn.style.pointerEvents = checked ? 'auto' : 'none';
+  };
+
+  window.unlockPayment = function() {
+    var btn = document.getElementById('paymentBtn');
+    if (btn) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; btn.textContent = 'Proceed to Payment'; }
+  };
+
+  window.manualUnlock = function() { window.unlockPayment(); };
+
+  // ── ADMIN PANEL PIN ───────────────────────────────────────────
   var adminUnlocked = false;
 
   window.handleAdminPin = function(e) {
@@ -1077,11 +1070,6 @@ document.addEventListener('DOMContentLoaded', function() {
       var panel = document.getElementById('admin-panel');
       if (panel.classList.contains('open')) {
         panel.classList.remove('open');
-        // reset PIN gate for next open
-        if (!adminUnlocked) {
-          document.getElementById('admin-pin-gate').style.display = 'block';
-          document.getElementById('admin-controls').style.display = 'none';
-        }
       } else {
         panel.classList.add('open');
         if (!adminUnlocked) {
@@ -1091,7 +1079,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Close modal on overlay click
+  // ── MODAL CLOSE ON OVERLAY ───────────────────────────────────
   document.getElementById('ndaModal').addEventListener('click', function(e) {
     if (e.target === this) window.closeNDA();
   });
