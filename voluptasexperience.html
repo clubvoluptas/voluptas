@@ -297,6 +297,22 @@
   .tier-row.closed .tier-name { text-decoration: line-through; color: var(--text-dim); opacity: 0.55; }
   .tier-row.closed .tier-price { text-decoration: line-through; color: var(--text-dim); opacity: 0.45; }
 
+  .tier-row.first-closed .tier-name { color: var(--text-mid); }
+  .tier-row.first-closed .tier-price { color: var(--gold-dim); opacity: 0.7; }
+  .cta-btn-dead {
+    background: transparent;
+    border: 1px solid rgba(138, 111, 62, 0.35);
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    cursor: default;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
   .tier-row.upcoming .tier-name { color: var(--text-mid); }
   .tier-row.upcoming .tier-price { color: var(--gold-dim); opacity: 0.7; }
   .tier-row.upcoming .tier-cta { opacity: 0.65; }
@@ -789,24 +805,39 @@
 
 <!-- ADMIN PANEL: Shift+A to open -->
 <div id="admin-panel">
-  <h4>Tier Controls</h4>
-  <div class="toggle-row">
-    <span>Inner Ring sold out</span>
-    <div class="toggle-switch" id="toggle-inner" onclick="toggleTier('inner')"></div>
+  <!-- PIN gate -->
+  <div id="admin-pin-gate">
+    <h4 style="margin-bottom:12px;">Admin Access</h4>
+    <input type="password" id="adminPinInput" maxlength="6" placeholder="PIN"
+      style="background:transparent;border:none;border-bottom:1px solid var(--gold-dim);color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:18px;letter-spacing:0.25em;text-align:center;width:100%;padding:8px 0;outline:none;"
+      onkeydown="handleAdminPin(event)">
+    <div id="admin-pin-error" style="color:#8a2020;font-size:10px;letter-spacing:0.15em;margin-top:8px;opacity:0;font-style:italic;">Incorrect PIN.</div>
   </div>
-  <div class="toggle-row">
-    <span>Observer Ring sold out</span>
-    <div class="toggle-switch" id="toggle-observer" onclick="toggleTier('observer')"></div>
-  </div>
-  <div class="toggle-row">
-    <span>Show remaining count</span>
-    <div class="toggle-switch" id="toggle-remaining" onclick="toggleRemaining()"></div>
-  </div>
-  <div class="toggle-row">
-    <input type="number" id="remaining-count" value="5" min="1" max="10"
-      style="width:38px;background:transparent;border-bottom:1px solid var(--gold-dim);color:var(--gold);font-family:monospace;text-align:center;outline:none;font-size:13px;"
-      oninput="updateRemaining()">
-    <span>remaining (shows at 5 or fewer)</span>
+  <!-- Controls (hidden until PIN passes) -->
+  <div id="admin-controls" style="display:none;">
+    <h4>Tier Controls</h4>
+    <div class="toggle-row">
+      <span>The First sold out</span>
+      <div class="toggle-switch" id="toggle-first" onclick="toggleTier('first')"></div>
+    </div>
+    <div class="toggle-row">
+      <span>Inner Ring sold out</span>
+      <div class="toggle-switch" id="toggle-inner" onclick="toggleTier('inner')"></div>
+    </div>
+    <div class="toggle-row">
+      <span>Observer Ring sold out</span>
+      <div class="toggle-switch" id="toggle-observer" onclick="toggleTier('observer')"></div>
+    </div>
+    <div class="toggle-row">
+      <span>Show remaining count</span>
+      <div class="toggle-switch" id="toggle-remaining" onclick="toggleRemaining()"></div>
+    </div>
+    <div class="toggle-row">
+      <input type="number" id="remaining-count" value="5" min="1" max="10"
+        style="width:38px;background:transparent;border-bottom:1px solid var(--gold-dim);color:var(--gold);font-family:monospace;text-align:center;outline:none;font-size:13px;"
+        oninput="updateRemaining()">
+      <span>remaining (shows at 5 or fewer)</span>
+    </div>
   </div>
 </div>
 
@@ -902,10 +933,13 @@ document.addEventListener('DOMContentLoaded', function() {
   window.manualUnlock = function() { window.unlockPayment(); };
 
   // TIER TOGGLE (admin)
-  var tierState = { innerSoldOut: false, observerSoldOut: false, showRemaining: false, remainingCount: 5 };
+  var tierState = { firstSoldOut: false, innerSoldOut: false, observerSoldOut: false, showRemaining: false, remainingCount: 5 };
 
   window.toggleTier = function(tier) {
-    if (tier === 'inner') {
+    if (tier === 'first') {
+      tierState.firstSoldOut = !tierState.firstSoldOut;
+      document.getElementById('toggle-first').classList.toggle('on', tierState.firstSoldOut);
+    } else if (tier === 'inner') {
       tierState.innerSoldOut = !tierState.innerSoldOut;
       document.getElementById('toggle-inner').classList.toggle('on', tierState.innerSoldOut);
     } else {
@@ -927,10 +961,39 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   function applyTierStates() {
+    var firstRow = document.getElementById('tier-first');
     var innerRow = document.getElementById('tier-inner');
     var observerRow = document.getElementById('tier-observer');
     var finalRow = document.getElementById('tier-final');
     var innerRemaining = document.getElementById('inner-remaining');
+
+    // THE FIRST: sold out state — dim it, dead button, no strikethrough
+    if (tierState.firstSoldOut) {
+      firstRow.className = 'tier-row first-closed';
+      var firstBtn = firstRow.querySelector('.cta-btn');
+      if (firstBtn) {
+        firstBtn.className = 'cta-btn-dead';
+        firstBtn.textContent = 'Invitation  Closed';
+        firstBtn.removeAttribute('onclick');
+      }
+      // Remove the "3 remaining" span
+      var rem = firstRow.querySelector('.remaining');
+      if (rem) rem.style.display = 'none';
+      // Inner Ring becomes active
+      if (!tierState.innerSoldOut) {
+        innerRow.className = 'tier-row active';
+      }
+    } else {
+      firstRow.className = 'tier-row active';
+      var firstDeadBtn = firstRow.querySelector('.cta-btn-dead');
+      if (firstDeadBtn) {
+        firstDeadBtn.className = 'cta-btn';
+        firstDeadBtn.textContent = 'Request Invitation';
+        firstDeadBtn.setAttribute('onclick', "openNDA('first')");
+      }
+      var rem2 = firstRow.querySelector('.remaining');
+      if (rem2) rem2.style.display = '';
+    }
 
     if (tierState.innerSoldOut) {
       innerRow.className = 'tier-row closed';
@@ -952,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observerRow.querySelector('.tier-cta').appendChild(ob);
       }
     } else {
-      innerRow.className = 'tier-row active';
+      innerRow.className = tierState.firstSoldOut ? 'tier-row active' : 'tier-row upcoming';
       var dc = innerRow.querySelector('.dyn-closed');
       if (dc) dc.remove();
       var ib = innerRow.querySelector('.cta-btn');
@@ -989,9 +1052,43 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Admin panel: Shift+A
+  // Admin panel: Shift+A with inline PIN
+  var adminUnlocked = false;
+
+  window.handleAdminPin = function(e) {
+    if (e.key === 'Enter') {
+      var input = document.getElementById('adminPinInput');
+      if (input.value === '6116') {
+        adminUnlocked = true;
+        document.getElementById('admin-pin-gate').style.display = 'none';
+        document.getElementById('admin-controls').style.display = 'block';
+        input.value = '';
+      } else {
+        var err = document.getElementById('admin-pin-error');
+        err.style.opacity = '1';
+        input.value = '';
+        setTimeout(function() { err.style.opacity = '0'; }, 1500);
+      }
+    }
+  };
+
   document.addEventListener('keydown', function(e) {
-    if (e.shiftKey && e.key === 'A') document.getElementById('admin-panel').classList.toggle('open');
+    if (e.shiftKey && e.key === 'A') {
+      var panel = document.getElementById('admin-panel');
+      if (panel.classList.contains('open')) {
+        panel.classList.remove('open');
+        // reset PIN gate for next open
+        if (!adminUnlocked) {
+          document.getElementById('admin-pin-gate').style.display = 'block';
+          document.getElementById('admin-controls').style.display = 'none';
+        }
+      } else {
+        panel.classList.add('open');
+        if (!adminUnlocked) {
+          setTimeout(function() { document.getElementById('adminPinInput').focus(); }, 50);
+        }
+      }
+    }
   });
 
   // Close modal on overlay click
@@ -1000,9 +1097,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 }); // end DOMContentLoaded
-</script>
-</body>
-</html>aded
 </script>
 </body>
 </html>
