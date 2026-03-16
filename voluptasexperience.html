@@ -294,24 +294,8 @@
   .tier-row.active .tier-name { color: var(--cream); }
   .tier-row.active .tier-price { color: var(--gold-light); }
 
-  .tier-row.closed .tier-name { text-decoration: line-through; color: var(--text-dim); opacity: 0.55; }
-  .tier-row.closed .tier-price { text-decoration: line-through; color: var(--text-dim); opacity: 0.45; }
-
-  .tier-row.first-closed .tier-name { color: var(--text-mid); }
-  .tier-row.first-closed .tier-price { color: var(--gold-dim); opacity: 0.7; }
-  .cta-btn-dead {
-    background: transparent;
-    border: 1px solid rgba(138, 111, 62, 0.35);
-    color: var(--text-dim);
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    padding: 12px 20px;
-    cursor: default;
-    white-space: nowrap;
-    pointer-events: none;
-  }
+  .tier-row.closed .tier-name { color: var(--text-dim); opacity: 0.55; }
+  .tier-row.closed .tier-price { color: var(--text-dim); opacity: 0.45; }
 
   .tier-row.upcoming .tier-name { color: var(--text-mid); }
   .tier-row.upcoming .tier-price { color: var(--gold-dim); opacity: 0.7; }
@@ -494,28 +478,7 @@
   }
   .site-footer a:hover { color: var(--gold); }
 
-  /* ADMIN */
-  #admin-panel {
-    display: none;
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: var(--near-black);
-    border: 1px solid rgba(201, 169, 110, 0.2);
-    padding: 20px 24px;
-    z-index: 200;
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    min-width: 220px;
-  }
-  #admin-panel.open { display: block; }
-  #admin-panel h4 { color: var(--gold-dim); margin-bottom: 14px; font-size: 10px; letter-spacing: 0.3em; }
-  .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 7px 0; color: var(--text-dim); font-size: 11px; }
-  .toggle-switch { width: 36px; height: 20px; background: var(--text-dim); border-radius: 10px; cursor: pointer; position: relative; transition: background 0.3s; flex-shrink: 0; }
-  .toggle-switch.on { background: var(--gold-dim); }
-  .toggle-switch::after { content: ''; position: absolute; width: 14px; height: 14px; background: white; border-radius: 50%; top: 3px; left: 3px; transition: left 0.3s; }
-  .toggle-switch.on::after { left: 19px; }
+
 
   @media (max-width: 600px) {
     .page-wrap { padding: 0 20px; }
@@ -632,24 +595,20 @@
       <h2 class="fade-in" style="margin-bottom: 56px; text-align: center;">Invitations</h2>
       <div class="tier-table fade-in">
 
-        <!-- THE FIRST: active, 3 remaining -->
-        <div class="tier-row active" id="tier-first">
-          <div class="tier-name">
-            The First
-            <span class="remaining">3 remaining</span>
-          </div>
+        <!-- THE FIRST: closed -->
+        <div class="tier-row closed" id="tier-first">
+          <div class="tier-name">The First</div>
           <div class="tier-price">$1,250</div>
           <div class="tier-cta">
-            <button class="cta-btn" onclick="openNDA('first')">Request Invitation</button>
+            <span style="display:inline-block;padding:12px 20px;border:1px solid var(--text-dim);color:var(--text-dim);font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;opacity:0.45;cursor:default;">Invitation Closed</span>
           </div>
         </div>
 
-        <!-- INNER RING: upcoming, not yet open -->
-        <div class="tier-row upcoming" id="tier-inner">
+        <!-- INNER RING: active -->
+        <div class="tier-row active" id="tier-inner">
           <div class="tier-name">
             Inner Ring
-            <span class="remaining" id="inner-remaining" style="display:none;"></span>
-            <span style="display:block;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.06em;color:var(--text-dim);font-style:italic;margin-top:5px;">Inner Ring members only &nbsp;&middot;&nbsp; Limited Invitations &nbsp;&middot;&nbsp; closes when full</span>
+            <span style="display:block;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.06em;color:var(--text-dim);font-style:italic;margin-top:5px;">Inner Ring members only &nbsp;&middot;&nbsp; 10 spots &nbsp;&middot;&nbsp; closes when full</span>
           </div>
           <div class="tier-price">$1,400</div>
           <div class="tier-cta">
@@ -703,7 +662,7 @@
     <div class="page-wrap">
       <p class="fade-in">Club Voluptas &nbsp;&middot;&nbsp; Private Society &nbsp;&middot;&nbsp; By Invitation Only</p>
       <p class="fade-in" style="margin-top: 16px; font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.08em; text-transform: none; font-style: italic;">
-        <a href="/cdn-cgi/l/email-protection#2a404f44446a49465f485c45465f5a5e4b5904494547">Inquire</a>
+        <!--email_off--><a href="mailto:jenn@clubvoluptas.com">Inquire</a><!--/email_off-->
       </p>
     </div>
   </footer>
@@ -803,169 +762,21 @@
   <input type="hidden" name="LinkId" value="9ca23635-ca44-4f5f-a32d-7406de8ad9f6">
 </form>
 
-<!-- ADMIN PANEL: Shift+A to open -->
-<div id="admin-panel">
-  <!-- PIN gate -->
-  <div id="admin-pin-gate">
-    <h4 style="margin-bottom:12px;">Admin Access</h4>
-    <input type="password" id="adminPinInput" maxlength="6" placeholder="PIN"
-      style="background:transparent;border:none;border-bottom:1px solid var(--gold-dim);color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:18px;letter-spacing:0.25em;text-align:center;width:100%;padding:8px 0;outline:none;"
-      onkeydown="handleAdminPin(event)">
-    <div id="admin-pin-error" style="color:#8a2020;font-size:10px;letter-spacing:0.15em;margin-top:8px;opacity:0;font-style:italic;">Incorrect PIN.</div>
-  </div>
-  <!-- Controls (hidden until PIN passes) -->
-  <div id="admin-controls" style="display:none;">
-    <h4>Tier Controls</h4>
-    <div class="toggle-row">
-      <span>The First sold out</span>
-      <div class="toggle-switch" id="toggle-first" onclick="toggleTier('first')"></div>
-    </div>
-    <div class="toggle-row">
-      <span>Inner Ring sold out</span>
-      <div class="toggle-switch" id="toggle-inner" onclick="toggleTier('inner')"></div>
-    </div>
-    <div class="toggle-row">
-      <span>Observer Ring sold out</span>
-      <div class="toggle-switch" id="toggle-observer" onclick="toggleTier('observer')"></div>
-    </div>
-    <div class="toggle-row">
-      <span>Show remaining count</span>
-      <div class="toggle-switch" id="toggle-remaining" onclick="toggleRemaining()"></div>
-    </div>
-    <div class="toggle-row">
-      <input type="number" id="remaining-count" value="5" min="1" max="10"
-        style="width:38px;background:transparent;border-bottom:1px solid var(--gold-dim);color:var(--gold);font-family:monospace;text-align:center;outline:none;font-size:13px;"
-        oninput="updateRemaining()">
-      <span>remaining (shows at 5 or fewer)</span>
-    </div>
-  </div>
-</div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // ── TIER STATE ──────────────────────────────────────────────
-  var savedState = {};
-  try { savedState = JSON.parse(localStorage.getItem('cv_tierState') || '{}'); } catch(e) {}
-  var tierState = {
-    firstSoldOut:    !!savedState.firstSoldOut,
-    innerSoldOut:    !!savedState.innerSoldOut,
-    observerSoldOut: !!savedState.observerSoldOut,
-    showRemaining:   !!savedState.showRemaining,
-    remainingCount:  savedState.remainingCount || 5
-  };
-
-  function saveTierState() {
-    try { localStorage.setItem('cv_tierState', JSON.stringify(tierState)); } catch(e) {}
-  }
-
-  function applyTierStates() {
-    var firstRow     = document.getElementById('tier-first');
-    var innerRow     = document.getElementById('tier-inner');
-    var observerRow  = document.getElementById('tier-observer');
-    var finalRow     = document.getElementById('tier-final');
-    var innerRemaining = document.getElementById('inner-remaining');
-
-    // THE FIRST
-    if (tierState.firstSoldOut) {
-      firstRow.className = 'tier-row first-closed';
-      var fb = firstRow.querySelector('.cta-btn');
-      if (fb) { fb.className = 'cta-btn-dead'; fb.textContent = 'Invitation  Closed'; fb.removeAttribute('onclick'); }
-      var rem = firstRow.querySelector('.remaining');
-      if (rem) rem.style.display = 'none';
-    } else {
-      firstRow.className = 'tier-row active';
-      var fbd = firstRow.querySelector('.cta-btn-dead');
-      if (fbd) { fbd.className = 'cta-btn'; fbd.textContent = 'Request Invitation'; fbd.setAttribute('onclick', "openNDA('first')"); }
-      var rem2 = firstRow.querySelector('.remaining');
-      if (rem2) rem2.style.display = '';
-    }
-
-    // INNER RING
-    if (tierState.innerSoldOut) {
-      innerRow.className = 'tier-row closed';
-      var ib = innerRow.querySelector('.cta-btn'); if (ib) ib.style.display = 'none';
-      if (!innerRow.querySelector('.dyn-closed')) {
-        var cl = document.createElement('span');
-        cl.className = 'cta-closed dyn-closed'; cl.textContent = 'Closed';
-        innerRow.querySelector('.tier-cta').appendChild(cl);
-      }
-      observerRow.className = 'tier-row active';
-      document.getElementById('observer-status').style.display = 'none';
-      if (!observerRow.querySelector('.cta-btn')) {
-        var ob = document.createElement('button');
-        ob.className = 'cta-btn'; ob.textContent = 'Claim Your Circle';
-        ob.onclick = function() { window.openNDA('observer'); };
-        observerRow.querySelector('.tier-cta').appendChild(ob);
-      }
-    } else {
-      innerRow.className = tierState.firstSoldOut ? 'tier-row active' : 'tier-row upcoming';
-      var dc = innerRow.querySelector('.dyn-closed'); if (dc) dc.remove();
-      var ib2 = innerRow.querySelector('.cta-btn'); if (ib2) ib2.style.display = '';
-      observerRow.className = 'tier-row upcoming';
-      document.getElementById('observer-status').style.display = '';
-      var ob2 = observerRow.querySelector('.cta-btn'); if (ob2) ob2.remove();
-    }
-
-    // OBSERVER + FINAL
-    if (tierState.innerSoldOut && tierState.observerSoldOut) {
-      observerRow.className = 'tier-row closed';
-      finalRow.className = 'tier-row active';
-      document.getElementById('final-status').style.display = 'none';
-      if (!finalRow.querySelector('.cta-btn')) {
-        var ff = document.createElement('button');
-        ff.className = 'cta-btn'; ff.textContent = 'Claim Your Circle';
-        ff.onclick = function() { window.openNDA('final'); };
-        finalRow.querySelector('.tier-cta').appendChild(ff);
-      }
-    } else {
-      if (!tierState.innerSoldOut) finalRow.className = 'tier-row upcoming';
-      document.getElementById('final-status').style.display = '';
-      var ff2 = finalRow.querySelector('.cta-btn'); if (ff2) ff2.remove();
-    }
-
-    // REMAINING COUNT
-    if (tierState.showRemaining && !tierState.innerSoldOut) {
-      innerRemaining.style.display = 'block';
-      innerRemaining.textContent = tierState.remainingCount + ' remaining';
-    } else {
-      innerRemaining.style.display = 'none';
-    }
-  }
-
-  window.toggleTier = function(tier) {
-    if (tier === 'first') {
-      tierState.firstSoldOut = !tierState.firstSoldOut;
-      document.getElementById('toggle-first').classList.toggle('on', tierState.firstSoldOut);
-    } else if (tier === 'inner') {
-      tierState.innerSoldOut = !tierState.innerSoldOut;
-      document.getElementById('toggle-inner').classList.toggle('on', tierState.innerSoldOut);
-    } else {
-      tierState.observerSoldOut = !tierState.observerSoldOut;
-      document.getElementById('toggle-observer').classList.toggle('on', tierState.observerSoldOut);
-    }
-    saveTierState(); applyTierStates();
-  };
-
-  window.toggleRemaining = function() {
-    tierState.showRemaining = !tierState.showRemaining;
-    document.getElementById('toggle-remaining').classList.toggle('on', tierState.showRemaining);
-    saveTierState(); applyTierStates();
-  };
-
-  window.updateRemaining = function() {
-    tierState.remainingCount = parseInt(document.getElementById('remaining-count').value) || 5;
-    saveTierState(); applyTierStates();
-  };
-
-  // ── PASSWORD GATE ────────────────────────────────────────────
+  // PASSWORD GATE
   var CORRECT_KEY = 'Devotion2desire';
   var keyInput = document.getElementById('keyInput');
   var gateError = document.getElementById('gateError');
   var gate = document.getElementById('gate');
   var content = document.getElementById('content');
 
-  keyInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkKey(); });
+  keyInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkKey();
+  });
   keyInput.addEventListener('input', function() {
     gateError.classList.remove('visible');
     if (this.value === CORRECT_KEY) checkKey();
@@ -978,16 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
         gate.style.display = 'none';
         content.style.display = 'block';
-        setTimeout(function() {
-          content.classList.add('visible');
-          initFadeIns();
-          document.getElementById('toggle-first').classList.toggle('on', tierState.firstSoldOut);
-          document.getElementById('toggle-inner').classList.toggle('on', tierState.innerSoldOut);
-          document.getElementById('toggle-observer').classList.toggle('on', tierState.observerSoldOut);
-          document.getElementById('toggle-remaining').classList.toggle('on', tierState.showRemaining);
-          document.getElementById('remaining-count').value = tierState.remainingCount;
-          applyTierStates();
-        }, 50);
+        setTimeout(function() { content.classList.add('visible'); initFadeIns(); }, 50);
       }, 800);
     } else {
       gateError.classList.add('visible');
@@ -997,7 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // ── FADE INS ─────────────────────────────────────────────────
+  // FADE INS
   function initFadeIns() {
     var els = document.querySelectorAll('.fade-in');
     var obs = new IntersectionObserver(function(entries) {
@@ -1008,27 +810,30 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
   }
 
-  // ── NDA FLOW ─────────────────────────────────────────────────
+  // NDA FLOW
   var currentTier = null;
 
   window.openNDA = function(tier) {
     currentTier = tier;
-    document.getElementById('ndaModal').style.display = 'flex';
+    var m = document.getElementById('ndaModal');
+    m.style.display = 'flex';
   };
 
   window.closeNDA = function() {
-    document.getElementById('ndaModal').style.display = 'none';
+    var m = document.getElementById('ndaModal');
+    m.style.display = 'none';
     currentTier = null;
-    var cb = document.getElementById('signedConfirm'); if (cb) cb.checked = false;
+    var cb = document.getElementById('signedConfirm');
+    if (cb) cb.checked = false;
     var btn = document.getElementById('paymentBtn');
     if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
   };
 
   window.submitPayment = function() {
-    if (currentTier === 'first')    document.forms['form-first'].submit();
-    else if (currentTier === 'inner')    document.forms['form-inner'].submit();
+    if (currentTier === 'first') document.forms['form-first'].submit();
+    else if (currentTier === 'inner') document.forms['form-inner'].submit();
     else if (currentTier === 'observer') document.forms['form-observer'].submit();
-    else if (currentTier === 'final')    document.forms['form-final'].submit();
+    else if (currentTier === 'final') document.forms['form-final'].submit();
   };
 
   window.togglePaymentBtn = function() {
@@ -1040,46 +845,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.unlockPayment = function() {
     var btn = document.getElementById('paymentBtn');
-    if (btn) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; btn.textContent = 'Proceed to Payment'; }
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+      btn.textContent = 'Proceed to Payment';
+    }
   };
 
+  // Manual unlock via console (kept for admin use)
   window.manualUnlock = function() { window.unlockPayment(); };
 
-  // ── ADMIN PANEL PIN ───────────────────────────────────────────
-  var adminUnlocked = false;
+  // Admin panel: Shift+A - REMOVED
 
-  window.handleAdminPin = function(e) {
-    if (e.key === 'Enter') {
-      var input = document.getElementById('adminPinInput');
-      if (input.value === '6116') {
-        adminUnlocked = true;
-        document.getElementById('admin-pin-gate').style.display = 'none';
-        document.getElementById('admin-controls').style.display = 'block';
-        input.value = '';
-      } else {
-        var err = document.getElementById('admin-pin-error');
-        err.style.opacity = '1';
-        input.value = '';
-        setTimeout(function() { err.style.opacity = '0'; }, 1500);
-      }
-    }
-  };
-
-  document.addEventListener('keydown', function(e) {
-    if (e.shiftKey && e.key === 'A') {
-      var panel = document.getElementById('admin-panel');
-      if (panel.classList.contains('open')) {
-        panel.classList.remove('open');
-      } else {
-        panel.classList.add('open');
-        if (!adminUnlocked) {
-          setTimeout(function() { document.getElementById('adminPinInput').focus(); }, 50);
-        }
-      }
-    }
-  });
-
-  // ── MODAL CLOSE ON OVERLAY ───────────────────────────────────
+  // Close modal on overlay click
   document.getElementById('ndaModal').addEventListener('click', function(e) {
     if (e.target === this) window.closeNDA();
   });
