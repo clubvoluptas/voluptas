@@ -613,23 +613,25 @@
           </div>
         </div>
 
-        <!-- OBSERVER RING: active -->
-        <div class="tier-row active" id="tier-observer">
-          <div class="tier-name">
-            Observer Ring
-            <span style="display:block;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.06em;color:var(--text-dim);font-style:italic;margin-top:5px;">Limited Invitations &nbsp;&middot;&nbsp; closes when full</span>
-          </div>
+        <!-- OBSERVER RING: closed -->
+        <div class="tier-row closed" id="tier-observer">
+          <div class="tier-name">Observer Ring</div>
           <div class="tier-price">$1,650</div>
           <div class="tier-cta">
-            <button class="cta-btn" onclick="openNDA('observer')">Request Invitation</button>
+            <span style="display:inline-block;padding:12px 20px;border:1px solid var(--text-dim);color:var(--text-dim);font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;opacity:0.45;cursor:default;">Invitation Closed</span>
           </div>
         </div>
 
-        <!-- FINAL CIRCLE: upcoming -->
-        <div class="tier-row upcoming" id="tier-final">
-          <div class="tier-name">The Final</div>
+        <!-- FINAL CIRCLE: active -->
+        <div class="tier-row active" id="tier-final">
+          <div class="tier-name">
+            The Final
+            <span style="display:block;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.06em;color:var(--text-dim);font-style:italic;margin-top:5px;">Limited Invitations &nbsp;&middot;&nbsp; closes when full</span>
+          </div>
           <div class="tier-price">$2,000</div>
-          <div class="tier-cta"><span class="cta-soon" id="final-status">Opens when Observer closes.</span></div>
+          <div class="tier-cta">
+            <button class="cta-btn" onclick="openNDA('final')">Claim Your Circle</button>
+          </div>
         </div>
 
       </div>
@@ -664,7 +666,7 @@
     <div class="page-wrap">
       <p class="fade-in">Club Voluptas &nbsp;&middot;&nbsp; Private Society &nbsp;&middot;&nbsp; By Invitation Only</p>
       <p class="fade-in" style="margin-top: 16px; font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.08em; text-transform: none; font-style: italic;">
-        <!--email_off--><a href="mailto:jenn@clubvoluptas.com">Inquire</a><!--/email_off-->
+        <a href="mailto:jenn@clubvoluptas.com">Inquire</a>
       </p>
     </div>
   </footer>
@@ -865,6 +867,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 }); // end DOMContentLoaded
+</script>
+</body>
+</html>aded
 </script>
 </body>
 </html>
