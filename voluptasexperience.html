@@ -511,6 +511,11 @@
     </div>
   </header>
 
+  <div style="background: rgba(201,169,110,0.07); border-top: 1px solid rgba(201,169,110,0.25); border-bottom: 1px solid rgba(201,169,110,0.25); padding: 28px 32px; text-align: center;">
+    <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.5em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:10px;">The Voluptas Experience &nbsp;&middot;&nbsp; Las Vegas</div>
+    <div style="font-family:'Cinzel',serif; font-size:clamp(18px,3vw,26px); letter-spacing:0.2em; color:var(--cream); text-transform:uppercase;">Invitations Are Now Closed</div>
+  </div>
+
   <section class="letter-section">
     <div class="page-wrap">
       <div class="section-eyebrow fade-in">The Private Letter</div>
@@ -622,15 +627,12 @@
           </div>
         </div>
 
-        <!-- FINAL CIRCLE: active -->
-        <div class="tier-row active" id="tier-final">
-          <div class="tier-name">
-            The Final
-            <span style="display:block;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.06em;color:var(--text-dim);font-style:italic;margin-top:5px;">Limited Invitations &nbsp;&middot;&nbsp; closes when full</span>
-          </div>
+        <!-- FINAL CIRCLE: closed -->
+        <div class="tier-row closed" id="tier-final">
+          <div class="tier-name">The Final</div>
           <div class="tier-price">$2,000</div>
           <div class="tier-cta">
-            <button class="cta-btn" onclick="openNDA('final')">Request Invitation</button>
+            <span style="display:inline-block;padding:12px 20px;border:1px solid var(--text-dim);color:var(--text-dim);font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;opacity:0.45;cursor:default;">Invitation Closed</span>
           </div>
         </div>
 
