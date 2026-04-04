@@ -447,10 +447,83 @@
     flex-shrink: 0;
   }
 
+  /* ── PASSWORD GATE ── */
+  #gate {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    transition: opacity 0.8s ease;
+  }
+
+  #gate .gate-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+
+  #gate .gate-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  #gate input[type="password"] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--gold-dim);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    text-align: center;
+    width: 260px;
+    padding: 12px 0;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  #gate input[type="password"]:focus { border-bottom-color: var(--gold); }
+  #gate input[type="password"]::placeholder { color: var(--text-dim); font-size: 13px; letter-spacing: 0.25em; }
+
+  #gate .gate-error {
+    margin-top: 24px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: #8a2020;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  #gate .gate-error.visible { opacity: 1; }
+
+  #content { display: none; opacity: 0; transition: opacity 1.2s ease; }
+  #content.visible { display: block; opacity: 1; }
+
 </style>
 </head>
 <body>
 
+<!-- ── GATE ── -->
+<div id="gate">
+  <img class="gate-logo" src="images/Logo.png" alt="Voluptas">
+  <div class="gate-label">Enter the Key</div>
+  <input type="password" id="gateInput" placeholder="&middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;" autocomplete="off">
+  <div class="gate-error" id="gateError">This key does not fit this door.</div>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<div id="content">
 <div class="page">
 
   <!-- ── HEADER ── -->
@@ -551,13 +624,46 @@
   </footer>
 
 </div>
+</div>
 
 <!-- Calendly widget JS -->
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
 <script>
-// ── FADE-IN ON SCROLL ──
+// ── PASSWORD GATE ──
 (function() {
+  var WORD = 'Devotion';
+  var input = document.getElementById('gateInput');
+  var error = document.getElementById('gateError');
+  var gate  = document.getElementById('gate');
+  var content = document.getElementById('content');
+
+  function tryEnter() {
+    if (input.value.trim().toLowerCase() === WORD.toLowerCase()) {
+      gate.style.opacity = '0';
+      setTimeout(function() {
+        gate.style.display = 'none';
+        content.style.display = 'block';
+        setTimeout(function() { content.classList.add('visible'); initFades(); }, 50);
+      }, 800);
+    } else {
+      error.classList.add('visible');
+      input.value = '';
+      input.style.borderBottomColor = '#8a2020';
+      setTimeout(function() {
+        input.style.borderBottomColor = 'var(--gold-dim)';
+        error.classList.remove('visible');
+      }, 2000);
+    }
+  }
+
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryEnter(); });
+  input.addEventListener('input', function() {
+    if (this.value.trim().toLowerCase() === WORD.toLowerCase()) tryEnter();
+  });
+})();
+// ── FADE-IN ON SCROLL ──
+function initFades() {
   var els = document.querySelectorAll('.fade-up');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(entries) {
@@ -576,7 +682,7 @@
     // Fallback: show all immediately
     els.forEach(function(el) { el.classList.add('visible'); });
   }
-})();
+};
 
 // ── AUTO-DETECT VIDEO ──
 // If no <video> or <iframe> is inside #videoWrap, placeholder stays visible.
