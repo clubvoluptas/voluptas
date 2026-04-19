@@ -370,11 +370,13 @@
     height: 700px;
     border: 1px solid rgba(201,169,110,0.12);
     overflow: hidden;
+    border-radius: 2px;
   }
 
-  /* Override Calendly's white bg to match */
+  /* Force Calendly's internal iframe to inherit dark bg */
   .calendly-inline-widget iframe {
-    background: var(--near-black) !important;
+    filter: invert(0);
+    color-scheme: dark;
   }
 
   /* ── FOOTER ── */
@@ -610,7 +612,7 @@
     -->
     <div
       class="calendly-inline-widget"
-      data-url="https://calendly.com/robert-clubvoluptas/alignment-call?hide_gdpr_banner=1&primary_color=c9a96e&text_color=d4c8b0&background_color=110e0a"
+      data-url="https://calendly.com/robert-clubvoluptas/alignment-call?hide_gdpr_banner=1&primary_color=c9a96e&text_color=1a1410&background_color=110e0a"
       id="calendlyWidget">
     </div>
 
