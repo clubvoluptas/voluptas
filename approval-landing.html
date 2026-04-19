@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- Calendly widget CSS -->
+<!-- Calendly popup CSS -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 
 <style>
@@ -571,8 +571,16 @@
     <p class="video-caption">Jenn · Founder, Voluptas</p>
   </section>
 
-
-  <!-- ── LETTER ── -->
+  <!-- ── CTA TOP ── -->
+  <div class="fade-up" style="text-align:center;margin-bottom:52px;">
+    <button
+      onclick="Calendly.initPopupWidget({url:'https://calendly.com/robert-clubvoluptas/alignment-call?background_color=0a0806&text_color=ffffff&primary_color=c9a96e'});return false;"
+      style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.45em;text-transform:uppercase;color:var(--black);background:var(--gold);border:none;padding:20px 48px;cursor:pointer;transition:background 0.3s;"
+      onmouseover="this.style.background='var(--gold-light)'"
+      onmouseout="this.style.background='var(--gold)'"
+    >Reserve Your Conversation</button>
+    <p style="margin-top:16px;font-size:13px;color:var(--text-dim);font-style:italic;letter-spacing:0.06em;">Or keep reading to learn more</p>
+  </div>
   <section class="letter fade-up">
     <p>I read through what you shared with us, and you feel like our people.</p>
     <p>Not because of what you're curious about. Because of why.</p>
@@ -597,10 +605,25 @@
     <div class="calendly-eyebrow">Reserve Your Conversation</div>
     <h2>Choose a Time<br>That Works for You</h2>
 
-    <!-- Calendly inline widget begin -->
-    <div class="calendly-inline-widget" data-url="https://calendly.com/robert-clubvoluptas/alignment-call?background_color=0a0806&text_color=f0ead8&primary_color=c9a96e" style="min-width:320px;height:700px;"></div>
-    <!-- Calendly inline widget end -->
-
+    <div style="text-align:center;">
+      <button
+        onclick="Calendly.initPopupWidget({url:'https://calendly.com/robert-clubvoluptas/alignment-call?background_color=0a0806&text_color=ffffff&primary_color=c9a96e'});return false;"
+        style="
+          font-family:'Cinzel',serif;
+          font-size:11px;
+          letter-spacing:0.45em;
+          text-transform:uppercase;
+          color:var(--black);
+          background:var(--gold);
+          border:none;
+          padding:20px 48px;
+          cursor:pointer;
+          transition:background 0.3s, transform 0.2s;
+        "
+        onmouseover="this.style.background='var(--gold-light)'"
+        onmouseout="this.style.background='var(--gold)'"
+      >Reserve Your Conversation</button>
+    </div>
   </section>
 
   <!-- ── FOOTER ── -->
