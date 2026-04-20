@@ -470,27 +470,10 @@ a { text-decoration: none; }
   <h2 class="v-rarity-h">Most couples<br>never make it<br>this far.</h2>
   <p class="v-rarity-sub">Most settle for safe.<br>Even the strongest marriages risk going stagnant.</p>
   <p class="v-rarity-small">The ones who find us already know something is possible.</p>
-  <a href="#v-apply" class="v-btn">See Where You Stand &rarr;</a>
+  <a href="https://voluptas.typeform.com/introduction" class="v-btn" onclick="if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:'Voluptas Introduction'})}">Begin Your Introduction &rarr;</a>
 </div>
 
-<!-- GATE -->
-<div class="v-gate" id="v-apply">
-  <div class="v-gate-card">
-    <span class="v-label" style="margin-bottom:10px">90 Seconds</span>
-    <h2 class="v-gate-h">Curious Where<br>You Stand?</h2>
-    <p class="v-gate-sub">Private, honest, and it will tell you if you are who we are looking for. This is the first step. If it does not feel aligned, it is not meant to be.</p>
-    <div class="v-form">
-      <div class="v-row">
-        <input id="v-his" class="v-input" type="text" placeholder="His First Name" autocomplete="off">
-        <input id="v-her" class="v-input" type="text" placeholder="Her First Name" autocomplete="off">
-      </div>
-      <input id="v-email" class="v-input" type="email" placeholder="Couples Email" autocomplete="email">
-      <p id="v-err" class="v-error">Please fill in all three fields.</p>
-      <button class="v-submit" onclick="vGate()">See What We See &rarr;</button>
-    </div>
-    <p class="v-disclaimer">We protect your privacy completely. Nothing is shared, stored, or sold. Ever.</p>
-  </div>
-</div>
+
 
 <!-- ORIGIN + SECRET DOOR -->
 <div class="v-origin">
@@ -517,36 +500,7 @@ a { text-decoration: none; }
   <p class="v-footer-copy">&copy; 2026 June One, LLC &middot; All rights reserved &middot; Private Society &middot; Invitation Only</p>
 </div>
 
-<script>
-function vGate() {
-  var his   = document.getElementById('v-his').value.trim();
-  var her   = document.getElementById('v-her').value.trim();
-  var email = document.getElementById('v-email').value.trim();
-  var err   = document.getElementById('v-err');
-  var btn   = document.querySelector('.v-submit');
 
-  if (!his || !her || !email) {
-    err.style.display = 'block';
-    return;
-  }
-  err.style.display = 'none';
-  btn.textContent = 'One moment...';
-  btn.disabled = true;
-
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Lead', { content_name: 'Voluptas Gate Form' });
-  }
-
-  fetch('https://hooks.zapier.com/hooks/catch/26450064/u0cr6mr/', {
-    method: 'POST',
-    body: JSON.stringify({ email: email, first_name: his, her_first_name: her })
-  })
-  .catch(function(e){ console.warn('Zapier:', e); })
-  .finally(function(){
-    window.location.href = 'https://clubvoluptas.scoreapp.com/questions?email=' + encodeURIComponent(email);
-  });
-}
-</script>
 
 <script>
 function notifyHeight() {
