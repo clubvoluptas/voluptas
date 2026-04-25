@@ -97,7 +97,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 /* ══ HOOK ══ */
-.hook { background: var(--ivory); padding: 108px 0 96px; text-align: center; }
+.hook { background: var(--ivory); padding: 108px 0 56px; text-align: center; }
 .hook-line {
   font-family: 'Playfair Display', Georgia, serif; font-style: italic;
   font-size: clamp(22px, 3.5vw, 36px); color: var(--brown); line-height: 1.55;
@@ -272,9 +272,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
   <div class="page-wrap--narrow">
     <p class="hook-line fade-up">Imagine stepping out of a wood burning cabin at midnight, dropping your robe, and sliding into your own private hot tub while the mountain watches.</p>
     <div class="gold-rule fade-up delay-2"></div>
-    <p class="hook-body fade-up delay-3">This is what we have planned for you.</p>
   </div>
 </section>
+
+<!-- WOMEN BY THE FIRE — first visual after hook -->
+<div class="women-fire-moment">
+  <img src="images/WomenFire.png" alt="Women gathered around a fire, wine in hand, unhurried and completely at ease with each other" style="object-position:center 25%;">
+  <div class="women-fire-overlay">
+    <p class="women-fire-text">The particular intimacy of women who are completely at ease with each other.</p>
+  </div>
+</div>
 
 <!-- THE PROPERTY -->
 <section class="property">
@@ -314,7 +321,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
       </div>
       <div class="fade-up delay-4">
         <span class="exp-col-label">The Town</span>
-        <p class="exp-col-body">One evening we come down from the mountain. A rooftop above a town that feels like a secret. Cocktails someone thought about. The kind of dinner where the conversation goes exactly where it needs to go and nobody looks at the time. Then back to the cabins. Back to the fire. Back to the stars.</p>
+        <p class="exp-col-body">One evening we leave the cabins for the kind of dinner that could only happen in a town this beautiful and this unknown. Open sky. Cocktails someone thought about. A table that feels like it was set just for us. The kind of dinner where the conversation goes exactly where it needs to go and nobody looks at the time. Then back to the cabins. Back to the fire. Back to the stars.</p>
       </div>
     </div>
     <p class="experiences-pullquote fade-up">Your husband will notice when you get home.</p>
@@ -323,13 +330,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
 
 
 
-<!-- SPA PHOTOS — wellness 2 + wellness6 -->
+<!-- SPA PHOTOS — wellness2 + dining1 -->
 <div class="spa-photos" aria-hidden="true">
   <div class="spa-photo">
     <img src="images/wellness2.jpg" alt="Spa thermal lounge, teak loungers, warm light" loading="lazy" style="object-position:center center;">
   </div>
   <div class="spa-photo">
-    <img src="images/wellness6.jpg" alt="Thermal lounge, backlit onyx wall, teak loungers" loading="lazy" style="object-position:center center;">
+    <img src="images/dining1.jpg" alt="An evening dinner table, beautifully set, open sky above" loading="lazy" style="object-position:center center;">
   </div>
 </div>
 
@@ -352,7 +359,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
 </section>
 
 <!-- FOOD PAIR — leads into inclusions -->
-<div class="spa-photos" style="height:44vh;">
+<div class="spa-photos" style="height:44vh;position:relative;z-index:0;overflow:hidden;">
   <div class="spa-photo" style="height:44vh;">
     <img src="images/Farmtotable.jpg" alt="Farm to table long table spread, abundant, unhurried" loading="lazy">
   </div>
@@ -362,7 +369,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
 </div>
 
 <!-- EVERYTHING INCLUDED -->
-<section class="inclusions">
+<section class="inclusions" style="position:relative;z-index:1;">
   <div class="page-wrap">
     <h2 class="inclusions-headline fade-up">Everything is included.</h2>
     <p class="inclusions-subhead fade-up delay-1">You arrive. You exhale. Someone else has thought of everything.</p>
@@ -488,14 +495,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
   </div>
 </section>
 
-
-<!-- WOMEN BY THE FIRE — final sales moment -->
-<div class="women-fire-moment">
-  <img src="images/WomenFire.png" alt="Women gathered around a fire, wine in hand, unhurried and completely at ease with each other" style="object-position:center 25%;">
-  <div class="women-fire-overlay">
-    <p class="women-fire-text">The particular intimacy of women who are completely at ease with each other.</p>
-  </div>
-</div>
 
 <!-- THE CLOSE -->
 <section class="close">
