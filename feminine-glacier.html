@@ -248,6 +248,35 @@ footer { background: var(--forest-deep); padding: 60px 0; text-align: center; bo
   .founder-card { grid-template-columns: 1fr 1fr; }
   .exp-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
 }
+
+/* ══ RESERVED CARD ══ */
+.cabin-card.reserved {
+  opacity: 0.72;
+  border-color: rgba(196,146,42,0.15);
+}
+.cabin-card.reserved .cabin-name,
+.cabin-card.reserved .cabin-amenities,
+.cabin-card.reserved .price-value {
+  color: var(--warm-gray);
+}
+.cabin-card.reserved .cabin-seductive {
+  opacity: 0.5;
+}
+.reserved-stamp {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #7B2D2D;
+  margin-top: 24px;
+  display: block;
+}
+.badge-urgency {
+  color: #C4711A;
+  font-weight: 400;
+}
+
 a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 </style>
 </head>
@@ -422,22 +451,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
         <a class="cabin-reserve" href="https://society.clubvoluptas.com/messages/" aria-label="DM Jenn to reserve The Hot Spring Cabin">Reach out to Jenn</a>
       </article>
 
-      <article class="cabin-card premium fade-up delay-1">
-        <span class="cabin-badge">Premium · One Available</span>
+      <article class="cabin-card reserved fade-up delay-1">
+        <span class="cabin-badge">Premium · Reserved</span>
         <h3 class="cabin-name">The Wild Cabin</h3>
         <p class="cabin-seductive">An outdoor soaking tub set in the forest, where the only ceiling is the August sky.</p>
         <p class="cabin-amenities">King bed · Separate bedroom · Living area · Kitchenette · Wood burning fireplace · Private bath · Back deck with forest views · <strong>Outdoor shower &amp; soaking tub in the forest</strong></p>
-        <div class="cabin-prices">
-          <div class="price-row"><span class="price-label">Solo</span><span class="price-value">$3,800</span></div>
-          <div class="price-sub">Entire cabin. Yours alone.</div>
-          <div class="price-row"><span class="price-label">With a Society Woman</span><span class="price-value">$2,700 each</span></div>
-          <div class="price-sub">Reserve with a fellow Society woman.</div>
-        </div>
-        <a class="cabin-reserve" href="https://society.clubvoluptas.com/messages/" aria-label="DM Jenn to reserve The Wild Cabin">Reach out to Jenn</a>
+        <span class="reserved-stamp">Reserved</span>
       </article>
 
       <article class="cabin-card fade-up delay-2">
-        <span class="cabin-badge">Studio · Two Available</span>
+        <span class="cabin-badge">Studio · <span class="badge-urgency">Only One Remaining</span></span>
         <h3 class="cabin-name">The Meadow Cabins</h3>
         <p class="cabin-seductive">A queen bed, a wood burning fire, and meadow light through the window every morning.</p>
         <p class="cabin-amenities">Queen bed · Kitchenette · Wood burning fireplace · Private bathroom · Meadow views</p>
@@ -449,7 +472,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
       </article>
 
       <article class="cabin-card fade-up">
-        <span class="cabin-badge">Studio · Two Available</span>
+        <span class="cabin-badge">Studio · <span class="badge-urgency">Only One Remaining</span></span>
         <h3 class="cabin-name">The Aspen Cabins</h3>
         <p class="cabin-seductive">The forest so close you can hear it from your bed.</p>
         <p class="cabin-amenities">Queen bed · Kitchenette · Wood burning fireplace · Private bathroom · Forest views</p>
