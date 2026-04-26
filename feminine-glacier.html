@@ -265,18 +265,33 @@ footer { background: var(--forest-deep); padding: 60px 0; text-align: center; bo
 .reserved-stamp {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 0.35em;
+  font-size: 17px;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: #7B2D2D;
   margin-top: 24px;
   display: block;
+  border-left: 3px solid #7B2D2D;
+  padding-left: 14px;
 }
 .badge-urgency {
   color: #C4711A;
   font-weight: 400;
 }
 
+
+.urgency-label {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: #C4711A;
+  margin-top: 20px;
+  border-left: 3px solid #C4711A;
+  padding-left: 14px;
+}
 a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 </style>
 </head>
@@ -460,7 +475,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
       </article>
 
       <article class="cabin-card fade-up delay-2">
-        <span class="cabin-badge">Studio · <span class="badge-urgency">Only One Remaining</span></span>
+        <span class="cabin-badge">Studio</span>
         <h3 class="cabin-name">The Meadow Cabins</h3>
         <p class="cabin-seductive">A queen bed, a wood burning fire, and meadow light through the window every morning.</p>
         <p class="cabin-amenities">Queen bed · Kitchenette · Wood burning fireplace · Private bathroom · Meadow views</p>
@@ -469,18 +484,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
           <div class="price-sub">Her own cabin. Her own door.</div>
         </div>
         <a class="cabin-reserve" href="https://society.clubvoluptas.com/messages/" aria-label="DM Jenn to reserve a Meadow Cabin">Reach out to Jenn</a>
+        <span class="urgency-label">Only One Remaining</span>
       </article>
 
-      <article class="cabin-card fade-up">
-        <span class="cabin-badge">Studio · <span class="badge-urgency">Only One Remaining</span></span>
+      <article class="cabin-card reserved fade-up">
+        <span class="cabin-badge">Studio · Reserved</span>
         <h3 class="cabin-name">The Aspen Cabins</h3>
         <p class="cabin-seductive">The forest so close you can hear it from your bed.</p>
         <p class="cabin-amenities">Queen bed · Kitchenette · Wood burning fireplace · Private bathroom · Forest views</p>
-        <div class="cabin-prices">
-          <div class="price-row"><span class="price-label">Solo</span><span class="price-value">$3,600</span></div>
-          <div class="price-sub">Her own cabin. Her own door.</div>
-        </div>
-        <a class="cabin-reserve" href="https://society.clubvoluptas.com/messages/" aria-label="DM Jenn to reserve an Aspen Cabin">Reach out to Jenn</a>
+        <span class="reserved-stamp">Reserved</span>
       </article>
 
       <article class="cabin-card fade-up delay-1">
