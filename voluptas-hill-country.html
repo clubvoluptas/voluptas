@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="images/Favicon.png">
+<title>A Deeper Experience · Hill Country · Voluptas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+:root{
+  --limestone:#E8E4DC;--limestone-warm:#DEDAD4;--parchment:#F0EDE8;
+  --bark:#1A1108;--bark-mid:#251A0E;
+  --soil:#2C1C0E;--soil-mid:#5C4232;--dust:#8A7260;
+  --cream:#F2E8D8;--cream-dim:rgba(242,232,216,0.70);--cream-faint:rgba(242,232,216,0.38);
+  --gold:#C4922A;--gold-light:#D4A84A;--gold-dim:rgba(196,146,42,0.22);
+  --terracotta:#8B4F35;--sage:#7A8C6E;
+  --border-light:rgba(196,146,42,0.18);--border-dark:rgba(196,146,42,0.25);
+}
+body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:var(--cream);overflow-x:hidden;}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.fade-up.d1{transition-delay:.1s;}.fade-up.d2{transition-delay:.2s;}.fade-up.d3{transition-delay:.3s;}.fade-up.d4{transition-delay:.4s;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 48px;}
+.wrap-mid{max-width:820px;margin:0 auto;padding:0 40px;}
+.wrap-text{max-width:680px;margin:0 auto;padding:0 32px;}
+.eyebrow{display:block;font-family:'Lato',sans-serif;font-weight:300;font-size:10px;letter-spacing:.48em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.eyebrow-rose{color:var(--terracotta);}
+.eyebrow-dim{color:var(--cream-faint);}
+.gold-rule{width:56px;height:1px;background:var(--gold);}
+.gold-rule.c{margin:0 auto;}.gold-rule.r{margin-left:auto;}
+@keyframes heroIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 40px;overflow:hidden;background:#100a04;}
+.hero-bg{position:absolute;inset:0;background-image:url('images/hero-hill-country.jpg');background-size:cover;background-position:center 40%;will-change:transform;transform:scale(1.06);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(16,10,4,.80) 0%,rgba(16,10,4,.28) 45%,rgba(16,10,4,.22) 58%,rgba(16,10,4,.80) 100%);}
+.hero-content{position:relative;z-index:2;}
+.hero-badge{font-family:'Lato',sans-serif;font-weight:300;font-size:9px;letter-spacing:.52em;text-transform:uppercase;color:var(--gold);margin-bottom:52px;display:block;opacity:0;animation:heroIn 1.1s ease forwards .2s;}
+.hero h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(44px,7.5vw,96px);line-height:1.08;letter-spacing:-.01em;color:var(--cream);margin-bottom:32px;opacity:0;animation:heroIn 1.2s ease forwards .5s;}
+.hero-rule{width:48px;height:1px;background:var(--gold);margin:0 auto 32px;opacity:0;animation:fadeIn 1.4s ease forwards 1s;}
+.hero-sub{font-family:'Lato',sans-serif;font-weight:300;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:rgba(242,232,216,.65);line-height:2.2;opacity:0;animation:heroIn 1.2s ease forwards 1.1s;}
+
+/* HOOK */
+.hook{background:var(--limestone);padding:104px 0 80px;text-align:center;}
+.hook-quote{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(22px,3.5vw,38px);color:var(--soil);line-height:1.55;max-width:700px;margin:0 auto 44px;}
+.hook-rule{width:56px;height:1px;background:var(--gold);margin:0 auto 40px;opacity:.65;}
+.hook-body{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--dust);letter-spacing:.04em;}
+
+/* FULL BLEED */
+.full-bleed{width:100%;overflow:hidden;position:relative;background:#1a1008;}
+.full-bleed img{width:100%;height:100%;object-fit:cover;}
+.full-bleed-caption{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(16,10,4,.7) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:56px;}
+.full-bleed-caption p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,2.5vw,28px);color:var(--cream);text-align:center;max-width:580px;line-height:1.6;padding:0 32px;opacity:.92;}
+
+/* ESTATE SPLIT */
+.estate-split{display:grid;grid-template-columns:1fr 1fr;min-height:560px;background:var(--limestone);}
+.estate-split-photo{position:relative;overflow:hidden;min-height:480px;background:#2a1e10;}
+.estate-split-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+.estate-split-photo:hover img{transform:scale(1.03);}
+.estate-split-copy{background:var(--limestone);padding:80px 72px 80px 64px;display:flex;flex-direction:column;justify-content:center;}
+.estate-split-copy h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(28px,3.5vw,44px);color:var(--soil);line-height:1.25;margin-bottom:36px;}
+.estate-split-copy p{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.9;color:var(--soil-mid);margin-bottom:22px;}
+.estate-split-copy p:last-child{margin-bottom:0;}
+.amenity-strip{background:var(--limestone-warm);border-top:1px solid var(--border-light);display:grid;grid-template-columns:repeat(4,1fr);}
+.amenity-strip-item{padding:32px 28px;border-right:1px solid var(--border-light);text-align:center;}
+.amenity-strip-item:last-child{border-right:none;}
+.amenity-strip-icon{font-size:16px;color:var(--gold);display:block;margin-bottom:10px;}
+.amenity-strip-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--soil);display:block;margin-bottom:4px;}
+.amenity-strip-desc{font-size:11px;color:var(--dust);letter-spacing:.03em;}
+.estate-location{background:var(--limestone);text-align:center;padding:22px 40px 44px;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:.22em;color:var(--dust);text-transform:uppercase;}
+
+/* VOICE SECTIONS */
+.voice-label{display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(22px,3vw,32px);color:var(--gold);margin-bottom:28px;letter-spacing:.02em;}
+.voice-her{background:linear-gradient(145deg,rgba(139,79,53,.14) 0%,var(--bark) 45%);border-left:2px solid rgba(196,146,42,.35);padding:100px 48px;}
+.voice-him{background:linear-gradient(225deg,rgba(196,146,42,.10) 0%,var(--bark) 50%);border-right:2px solid rgba(196,146,42,.35);padding:100px 48px;text-align:right;}
+.voice-inner{max-width:700px;}
+.voice-her .voice-inner{margin-right:auto;}.voice-him .voice-inner{margin-left:auto;}
+.voice-him .gold-rule{margin-left:auto;margin-right:0;}
+.voice-h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(52px,8vw,96px);line-height:1.05;color:var(--cream);margin-bottom:36px;}
+.voice-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(19px,2.5vw,25px);line-height:1.65;color:rgba(242,232,216,.88);margin-bottom:32px;}
+.voice-p{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.95;color:var(--cream-dim);margin-bottom:22px;}
+.voice-p:last-child{margin-bottom:0;}
+.voice-callout{border:1px solid var(--border-dark);padding:44px;margin-top:48px;position:relative;background:rgba(196,146,42,.03);}
+.voice-callout::before{content:'\25C6';position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--bark);padding:0 12px;color:var(--gold);font-size:9px;}
+.voice-callout h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--cream);margin-bottom:14px;}
+.voice-callout p{font-size:14px;line-height:1.9;color:var(--cream-dim);}
+
+/* PHOTO PAIR */
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;}
+.photo-pair-item{overflow:hidden;background:#1a1008;position:relative;}
+.photo-pair-item img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .7s ease,opacity .4s ease;}
+.photo-pair-item:hover img{transform:scale(1.04);opacity:1;}
+.photo-ph-dark{width:100%;height:100%;min-height:340px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(242,232,216,.15);text-align:center;padding:24px;}
+
+/* ARC */
+.arc{background:var(--bark-mid);padding:100px 0 80px;border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);}
+.arc-headline{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(28px,4vw,50px);color:var(--cream);text-align:center;margin-bottom:72px;letter-spacing:-.01em;}
+.arc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-dark);}
+.arc-item{background:var(--bark-mid);padding:44px 40px;transition:background .3s ease;}
+.arc-item:hover{background:rgba(196,146,42,.04);}
+.arc-day{display:block;font-family:'Lato',sans-serif;font-weight:300;font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.arc-item h4{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--cream);margin-bottom:12px;}
+.arc-item p{font-size:13.5px;line-height:1.88;color:var(--cream-dim);}
+.arc-pull{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,2.5vw,28px);color:var(--gold);text-align:center;margin:72px auto 0;max-width:640px;line-height:1.55;}
+
+/* CHEF */
+.chef{background:var(--limestone);padding:100px 0 96px;}
+.chef h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(28px,4vw,48px);color:var(--soil);margin-bottom:16px;letter-spacing:-.01em;}
+.chef-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dust);margin-bottom:48px;}
+.chef-logo{display:inline-block;border:1px solid var(--border-light);padding:12px 26px;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.2em;color:var(--gold);text-decoration:none;margin-bottom:40px;transition:all .3s ease;}
+.chef-logo:hover{background:rgba(196,146,42,.07);}
+.chef-desc{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.9;color:var(--soil-mid);margin-bottom:48px;}
+.chef-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-light);}
+.chef-meal{background:var(--limestone);padding:36px 32px;}
+.chef-meal-day{display:block;font-family:'Lato',sans-serif;font-weight:300;font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.chef-meal h4{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--soil);margin-bottom:10px;}
+.chef-meal p{font-size:13px;line-height:1.85;color:var(--soil-mid);}
+.chef-note{text-align:center;margin-top:32px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--dust);}
+
+/* INCLUDED */
+.included{background:var(--limestone-warm);padding:100px 0 96px;border-top:1px solid var(--border-light);}
+.included h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(28px,4vw,48px);color:var(--soil);text-align:center;margin-bottom:16px;}
+.included-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dust);text-align:center;margin-bottom:56px;}
+.included-list{list-style:none;border:1px solid var(--border-light);}
+.included-list li{padding:26px 36px;border-bottom:1px solid var(--border-light);display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:start;}
+.included-list li:last-child{border-bottom:none;}
+.il-label{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--soil);}
+.il-text{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.85;color:var(--soil-mid);}
+.included-coda{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,2.2vw,22px);color:var(--gold);text-align:center;max-width:640px;margin:52px auto 0;line-height:1.6;}
+
+/* ROOMS */
+.rooms{background:var(--bark);padding:100px 0 80px;border-top:1px solid var(--border-dark);}
+.rooms h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(28px,4vw,50px);color:var(--cream);margin-bottom:16px;letter-spacing:-.01em;}
+.rooms-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--cream-faint);margin-bottom:52px;max-width:560px;}
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-dark);}
+.room-card{background:var(--bark);padding:36px 28px;cursor:pointer;transition:background .3s ease;display:block;text-decoration:none;}
+.room-card:hover{background:rgba(196,146,42,.04);}
+.room-photo{width:100%;height:160px;background:rgba(255,255,255,.04);margin-bottom:24px;overflow:hidden;}
+.room-photo img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:opacity .4s,transform .6s;}
+.room-card:hover .room-photo img{opacity:.95;transform:scale(1.04);}
+.room-photo-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(242,232,216,.14);text-align:center;padding:16px;}
+.room-tier{font-family:'Lato',sans-serif;font-weight:300;font-size:8px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+.room-card h4{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--cream);margin-bottom:8px;}
+.room-features{font-size:12px;line-height:1.7;color:var(--cream-faint);display:block;margin-bottom:18px;}
+.room-price{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--gold-light);display:block;}
+.room-price small{font-family:'Lato',sans-serif;font-size:9px;color:rgba(196,146,42,.5);letter-spacing:.05em;margin-left:4px;}
+.room-cta{display:block;margin-top:14px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.55;transition:opacity .3s;}
+.room-card:hover .room-cta{opacity:1;}
+.rooms-note{text-align:center;margin-top:32px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--cream-faint);}
+
+/* MODALS */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(8,5,2,.96);overflow-y:auto;padding:40px 20px;}
+.modal-overlay.open{display:flex;align-items:flex-start;justify-content:center;}
+.modal{background:var(--bark);border:1px solid var(--border-dark);max-width:800px;width:100%;padding:52px;position:relative;margin:auto;}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--cream-faint);font-family:'Lato',sans-serif;font-size:10px;letter-spacing:.2em;cursor:pointer;transition:color .3s;}
+.modal-close:hover{color:var(--cream);}
+.modal-photos{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:40px;}
+.modal-photo{height:200px;background:rgba(255,255,255,.04);overflow:hidden;}
+.modal-photo img{width:100%;height:100%;object-fit:cover;opacity:.85;}
+.modal-photo-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(242,232,216,.14);text-align:center;padding:16px;}
+.modal-price{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold-light);display:block;margin:12px 0 24px;}
+.modal-price small{font-family:'Lato',sans-serif;font-size:10px;color:rgba(196,146,42,.5);}
+.modal-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px;}
+.feature-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--border-dark);padding:5px 12px;color:var(--cream-faint);}
+.modal p{font-size:14px;line-height:1.9;color:var(--cream-dim);margin-bottom:18px;}
+.modal-h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--cream);margin-bottom:8px;}
+.modal-apply{margin-top:12px;display:inline-block;padding:17px 52px;border:1px solid var(--gold);color:var(--gold);font-family:'Lato',sans-serif;font-size:10px;letter-spacing:.4em;text-transform:uppercase;background:none;cursor:pointer;transition:all .35s ease;}
+.modal-apply:hover{background:var(--gold);color:var(--bark);}
+
+/* OFFERINGS */
+.offerings{background:var(--bark);padding:100px 0 96px;border-top:1px solid var(--border-dark);}
+.offerings h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(28px,4vw,46px);color:var(--cream);margin-bottom:16px;}
+.offerings-intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--cream-dim);margin-bottom:52px;max-width:560px;}
+.offerings-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.offering{border:1px solid var(--border-dark);padding:44px 36px;background:var(--bark-mid);}
+.offering h3{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--cream);margin-bottom:16px;font-weight:400;}
+.offering p{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.88;color:var(--cream-dim);margin-bottom:24px;}
+.offering-price{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);display:block;}
+
+/* CTA + FOOTER */
+.cta{background:var(--bark);padding:100px 0 80px;text-align:center;border-top:1px solid var(--border-dark);}
+.cta-scarcity{display:block;font-family:'Lato',sans-serif;font-weight:300;font-size:9px;letter-spacing:.5em;text-transform:uppercase;color:var(--terracotta);margin-bottom:40px;opacity:.85;}
+.cta-btn{display:inline-block;padding:18px 56px;border:1px solid var(--gold);color:var(--gold);font-family:'Lato',sans-serif;font-size:10px;letter-spacing:.4em;text-transform:uppercase;text-decoration:none;background:transparent;transition:all .4s ease;margin:6px;}
+.cta-btn:hover{background:var(--gold);color:var(--bark);}
+.fine-print{background:var(--bark);border-top:1px solid var(--border-dark);text-align:center;padding:44px 40px;font-family:'Lato',sans-serif;font-size:11px;color:var(--cream-faint);line-height:2.2;letter-spacing:.04em;}
+.fine-print a{color:var(--cream-faint);text-decoration:none;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .wrap{padding:0 24px;}.wrap-mid{padding:0 24px;}.wrap-text{padding:0 24px;}
+  .hero{padding:64px 24px;}
+  .estate-split{grid-template-columns:1fr;}
+  .estate-split-photo{min-height:300px;}
+  .estate-split-copy{padding:52px 28px;}
+  .amenity-strip{grid-template-columns:1fr 1fr;}
+  .arc-grid,.chef-grid,.rooms-grid,.offerings-grid,.photo-pair{grid-template-columns:1fr;}
+  .modal-photos{grid-template-columns:1fr;}
+  .modal{padding:32px 24px;}
+  .included-list li{grid-template-columns:1fr;gap:8px;}
+  .voice-her,.voice-him{padding:72px 28px;}
+  .voice-him{text-align:left;border-right:none;border-left:2px solid rgba(196,146,42,.35);}
+  .voice-him .voice-inner{margin-left:0;}
+  .voice-him .gold-rule{margin-left:0;}
+  .voice-callout{padding:28px 20px;}
+  .cta{padding:72px 24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">A Voluptas Deeper Experience &nbsp;|&nbsp; Hill Country</span>
+    <h1>You have no idea what your<br>marriage is capable of.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub" style="margin-bottom:20px;opacity:0;animation:heroIn 1.2s ease forwards 1s;">Find out.</p>
+    <p class="hero-sub" style="opacity:0;animation:heroIn 1.2s ease forwards 1.2s;">Oct 22&ndash;26 &nbsp;·&nbsp; Texas Hill Country &nbsp;·&nbsp; 11 Couples &nbsp;·&nbsp; Inner Ring Only</p>
+  </div>
+</section>
+
+<!-- HOOK — limestone -->
+<div class="hook">
+  <div class="wrap-text">
+    <p class="hook-quote fade-up">Some weekends you recover from.<br>This one you carry with you.</p>
+  </div>
+</div>
+
+<!-- FULL BLEED 1 — estate hero photo -->
+<div class="full-bleed" style="height:64vh;min-height:420px;max-height:700px;">
+  <div class="photo-ph-dark" style="min-height:420px;background:#1a1008;">[ hero-firepits.jpg · 2400×1400px · Wide shot of stone terrace, fire pit lit, Hill Country hills dark in the background, warm amber light, no people ]</div>
+  <div class="full-bleed-caption">
+    <p>The kind of weekend you carry with you.</p>
+  </div>
+</div>
+
+<!-- THE DEEPER EXPERIENCE — limestone, single section -->
+<div style="background:var(--limestone);padding:96px 0 88px;">
+  <div class="wrap-text">
+    <div class="fade-up">
+      <span class="eyebrow">The Deeper Experience</span>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.95;color:var(--soil-mid);margin-bottom:22px;">This is four nights inside a private luxury estate in the Texas Hill Country, reserved exclusively for eleven extraordinary married couples who are deeply committed to each other and ready to find out how much further they can go.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.95;color:var(--soil-mid);margin-bottom:36px;">Your private world. No agenda. No outside noise. Nowhere you need to be except here.</p>
+      <blockquote style="border-left:2px solid var(--gold);padding:28px 36px;background:var(--limestone-warm);margin:0 0 36px 0;">
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,2.8vw,30px);color:var(--soil);line-height:1.55;margin-bottom:0;">This is not a retreat. Not a feelings circle. Not a tantra workshop.</p>
+      </blockquote>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.95;color:var(--soil-mid);margin-bottom:22px;">Eleven private ensuite rooms. Stone terraces with fire pits overlooking the hills. A pool. Cold plunge. Hot tub. Sauna. A formal dining room where the chef brings the meal to you every evening.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.95;color:var(--soil-mid);margin-bottom:0;">The property is yours entirely. No other guests. No outside world. All just forty minutes from Austin International Airport.</p>
+    </div>
+  </div>
+</div>
+<!-- FOR HER — dark -->
+<div class="voice-her">
+  <div class="voice-inner">
+    <div class="fade-up">
+      <span class="voice-label" style="color:rgba(196,146,42,0.75);">For Her</span>
+      <h2 class="voice-h2">Your<br><em>Secret.</em></h2>
+      <div class="gold-rule" style="margin:36px 0;"></div>
+      <p class="voice-lead">Being fully seen as a sexual woman and choosing to step toward it instead of away.</p>
+      <p class="voice-lead">Four days of that feeling building, deepening, going further than a single evening ever could. Four days of being a woman with a secret life with her husband that the dinner party, the gym, the perfectly curated outside world knows nothing about.</p>
+      <p class="voice-lead">You will go places you have not been. You will feel things you did not know were available to you. And then you will take all of it home.</p>
+      <p class="voice-p">You found this page. Which means you already know what we're talking about.</p>
+      <p class="voice-p">On Friday evening you will be in a room with just the other women. Candlelight. Warm air. Soft surfaces and the smell of something grounding, sandalwood, cedar, something that slows your nervous system before the facilitator says a word. A space where desire is met with curiosity rather than performance. Where touch is something you ask for, receive, and explore at your own pace, with women who understand exactly what you are feeling because they are feeling it too.</p>
+      <p class="voice-p">No performance. No pressure. No one watching you to see what you will do next. Just women, sophisticated, beautiful, hungry in the same quiet way you are, giving themselves permission in the presence of each other.</p>
+      <p class="voice-p">You will return to your husband carrying something new in your body. He will see it in your face the moment you walk back into the room. He will not be able to look away from you for the rest of the weekend. He will not want to.</p>
+      <p class="voice-p">Saturday evening the estate transforms. The main rooms lit low, candles on every surface, warm light moving across the stone and the wood and the faces of couples who have been building toward this moment since Thursday. Music underneath everything, slow and unhurried. The air itself feels different.</p>
+      <p class="voice-p">This is the erotic field. Couples moving through their own explorations around you, beside you, in view of you, on soft cushions and draped fabrics, in corners and doorways, in the warm half-dark of a Hill Country night. You decide what you want to witness. You decide what you want to feel. You decide how far your evening goes with your husband inside that charged, beautiful space.</p>
+      <p class="voice-p">Nobody is watching you to see what you will choose. Nobody is keeping score. The only thing in the room is desire, yours, his, everyone's, and the extraordinary relief of finally being somewhere it is allowed to exist.</p>
+      <p class="voice-p">By Sunday morning you will feel things you have always known were possible but never had the right room for.</p>
+      <p class="voice-p">And you will feel, in the most alive version of yourself, safe.</p>
+    </div>
+    <div class="voice-callout fade-up d2">
+      <h3>Friday Evening: The Feminine Experience</h3>
+      <p>A facilitated feminine connection experience. A space where you can ask for and receive progressively more sensual touch with the other women in the room, guided by a practitioner who specializes in embodiment and sensual awakening. Held in full consent, at your own pace, without pressure or performance. One of the most quietly radical things you will ever do, for yourself, and for your marriage.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO PAIR — estate mood -->
+<div class="photo-pair" style="height:48vh;min-height:320px;">
+  <div class="photo-pair-item"><div class="photo-ph-dark">[ pool-warm.jpg · 1200×760px · Pool surface close, warm reflected light, moody, no people ]</div></div>
+  <div class="photo-pair-item"><div class="photo-ph-dark">[ hottub-night.jpg · 1200×760px · Hot tub at night, steam rising, stars or dark sky above, intimate and warm ]</div></div>
+</div>
+
+<!-- FOR HIM — dark -->
+<div class="voice-him">
+  <div class="voice-inner">
+    <div class="fade-up">
+      <span class="voice-label">For Him</span>
+      <h2 class="voice-h2">You have never<br>stopped seeing her.</h2>
+      <div class="gold-rule r" style="margin:36px 0 36px auto;"></div>
+      <p class="voice-lead">At the dinner table with friends she doesn't know she's the most magnetic person in the room. Getting dressed when she doesn't know you're watching. Walking into a restaurant, the moment before she spots you. You still feel it, the same thing you felt the first time. You just haven't had anywhere to take it.</p>
+      <p class="voice-p">This weekend changes that.</p>
+      <p class="voice-p">While your wife is in her experience on Friday evening, you will be in your own. A skilled practitioner demonstrates full-body sensual awakening, what it looks like to touch a woman with complete attention, complete presence, complete intention. You will watch. You will learn something that cannot be taught in a book. You will return to your wife with hands that know something they didn't know before. She will feel the difference the moment you touch her.</p>
+      <p class="voice-p">Saturday afternoon the anticipation is its own experience. You have been here since Thursday. You know these couples now. The energy between all of you has been building for two days, at dinner, around the pool, in the conversations that go later than anyone planned. By Saturday evening every room in the estate has heat underneath it.</p>
+      <p class="voice-p">Then the erotic field opens.</p>
+      <p class="voice-p">Your wife beside you. Couples moving through their own evenings around you. And you watch your wife, desired, radiant, completely herself in a way the world outside this estate rarely makes room for. You watch other people see what you have always seen.</p>
+      <p class="voice-p">And you know she is coming home with you.</p>
+      <p class="voice-p">It will make you feel more alive than you have in years. And it will make you want to take her back to your room and show her exactly what she does to you.</p>
+    </div>
+    <div class="voice-callout fade-up d2" style="text-align:left;">
+      <h3>Friday Evening: The Men's Experience</h3>
+      <p>While the women gather, a skilled practitioner leads an intimate demonstration of full-body sensual awakening, a masterclass in feminine pleasure and presence. You will witness something rarely taught and almost never seen. You will leave that room knowing exactly how to touch your wife differently. She will know it immediately.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ARC — dark bark-mid -->
+<div class="arc">
+  <div class="wrap">
+    <h2 class="arc-headline fade-up">What Thursday through Monday actually looks like.</h2>
+    <div class="arc-grid fade-up d1">
+      <div class="arc-item"><span class="arc-day">Thursday · Arrival</span><h4>The Estate Opens</h4><p>Check in from 4pm. Your private ensuite room is waiting. The pool, the hot tub, the sauna, yours from the moment you arrive. A chef-prepared welcome dinner brings everyone together for the first time. Wine flows. Hot conversations by the fire continue into the night.</p></div>
+      <div class="arc-item"><span class="arc-day">Friday · Morning</span><h4>Wake Into the Body</h4><p>No alarm. No agenda. The estate is yours from the moment you surface.</p><p>Breakfast is already laid out, artisan, unhurried, beautiful. The pool is warm. The sauna is hot. Take the morning slowly. You traveled yesterday. Let the Hill Country do what it does.</p><p>Lunch arrives mid-morning. Then the afternoon that everything else is built around.</p></div>
+      <div class="arc-item"><span class="arc-day">Friday · Afternoon</span><h4>Edging</h4><p>A guided experiential session for all couples together. Building pleasure without release. Riding sensation, slowing time, staying at the edge. The energy you build here has nowhere to go yet. That is the point. It will find its destination later that night.</p></div>
+      <div class="arc-item"><span class="arc-day">Friday · Evening</span><h4>The Table</h4><p>A 3-course chef-prepared dinner for the full group. Locally sourced ingredients, Hill Country farm-to-table, custom menu. Wine open. The whole evening ahead of you.</p></div>
+      <div class="arc-item"><span class="arc-day">Friday · Late</span><h4>The Separation. Then the Reunion.</h4><p>The women gather. The men gather. Separate experiences, each profound, each activating in ways that are impossible to fully prepare for. You return to each other changed. What happens next is yours to decide. Your room. The common spaces still warm with the energy of the evening. There are no rules about where the night goes from here.</p></div>
+      <div class="arc-item"><span class="arc-day">Saturday · Morning &amp; Afternoon</span><h4>The Long Charge</h4><p>A slow, civilized morning. Cappuccinos, lovemaking, the hot tub. Optional Saturday morning sensual movement. Lunch. Then the afternoon is yours. The pool. The fire pit. The cold plunge. Sunbathing, clothed or not, on private grounds where nobody can see in and nobody is keeping track. Your room. For those who have reserved one of the private experiences, an erotic couples massage, a photography session, Saturday afternoon is when that happens.</p><p>The anticipation of Saturday night is its own experience.</p></div>
+      <div class="arc-item"><span class="arc-day">Saturday · Evening</span><h4>The Dinner</h4><p>A 3-course formal dinner prepared by your private chef, locally sourced ingredients, a fully custom menu built for the occasion, a dedicated server, the full group at the table together one last time before the evening opens.</p><p>You will dress for it. You will linger over it. The wine will be exactly right.</p><p>Every couple at that table knows what comes next.</p></div>
+      <div class="arc-item"><span class="arc-day">Saturday · Late</span><h4>The Crescendo</h4><p>The evening opens with intention: frameworks for desire, for communication, for what becomes possible when a room full of committed couples gives each other permission to be fully alive.</p><p>Then the room changes.</p><p>Candles on every surface. Soft pillows and blankets arranged in a circle. Sensory tools laid out for couples to explore, rope, silk, warmth, texture, things you have never thought to reach for.</p><p>Then the facilitators and their partners take the center of that circle.</p><p>You watch. The room watches. And something that has been building since Thursday finally has nowhere left to go but here.</p><p>From there the evening belongs to everyone in it. Some find each other in ways they never have before. The facilitators remain present, available, active guides for couples who want to go further than they know how to go alone.</p></div>
+      <div class="arc-item"><span class="arc-day">Sunday · Afterglow</span><h4>The World Can Wait</h4><p>No agenda. An elaborate, celebratory champagne brunch appears mid-morning. The pool is warm. The sauna is hot. By Sunday afternoon couples who were strangers Thursday are sitting together in the comfortable silence that takes most people years to earn.</p><p>For those who need to be home Sunday, brunch is a graceful exit. The weekend is complete. Nothing is missing.</p><p>For those who can stay, Sunday is yours entirely. A private massage in your room. A boudoir session if you booked one. A drive into Austin for dinner, just the two of you, or with another couple you have decided you are not ready to say goodbye to yet. No schedule. No facilitation. Just the afterglow and whatever you want to do inside it.</p></div>
+      <div class="arc-item"><span class="arc-day">Optional Monday · Departure</span><h4>The Morning After</h4><p>Coffee. A slow checkout by 11am. Already thinking about when you can come back.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ESTATE SPLIT — photo + copy -->
+<div class="estate-split">
+  <div class="estate-split-photo fade-up">
+    <div class="photo-ph-dark" style="position:absolute;inset:0;min-height:560px;background:#2a1e10;">[ estate-pool-dusk.jpg · 1200×1120px · Pool at golden hour or dusk, warm light on water, Hill Country visible beyond, no people ]</div>
+  </div>
+  <div class="estate-split-copy">
+    <span class="eyebrow fade-up">Yours. All of it.</span>
+    <h2 class="fade-up d1">Your fire.<br>Your pool.<br>Your door.</h2>
+    <p class="fade-up d2" style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.9;color:var(--soil-mid);margin-bottom:22px;">Pool and fire pits on the stone terrace. Hot tub and cold plunge. Sauna available all four days. Grounds that disappear into the Hill Country.</p>
+    <p class="fade-up d3" style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.9;color:var(--soil-mid);">You will not need to leave. You will not want to.</p>
+  </div>
+</div>
+<div class="amenity-strip">
+  <div class="amenity-strip-item fade-up"><span class="amenity-strip-icon">&#9670;</span><span class="amenity-strip-name">Pool &amp; Fire Pit</span><span class="amenity-strip-desc">Stone terrace · Hill Country views</span></div>
+  <div class="amenity-strip-item fade-up d1"><span class="amenity-strip-icon">&#9670;</span><span class="amenity-strip-name">Hot Tub &amp; Cold Plunge</span><span class="amenity-strip-desc">Sunrise to late night</span></div>
+  <div class="amenity-strip-item fade-up d2"><span class="amenity-strip-icon">&#9670;</span><span class="amenity-strip-name">Outdoor Sauna</span><span class="amenity-strip-desc">Mirrored glass · see out, not in</span></div>
+  <div class="amenity-strip-item fade-up d3"><span class="amenity-strip-icon">&#9670;</span><span class="amenity-strip-name">11 Private Rooms</span><span class="amenity-strip-desc">Ensuite · every couple</span></div>
+</div>
+
+
+<!-- FOOD HERO — full bleed between estate amenities and The Table -->
+<div class="full-bleed" style="height:58vh;min-height:380px;max-height:620px;">
+  <div style="width:100%;height:100%;min-height:380px;background:#2a1e10;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(242,232,216,0.2);text-align:center;padding:24px;">[ food-hero.jpg · 2400×1100px · Long dinner table shot from end, candles lit, wine glasses, warm light, stone or wood surface, no people — OR close crop of a beautifully plated main course on a dark plate ]</div>
+</div>
+
+<!-- CHEF — limestone -->
+<div class="chef">
+  <div class="wrap-mid">
+    <div class="fade-up">
+      <span class="eyebrow">The Table</span>
+      <h2>Every meal. On property.<br>Chef-prepared.</h2>
+      <p class="chef-desc">Austin's most trusted private chef team, locally sourced ingredients from Hill Country farmers and grocers, fully custom menus, executed by chefs with hundreds of five-star reviews across thousands of private dinners.</p>
+      <p class="chef-desc">You will not think about food once, other than to compliment the chef. You will not leave the estate for a meal. You will not stand in a kitchen. What you will do is sit down, to meals prepared specifically for you, for this group, for this weekend.</p>
+      <p class="chef-desc">Every morning a beautiful artisan spread is already laid out when you surface. Pastries. Fresh fruit. Good coffee. A breakfast that asks nothing of you except to enjoy it.</p>
+      <p class="chef-desc">Every afternoon lunch arrives: local, seasonal, abundant.</p>
+      <p class="chef-desc">Every evening your private chef team takes over the kitchen. Proteins sourced from Texas farms. Produce from Hill Country growers. Menus custom-designed for the occasion. A dedicated server. Wine already open.</p>
+      <p class="chef-desc" style="font-style:italic;color:var(--dust);">A private chef who knows your group, knows your weekend, and cooks accordingly every single night.</p>
+    </div>
+
+    <!-- FOOD PHOTOS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:44px 0;background:var(--border-light);">
+      <div style="height:280px;overflow:hidden;background:#c5b8a8;position:relative;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(44,28,14,0.3);text-align:center;padding:16px;">[ food-spread.jpg · 1200×560px · Abundant grazing or artisan breakfast spread, natural light, warm tones, stone or linen surface ]</div>
+      </div>
+      <div style="height:280px;overflow:hidden;background:#c5b8a8;position:relative;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(44,28,14,0.3);text-align:center;padding:16px;">[ food-plated.jpg · 1200×560px · Single plated dish, formal, candlelit, dark background — Saturday formal dinner energy ]</div>
+      </div>
+    </div>
+
+    <div class="chef-grid fade-up d1">
+      <div class="chef-meal"><span class="chef-meal-day">Thursday — The Welcome Dinner</span><h4>Two Courses</h4><p>Casual luxury. The first time everyone sits down together, the estate wrapping itself around you, wine already open. The weekend has officially begun.</p></div>
+      <div class="chef-meal"><span class="chef-meal-day">Friday — The Dinner</span><h4>Two Courses</h4><p>Locally sourced, custom prepared, unhurried. The evening still ahead of you.</p></div>
+      <div class="chef-meal"><span class="chef-meal-day">Saturday — The Formal Dinner</span><h4>Three Courses</h4><p>Dedicated server. Your chef's best work, for a room that has earned it. Knowing what is yet to come, perhaps the most charged dinner you have ever sat down to.</p></div>
+      <div class="chef-meal"><span class="chef-meal-day">Sunday — The Champagne Brunch</span><h4>Celebratory</h4><p>Locally sourced, beautifully presented, champagne already poured. The graceful close.</p></div>
+    </div>
+    <p class="chef-note fade-up">All dietary needs accommodated. Every menu custom-built. This is what it looks like when food is treated as part of the experience.</p>
+  </div>
+</div>
+
+<!-- PHOTO PAIR — dining / terrace -->
+<div class="photo-pair" style="height:46vh;min-height:300px;">
+  <div class="photo-pair-item"><div class="photo-ph-dark" style="background:#1a1008;">[ dinner-table.jpg · 1200×740px · Table set for dinner, candles lit, wine open, no people, warm and moody ]</div></div>
+  <div class="photo-pair-item"><div class="photo-ph-dark" style="background:#1a1008;">[ terrace-dusk.jpg · 1200×740px · Stone terrace at dusk or twilight, fire pit glowing, Hill Country in background, no people ]</div></div>
+</div>
+
+
+<!-- ROOMS — dark -->
+<div class="rooms">
+  <div class="wrap">
+    <div class="fade-up">
+      <span class="eyebrow">Your Room</span>
+      <h2>Eleven private rooms.<br>Each one entirely yours.</h2>
+      <p class="rooms-sub">Every couple has a private ensuite room. You close your door and the estate disappears. Click any room to see photos and full details.</p>
+    </div>
+    <div class="rooms-grid fade-up d1" style="grid-template-columns:repeat(3,1fr);">
+
+      <div class="room-card" onclick="openModal('r-corner')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-corner-thumb.jpg · 600×320px · Bedroom, wrap-around windows visible, natural light, king bed, Hill Country beyond glass ]</div></div>
+        <span class="room-tier">The Best Room</span>
+        <h4>The Corner</h4>
+        <span class="room-features">Wrap-around windows · freestanding soaking tub with hill views · corner deck · separate shower · full closet suite</span>
+        <span class="room-price">$7,500 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-overlook')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-overlook-thumb.jpg · 600×320px · Bedroom with pool visible through window or door, warm light ]</div></div>
+        <span class="room-tier">Pool View</span>
+        <h4>The Overlook</h4>
+        <span class="room-features">Best pool view on the estate · soaking tub · dual-head shower · shower seating · direct deck access</span>
+        <span class="room-price">$7,000 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-threshold')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-threshold-thumb.jpg · 600×320px · Double doors open to deck, Hill Country visible, bed in foreground ]</div></div>
+        <span class="room-tier">Deck Access</span>
+        <h4>The Threshold</h4>
+        <span class="room-features">King bed · en suite bath · double doors opening to the shared swing deck · Hill Country views</span>
+        <span class="room-price">$6,700 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-swing')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-swing-thumb.jpg · 600×320px · Deck with hanging swings, Hill Country view, warm light ]</div></div>
+        <span class="room-tier">Deck &amp; Swings</span>
+        <h4>The Swing Room</h4>
+        <span class="room-features">King bed · en suite bath · double doors to deck · hanging swings · relaxed outdoor living</span>
+        <span class="room-price">$6,700 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-vista')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-vista-thumb.jpg · 600×320px · Unobstructed Hill Country view through window or open doors ]</div></div>
+        <span class="room-tier">Unobstructed Views</span>
+        <h4>The Vista</h4>
+        <span class="room-features">King bed · en suite bath · double doors · exceptional unobstructed Hill Country views</span>
+        <span class="room-price">$6,700 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-cedar')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-cedar-thumb.jpg · 600×320px · Warm bedroom interior, king bed, private feel ]</div></div>
+        <span class="room-tier">Private &amp; Quiet</span>
+        <h4>The Cedar Room</h4>
+        <span class="room-features">King bed · private en suite bath · warm interiors · removed from the main gathering spaces</span>
+        <span class="room-price">$6,300 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-connected')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-connected-thumb.jpg · 600×320px · Bedroom with hint of connected room beyond, warm interior ]</div></div>
+        <span class="room-tier">Private Suite</span>
+        <h4>The Connected</h4>
+        <span class="room-features">King bed · private en suite bath · connected bonus sleeping room · flexible and private</span>
+        <span class="room-price">$6,300 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-havan')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-havan-thumb.jpg · 600×320px · Bedroom doors open to deck, view beyond, estate energy ]</div></div>
+        <span class="room-tier">Heart of the Estate</span>
+        <h4>The Havan Room</h4>
+        <span class="room-features">King bed · en suite bath · doors to the deck with views · closest to kitchen and communal spaces</span>
+        <span class="room-price">$6,300 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-loft')">
+        <div class="room-photo"><div class="room-photo-ph">[ room-loft-thumb.jpg · 600×320px · Upstairs bedroom, cozy and private, king bed, quiet light ]</div></div>
+        <span class="room-tier">The Only Upstairs Room</span>
+        <h4>The Loft</h4>
+        <span class="room-features">King bed · en suite bath · upper level · removed from the estate below · the most private room in the house</span>
+        <span class="room-price">$6,000 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-casita-a')">
+        <div class="room-photo"><div class="room-photo-ph">[ casita-a-thumb.jpg · 600×320px · Casita bedroom interior, private cottage feel, warm ]</div></div>
+        <span class="room-tier">Casita · Private Cottage</span>
+        <h4>The Casita — Room One</h4>
+        <span class="room-features">King bed · private bath · 100 yards from main house · full kitchen · washer &amp; dryer · complete seclusion</span>
+        <span class="room-price">$6,200 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+      <div class="room-card" onclick="openModal('r-casita-b')">
+        <div class="room-photo"><div class="room-photo-ph">[ casita-b-thumb.jpg · 600×320px · Second casita bedroom, could be same shoot different angle ]</div></div>
+        <span class="room-tier">Casita · Private Cottage</span>
+        <h4>The Casita — Room Two</h4>
+        <span class="room-features">King bed · private bath · 100 yards from main house · full kitchen · washer &amp; dryer · complete seclusion</span>
+        <span class="room-price">$6,200 <small>per couple · all-inclusive</small></span>
+        <span class="room-cta">View Room &#8594;</span>
+      </div>
+
+    </div>
+    <p class="rooms-note fade-up">All rooms include full estate access, all meals, all programming, open bar. Rooms allocated in order of reservation.</p>
+</div>
+
+<!-- MODALS -->
+
+<div class="modal-overlay" id="modal-r-corner"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-corner-1.jpg · 1600×800px · Wide shot of bedroom, wrap-around windows, Hill Country beyond, king bed ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-corner-2.jpg · 1600×800px · Freestanding soaking tub, positioned toward the hill view window ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-corner-3.jpg · 1600×800px · Corner deck, Hill Country view, morning or golden hour ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-corner-4.jpg · 1600×800px · Closet suite or bathroom, clean and luxurious ]</div></div></div><span class="eyebrow">The Best Room</span><h3 class="modal-h3">The Corner</h3><span class="modal-price">$7,500 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">Wrap-Around Windows</span><span class="feature-tag">Freestanding Soaking Tub</span><span class="feature-tag">Hill Views from the Tub</span><span class="feature-tag">Corner Deck</span><span class="feature-tag">Separate Shower</span><span class="feature-tag">Full Closet Suite</span><span class="feature-tag">King Bed</span></div><p>The primary bedroom. A corner position with wrap-around windows that frame the Hill Country from your bed. A freestanding soaking tub positioned to look out over the hills. A separate shower. A full closet suite. The most light, the most space, the best view. One room. One couple.</p><button class="modal-apply" onclick="applyForRoom('The Corner')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-overlook"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-overlook-1.jpg · 1600×800px · Bedroom with pool view through window, morning light ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-overlook-2.jpg · 1600×800px · Soaking tub, bathroom, warm ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-overlook-3.jpg · 1600×800px · Dual-head shower interior ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-overlook-4.jpg · 1600×800px · Door or deck access, outdoor amenities visible ]</div></div></div><span class="eyebrow">Pool View</span><h3 class="modal-h3">The Overlook</h3><span class="modal-price">$7,000 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">Best Pool View on the Estate</span><span class="feature-tag">Soaking Tub</span><span class="feature-tag">Dual-Head Shower</span><span class="feature-tag">Shower Seating</span><span class="feature-tag">Direct Deck Access</span><span class="feature-tag">King Bed</span></div><p>The only room on the estate where the pool view greets you from bed. A soaking tub. A dual-head shower with its own seating area. Direct access to the deck and every outdoor amenity. Wake up Saturday morning already knowing what the evening holds.</p><button class="modal-apply" onclick="applyForRoom('The Overlook')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-threshold"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-threshold-1.jpg · 1600×800px · Bedroom interior, king bed, warm ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-threshold-2.jpg · 1600×800px · Double doors open, deck and Hill Country beyond ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-threshold-3.jpg · 1600×800px · Shared deck, hanging swings, Hill Country views ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-threshold-4.jpg · 1600×800px · En suite bathroom ]</div></div></div><span class="eyebrow">Deck Access</span><h3 class="modal-h3">The Threshold</h3><span class="modal-price">$6,700 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">En Suite Bath</span><span class="feature-tag">Double Doors to Deck</span><span class="feature-tag">Shared Swing Deck</span><span class="feature-tag">Hill Country Views</span></div><p>Double doors open directly onto the shared deck — hanging swings, Hill Country air, an outdoor space that feels like an extension of the room. En suite bathroom. Part of the main wing of the estate, close to the action, with a private door to step outside whenever you want.</p><button class="modal-apply" onclick="applyForRoom('The Threshold')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-swing"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-swing-1.jpg · 1600×800px · Bedroom interior ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-swing-2.jpg · 1600×800px · Hanging swings on deck, Hill Country behind ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-swing-3.jpg · 1600×800px · Deck view, Hill Country ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-swing-4.jpg · 1600×800px · En suite bathroom ]</div></div></div><span class="eyebrow">Deck &amp; Swings</span><h3 class="modal-h3">The Swing Room</h3><span class="modal-price">$6,700 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">En Suite Bath</span><span class="feature-tag">Double Doors to Deck</span><span class="feature-tag">Hanging Swings</span><span class="feature-tag">Outdoor Living</span></div><p>Named for the hanging swings on the deck just outside your double doors. The kind of outdoor space you end up in at midnight without planning to. En suite bath. Hill Country air. A room that keeps pulling you outside.</p><button class="modal-apply" onclick="applyForRoom('The Swing Room')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-vista"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-vista-1.jpg · 1600×800px · Bedroom interior ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-vista-2.jpg · 1600×800px · The view — unobstructed Hill Country horizon ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-vista-3.jpg · 1600×800px · Double doors open to that view ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-vista-4.jpg · 1600×800px · En suite bathroom ]</div></div></div><span class="eyebrow">Unobstructed Views</span><h3 class="modal-h3">The Vista</h3><span class="modal-price">$6,700 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">En Suite Bath</span><span class="feature-tag">Double Doors</span><span class="feature-tag">Exceptional Unobstructed Views</span></div><p>The view from this room is unobstructed — nothing between you and the Hill Country rolling out to the horizon. Double doors, en suite bath, and the particular feeling of waking up to a landscape with no edges.</p><button class="modal-apply" onclick="applyForRoom('The Vista')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-cedar"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-cedar-1.jpg · 1600×800px · Bedroom interior, warm and private ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-cedar-2.jpg · 1600×800px · En suite bathroom ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-cedar-3.jpg · 1600×800px · Room interior, different angle ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-cedar-4.jpg · 1600×800px · Window view or outdoor aspect ]</div></div></div><span class="eyebrow">Private &amp; Quiet</span><h3 class="modal-h3">The Cedar Room</h3><span class="modal-price">$6,300 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">Private En Suite Bath</span><span class="feature-tag">Warm Interiors</span><span class="feature-tag">Removed from Gathering Spaces</span></div><p>Warm interiors. Private en suite bath. A room that sits apart from the main gathering spaces — for couples who want to be on the estate without being at the center of it. You come and go on your own terms.</p><button class="modal-apply" onclick="applyForRoom('The Cedar Room')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-connected"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-connected-1.jpg · 1600×800px · Main bedroom ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-connected-2.jpg · 1600×800px · The connected bonus room ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-connected-3.jpg · 1600×800px · En suite bathroom ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-connected-4.jpg · 1600×800px · Interior detail or second angle ]</div></div></div><span class="eyebrow">Private Suite</span><h3 class="modal-h3">The Connected</h3><span class="modal-price">$6,300 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">Private En Suite Bath</span><span class="feature-tag">Connected Bonus Room</span><span class="feature-tag">Flexible Layout</span></div><p>A king bedroom with a private en suite bath, connected to a bonus room that gives this suite more space than any other at its price. The extra room is yours to use however you like. A reading room. A dressing room. A room for whatever the night calls for.</p><button class="modal-apply" onclick="applyForRoom('The Connected')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-havan"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-havan-1.jpg · 1600×800px · Bedroom interior ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-havan-2.jpg · 1600×800px · Deck doors open, view beyond ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-havan-3.jpg · 1600×800px · En suite bathroom ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-havan-4.jpg · 1600×800px · Interior, second angle ]</div></div></div><span class="eyebrow">Heart of the Estate</span><h3 class="modal-h3">The Havan Room</h3><span class="modal-price">$6,300 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">En Suite Bath</span><span class="feature-tag">Deck with Views</span><span class="feature-tag">Closest to Kitchen</span></div><p>Named for the estate itself. Doors lead out to the deck and the view. En suite bath. Positioned closest to the kitchen and the heart of the house — for couples who want to be where the energy is, close to the table, close to the fire, close to everyone.</p><button class="modal-apply" onclick="applyForRoom('The Havan Room')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-loft"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ room-loft-1.jpg · 1600×800px · Upstairs bedroom, cozy, king bed ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-loft-2.jpg · 1600×800px · En suite bathroom ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-loft-3.jpg · 1600×800px · View from upper level — estate below, Hill Country beyond ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ room-loft-4.jpg · 1600×800px · Interior, second angle ]</div></div></div><span class="eyebrow">The Only Upstairs Room</span><h3 class="modal-h3">The Loft</h3><span class="modal-price">$6,000 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">En Suite Bath</span><span class="feature-tag">Upper Level</span><span class="feature-tag">Most Private Room in the House</span></div><p>The only bedroom above the rest of the estate. Up a flight of stairs, removed from the rooms below, quieter than anywhere else on the property. The most private room in the house for the couple who wants to disappear completely — and then reappear exactly when they choose to.</p><button class="modal-apply" onclick="applyForRoom('The Loft')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-casita-a"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ casita-room1.jpg · 1600×800px · Casita bedroom one interior ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ casita-living.jpg · 1600×800px · Casita living area, full kitchen visible ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ casita-kitchen.jpg · 1600×800px · Casita full kitchen ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ casita-exterior.jpg · 1600×800px · Casita exterior, 100 yards from main house, private feel ]</div></div></div><span class="eyebrow">Casita · Private Cottage</span><h3 class="modal-h3">The Casita — Room One</h3><span class="modal-price">$6,200 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">Private Bath</span><span class="feature-tag">100 Yards from Main House</span><span class="feature-tag">Full Kitchen</span><span class="feature-tag">Washer &amp; Dryer</span><span class="feature-tag">Complete Seclusion</span></div><p>A private cottage 100 yards from the main estate, shared with one other couple in Room Two. Your own bedroom and bath. A full kitchen, washer and dryer, and living space that is entirely separate from the main house. You walk to dinner, to programming, to the pool. Then you walk back to your own world. For couples who want seclusion and know exactly what to do with it.</p><button class="modal-apply" onclick="applyForRoom('The Casita, Room One')">Apply for This Room</button></div></div>
+
+<div class="modal-overlay" id="modal-r-casita-b"><div class="modal"><button class="modal-close" onclick="closeModal()">&#10005; Close</button><div class="modal-photos"><div class="modal-photo"><div class="modal-photo-ph">[ casita-room2.jpg · 1600×800px · Casita bedroom two interior ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Casita · living area ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Casita · full kitchen ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Casita · exterior ]</div></div></div><span class="eyebrow">Casita · Private Cottage</span><h3 class="modal-h3">The Casita — Room Two</h3><span class="modal-price">$6,200 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">Private Bath</span><span class="feature-tag">100 Yards from Main House</span><span class="feature-tag">Full Kitchen</span><span class="feature-tag">Washer &amp; Dryer</span><span class="feature-tag">Complete Seclusion</span></div><p>A private cottage 100 yards from the main estate, shared with one other couple in Room One. Your own bedroom and bath. A full kitchen, washer and dryer, and living space entirely separate from the main house. Connected to everything that matters. Removed from everything else. For couples who want seclusion and know exactly what to do with it.</p><button class="modal-apply" onclick="applyForRoom('The Casita, Room Two')">Apply for This Room</button></div></div>
+
+<!-- SECURING YOUR PLACE — limestone -->
+<div style="background:var(--limestone);padding:88px 0;border-top:1px solid var(--border-light);">
+  <div class="wrap-text">
+    <div class="fade-up">
+      <span class="eyebrow">Securing Your Place</span>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(22px,3vw,34px);color:var(--soil);line-height:1.55;margin-bottom:36px;">A $1,000 deposit holds your place.</p>
+      <div style="width:56px;height:1px;background:var(--gold);opacity:.65;margin-bottom:36px;"></div>
+      <div style="border:1px solid var(--border-light);background:var(--parchment);">
+        <div style="padding:32px 36px;border-bottom:1px solid var(--border-light);">
+          <span style="display:block;font-family:'Lato',sans-serif;font-weight:300;font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Reserve by June 22</span>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.85;color:var(--soil-mid);margin-bottom:0;">$1,000 deposit now · Balance in three equal monthly installments.</p>
+        </div>
+        <div style="padding:32px 36px;">
+          <span style="display:block;font-family:'Lato',sans-serif;font-weight:300;font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Reserve after June 22</span>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.85;color:var(--soil-mid);margin-bottom:0;">Balance billed in three equal installments · All payments complete 30 days before arrival.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS --><div class="modal-photo"><div class="modal-photo-ph">[ Primary Suite · soaking tub and view ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Primary Suite · wrap-around windows ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Primary Suite · corner deck ]</div></div></div><span class="eyebrow">Signature Room</span><h3 class="modal-h3">The Primary Suite</h3><span class="modal-price">$7,500 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">Freestanding Soaking Tub</span><span class="feature-tag">Fireplace</span><span class="feature-tag">Wrap-Around Windows</span><span class="feature-tag">Corner Deck</span><span class="feature-tag">Hill Country Views</span><span class="feature-tag">Full Closet Suite</span><span class="feature-tag">King Bed</span><span class="feature-tag">Ensuite Bath</span></div><p>The most private and most appointed room on the estate. A corner position with wrap-around windows that frame the Hill Country from your bed. A freestanding soaking tub positioned to overlook the landscape. A fireplace. A full closet suite. One room. One couple. First to reserve, first to hold it.</p><button class="modal-apply" onclick="applyForRoom('The Primary Suite')">Apply for This Room</button></div></div>
+<div class="modal-photo"><div class="modal-photo-ph">[ Pool Suite · soaking tub ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Pool Suite · dual-head shower ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Pool Suite · private deck ]</div></div></div><span class="eyebrow">Premier A</span><h3 class="modal-h3">The Pool Suite</h3><span class="modal-price">$7,000 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">Best Pool View on Property</span><span class="feature-tag">Soaking Tub</span><span class="feature-tag">Dual-Head Shower</span><span class="feature-tag">Private Deck</span><span class="feature-tag">King Bed</span><span class="feature-tag">Ensuite Bath</span></div><p>The only room on the estate with a direct pool view from the bedroom. A soaking tub. A dual-head shower. Private deck access. Wake up Saturday morning to the pool, the sun, and the knowledge of what the evening holds.</p><button class="modal-apply" onclick="applyForRoom('The Pool Suite')">Apply for This Room</button></div></div>
+<div class="modal-photo"><div class="modal-photo-ph">[ Hill Country Room · deck and hanging swings ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Hill Country Room · unobstructed view ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Hill Country Room · ensuite bath ]</div></div></div><span class="eyebrow">Premier B · 4 Available</span><h3 class="modal-h3">Hill Country Rooms</h3><span class="modal-price">$6,700 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">Ensuite Bath</span><span class="feature-tag">Walk-In Shower</span><span class="feature-tag">Double Doors to Deck</span><span class="feature-tag">Hanging Swings</span><span class="feature-tag">Hill Country Views</span></div><p>Four rooms, each with double doors opening to a shared deck with hanging swings and unobstructed Hill Country views. En-suite king. Walk-in shower. Close to all the gathering spaces.</p><button class="modal-apply" onclick="applyForRoom('Hill Country Room')">Apply for This Room</button></div></div>
+<div class="modal-photo"><div class="modal-photo-ph">[ Estate Room · private bath ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Estate Room · interior ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Estate Room · view ]</div></div></div><span class="eyebrow">Standard · 2 Available</span><h3 class="modal-h3">Estate Rooms</h3><span class="modal-price">$6,300 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">Ensuite Bath</span><span class="feature-tag">Private Bath</span><span class="feature-tag">Main House</span></div><p>Two rooms in the main house, close to the kitchen, the dining room, the gathering spaces. En-suite, private, comfortable. For couples who want to be at the heart of the estate rather than tucked away from it.</p><button class="modal-apply" onclick="applyForRoom('Estate Room')">Apply for This Room</button></div></div>
+<div class="modal-photo"><div class="modal-photo-ph">[ Garden Room · walk-in shower ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Garden Room · upper level view ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Garden Room · private bath ]</div></div></div><span class="eyebrow">Classic · 1 Available</span><h3 class="modal-h3">The Garden Room</h3><span class="modal-price">$6,000 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">King Bed</span><span class="feature-tag">Ensuite Bath</span><span class="feature-tag">Walk-In Shower</span><span class="feature-tag">Upper Level</span><span class="feature-tag">Private and Quiet</span></div><p>Tucked on the upper level of the estate. Quieter, more removed, more private. For the couple who wants to disappear into the estate rather than be at the center of it.</p><button class="modal-apply" onclick="applyForRoom('The Garden Room')">Apply for This Room</button></div></div>
+<div class="modal-photo"><div class="modal-photo-ph">[ Casita · living and dining area ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Casita · full kitchen ]</div></div><div class="modal-photo"><div class="modal-photo-ph">[ Casita · exterior and grounds ]</div></div></div><span class="eyebrow">Casita · 2 Couples</span><h3 class="modal-h3">The Private Cottage</h3><span class="modal-price">$6,200 <small>per couple · all-inclusive</small></span><div class="modal-features"><span class="feature-tag">Two Private King Rooms</span><span class="feature-tag">Two Full Bathrooms</span><span class="feature-tag">Fireplace</span><span class="feature-tag">Full Kitchen</span><span class="feature-tag">100 Yards from Main House</span><span class="feature-tag">Complete Seclusion</span></div><p>A separate private cottage 100 yards from the main estate. Two couples, their own structure, their own fireplace, their own kitchen. Connected to all retreat programming and meals. Dark wood interiors. Moody. Intimate. For couples who want seclusion and know exactly what to do with it.</p><button class="modal-apply" onclick="applyForRoom('The Private Cottage')">Apply for This Room</button></div></div>
+
+<!-- TRANSITION PHOTO — between payment and offerings -->
+<div class="full-bleed" style="height:52vh;min-height:340px;max-height:560px;">
+  <div style="width:100%;height:100%;min-height:340px;background:#1a1008;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(242,232,216,0.18);text-align:center;padding:24px;">[ offerings-editorial.jpg · 2400×900px · Intimate editorial: draped linen, soft candlelight, warm skin tones, abstract or partial figure — evocative not explicit. Think high-end boudoir magazine, not clinical. Shoot landscape, crop tight. ]</div>
+</div>
+
+<!-- OFFERINGS — dark -->
+<div class="offerings">
+  <div class="wrap-mid">
+    <div class="fade-up">
+      <span class="eyebrow">Private Offerings</span>
+      <h2>For those ready<br>to go further still.</h2>
+    </div>
+    <div class="offerings-grid fade-up d1">
+      <div class="offering"><h3>Couples Sensual Awakening Massage</h3><p>A private 75-minute session in your room. A skilled sacred sexuality practitioner. Both of you. Full-body, sensual, intentional, going where a regular massage does not and has never been asked to.</p><span class="offering-price">$600 per couple</span></div>
+      <div class="offering"><h3>Erotic Photography Session</h3><p>A private session with Austin's most accomplished boudoir photographer. Tasteful. Artistic. Intimate in the exact way you want to be seen. Perfect for the Gallery. Proofs ready immediately after, because you are not going to want to wait.</p><span class="offering-price">$500 per couple</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PULL QUOTE — dark -->
+<div style="background:var(--bark);padding:88px 40px;border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);">
+  <p class="fade-up" style="font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(22px,3.5vw,38px);color:rgba(242,232,216,.88);text-align:center;max-width:780px;margin:0 auto;line-height:1.5;">You have no idea what your marriage is capable of. After four days in Hill Country, you will.</p>
+</div>
+
+<!-- CTA — dark -->
+<div class="cta">
+  <div class="wrap-text fade-up">
+    <span class="cta-scarcity">11 Couples Maximum &nbsp;·&nbsp; October 22&ndash;26, 2026 &nbsp;·&nbsp; Inner Ring Only</span>
+    <div style="width:48px;height:1px;background:var(--gold);margin:0 auto 0;opacity:.5;"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="fine-print">
+  <p>&#169; 2026 June One, LLC &nbsp;·&nbsp; All experiences are adult, consensual, and for married couples only.</p>
+  <p style="margin-top:8px;">This invitation is private. Not for public distribution. Inner Ring access only.</p>
+  <p style="margin-top:8px;"><a href="mailto:jenn@clubvoluptas.com">jenn@clubvoluptas.com</a></p>
+</div>
+
+<script>
+const fadeEls=document.querySelectorAll('.fade-up');
+const fadeObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');fadeObs.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -48px 0px'});
+fadeEls.forEach(el=>fadeObs.observe(el));
+
+const heroBg=document.getElementById('heroBg');
+let ticking=false;
+function onScroll(){if(!ticking){requestAnimationFrame(()=>{const s=window.scrollY;const h=document.querySelector('.hero').offsetHeight;if(s<=h&&heroBg){heroBg.style.transform=`scale(1.06) translateY(${(s/h)*10}%)`;}ticking=false;});ticking=true;}}
+window.addEventListener('scroll',onScroll,{passive:true});
+
+function openModal(id){document.getElementById('modal-'+id).classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));document.body.style.overflow='';}
+function applyForRoom(name){closeModal();window.location.href='mailto:jenn@clubvoluptas.com?subject='+encodeURIComponent('Hill Country Retreat · Room Interest: '+name);}
+document.querySelectorAll('.modal-overlay').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o)closeModal();});});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+</body>
+</html>
