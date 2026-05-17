@@ -143,6 +143,8 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
 .room-card{background:var(--bark);padding:36px 28px;cursor:pointer;transition:background .3s ease;display:block;text-decoration:none;}
 .room-card:hover{background:rgba(196,146,42,.04);}
 .room-photo{width:100%;height:160px;background:transparent;margin-bottom:24px;overflow:hidden;}
+.room-photo:empty{display:none;margin-bottom:0;}
+.room-photo img{display:block;}
 .room-photo img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:opacity .4s,transform .6s;}
 .room-card:hover .room-photo img{opacity:.95;transform:scale(1.04);}
 .room-photo-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(242,232,216,.14);text-align:center;padding:16px;}
@@ -407,7 +409,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
     <div class="rooms-grid fade-up d1" style="grid-template-columns:repeat(3,1fr);">
 
       <div class="room-card" onclick="openModal('r-corner')">
-        <div class="room-photo"><img src="images/room-corner.thumb.jpg" alt="The Premier Corner Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-corner.thumb.jpg" alt="The Premier Corner Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">The Signature Suite</span>
         <h4>The Premier Corner Suite</h4>
         <span class="room-features">Wrap-around windows · freestanding soaking tub with panoramic hill views · private corner terrace · expansive dressing suite</span>
@@ -416,7 +418,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-overlook')">
-        <div class="room-photo"><img src="images/room-overlook.thumb.jpg" alt="The Terrace Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-overlook.thumb.jpg" alt="The Terrace Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Soaking Tub</span>
         <h4>The Terrace Suite</h4>
         <span class="room-features">Freestanding soaking tub · dual-head marble shower · direct terrace access · expansive bath suite</span>
@@ -425,7 +427,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-threshold')">
-        <div class="room-photo"><img src="images/room-threshold.thumb.jpg" alt="The Veranda Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-threshold.thumb.jpg" alt="The Veranda Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Double Doors to a Deck</span>
         <h4>The Veranda Suite</h4>
         <span class="room-features">Private en-suite bath · double doors to the shared terrace · elevated hill views</span>
@@ -434,7 +436,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-swing')">
-        <div class="room-photo"><img src="images/room-swing.thumb.jpg" alt="The Cypress Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-swing.thumb.jpg" alt="The Cypress Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Deck Swings</span>
         <h4>The Cypress Suite</h4>
         <span class="room-features">Private en-suite bath · terrace access · outdoor hanging swings · hill views</span>
@@ -443,7 +445,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-vista')">
-        <div class="room-photo"><img src="images/room-vista.thumb.jpg" alt="The Horizon Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-vista.thumb.jpg" alt="The Horizon Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Unobstructed Views</span>
         <h4>The Horizon Suite</h4>
         <span class="room-features">Private en-suite bath · uninterrupted Hill Country views · terrace access · double doors</span>
@@ -452,7 +454,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-cedar')">
-        <div class="room-photo"><img src="images/room-cedar.thumb.jpg" alt="The Residence Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-cedar.thumb.jpg" alt="The Residence Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Villa-Style Living</span>
         <h4>The Residence Suite</h4>
         <span class="room-features">Expansive villa-style layout · private en-suite bath · terrace access · elevated hill views</span>
@@ -461,7 +463,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-connected')">
-        <div class="room-photo"><img src="images/room-connected.thumb.jpg" alt="The Juniper Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-connected.thumb.jpg" alt="The Juniper Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Quiet Retreat</span>
         <h4>The Juniper Suite</h4>
         <span class="room-features">Private en-suite bath · quiet estate setting · understated residential comfort · king bed</span>
@@ -470,7 +472,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-havan')">
-        <div class="room-photo"><img src="images/room-havan.thumb.jpg" alt="The Sage Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-havan.thumb.jpg" alt="The Sage Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Serene Setting</span>
         <h4>The Sage Suite</h4>
         <span class="room-features">Private en-suite bath · serene estate setting · understated luxury · king bed</span>
@@ -479,28 +481,28 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
       </div>
 
       <div class="room-card" onclick="openModal('r-loft')">
-        <div class="room-photo"><img src="images/room-loft.thumb.jpg" alt="The Loft Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/room-loft.thumb.jpg" alt="The Loft Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Private Upstairs Suite</span>
         <h4>The Loft Suite</h4>
-        <span class="room-features">Private upstairs retreat · oversized residential layout · quiet estate setting · natural stone walk-in shower</span>
+        <span class="room-features">Private upstairs retreat · oversized residential layout · quiet estate setting · ensuite bath</span>
         <span class="room-price">$6,000 <small>per couple · all-inclusive</small></span>
         <span class="room-cta">View Suite &#8594;</span>
       </div>
 
       <div class="room-card" onclick="openModal('r-casita-a')">
-        <div class="room-photo"><img src="images/casita-a.thumb.jpg" alt="The North Casita Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/casita-a.thumb.jpg" alt="The North Casita Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Shared Casita</span>
         <h4>The North Casita Suite</h4>
-        <span class="room-features">Private suite within the detached Casita · natural stone shower · quiet residential atmosphere · king bed</span>
+        <span class="room-features">Private suite within the detached Casita · ensuite bath · quiet residential atmosphere · king bed</span>
         <span class="room-price">$6,200 <small>per couple · all-inclusive</small></span>
         <span class="room-cta">View Suite &#8594;</span>
       </div>
 
       <div class="room-card" onclick="openModal('r-casita-b')">
-        <div class="room-photo"><img src="images/casita-b.thumb.jpg" alt="The South Casita Suite" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="room-photo"><img src="images/casita-b.thumb.jpg" alt="The South Casita Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Shared Casita</span>
         <h4>The South Casita Suite</h4>
-        <span class="room-features">Private suite within the detached Casita · natural stone shower · residential-style comfort · king bed</span>
+        <span class="room-features">Private suite within the detached Casita · ensuite bath · residential-style comfort · king bed</span>
         <span class="room-price">$6,200 <small>per couple · all-inclusive</small></span>
         <span class="room-cta">View Suite &#8594;</span>
       </div>
@@ -648,9 +650,9 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
 </div>
 <span class="eyebrow">Private Upstairs Suite</span><h3 class="modal-h3">The Loft Suite</h3>
 <span class="modal-price">$6,000 <small>per couple · all-inclusive</small></span>
-<div class="modal-features"><span class="feature-tag">Private Upstairs Setting</span><span class="feature-tag">Oversized Residential Layout</span><span class="feature-tag">Natural Stone Walk-In Shower</span><span class="feature-tag">Quiet Estate Setting</span><span class="feature-tag">King Bed</span></div>
+<div class="modal-features"><span class="feature-tag">Private Upstairs Setting</span><span class="feature-tag">Oversized Residential Layout</span><span class="feature-tag">Ensuite Bath</span><span class="feature-tag">Quiet Estate Setting</span><span class="feature-tag">King Bed</span></div>
 <p>The Loft Suite is the estate's only upstairs accommodation, offering a quieter and more tucked-away atmosphere above the property below.</p>
-<p>Designed with a relaxed residential feel, the suite pairs generous sleeping space with warm natural light, soft textures, and a calming sense of separation from the main flow of the house. A natural stone walk-in shower completes the experience.</p>
+<p>Designed with a relaxed residential feel, the suite pairs generous sleeping space with warm natural light, soft textures, and a calming sense of separation from the main flow of the house. A ensuite bath completes the experience.</p>
 <p>Comfortable. Quiet. Effortlessly easy.</p>
 <a href="https://society.clubvoluptas.com/messages/" target="_blank" rel="noopener" class="modal-apply">DM Jenn to Request</a></div></div>
 
@@ -663,7 +665,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
 </div>
 <span class="eyebrow">Shared Casita</span><h3 class="modal-h3">The North Casita Suite</h3>
 <span class="modal-price">$6,200 <small>per couple · all-inclusive</small></span>
-<div class="modal-features"><span class="feature-tag">Private Suite · Detached Casita</span><span class="feature-tag">Natural Stone Walk-In Shower</span><span class="feature-tag">Quiet Residential Atmosphere</span><span class="feature-tag">King Bed</span></div>
+<div class="modal-features"><span class="feature-tag">Private Suite · Detached Casita</span><span class="feature-tag">Ensuite Bath</span><span class="feature-tag">Quiet Residential Atmosphere</span><span class="feature-tag">King Bed</span></div>
 <p>Located within the estate's detached Casita residence just beyond the main house, the North Casita Suite offers a quieter and more secluded stay with the comfort of a fully residential setting.</p>
 <p>Warm wood textures, soft natural light, and a calming palette create a relaxed atmosphere designed for couples seeking additional privacy throughout the weekend.</p>
 <p>Quietly tucked away. Warm. Effortlessly comfortable.</p>
@@ -678,7 +680,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
 </div>
 <span class="eyebrow">Shared Casita</span><h3 class="modal-h3">The South Casita Suite</h3>
 <span class="modal-price">$6,200 <small>per couple · all-inclusive</small></span>
-<div class="modal-features"><span class="feature-tag">Private Suite · Detached Casita</span><span class="feature-tag">Natural Stone Walk-In Shower</span><span class="feature-tag">Residential-Style Comfort</span><span class="feature-tag">King Bed</span></div>
+<div class="modal-features"><span class="feature-tag">Private Suite · Detached Casita</span><span class="feature-tag">Ensuite Bath</span><span class="feature-tag">Residential-Style Comfort</span><span class="feature-tag">King Bed</span></div>
 <p>One of two private suites within the estate's detached Casita residence, the South Casita Suite offers a calm and comfortable retreat just beyond the energy of the main house.</p>
 <p>Thoughtfully designed with warm materials and understated finishes throughout, the suite balances privacy, comfort, and ease in a setting that feels distinctly residential.</p>
 <p>Private mornings. Slow evenings. Complete ease.</p>
@@ -721,7 +723,7 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
     </div>
     <div class="offerings-grid fade-up d1">
       <div class="offering"><h3>Couples Sensual Awakening Massage</h3><p>A private 75-minute session in your room. A skilled sacred sexuality practitioner. Both of you. Full-body, sensual, intentional, going where a regular massage does not and has never been asked to.</p><span class="offering-price">$850 per couple</span></div>
-      <div class="offering"><h3>Erotic Photography Session</h3><p>A private session with Austin's most accomplished boudoir photographer. Tasteful. Artistic. Intimate in the exact way you want to be seen. Perfect for the Gallery. Proofs ready immediately after, because you are not going to want to wait.</p><span class="offering-price">$500 per couple</span></div>
+      <div class="offering"><h3>Erotic Photography Session</h3><p>A private session with Austin's most accomplished boudoir photographer. Tasteful. Artistic. Intimate in the exact way you want to be seen. Perfect for the Gallery. Proofs ready immediately after, because you are not going to want to wait.</p><span class="offering-price">Inquire</span></div>
     </div>
   </div>
 </div>
