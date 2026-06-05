@@ -156,6 +156,11 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
 .room-cta{display:block;margin-top:14px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.55;transition:opacity .3s;}
 .room-card:hover .room-cta{opacity:1;}
 .rooms-note{text-align:center;margin-top:32px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--cream-faint);}
+.room-card.reserved{opacity:0.52;cursor:default;pointer-events:none;}
+.room-card.reserved h4,.room-card.reserved .room-price{color:var(--cream-faint);}
+.room-card.reserved .room-features{color:rgba(242,232,216,0.22);}
+.room-card.reserved .room-tier{color:rgba(196,146,42,0.35);}
+.reserved-stamp{display:block;font-family:'Lato',sans-serif;font-weight:400;font-size:10px;letter-spacing:0.38em;text-transform:uppercase;color:#8B3A3A;margin-top:16px;border-left:2px solid #8B3A3A;padding-left:12px;}
 
 /* MODALS */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(8,5,2,.96);overflow-y:auto;padding:40px 20px;}
@@ -421,13 +426,14 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
         <span class="room-cta">View Suite &#8594;</span>
       </div>
 
-      <div class="room-card" onclick="openModal('r-overlook')">
+      <div class="room-card reserved">
         <div class="room-photo"><img src="images/room-overlook.thumb.jpg" alt="The Terrace Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Soaking Tub</span>
         <h4>The Terrace Suite</h4>
         <span class="room-features">Freestanding soaking tub · dual-head marble shower · direct terrace access · expansive bath suite</span>
         <span class="room-price">$7,000 <small>per couple · all-inclusive</small></span>
         <span class="room-cta">View Suite &#8594;</span>
+        <span class="reserved-stamp">Reserved</span>
       </div>
 
       <div class="room-card" onclick="openModal('r-threshold')">
@@ -466,22 +472,24 @@ body{font-family:'Lato',sans-serif;font-weight:300;background:var(--bark);color:
         <span class="room-cta">View Suite &#8594;</span>
       </div>
 
-      <div class="room-card" onclick="openModal('r-connected')">
+      <div class="room-card reserved">
         <div class="room-photo"><img src="images/room-connected.thumb.jpg" alt="The Juniper Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Quiet Retreat</span>
         <h4>The Juniper Suite</h4>
         <span class="room-features">Private en-suite bath · quiet estate setting · understated residential comfort · king bed</span>
         <span class="room-price">$6,300 <small>per couple · all-inclusive</small></span>
         <span class="room-cta">View Suite &#8594;</span>
+        <span class="reserved-stamp">Reserved</span>
       </div>
 
-      <div class="room-card" onclick="openModal('r-havan')">
+      <div class="room-card reserved">
         <div class="room-photo"><img src="images/room-havan.thumb.jpg" alt="The Sage Suite" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';this.parentElement.style.marginBottom='0'"></div>
         <span class="room-tier">Serene Setting</span>
         <h4>The Sage Suite</h4>
         <span class="room-features">Private en-suite bath · serene estate setting · understated luxury · king bed</span>
         <span class="room-price">$6,300 <small>per couple · all-inclusive</small></span>
         <span class="room-cta">View Suite &#8594;</span>
+        <span class="reserved-stamp">Reserved</span>
       </div>
 
       <div class="room-card" onclick="openModal('r-loft')">
