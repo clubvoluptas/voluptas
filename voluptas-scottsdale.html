@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* SCOTTSDALE PALETTE — drawn from The George's own materials:
-       travertine + concrete, walnut millwork, blackened-steel glazing, bronze fixtures, glass + daylight. */
+    /* SCOTTSDALE PALETTE. Drawn from the venue's materials:
+       travertine and concrete, walnut millwork, blackened-steel glazing, bronze fixtures, glass and daylight. */
     --bone:        #ece5d6;  /* page base — warm limestone / travertine       */
     --bone-2:      #e4dccb;  /* alternate band                                */
     --paper:       #f5f0e6;  /* lifted surfaces / cards                       */
@@ -219,6 +219,15 @@
   }
   .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 23px; color: var(--bronze-deep); white-space: nowrap; font-weight: 400; }
 
+  /* ===== Tier states =====
+     Current release gets class "active": full colour, price and button shown.
+     Every other tier gets "inactive": greyed, price and button hidden.
+     To advance a release: move "active" onto the next row, set the sold one to "inactive". */
+  .tier-row.active { background: rgba(156,122,78,0.05); }
+  .tier-row.inactive { opacity: 0.4; }
+  .tier-row.inactive .tier-price,
+  .tier-row.inactive .tier-cta { display: none; }
+
   .cta-btn {
     background: transparent; border: 1px solid var(--bronze); color: var(--bronze-deep);
     font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
@@ -411,31 +420,31 @@
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
       <div class="fade-in">
 
-        <div class="tier-row" id="tier-found">
+        <div class="tier-row active" id="tier-found">
           <div class="tier-name">Found in Plain Sight</div>
           <div class="tier-price">$1,450</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('found')">Accept Invitation</button></div>
         </div>
 
-        <div class="tier-row" id="tier-first">
+        <div class="tier-row inactive" id="tier-first">
           <div class="tier-name">First Release</div>
           <div class="tier-price">$1,850</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('first')">Accept Invitation</button></div>
         </div>
 
-        <div class="tier-row" id="tier-second">
+        <div class="tier-row inactive" id="tier-second">
           <div class="tier-name">Second Release</div>
           <div class="tier-price">$2,050</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('second')">Accept Invitation</button></div>
         </div>
 
-        <div class="tier-row" id="tier-third">
+        <div class="tier-row inactive" id="tier-third">
           <div class="tier-name">Third Release</div>
           <div class="tier-price">$2,250</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('third')">Accept Invitation</button></div>
         </div>
 
-        <div class="tier-row" id="tier-final">
+        <div class="tier-row inactive" id="tier-final">
           <div class="tier-name">Final Release</div>
           <div class="tier-price">$2,450</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
