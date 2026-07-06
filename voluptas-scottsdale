@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Club Voluptas</title>
+<link rel="icon" type="image/png" href="images/Favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* SCOTTSDALE PALETTE — drawn from The George's own materials:
+       travertine + concrete, walnut millwork, blackened-steel glazing, bronze fixtures, glass + daylight. */
+    --bone:        #ece5d6;  /* page base — warm limestone / travertine       */
+    --bone-2:      #e4dccb;  /* alternate band                                */
+    --paper:       #f5f0e6;  /* lifted surfaces / cards                       */
+    --walnut:      #2a231b;  /* primary text — warm espresso millwork         */
+    --walnut-soft: #4c4235;  /* secondary text                                */
+    --stone:       #837868;  /* dim text / captions                           */
+    --bronze:      #9c7a4e;  /* metal accent — warmer, quieter than gold      */
+    --bronze-deep: #7c5d34;
+    --bronze-lt:   #c39a63;
+    --steel:       #39414a;  /* blackened steel                               */
+    --glass:       #7f97a0;  /* cool reflection whisper                       */
+
+    /* the single dark room, charcoal not black */
+    --night:       #2b2f34;
+    --night-2:     #343941;
+    --night-text:  #d6cdba;
+    --night-dim:   #8f8875;
+    --night-cream: #efe8d8;
+
+    --hair:        rgba(42,35,27,0.13);
+    --hair-strong: rgba(42,35,27,0.22);
+    --hair-night:  rgba(201,169,110,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bone);
+    color: var(--walnut);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ============ PASSWORD GATE ============ */
+  #gate {
+    position: fixed; inset: 0; background: var(--bone); z-index: 1000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px;
+  }
+  #gate .gate-logo { width: 100px; height: 100px; object-fit: contain; margin-bottom: 40px; opacity: 0.92; }
+  #gate .gate-label {
+    font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.35em;
+    color: var(--stone); text-transform: uppercase; margin-bottom: 20px;
+  }
+  #gate input[type="password"] {
+    background: transparent; border: none; border-bottom: 1px solid var(--bronze);
+    color: var(--walnut); font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    letter-spacing: 0.1em; text-align: center; width: 280px; padding: 12px 0; outline: none; transition: border-color 0.3s;
+  }
+  #gate input[type="password"]:focus { border-bottom-color: var(--bronze-deep); }
+  #gate input[type="password"]::placeholder { color: var(--stone); font-size: 14px; letter-spacing: 0.2em; }
+  #gate .gate-error {
+    margin-top: 20px; font-size: 13px; letter-spacing: 0.15em; color: #9a3324;
+    opacity: 0; transition: opacity 0.3s; font-style: italic;
+  }
+  #gate .gate-error.visible { opacity: 1; }
+  #gate .gate-hint {
+    margin-top: 48px; font-size: 12px; letter-spacing: 0.12em; color: var(--stone);
+    font-style: italic; text-align: center;
+  }
+
+  /* ============ MAIN CONTENT ============ */
+  #content { display: none; opacity: 0; transition: opacity 1.2s ease; }
+  #content.visible { display: block; opacity: 1; }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .fade-in.appeared { opacity: 1; transform: translateY(0); }
+
+  .page-wrap { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+
+  p { font-size: 19px; line-height: 2; color: var(--walnut-soft); margin-bottom: 28px; }
+  p:last-child { margin-bottom: 0; }
+  em { color: var(--walnut); font-style: italic; }
+
+  /* ============ HERO — daylight through glass ============ */
+  .hero {
+    position: relative; min-height: 90vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px 64px;
+    /* real photo later: background-image: url('images/scottsdale-hero.jpg'); background-size:cover; */
+    background:
+      radial-gradient(120% 80% at 50% 12%, rgba(255,252,244,0.9) 0%, rgba(236,229,214,0) 58%),
+      linear-gradient(180deg, #f3eee3 0%, var(--bone) 62%, var(--bone-2) 100%);
+    border-bottom: 1px solid var(--hair);
+    overflow: hidden;
+  }
+  /* faint steel mullions — the suggestion of glass, never a literal building */
+  .hero::before {
+    content: ''; position: absolute; inset: 0 -20%; pointer-events: none;
+    background-image: repeating-linear-gradient(
+      90deg, transparent 0, transparent 95px,
+      rgba(57,65,74,0.06) 95px, rgba(57,65,74,0.06) 96px
+    );
+    animation: mullion-drift 20s linear infinite;
+  }
+  @keyframes mullion-drift {
+    from { background-position: 0 0; }
+    to   { background-position: 96px 0; }
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .header-logo { width: 88px; height: 88px; object-fit: contain; margin-bottom: 36px; opacity: 0.95; }
+  .hero .eyebrow {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em;
+    color: var(--bronze-deep); text-transform: uppercase; margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Cinzel', serif; font-size: clamp(26px, 5vw, 42px); font-weight: 400;
+    color: var(--walnut); letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.35; margin-bottom: 14px;
+  }
+  .hero .event-dateline {
+    font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic;
+    color: var(--bronze-deep); letter-spacing: 0.18em; margin-top: 8px;
+  }
+  .hero .hero-line {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(19px,3vw,23px);
+    color: var(--walnut); letter-spacing: 0.04em; margin-top: 32px; max-width: 500px;
+  }
+
+  /* ============ FULL-BLEED PHOTO PANELS ============ */
+  /* Render as tuned gradient panels now; drop a real photo via background-image later. */
+  .fullbleed { height: 44vh; min-height: 300px; width: 100%; position: relative; background-size: cover; background-position: center; }
+  .fullbleed.brunch {
+    background:
+      linear-gradient(180deg, rgba(245,240,230,0.25), rgba(236,229,214,0.15)),
+      radial-gradient(80% 120% at 30% 8%, rgba(196,154,99,0.28), rgba(236,229,214,0) 60%),
+      linear-gradient(120deg, #efe7d6 0%, #e3d8c2 100%);
+    /* background-image: url('images/brunch-waterfront.jpg'); */
+  }
+  .fullbleed.night {
+    background:
+      linear-gradient(180deg, rgba(20,22,26,0.55), rgba(20,22,26,0.35)),
+      radial-gradient(80% 120% at 70% 0%, rgba(127,151,160,0.22), rgba(20,22,26,0) 58%),
+      linear-gradient(120deg, #1a1e24 0%, #121317 100%);
+    /* background-image: url('images/glass-night.jpg'); */
+  }
+  .fullbleed.pool {
+    background:
+      linear-gradient(180deg, rgba(245,240,230,0.2), rgba(236,229,214,0.1)),
+      radial-gradient(90% 130% at 50% 0%, rgba(127,151,160,0.3), rgba(236,229,214,0) 62%),
+      linear-gradient(120deg, #e9e3d4 0%, #d8cdb8 100%);
+    /* background-image: url('images/pool-day.jpg'); */
+  }
+
+  /* ============ BANDS + LIGHT ARC ============ */
+  .band { padding: 62px 0; border-bottom: 1px solid var(--hair); }
+  .band--bone   { background: var(--bone); }
+  .band--paper  { background: var(--paper); }
+  .band--bone2  { background: var(--bone-2); }
+
+  /* the one dark room */
+  .band--night  { background: var(--night); border-bottom: 1px solid var(--hair-night); border-top: 1px solid var(--hair-night); }
+  .band--night p { color: var(--night-text); }
+  .band--night em { color: var(--night-cream); }
+
+  .section-eyebrow {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em;
+    color: var(--bronze-deep); text-transform: uppercase; margin-bottom: 36px;
+  }
+  .movement-label {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em;
+    color: var(--bronze-deep); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .band--night .movement-label { color: var(--glass); }
+  h2.movement-title, h2.block-title {
+    font-family: 'Cinzel', serif; font-size: clamp(17px, 3vw, 24px); font-weight: 400;
+    color: var(--walnut); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 40px; line-height: 1.45;
+  }
+  .band--night h2.movement-title { color: var(--night-cream); }
+
+  .letter-band { padding: 52px 0 62px; }
+
+  .weather-note { font-size: 14px; color: var(--stone); font-style: italic; letter-spacing: 0.05em; margin-top: -14px; margin-bottom: 28px; }
+  .band--night .weather-note { color: var(--night-dim); }
+
+  /* ============ INCLUSIONS ============ */
+  .inclusion-list { list-style: none; }
+  .inclusion-list li {
+    display: flex; align-items: flex-start; gap: 18px; padding: 18px 0;
+    border-bottom: 1px solid var(--hair); font-size: 18px; color: var(--walnut-soft); line-height: 1.65;
+  }
+  .inclusion-list li:last-child { border-bottom: none; }
+  .inclusion-list li::before { content: '\00B7'; color: var(--bronze); flex-shrink: 0; margin-top: -4px; font-size: 26px; line-height: 1; }
+
+  /* ============ PRICING ============ */
+  .tier-row {
+    display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 24px;
+    padding: 28px 0; border-bottom: 1px solid var(--hair-strong);
+  }
+  .tier-row:first-child { border-top: 1px solid var(--hair-strong); }
+  .tier-name { font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 0.12em; color: var(--walnut); }
+  .tier-name .remaining {
+    display: block; font-family: 'Cormorant Garamond', serif; font-size: 13px;
+    letter-spacing: 0.1em; color: var(--bronze-deep); font-style: italic; margin-top: 4px;
+  }
+  .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 23px; color: var(--bronze-deep); white-space: nowrap; font-weight: 400; }
+
+  .cta-btn {
+    background: transparent; border: 1px solid var(--bronze); color: var(--bronze-deep);
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    padding: 12px 20px; cursor: pointer; transition: all 0.3s; white-space: nowrap;
+  }
+  .cta-btn:hover { border-color: var(--bronze-deep); background: rgba(156,122,78,0.1); color: var(--walnut); }
+  .cta-btn:focus-visible { outline: 2px solid var(--bronze-deep); outline-offset: 3px; }
+
+  .auth-form { display: none; }
+
+  .refund-section { padding: 24px 0; border-top: 1px solid var(--hair); }
+  .refund-section p { font-size: 14px; color: var(--stone); font-style: italic; }
+
+  .deeper-section { padding: 62px 0; text-align: center; border-bottom: 1px solid var(--hair); background: var(--bone-2); }
+  .deeper-section p { font-size: 17px; color: var(--stone); font-style: italic; max-width: 480px; margin: 0 auto; }
+
+  .discretion-section { padding: 62px 0; border-bottom: 1px solid var(--hair); background: var(--bone); }
+  .discretion-section .section-label {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em; color: var(--bronze-deep);
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .discretion-section p { font-size: 16px; color: var(--walnut-soft); }
+
+  .inner-link {
+    color: var(--bronze-deep); text-decoration: none; border-bottom: 1px solid rgba(124,93,52,0.35);
+    font-size: 16px; font-style: italic; letter-spacing: 0.06em; transition: color .2s, border-color .2s;
+  }
+  .inner-link:hover { color: var(--walnut); border-bottom-color: var(--bronze-deep); }
+
+  /* ============ NDA MODAL — stays dark, the private back-room ============ */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(30,33,38,0.92);
+    z-index: 500; align-items: flex-start; justify-content: center; padding: 0; overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .btn-sign {
+    background: transparent; border: 1px solid var(--bronze-lt); color: var(--bronze-lt);
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 16px 32px; cursor: pointer; transition: all 0.3s;
+  }
+  .btn-sign:hover { border-color: var(--bronze-lt); background: rgba(196,154,99,0.12); }
+  .btn-cancel {
+    background: transparent; border: none; color: var(--night-dim);
+    font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic;
+    cursor: pointer; padding: 16px 24px; transition: color 0.2s; letter-spacing: 0.08em;
+  }
+  .btn-cancel:hover { color: var(--night-text); }
+
+  /* ============ FOOTER — grounded in steel ============ */
+  .site-footer { padding: 64px 0 80px; border-top: 1px solid var(--hair-night); text-align: center; background: var(--night); }
+  .site-footer p {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.4em;
+    color: var(--night-dim); text-transform: uppercase; line-height: 2.2;
+  }
+  .site-footer a {
+    color: var(--bronze-lt); text-decoration: none; border-bottom: 1px solid rgba(196,154,99,0.3);
+    transition: color 0.2s; font-family: 'Cormorant Garamond', serif; font-size: 14px;
+    letter-spacing: 0.1em; font-style: italic; text-transform: none;
+  }
+  .site-footer a:hover { color: var(--night-cream); }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 0 20px; }
+    .tier-row { grid-template-columns: 1fr; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PASSWORD GATE  —  key set to: isawit
+     ============================================================ -->
+<div id="gate">
+  <img class="gate-logo" src="images/Logo.png" alt="">
+  <div class="gate-label">Enter the Key</div>
+  <input type="password" id="keyInput" placeholder="&middot; &middot; &middot; &middot; &middot; &middot;" autocomplete="off" autofocus aria-label="Enter the key">
+  <div class="gate-error" id="gateError">This key does not fit this door.</div>
+  <div class="gate-hint">This page is private. It exists for you, and only you.</div>
+</div>
+
+<!-- ============================================================ MAIN CONTENT ============================================================ -->
+<div id="content">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <img class="header-logo" src="images/Logo.png" alt="Club Voluptas">
+    <div class="eyebrow fade-in">Club Voluptas Private Society</div>
+    <h1 class="fade-in">The Voluptas Experience<br>Scottsdale</h1>
+    <div class="event-dateline fade-in">September 19 &amp; 20, 2026</div>
+    <p class="hero-line fade-in">In Plain Sight</p>
+  </header>
+
+  <!-- ===== THE PRIVATE LETTER ===== -->
+  <section class="band letter-band band--bone">
+    <div class="page-wrap">
+      <div class="section-eyebrow fade-in">The Private Letter</div>
+      <p class="fade-in">Everything past this line is held between members. What the weekend is, where it happens, what waits inside, none of it lives anywhere but on this page. Read it that way.</p>
+      <p class="fade-in">Before you go further, be clear about what you are actually saying yes to.</p>
+      <p class="fade-in">Not a weekend away. Not an event with a guest list. Not one night behind a door most people will walk straight past without a second look.</p>
+      <p class="fade-in">You are saying yes to a marriage that stays lit.</p>
+      <p class="fade-in">The two of you on the flight home, already scheming the next one. The Monday that refuses to feel like a Monday. That specific voltage that only runs between two people who keep deciding to go further together, and keep meaning it.</p>
+      <p class="fade-in">Couples leave here and stay gone for weeks. Sometimes longer. Carrying a private charge that belongs to no one else, the kind that turns an ordinary glance across the kitchen into something with real weight behind it.</p>
+      <p class="fade-in">And if this is not your first, you already know the weekend is only the surface of it. This one is built to go further than the last.</p>
+      <p class="fade-in">This is not an invitation to a party. It is an invitation to take the marriage you already have somewhere it has not been. Here is how the weekend moves.</p>
+    </div>
+  </section>
+
+  <div class="fullbleed brunch fade-in" aria-hidden="true"></div>
+
+  <!-- ===== MOVEMENT I — THE FEMININE BRUNCH (bright) ===== -->
+  <section class="band band--paper">
+    <div class="page-wrap">
+      <div class="movement-label fade-in">Movement I</div>
+      <h2 class="movement-title fade-in">Ladies Who Lunch</h2>
+      <p class="fade-in">The early afternoon belongs to the women.</p>
+      <p class="fade-in">Before any of it begins, they gather privately over a long elegant lunch. Jennifer hosts. Warm light, an unhurried afternoon, wine chosen like it matters, and not one ounce of performance in the room. The kind of conversation that only happens between women who already know why they came.</p>
+      <p class="fade-in">Each of them leaves with a gift, curated from names in feminine luxury you would recognize on sight. They came to the table because they understand what a marriage like yours is actually reaching for. Feminine. Deliberate. Quiet enough to feel like something you are not supposed to have.</p>
+      <p class="fade-in">The afternoon does one job. She walks into the evening already sovereign, already soft, already certain of herself. A woman who enters a charged room from that place changes everything that happens in it.</p>
+      <p class="fade-in"><em>Husbands: the day is yours. Spend it missing her.</em></p>
+    </div>
+  </section>
+
+  <div class="fullbleed night fade-in" aria-hidden="true"></div>
+
+  <!-- ===== MOVEMENT II — THE GATHERING (the one dark room) ===== -->
+  <section class="band band--night">
+    <div class="page-wrap">
+      <div class="movement-label fade-in">Movement II</div>
+      <h2 class="movement-title fade-in">The Gathering</h2>
+      <p class="fade-in">A private residence, held entirely for the Society for a single night. Three floors. No outside guests, no strangers, only the couples who belong in the room. All around you the night runs on as usual, people out, tables full, no one with the faintest idea what they are standing beside. Just off a busy corner in Old Town, this is where we make our marriages elite.</p>
+      <p class="fade-in"><em>The Music</em><br>She plays live. No playlist, no filler. A soundscape built in the moment and never the same twice, each turn dragging the room a little further from where it started, toward something slower and harder to step away from.</p>
+      <p class="fade-in"><em>The Art</em><br>Human tableaux move through the night around you. Erotic, unhurried, entirely indifferent to whether you are watching. Not a show, not a performance. Real desire staged close enough to change the air in the room, until the nervousness you walked in with is simply gone and the only thing left is how awake you feel.</p>
+      <p class="fade-in"><em>The Bar</em><br>Open and premium from the first pour. Champagne when you arrive, cocktails made properly, and staff who know exactly when to disappear.</p>
+      <p class="fade-in"><em>Your Masks</em><br>Not costume. Language. A way to say what you want without saying a word, so nobody has to perform and desire can just move.</p>
+      <p class="fade-in"><span style="color:#c98a52;">Copper</span>: I am here to watch. Do not approach.<br>
+      <span style="color:#c6ccd0;">Silver</span>: I am open. To energy, to flirtation, to wherever the night goes.<br><br>
+      You pick. You change your mind whenever you like. Nothing is announced. Nothing is owed.</p>
+      <p class="fade-in">There is no signal and no announcement. You just notice, at some point, that the rope is gone and the room has quietly opened. What happens after that is yours, at whatever speed the two of you decide. All the way.</p>
+    </div>
+  </section>
+
+  <div class="fullbleed pool fade-in" aria-hidden="true"></div>
+
+  <!-- ===== MOVEMENT III — SUNDAY: THE LONG GAME (bright) ===== -->
+  <section class="band band--bone">
+    <div class="page-wrap">
+      <div class="movement-label fade-in">Movement III</div>
+      <h2 class="movement-title fade-in">Sunday: The Long Game</h2>
+      <p class="fade-in">Sunday, the light comes back and the weekend changes gears.</p>
+      <p class="fade-in">The pool is warm and someone has already started a round they fully intend to win. Golf. Shuffleboard. Foosball. A drink in your hand earlier than you would admit to at home. The couple you met in the dark last night, across from you now in daylight, both of you a little rearranged by it.</p>
+      <p class="fade-in">This is the stretch no one records and everyone keeps. No rope, no schedule, no audience but the people you chose to spend the weekend beside.</p>
+      <p class="fade-in">The night was the spark. This is the long game. The one you keep playing long after you have flown home.</p>
+      <p class="weather-note fade-in">* Outdoor areas weather permitting.</p>
+    </div>
+  </section>
+
+  <!-- ===== WHAT IS INCLUDED ===== -->
+  <section class="band band--paper">
+    <div class="page-wrap">
+      <h2 class="block-title fade-in">What Is Included</h2>
+      <p class="fade-in" style="margin-bottom: 32px; font-size: 17px; color: var(--stone); font-style: italic;">Every Invitation is the whole weekend. No add-ons, no upgrades, nothing sold separately.</p>
+      <ul class="inclusion-list">
+        <li class="fade-in">A private, elegant lunch hosted by Jennifer</li>
+        <li class="fade-in">A gift she takes home and keeps well past the weekend</li>
+        <li class="fade-in">The full run of the Saturday evening Gathering</li>
+        <li class="fade-in">Your mask set, one pair to the Invitation</li>
+        <li class="fade-in">Premium open bar all night</li>
+        <li class="fade-in">A live soundscape built in real time, never played the same way twice</li>
+        <li class="fade-in">Living erotic art through the evening</li>
+        <li class="fade-in">Sunday: The Long Game. Pool, golf, shuffleboard, foosball, and the run of the house<span class="weather-note" style="margin:0;">* Outdoor areas weather permitting</span></li>
+        <li class="fade-in">A priority arrival window</li>
+        <li class="fade-in" style="border-bottom: none; padding-top: 4px;">
+          <span style="font-size: 15px; color: var(--stone); font-style: italic; letter-spacing: 0.06em; line-height: 1.8;">Every couple gets an arrival window, so the night opens with intention instead of a crowd at the door. Secure your place earlier and you get more say over when your evening starts.</span>
+        </li>
+        <li class="fade-in" style="border-top: 1px solid var(--hair); margin-top: 16px; padding-top: 28px; border-bottom: none; display: block;">
+          <p style="font-size: 19px; color: var(--walnut); line-height: 2; margin: 0;">What you take home is not on this list.</p>
+          <p style="font-size: 19px; color: var(--walnut); line-height: 2; margin-top: 8px; margin-bottom: 0;">It is the marriage on the far side of the weekend. The one you already have, running hotter. That is the actual thing you are choosing.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== INVITATIONS / PRICING =====
+       >>> PRICES ARE PLACEHOLDERS carried from Vegas — confirm Scottsdale pricing.
+       >>> EACH TIER ROUTES TO A PLACEHOLDER AUTH.NET LinkId. Create NEW SimpleCheckout
+           links for Scottsdale and paste the new LinkIds into the four forms below.
+           Do NOT ship Vegas LinkIds. -->
+  <section class="band band--bone">
+    <div class="page-wrap">
+      <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
+      <div class="fade-in">
+
+        <div class="tier-row" id="tier-first">
+          <div class="tier-name">The First</div>
+          <div class="tier-price">$1,250</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('first')">Accept Invitation</button></div>
+        </div>
+
+        <div class="tier-row" id="tier-inner">
+          <div class="tier-name">Inner Ring</div>
+          <div class="tier-price">$1,400</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('inner')">Accept Invitation</button></div>
+        </div>
+
+        <div class="tier-row" id="tier-observer">
+          <div class="tier-name">Observer Ring</div>
+          <div class="tier-price">$1,650</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('observer')">Accept Invitation</button></div>
+        </div>
+
+        <div class="tier-row" id="tier-final">
+          <div class="tier-name">The Final</div>
+          <div class="tier-price">$2,000</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
+        </div>
+
+      </div>
+
+      <div class="refund-section fade-in">
+        <p>Every claim is final. Your place is held for you and no one else, which means we cannot move it or refund it. In the rare case of a real, documented emergency, we will carry your Invitation to the next gathering at our discretion.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== THE LEVEL BEYOND ===== -->
+  <section class="deeper-section">
+    <div class="page-wrap">
+      <p class="fade-in">There is a level past the Inner Ring for couples who want further into the Society. It is not printed here. If it is meant for you, you already know how to find us.</p>
+    </div>
+  </section>
+
+  <!-- ===== DISCRETION ===== -->
+  <section class="discretion-section">
+    <div class="page-wrap">
+      <div class="section-label fade-in">A Note on Discretion</div>
+      <p class="fade-in">Before your circle is confirmed, you will sign a Society Agreement. Short, plain, mutual. It guards every couple in the room, yours included.</p>
+      <p class="fade-in" style="margin-top: 20px;">No photography. No recording. No naming who was there or what happened. On your statement it reads June One LLC, and nothing else.</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="page-wrap">
+      <p class="fade-in">Club Voluptas &nbsp;&middot;&nbsp; Private Society &nbsp;&middot;&nbsp; By Invitation Only</p>
+      <p class="fade-in" style="margin-top: 16px; font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.08em; text-transform: none; font-style: italic;">
+        <a href="mailto:jenn@clubvoluptas.com">Inquire</a>
+      </p>
+    </div>
+  </footer>
+
+</div><!-- /content -->
+
+<!-- ============================================================ NDA MODAL ============================================================ -->
+<div class="modal-overlay" id="ndaModal" role="dialog" aria-modal="true" aria-label="Before you proceed">
+  <div style="width: 100%; max-width: 680px; margin: 0 auto; background: #363b42; border: 1px solid var(--hair-night); display: flex; flex-direction: column; min-height: 100vh;">
+
+    <div style="padding: 40px 48px 32px; border-bottom: 1px solid var(--hair-night); display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0;">
+      <div>
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.5em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 12px;">Before You Proceed</div>
+        <div style="font-family: Cinzel, serif; font-size: clamp(18px, 3vw, 26px); color: var(--night-cream); letter-spacing: 0.08em; line-height: 1.3;">A Few Things to Consider<br>Before Accepting Your Invitation.</div>
+      </div>
+      <button onclick="closeNDA()" style="background: none; border: none; color: var(--night-dim); font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.15em; font-style: italic; cursor: pointer; padding: 8px 0; flex-shrink: 0; margin-left: 24px;">close</button>
+    </div>
+
+    <div style="padding: 32px 48px 0; flex-shrink: 0;">
+      <p style="font-size: 16px; color: var(--night-dim); font-style: italic; line-height: 1.9; margin-bottom: 0;">The items below are the conditions of your invitation. Your agreement to them is required before payment is accepted.</p>
+    </div>
+
+    <div style="padding: 24px 48px; flex: 1;">
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">01 &middot; Private Gathering</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">The Voluptas Experience is a private, invitation-only social gathering of Club Voluptas members, not a ticketed event. The venue, schedule, and guest list are confidential and disclosed to registered members only.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">02 &middot; Married Couples Only</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">Club Voluptas is exclusively for married couples. Both partners must attend together. Membership may be revoked if this is found to be misrepresented at any time.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">03 &middot; Absolute Confidentiality</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">You will not identify, photograph, tag, or discuss any other member, in person, online, or anywhere else, without their explicit written consent. This obligation has no expiration date.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">04 &middot; No Recording. Ever.</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">Phones are collected at The Gathering. No photography or recording of any kind is permitted at any Voluptas experience, and the venue location may never be shared publicly. These rules are absolute.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">05 &middot; Consent Is the Architecture</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">Everything at Voluptas is built around choice. Nothing is expected. Nothing is required. Consent is ongoing and reversible at any time. Anyone who disregards another member's boundaries is permanently removed.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">06 &middot; Attire Matters</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">Appropriate attire is required for entry to The Gathering. A style reference is available in the member society. Entry may be denied for attire that does not meet the standard, for either partner.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">07 &middot; All Fees Are Non-Refundable</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">The invitation reflects creation, coordination, and access. If you need to cancel, fees are non-refundable. If Voluptas cancels, you choose between a full refund or credit. If force majeure intervenes, a 24-month credit is issued.</p>
+      </div>
+
+      <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">08 &middot; Exterior Cameras at the Venue</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">The property keeps its own exterior security cameras at the entrances and outdoor areas, operated by the venue for insurance and property protection. They are the building's systems, not ours, and they do not reach the private spaces where the evening happens. Everything above about no recording inside still stands. By accepting, you acknowledge these exterior cameras are in place.</p>
+      </div>
+
+      <div style="margin-top: 32px; padding: 28px 32px; border: 1px solid var(--hair-night); background: #3f454d;">
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 14px;">One More Thing Before You Pay</div>
+        <p style="font-size: 16px; color: var(--night-cream); line-height: 1.9; margin: 0;">After payment is confirmed, you will receive a private Participant Agreement by email. Both spouses sign individually before your arrival window is released. It is the agreement that protects the atmosphere of discretion and the trust the Society is built on.</p>
+      </div>
+
+    </div>
+
+    <div style="padding: 28px 48px 40px; border-top: 1px solid var(--hair-night); flex-shrink: 0;">
+      <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; margin-bottom: 28px;">
+        <input type="checkbox" id="signedConfirm" onchange="togglePaymentBtn()" style="width: 16px; height: 16px; margin-top: 3px; accent-color: var(--bronze); cursor: pointer; flex-shrink: 0;">
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--night-text); font-style: italic; line-height: 1.7; letter-spacing: 0.04em;">We have read and understood the above. We are accepting this invitation freely and agree to be bound by these terms. We understand a full Participant Agreement will follow and that we will both sign before we are able to select our arrival window.</span>
+      </label>
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+        <button class="btn-sign" id="paymentBtn" onclick="submitPayment()" style="opacity: 0.35; pointer-events: none;">Proceed to Payment</button>
+        <button class="btn-cancel" onclick="closeNDA()">Not yet</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================
+     HIDDEN PAYMENT FORMS
+     >>> REPLACE every LinkId with a NEW Scottsdale Auth.net SimpleCheckout LinkId.
+         These placeholders will NOT process.
+     ============================================================ -->
+<form name="form-first" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-FIRST-LINKID">
+</form>
+<form name="form-inner" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-INNER-LINKID">
+</form>
+<form name="form-observer" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-OBSERVER-LINKID">
+</form>
+<form name="form-final" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-FINAL-LINKID">
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* ===== PASSWORD GATE ===== */
+  var CORRECT_KEY = 'isawit';
+
+  var keyInput = document.getElementById('keyInput');
+  var gateError = document.getElementById('gateError');
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
+
+  keyInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkKey(); });
+  keyInput.addEventListener('input', function() {
+    gateError.classList.remove('visible');
+    if (this.value === CORRECT_KEY) checkKey();
+  });
+
+  function checkKey() {
+    if (keyInput.value === CORRECT_KEY) {
+      gate.style.opacity = '0';
+      gate.style.transition = 'opacity 0.8s ease';
+      setTimeout(function() {
+        gate.style.display = 'none';
+        content.style.display = 'block';
+        setTimeout(function() { content.classList.add('visible'); initFadeIns(); }, 50);
+      }, 800);
+    } else {
+      gateError.classList.add('visible');
+      keyInput.value = '';
+      keyInput.style.borderBottomColor = '#9a3324';
+      setTimeout(function() { keyInput.style.borderBottomColor = 'var(--bronze)'; }, 1000);
+    }
+  }
+
+  /* ===== FADE INS ===== */
+  function initFadeIns() {
+    var els = document.querySelectorAll('.fade-in');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('appeared'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
+  }
+
+  /* ===== NDA FLOW ===== */
+  var currentTier = null;
+
+  window.openNDA = function(tier) {
+    currentTier = tier;
+    document.getElementById('ndaModal').classList.add('open');
+  };
+
+  window.closeNDA = function() {
+    document.getElementById('ndaModal').classList.remove('open');
+    currentTier = null;
+    var cb = document.getElementById('signedConfirm');
+    if (cb) cb.checked = false;
+    var btn = document.getElementById('paymentBtn');
+    if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
+  };
+
+  window.togglePaymentBtn = function() {
+    var checked = document.getElementById('signedConfirm').checked;
+    var btn = document.getElementById('paymentBtn');
+    btn.style.opacity = checked ? '1' : '0.35';
+    btn.style.pointerEvents = checked ? 'auto' : 'none';
+  };
+
+  window.submitPayment = function() {
+    if (currentTier === 'first') document.forms['form-first'].submit();
+    else if (currentTier === 'inner') document.forms['form-inner'].submit();
+    else if (currentTier === 'observer') document.forms['form-observer'].submit();
+    else if (currentTier === 'final') document.forms['form-final'].submit();
+  };
+
+  document.getElementById('ndaModal').addEventListener('click', function(e) {
+    if (e.target === this) window.closeNDA();
+  });
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
