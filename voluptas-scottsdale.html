@@ -439,18 +439,25 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       >>> PRICES ARE PLACEHOLDERS carried from Vegas — confirm Scottsdale pricing.
-       >>> EACH TIER ROUTES TO A PLACEHOLDER AUTH.NET LinkId. Create NEW SimpleCheckout
-           links for Scottsdale and paste the new LinkIds into the four forms below.
-           Do NOT ship Vegas LinkIds. -->
+       Founders is the only active tier right now (private, $1,400).
+       Before going public: delete the Founders row below, the Founders form near the
+       bottom of the file, and the 'founders' line in submitPayment(). Found in Plain
+       Sight ($1,650) then becomes the active tier. -->
   <section class="band band--bone">
     <div class="page-wrap">
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
       <div class="fade-in">
 
-        <div class="tier-row active" id="tier-found">
+        <!-- FOUNDERS TIER (private). Remove this whole row before going public. -->
+        <div class="tier-row active" id="tier-founders">
+          <div class="tier-name">Founders</div>
+          <div class="tier-price">$1,400</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('founders')">Accept Invitation</button></div>
+        </div>
+
+        <div class="tier-row inactive" id="tier-found">
           <div class="tier-name">Found in Plain Sight</div>
-          <div class="tier-price">$1,450</div>
+          <div class="tier-price">$1,650</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('found')">Accept Invitation</button></div>
         </div>
 
@@ -599,6 +606,10 @@
      >>> REPLACE every LinkId with a NEW Scottsdale Auth.net SimpleCheckout LinkId.
          These placeholders will NOT process.
      ============================================================ -->
+<!-- FOUNDERS FORM (private). Remove before going public. -->
+<form name="form-founders" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="ebf333c9-bc77-4010-a0a7-7440b1450852">
+</form>
 <form name="form-found" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
   <input type="hidden" name="LinkId" value="dcf6c368-62ac-4964-925a-e1a533f8ef2b">
 </form>
@@ -685,7 +696,8 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.submitPayment = function() {
-    if (currentTier === 'found') document.forms['form-found'].submit();
+    if (currentTier === 'founders') document.forms['form-founders'].submit();
+    else if (currentTier === 'found') document.forms['form-found'].submit();
     else if (currentTier === 'first') document.forms['form-first'].submit();
     else if (currentTier === 'second') document.forms['form-second'].submit();
     else if (currentTier === 'third') document.forms['form-third'].submit();
