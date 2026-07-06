@@ -111,7 +111,7 @@
       90deg, transparent 0, transparent 95px,
       rgba(57,65,74,0.06) 95px, rgba(57,65,74,0.06) 96px
     );
-    animation: mullion-drift 20s linear infinite;
+    animation: mullion-drift 12s linear infinite;
   }
   @keyframes mullion-drift {
     from { background-position: 0 0; }
@@ -124,8 +124,13 @@
     color: var(--bronze-deep); text-transform: uppercase; margin-bottom: 22px;
   }
   .hero h1 {
-    font-family: 'Cinzel', serif; font-size: clamp(26px, 5vw, 42px); font-weight: 400;
-    color: var(--walnut); letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.35; margin-bottom: 14px;
+    font-family: 'Cinzel', serif; font-size: clamp(30px, 6vw, 52px); font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.32; margin-bottom: 14px;
+    color: var(--walnut); /* fallback for browsers without background-clip:text */
+    background: linear-gradient(180deg, #1c1710 0%, #3a2f20 42%, #7c5d34 78%, #a07c4c 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 14px rgba(42,35,27,0.20)) drop-shadow(0 1px 0 rgba(255,255,255,0.4));
   }
   .hero .event-dateline {
     font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic;
@@ -406,27 +411,33 @@
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
       <div class="fade-in">
 
+        <div class="tier-row" id="tier-found">
+          <div class="tier-name">Found in Plain Sight</div>
+          <div class="tier-price">$1,450</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('found')">Accept Invitation</button></div>
+        </div>
+
         <div class="tier-row" id="tier-first">
-          <div class="tier-name">The First</div>
-          <div class="tier-price">$1,250</div>
+          <div class="tier-name">First Release</div>
+          <div class="tier-price">$1,850</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('first')">Accept Invitation</button></div>
         </div>
 
-        <div class="tier-row" id="tier-inner">
-          <div class="tier-name">Inner Ring</div>
-          <div class="tier-price">$1,400</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('inner')">Accept Invitation</button></div>
+        <div class="tier-row" id="tier-second">
+          <div class="tier-name">Second Release</div>
+          <div class="tier-price">$2,050</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('second')">Accept Invitation</button></div>
         </div>
 
-        <div class="tier-row" id="tier-observer">
-          <div class="tier-name">Observer Ring</div>
-          <div class="tier-price">$1,650</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('observer')">Accept Invitation</button></div>
+        <div class="tier-row" id="tier-third">
+          <div class="tier-name">Third Release</div>
+          <div class="tier-price">$2,250</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('third')">Accept Invitation</button></div>
         </div>
 
         <div class="tier-row" id="tier-final">
-          <div class="tier-name">The Final</div>
-          <div class="tier-price">$2,000</div>
+          <div class="tier-name">Final Release</div>
+          <div class="tier-price">$2,450</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
         </div>
 
@@ -551,17 +562,20 @@
      >>> REPLACE every LinkId with a NEW Scottsdale Auth.net SimpleCheckout LinkId.
          These placeholders will NOT process.
      ============================================================ -->
+<form name="form-found" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-FOUND-LINKID">
+</form>
 <form name="form-first" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-FIRST-LINKID">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-FIRST-RELEASE-LINKID">
 </form>
-<form name="form-inner" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-INNER-LINKID">
+<form name="form-second" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-SECOND-RELEASE-LINKID">
 </form>
-<form name="form-observer" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-OBSERVER-LINKID">
+<form name="form-third" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-THIRD-RELEASE-LINKID">
 </form>
 <form name="form-final" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-FINAL-LINKID">
+  <input type="hidden" name="LinkId" value="REPLACE-SCOTTSDALE-FINAL-RELEASE-LINKID">
 </form>
 
 <script>
@@ -634,9 +648,10 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.submitPayment = function() {
-    if (currentTier === 'first') document.forms['form-first'].submit();
-    else if (currentTier === 'inner') document.forms['form-inner'].submit();
-    else if (currentTier === 'observer') document.forms['form-observer'].submit();
+    if (currentTier === 'found') document.forms['form-found'].submit();
+    else if (currentTier === 'first') document.forms['form-first'].submit();
+    else if (currentTier === 'second') document.forms['form-second'].submit();
+    else if (currentTier === 'third') document.forms['form-third'].submit();
     else if (currentTier === 'final') document.forms['form-final'].submit();
   };
 
