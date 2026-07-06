@@ -118,6 +118,7 @@
     to   { background-position: 96px 0; }
   }
   .hero > * { position: relative; z-index: 1; }
+  .header-logo { width: 88px; height: 88px; object-fit: contain; margin-bottom: 36px; opacity: 0.95; }
   .hero .eyebrow {
     font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em;
     color: var(--bronze-deep); text-transform: uppercase; margin-bottom: 22px;
@@ -148,7 +149,7 @@
     height: clamp(80px, 11vh, 128px); min-height: 80px;
     background-image:
       linear-gradient(180deg, rgba(20,16,11,0.05), rgba(20,16,11,0.03)),
-      /* url('images/plain-sight-strip.jpg'), */
+      url('images/plain-sight-strip.jpg'),
       linear-gradient(90deg, #e4dbc7 0%, #efe7d6 50%, #e4dbc7 100%);
     background-size: cover; background-position: center; background-repeat: no-repeat;
     border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
@@ -322,6 +323,7 @@
 
   <!-- ===== HERO ===== -->
   <header class="hero">
+    <img class="header-logo" src="images/Logo.png" alt="Club Voluptas">
     <div class="eyebrow fade-in">Club Voluptas Private Society</div>
     <h1 class="fade-in">The Voluptas Experience<br>Scottsdale</h1>
     <div class="event-dateline fade-in">September 19 &amp; 20, 2026</div>
