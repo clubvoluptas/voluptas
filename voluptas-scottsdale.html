@@ -149,7 +149,7 @@
     height: clamp(80px, 11vh, 128px); min-height: 80px;
     background-image:
       linear-gradient(180deg, rgba(20,16,11,0.05), rgba(20,16,11,0.03)),
-      url('images/plain-sight-strip.jpg'),
+      url('images/plain-sight-strip2.jpg'),
       linear-gradient(90deg, #e4dbc7 0%, #efe7d6 50%, #e4dbc7 100%);
     background-size: cover; background-position: center; background-repeat: no-repeat;
     border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
@@ -169,10 +169,11 @@
     background-size: cover; background-position: center; background-repeat: no-repeat;
   }
   .fullbleed.pool {
+    background-color: #0d0b08;
     background-image:
       linear-gradient(180deg, rgba(24,20,16,0.10), rgba(24,20,16,0.05)),
       url('images/pool-day.jpg'),
-      linear-gradient(120deg, #e9e3d4 0%, #d8cdb8 100%);
+      linear-gradient(120deg, #14120e 0%, #0d0b08 100%);
     background-size: cover; background-position: center; background-repeat: no-repeat;
   }
 
@@ -215,6 +216,19 @@
   }
   .inclusion-list li:last-child { border-bottom: none; }
   .inclusion-list li::before { content: '\00B7'; color: var(--bronze); flex-shrink: 0; margin-top: -4px; font-size: 26px; line-height: 1; }
+
+  /* closing pull-quote under the inclusions */
+  .closing-quote { text-align: center; max-width: 600px; margin: 56px auto 0; padding: 0 8px; }
+  .closing-quote .cq-mark { display: block; width: 46px; height: 1px; background: var(--bronze); opacity: 0.85; margin: 0 auto 34px; }
+  .closing-quote .cq-lead {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: clamp(27px, 4.6vw, 39px); line-height: 1.32; color: var(--walnut);
+    letter-spacing: 0.008em; margin: 0 0 22px;
+  }
+  .closing-quote .cq-body {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(18px, 2.5vw, 22px); line-height: 1.7; color: var(--walnut-soft); margin: 0;
+  }
 
   /* ============ PRICING ============ */
   .tier-row {
@@ -416,9 +430,10 @@
           <span style="font-size: 15px; color: var(--stone); font-style: italic; letter-spacing: 0.06em; line-height: 1.8;">Every couple gets an arrival window, so the night opens with intention instead of a crowd at the door. Secure your place earlier and you get more say over when your evening starts.</span>
         </li>
       </ul>
-      <div class="fade-in" style="border-top: 1px solid var(--hair); margin-top: 20px; padding-top: 28px;">
-        <p style="font-size: 19px; color: var(--walnut); line-height: 2; margin: 0;">What you take home is not on this list.</p>
-        <p style="font-size: 19px; color: var(--walnut); line-height: 2; margin-top: 8px; margin-bottom: 0;">It is the marriage on the far side of the weekend. The one you already have, running hotter. That is the actual thing you are choosing.</p>
+      <div class="closing-quote fade-in">
+        <span class="cq-mark"></span>
+        <p class="cq-lead">What you take home is not on this list.</p>
+        <p class="cq-body">It is the marriage on the far side of the weekend. The one you already have, running hotter. That is the actual thing you are choosing.</p>
       </div>
     </div>
   </section>
