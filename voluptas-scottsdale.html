@@ -242,6 +242,7 @@
     letter-spacing: 0.1em; color: var(--bronze-deep); font-style: italic; margin-top: 4px;
   }
   .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 23px; color: var(--bronze-deep); white-space: nowrap; font-weight: 400; }
+  .tier-price .inst-label { display: block; font-size: 11px; font-style: italic; letter-spacing: 0.06em; color: var(--stone); margin-bottom: 1px; text-transform: none; white-space: nowrap; }
 
   /* ===== Tier states =====
      Current release gets class "active": full colour, price and button shown.
@@ -322,7 +323,7 @@
 <body>
 
 <!-- ============================================================
-     PASSWORD GATE  —  key set to: isawit
+     PASSWORD GATE  —  key set to: founders
      ============================================================ -->
 <div id="gate">
   <img class="gate-logo" src="images/Logo.png" alt="">
@@ -439,10 +440,12 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       Founders is the only active tier right now (private, $1,400).
+       Founders is the only active tier right now (private, two installments of $750).
        Before going public: delete the Founders row below, the Founders form near the
        bottom of the file, and the 'founders' line in submitPayment(). Found in Plain
-       Sight ($1,650) then becomes the active tier. -->
+       Sight (two installments of $850) then becomes the active tier.
+       NOTE: display only. The Auth.net Buy Now item for each tier must be set to the
+       deposit amount (the per-installment figure) for the button to charge half. -->
   <section class="band band--bone">
     <div class="page-wrap">
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
@@ -451,37 +454,37 @@
         <!-- FOUNDERS TIER (private). Remove this whole row before going public. -->
         <div class="tier-row active" id="tier-founders">
           <div class="tier-name">Founders</div>
-          <div class="tier-price">$1,400</div>
+          <div class="tier-price"><span class="inst-label">Two Installments of</span>$750</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('founders')">Accept Invitation</button></div>
         </div>
 
         <div class="tier-row inactive" id="tier-found">
           <div class="tier-name">Found in Plain Sight</div>
-          <div class="tier-price">$1,650</div>
+          <div class="tier-price"><span class="inst-label">Two Installments of</span>$850</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('found')">Accept Invitation</button></div>
         </div>
 
         <div class="tier-row inactive" id="tier-first">
           <div class="tier-name">First Release</div>
-          <div class="tier-price">$1,850</div>
+          <div class="tier-price"><span class="inst-label">Two Installments of</span>$950</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('first')">Accept Invitation</button></div>
         </div>
 
         <div class="tier-row inactive" id="tier-second">
           <div class="tier-name">Second Release</div>
-          <div class="tier-price">$2,050</div>
+          <div class="tier-price"><span class="inst-label">Two Installments of</span>$1,050</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('second')">Accept Invitation</button></div>
         </div>
 
         <div class="tier-row inactive" id="tier-third">
           <div class="tier-name">Third Release</div>
-          <div class="tier-price">$2,250</div>
+          <div class="tier-price"><span class="inst-label">Two Installments of</span>$1,150</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('third')">Accept Invitation</button></div>
         </div>
 
         <div class="tier-row inactive" id="tier-final">
           <div class="tier-name">Final Release</div>
-          <div class="tier-price">$2,450</div>
+          <div class="tier-price"><span class="inst-label">Two Installments of</span>$1,250</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
         </div>
 
@@ -571,8 +574,8 @@
       </div>
 
       <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
-        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">07 &middot; All Fees Are Non-Refundable</div>
-        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">The invitation reflects creation, coordination, and access. If you need to cancel, fees are non-refundable. If Voluptas cancels, you choose between a full refund or credit. If force majeure intervenes, a 24-month credit is issued.</p>
+        <div style="font-family: Cinzel, serif; font-size: 10px; letter-spacing: 0.4em; color: var(--bronze-lt); text-transform: uppercase; margin-bottom: 8px;">07 &middot; Payment in Two Installments</div>
+        <p style="font-size: 16px; color: var(--night-text); line-height: 1.85; margin: 0;">Your Invitation is paid in two equal installments. The first is charged now. The second, in the same amount, is charged thirty days from today, and by accepting you authorize that second charge. Both installments are non-refundable, and the invitation reflects creation, coordination, and access held exclusively for you. If the second payment fails, you have five days to resolve it. After that your place is released and the first installment is forfeited. If Voluptas cancels, you choose between a full refund or credit. If force majeure intervenes, a 24-month credit is issued.</p>
       </div>
 
       <div style="padding: 20px 0; border-bottom: 1px solid var(--hair-night);">
@@ -590,7 +593,7 @@
     <div style="padding: 28px 48px 40px; border-top: 1px solid var(--hair-night); flex-shrink: 0;">
       <label style="display: flex; align-items: flex-start; gap: 14px; cursor: pointer; margin-bottom: 28px;">
         <input type="checkbox" id="signedConfirm" onchange="togglePaymentBtn()" style="width: 16px; height: 16px; margin-top: 3px; accent-color: var(--bronze); cursor: pointer; flex-shrink: 0;">
-        <span style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--night-text); font-style: italic; line-height: 1.7; letter-spacing: 0.04em;">We have read and understood the above. We are accepting this invitation freely and agree to be bound by these terms. We understand a full Participant Agreement will follow and that we will both sign before we are able to select our arrival window.</span>
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--night-text); font-style: italic; line-height: 1.7; letter-spacing: 0.04em;">We have read and understood the above. We are accepting this invitation freely and agree to be bound by these terms. We authorize both installment payments, the first today and the second in thirty days. We understand a full Participant Agreement will follow and that we will both sign before we are able to select our arrival window.</span>
       </label>
       <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
         <button class="btn-sign" id="paymentBtn" onclick="submitPayment()" style="opacity: 0.35; pointer-events: none;">Proceed to Payment</button>
