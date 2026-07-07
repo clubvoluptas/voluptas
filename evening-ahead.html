@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Evening Ahead — Voluptas</title>
+<title>The Experience Ahead - Voluptas</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/png" href="images/Favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0D0A08;
-    --cream: #F2EBE0;
-    --parchment: #E8DDD0;
-    --gold: #C4974A;
-    --gold-pale: #E2C98A;
-    --gold-dim: rgba(196,151,74,0.15);
-    --crimson: #7A1828;
-    --crimson-soft: #9E2035;
-    --mist: #6B5D52;
-    --smoke: #2A1F18;
-    --fog: rgba(242,235,224,0.06);
+    --ink: #16130d;
+    --cream: #f2ebda;
+    --parchment: #d4cab5;
+    --bronze: #c19a5e;
+    --bronze-pale: #e0c68f;
+    --bronze-dim: rgba(193,154,94,0.15);
+    --copper: #c17a46;
+    --silver: #bcc4ca;
+    --mist: #8a7d68;
+    --smoke: #241c14;
+    --fog: rgba(242,235,218,0.05);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,12 +54,12 @@
   }
   .ambient-1 {
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(122,24,40,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(193,122,70,0.10) 0%, transparent 70%);
     top: -100px; right: -100px;
   }
   .ambient-2 {
     width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(196,151,74,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(193,154,94,0.06) 0%, transparent 70%);
     bottom: 20%; left: -150px;
   }
 
@@ -88,7 +89,7 @@
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 7px;
-    color: var(--gold);
+    color: var(--bronze);
     text-transform: uppercase;
     margin-bottom: 48px;
     opacity: 0;
@@ -98,7 +99,7 @@
   .hero-rule {
     width: 1px;
     height: 60px;
-    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    background: linear-gradient(to bottom, transparent, var(--bronze), transparent);
     margin: 0 auto 48px;
     opacity: 0;
     animation: fadeUp 1.2s ease forwards 0.5s;
@@ -121,7 +122,7 @@
     font-style: italic;
     font-size: clamp(18px, 2.5vw, 26px);
     font-weight: 300;
-    color: var(--gold-pale);
+    color: var(--bronze-pale);
     max-width: 560px;
     margin: 0 auto 64px;
     opacity: 0;
@@ -148,7 +149,7 @@
   .scroll-line {
     width: 1px;
     height: 48px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
+    background: linear-gradient(to bottom, var(--bronze), transparent);
     animation: scrollPulse 2s ease-in-out infinite;
   }
 
@@ -183,7 +184,7 @@
   .marker-line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(to right, var(--gold-dim), transparent);
+    background: linear-gradient(to right, var(--bronze-dim), transparent);
   }
 
   .marker-text {
@@ -191,7 +192,7 @@
     font-size: 9px;
     font-weight: 300;
     letter-spacing: 5px;
-    color: var(--gold);
+    color: var(--bronze);
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -216,21 +217,21 @@
 
   em {
     font-style: italic;
-    color: var(--gold-pale);
+    color: var(--bronze-pale);
   }
 
   .full-divider {
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(196,151,74,0.2), transparent);
+    background: linear-gradient(to right, transparent, rgba(193,154,94,0.2), transparent);
     margin: 0;
   }
 
   .pull-quote {
-    border-left: 1px solid var(--crimson-soft);
+    border-left: 1px solid var(--bronze);
     padding: 28px 40px;
     margin: 48px 0;
-    background: linear-gradient(to right, rgba(122,24,40,0.08), transparent);
+    background: linear-gradient(to right, rgba(193,154,94,0.07), transparent);
   }
 
   .pull-quote p {
@@ -244,10 +245,10 @@
 
   /* TOWEL INSET */
   .towel-note {
-    border: 1px solid rgba(196,151,74,0.15);
+    border: 1px solid rgba(193,154,94,0.15);
     padding: 36px 40px;
     margin: 48px 0;
-    background: rgba(196,151,74,0.03);
+    background: rgba(193,154,94,0.03);
     text-align: center;
   }
 
@@ -262,7 +263,7 @@
 
   .towel-note p:last-child {
     font-size: 19px !important;
-    color: var(--gold-pale) !important;
+    color: var(--bronze-pale) !important;
     margin-bottom: 0 !important;
   }
 
@@ -283,14 +284,14 @@
     overflow: hidden;
   }
 
-  .mask-black {
-    background: rgba(255,255,255,0.03);
-    border-top: 1px solid rgba(255,255,255,0.1);
+  .mask-copper {
+    background: rgba(193,122,70,0.10);
+    border-top: 1px solid var(--copper);
   }
 
-  .mask-red {
-    background: rgba(122,24,40,0.12);
-    border-top: 1px solid var(--crimson-soft);
+  .mask-silver {
+    background: rgba(188,196,202,0.08);
+    border-top: 1px solid var(--silver);
   }
 
   .mask-icon {
@@ -301,8 +302,8 @@
     margin-bottom: 16px;
   }
 
-  .mask-black .mask-icon { color: rgba(255,255,255,0.4); }
-  .mask-red .mask-icon { color: var(--crimson-soft); }
+  .mask-copper .mask-icon { color: var(--copper); }
+  .mask-silver .mask-icon { color: var(--silver); }
 
   .mask-card p {
     font-size: 16px;
@@ -322,28 +323,28 @@
     text-align: center;
   }
 
-  .ceremony {
+  .flow-list {
     margin: 48px 0;
     position: relative;
     padding-left: 40px;
   }
 
-  .ceremony::before {
+  .flow-list::before {
     content: '';
     position: absolute;
     left: 6px;
     top: 10px;
     bottom: 10px;
     width: 1px;
-    background: linear-gradient(to bottom, var(--gold), var(--crimson-soft), transparent);
+    background: linear-gradient(to bottom, var(--bronze), transparent);
   }
 
-  .ceremony-step {
+  .flow-step {
     position: relative;
     margin-bottom: 36px;
   }
 
-  .ceremony-step::before {
+  .flow-step::before {
     content: '';
     position: absolute;
     left: -37px;
@@ -351,11 +352,11 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 10px rgba(196,151,74,0.4);
+    background: var(--bronze);
+    box-shadow: 0 0 10px rgba(193,154,94,0.4);
   }
 
-  .ceremony-step p {
+  .flow-step p {
     font-size: 17px;
     color: var(--parchment) !important;
     font-weight: 300;
@@ -382,11 +383,12 @@
   .refined-list li:last-child { border-bottom: none; }
 
   .refined-list li::before {
-    content: '—';
-    color: var(--gold);
-    opacity: 0.5;
+    content: '\00B7';
+    color: var(--bronze);
+    font-size: 24px;
+    line-height: 1;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: -2px;
   }
 
   .gold-statement {
@@ -401,12 +403,12 @@
     display: block;
     width: 80px;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold));
+    background: linear-gradient(to right, transparent, var(--bronze));
     margin: 0 auto 32px;
   }
 
   .gold-statement::after {
-    background: linear-gradient(to left, transparent, var(--gold));
+    background: linear-gradient(to left, transparent, var(--bronze));
     margin: 32px auto 0;
   }
 
@@ -415,7 +417,7 @@
     font-style: italic;
     font-size: clamp(22px, 3vw, 32px);
     font-weight: 300;
-    color: var(--gold-pale);
+    color: var(--bronze-pale);
     line-height: 1.6;
     max-width: 580px;
     margin: 0 auto;
@@ -436,11 +438,11 @@
     text-align: center;
     padding: 24px 16px;
     background: var(--fog);
-    border: 1px solid rgba(196,151,74,0.1);
+    border: 1px solid rgba(193,154,94,0.1);
   }
 
   .locker-arrow {
-    color: var(--gold);
+    color: var(--bronze);
     opacity: 0.3;
     font-size: 18px;
     padding: 0 4px;
@@ -450,7 +452,7 @@
   .locker-step-num {
     font-family: 'Cinzel', serif;
     font-size: 24px;
-    color: var(--gold);
+    color: var(--bronze);
     opacity: 0.3;
     margin-bottom: 8px;
   }
@@ -472,7 +474,7 @@
   .closing-rule {
     width: 1px;
     height: 80px;
-    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    background: linear-gradient(to bottom, transparent, var(--bronze), transparent);
     margin: 0 auto 60px;
   }
 
@@ -507,12 +509,12 @@
     display: inline-block;
     margin-top: 40px;
     padding: 16px 40px;
-    border: 1px solid rgba(196,151,74,0.3);
+    border: 1px solid rgba(193,154,94,0.3);
     font-family: 'Raleway', sans-serif;
     font-size: 10px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--bronze);
     text-decoration: none;
     transition: all 0.4s ease;
     position: relative;
@@ -523,14 +525,14 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(196,151,74,0.06);
+    background: rgba(193,154,94,0.06);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
   }
 
   .moodboard-link:hover::before { transform: scaleX(1); }
-  .moodboard-link:hover { border-color: var(--gold); color: var(--gold-pale); }
+  .moodboard-link:hover { border-color: var(--bronze); color: var(--bronze-pale); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -552,9 +554,9 @@
 <div class="ambient ambient-2"></div>
 
 <section class="hero">
-  <div class="hero-eyebrow">Voluptas · Private Society</div>
+  <div class="hero-eyebrow">Voluptas &middot; Private Society</div>
   <div class="hero-rule"></div>
-  <h1>The Evening<br>Ahead</h1>
+  <h1>The Experience<br>Ahead</h1>
   <p class="hero-sub">Everything you need to arrive fully present, fully open, and entirely ready for what awaits.</p>
   <div class="hero-scroll">
     <span>Read On</span>
@@ -569,7 +571,7 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">A Note Before You Arrive</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <p>You have been extended an invitation that most people will never receive. What follows is not a list of rules. It is an orientation into an experience designed with extraordinary care, for your pleasure, for your marriage, and for the charge of the room you are about to share with a small group of remarkable couples.</p>
@@ -587,23 +589,23 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">How the Weekend Unfolds</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <h2 class="section-title">The Shape of It</h2>
 
-  <p>The weekend moves in three distinct movements. Each one prepares you for the next. None of them are accidental. All times are Pacific.</p>
+  <p>The weekend moves in three distinct movements. Each one prepares you for the next. None of them are accidental. All times are Arizona time.</p>
 
-  <div class="ceremony">
-    <div class="ceremony-step">
-      <p><em>The Feminine Brunch, Saturday 11am to 1pm.</em> The women of the Society gather privately before the evening begins. Elegant, unhurried, completely removed from performance or expectation. This morning exists so she arrives at the evening already feeling sovereign, already seen, already soft, already safe inside herself. When a woman enters an erotic space in that state, everything that follows is different. Husbands: your morning is your own. Spend it missing her.</p>
-      <p style="font-size: 16px; color: var(--mist); font-style: italic; margin-top: 16px;">Brunch is at Sadelle's at the Bellagio, just steps from the Conservatory. One practical note: there is typically a long queue at the entrance. There is a separate reservations line to the left. A hostess will be there. Simply let her know you are with the private dining room reservation and she will take care of you from there.</p>
+  <div class="flow-list">
+    <div class="flow-step">
+      <p><em>Ladies Who Lunch, Saturday, early afternoon.</em> The women of the Society gather privately, hosted by Jenn, before the evening begins. Elegant, unhurried, completely removed from performance or expectation. This afternoon exists so she arrives at the evening already feeling sovereign, already seen, already soft, already safe inside herself. When a woman enters an erotic space in that state, everything that follows is different. Husbands: your afternoon is your own. Spend it missing her.</p>
+      <p style="font-size: 16px; color: var(--mist); font-style: italic; margin-top: 16px;">Lunch is at Olive &amp; Ivy, on the Scottsdale Waterfront. When you arrive, check in at the host stand and let them know you are with the private dining reservation under Voluptas. They will take you back from there.</p>
     </div>
-    <div class="ceremony-step">
-      <p><em>The Gathering — doors open 8pm, doors close 9:15pm.</em> Your arrival window is confirmed. The penthouse belongs to Voluptas. The evening opens with atmosphere, music, art, and the particular electricity of a room full of people who chose to be exactly here. The Ring Ceremony marks the threshold. What follows it belongs entirely to you.</p>
+    <div class="flow-step">
+      <p><em>The Gathering, doors open 8pm, doors close 9:15pm.</em> Your arrival window is confirmed. The residence belongs to Voluptas for the night. The evening opens with atmosphere, music, art, and the particular electricity of a room full of people who chose to be exactly here. At some point, with no announcement and no signal, the room simply opens. What follows belongs entirely to you.</p>
     </div>
-    <div class="ceremony-step">
-      <p><em>The Sunday Afterglow — 11:30am to 4pm.</em> The morning after is part of the weekend. The terrace. The Las Vegas sun. Coffee with the couples who were in the room with you. This is where the night lands, where it becomes memory, where the high that will follow you home for weeks begins to settle into your body. Come if you are able.</p>
+    <div class="flow-step">
+      <p><em>Sunday: The Long Game, late morning onward.</em> The day after is a bonus, built for the couples staying the extra night or flying out later. The pool. The games. Golf, shuffleboard, foosball, and the easy competition of a slow afternoon. Coffee with the couples who were in the room with you. This is where the night lands and becomes memory, where the high that follows you home for weeks begins to settle in. Nothing here is required. If you are still in town, it is yours.</p>
     </div>
   </div>
 </section>
@@ -614,7 +616,7 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">Practical Matters</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <h2 class="section-title">Before You Walk Through the Door</h2>
@@ -622,14 +624,14 @@
   <ul class="refined-list">
     <li>Eat a real meal before you arrive. In the deep evening there will be light nourishment, but dinner is yours to handle before you walk in. Come nourished.</li>
     <li>Avoid garlic, onion, and anything that will follow you into the room. This is a sensory environment and you will be close to people. Breath matters. This is an act of respect for yourself and everyone around you.</li>
-    <li>Your arrival window is confirmed and fixed. It was designed so that each couple has an arrival experience. Arrive within it. Doors close at 9:15pm. No one will be available to let you up after that.</li>
+    <li>Your arrival window is confirmed and fixed. It was designed so that each couple has an arrival experience. Arrive within it. Doors close at 9:15pm. No one will be available to let you in after that.</li>
     <li>For attire, we have curated a moodboard that shows exactly the tone we are reaching for. This is not a costume party and it is not resort casual. Dress as though someone extraordinary might be watching, because they will be.</li>
     <li>Come when you are solid. This weekend amplifies what is already between you. It does not repair what is strained. If the timing is not right, tell us.</li>
   </ul>
 
   <p style="font-style: italic; color: var(--mist); font-size: 17px;">The way you arrive matters, not as a performance, but as a gesture toward your own marriage and the other couples in the room.</p>
 
-  <a href="https://society.clubvoluptas.com/c/moodboards/" class="moodboard-link" target="_blank">View the Attire Moodboard →</a>
+  <a href="https://society.clubvoluptas.com/c/moodboards/" class="moodboard-link" target="_blank">View the Attire Moodboard</a>
 </section>
 
 <div class="full-divider"></div>
@@ -638,7 +640,7 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">Arriving Fully</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <h2 class="section-title">Your Phone</h2>
@@ -650,24 +652,24 @@
       <div class="locker-step-num">I</div>
       <p>Arrive. Phone into the locker. Key in your pocket.</p>
     </div>
-    <div class="locker-arrow">→</div>
+    <div class="locker-arrow">&rsaquo;</div>
     <div class="locker-step">
       <div class="locker-step-num">II</div>
-      <p>If you need it, walk to the locker, use your key, step into the vestibule.</p>
+      <p>If you need it, walk to the locker, use your key, step aside to a private spot.</p>
     </div>
-    <div class="locker-arrow">→</div>
+    <div class="locker-arrow">&rsaquo;</div>
     <div class="locker-step">
       <div class="locker-step-num">III</div>
       <p>Handle what you need. Return to the locker. Come back in.</p>
     </div>
-    <div class="locker-arrow">→</div>
+    <div class="locker-arrow">&rsaquo;</div>
     <div class="locker-step">
       <div class="locker-step-num">IV</div>
-      <p>On departure, the locker moves to the entry. Take your phone and carry the night home.</p>
+      <p>On departure, collect your phone from the locker and carry the night home.</p>
     </div>
   </div>
 
-  <p>The vestibule, the space between the elevator and the penthouse doors, is available to you any time you need a private moment, a breath of neutral air, or a quiet word with your partner without fully leaving. Use it freely.</p>
+  <p>There is a private space near the entry, set apart from the rest of the house, available to you any time you need a private moment, a breath of neutral air, or a quiet word with your partner without fully leaving. Use it freely.</p>
 
   <p style="color: var(--mist); font-size: 16px; font-style: italic;">No photography. No recording. No disclosure of who attended or what occurred. What happens in this room belongs only to the people who were in it. This is not a request. It is the condition under which every couple present, including you, agreed to be here.</p>
 </section>
@@ -678,18 +680,18 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">The Professionals in the Room</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
-  <h2 class="section-title">Staff & Artists</h2>
+  <h2 class="section-title">Staff &amp; Artists</h2>
 
   <p>The staff who serve you tonight are professionals operating with exceptional discretion in an unusual environment. Do not draw them into conversation, do not flirt, do not offer them drinks. Acknowledge them only for what you need. Their ease matters and their experience of this evening is your responsibility as a guest.</p>
 
   <p>The artists present in the space are curated installations, not participants, not guests, not available for conversation. Observe them the way you would observe something rare and extraordinary that you have the privilege of being near. You are moved by it. You do not touch it.</p>
 
-  <p>As the evening deepens, the staff and artists take their leave. From that moment, the penthouse belongs entirely to the Society.</p>
+  <p>As the evening deepens, the staff and artists take their leave. From that moment, the house belongs entirely to the Society.</p>
 
-  <p>After the bar closes, wine and champagne remain available for you to pour at your leisure, alongside still water throughout the penthouse. Drink at the pace of celebration, not oblivion. The evening is long and it rewards presence.</p>
+  <p>After the bar closes, wine and champagne remain available for you to pour at your leisure, alongside still water throughout the house. Drink at the pace of celebration, not oblivion. The evening is long and it rewards presence.</p>
 </section>
 
 <div class="full-divider"></div>
@@ -698,22 +700,22 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">The Language of the Room</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <h2 class="section-title">Your Masks</h2>
 
   <p>Your masks are not costumes. They are a language, the most important one spoken in this room. Learn it before you arrive. Everything that follows depends on it.</p>
 
-  <p>Masks are one of the few things we ask of every couple on arrival, and the reason matters. When everyone arrives masked, no one is singled out. The couple choosing black, who simply wants to witness the evening, is not marked as different from anyone else in the room. The mask creates equality of presence from the moment you walk in.</p>
+  <p>Masks are one of the few things we ask of every couple on arrival, and the reason matters. When everyone arrives masked, no one is singled out. The couple choosing copper, who simply wants to witness the evening, is not marked as different from anyone else in the room. The mask creates equality of presence from the moment you walk in.</p>
 
   <div class="mask-grid">
-    <div class="mask-card mask-black">
-      <div class="mask-icon">Black Mask</div>
-      <p>This couple is present to witness, to feel the room, to exist inside the atmosphere together. They are not available for approach, conversation, or engagement of any kind. If you see a black mask, they are invisible to you socially. If you are wearing black: speak only to your spouse and to the staff. Honor the choice without commentary or curiosity.</p>
+    <div class="mask-card mask-copper">
+      <div class="mask-icon">Copper Mask</div>
+      <p>This couple is present to witness, to feel the room, to exist inside the atmosphere together. They are not available for approach, conversation, or engagement of any kind. If you see a copper mask, they are invisible to you socially. If you are wearing copper: speak only to your spouse and to the staff. Honor the choice without commentary or curiosity.</p>
     </div>
-    <div class="mask-card mask-red">
-      <div class="mask-icon">Red Mask</div>
+    <div class="mask-card mask-silver">
+      <div class="mask-icon">Silver Mask</div>
       <p>This couple is open to energy, to flirtation, to what the evening naturally offers. It is not an open invitation to touch. It is not a guarantee of anything. It is permission to be present with them, to let something unfold if it chooses to. Read the room. Follow her lead always.</p>
     </div>
   </div>
@@ -727,40 +729,20 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">The Threshold</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
-  <h2 class="section-title">The Ring Ceremony</h2>
+  <h2 class="section-title">The Room Opens</h2>
 
-  <p>At a specific moment in the evening, the room gathers. This is not a performance. It is the moment the gathering crosses from social into something charged and intentional, the threshold between what the evening has been and what it is about to become.</p>
-
-  <p>Participation is not mandatory, but it is a beautiful way to see everyone in the room. Here is what happens so nothing surprises you:</p>
-
-  <div class="ceremony">
-    <div class="ceremony-step">
-      <p>The men form an inner circle. The women form an outer circle. You begin facing your spouse.</p>
-    </div>
-    <div class="ceremony-step">
-      <p>The inner circle, the men, rotate slowly, one position at a time. The women remain still. She is never moved, never circulated. She holds her ground and receives.</p>
-    </div>
-    <div class="ceremony-step">
-      <p>At each pause, a brief moment of eye contact is invited. Nothing more is required. If she opens her hands, he may gently place his into hers. If she does not, nothing happens. No explanation is needed. No gesture is wrong.</p>
-    </div>
-    <div class="ceremony-step">
-      <p>There is no talking. No performance. This is about presence, being seen and seeing, nothing more.</p>
-    </div>
-    <div class="ceremony-step">
-      <p>The ceremony ends when every man has returned to face his own wife. That final moment, his eyes finding hers again, is the point of everything that preceded it.</p>
-    </div>
-  </div>
+  <p>There is no ceremony and no announcement. At some point in the evening you simply notice the room has changed. The social hour is behind you, and what the night has been quietly becomes what it is about to be.</p>
 
   <div class="pull-quote">
-    <p>When the ceremony closes, the velvet rope is gone. The penthouse is the erotic field. All of it.</p>
+    <p>When the room opens, the velvet rope is gone. The house is the erotic field. All of it.</p>
   </div>
 
-  <p>The loft. The terrace. The living room. The intimate spaces. Every room, every corner, every view of the city belongs to the Society from this moment forward. There are no wrong rooms after the ceremony closes. Wherever desire leads you, the space holds it.</p>
+  <p>The loft. The terrace. The living room. The intimate spaces. Every room, every corner belongs to the Society from this moment forward. There are no wrong rooms once the room opens. Wherever desire leads you, the space holds it.</p>
 
-  <p>If you want to shower, shower. If you want to draw a bath, draw a bath. If you want to take the night air on the terrace, it is yours. Nothing is expected. Everything is available.</p>
+  <p>If you want to shower, shower. If you want to draw a bath, draw a bath. If you want to take the night air, it is yours. Nothing is expected. Everything is available.</p>
 
   <div class="towel-note">
     <p>Should you find yourselves drawn to one of the intimate spaces, a dark towel is already laid across the bed when you walk in. Aftercare towels are stacked on both nightstands, within reach from either side.</p>
@@ -774,12 +756,12 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">The Open Field</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <h2 class="section-title">Living Art</h2>
 
-  <p>After the ceremony, you may find yourself in a space with other couples, or they may find themselves in a space with you. This is the nature of a shared erotic field. What it requires is one understanding above all others:</p>
+  <p>Once the room opens, you may find yourself in a space with other couples, or they may find themselves in a space with you. This is the nature of a shared erotic field. What it requires is one understanding above all others:</p>
 
   <div class="pull-quote">
     <p>If you choose to be seen, you are, in that moment, living art. Beautiful. Sovereign. Completely yours, yet the room does not belong to you.</p>
@@ -802,7 +784,7 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">Your Responsibility to the Room</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <h2 class="section-title">What You Bring</h2>
@@ -811,12 +793,12 @@
 
   <ul class="refined-list">
     <li>Move at the pace of the slower partner. Always. The person who is less ready sets the speed, not as a constraint, but as an act of devotion. The most erotic thing you can do for each other tonight is refuse to rush.</li>
-    <li>If something feels heavy between you, take it to the vestibule or the terrace. Resolve it. Return when you are solid. The erotic field amplifies what is already between you. Come to it whole.</li>
+    <li>If something feels heavy between you, take it to the private space near the entry, or step outside. Resolve it. Return when you are solid. The erotic field amplifies what is already between you. Come to it whole.</li>
     <li>Nothing is expected. A completely valid and deeply beautiful Voluptas evening is one where you feel the room, feel each other, and return to your suite having touched no one outside your marriage. That is the product working exactly as it was designed.</li>
     <li>Establish a private check-in signal with each other before you arrive. A word, a touch, a look that means <em>come find me, I need a moment with you.</em> Couples who have this move through the evening as a unit. Use it freely and without apology.</li>
     <li>How to decline gracefully: a smile and returning your attention to your partner is a complete sentence. You owe no one an explanation for any boundary at any time.</li>
     <li>Do not announce your intentions or your limits unprompted. Nobody needs to know what you plan to do or not do tonight. Let the evening unfold.</li>
-    <li>When you are ready to leave, you leave. There is no checkout, no farewell lap, no announcement. Collect your phone, step into the elevator, and carry the night home. The Irish goodbye was invented for a room exactly like this one.</li>
+    <li>When you are ready to leave, you leave. There is no checkout, no farewell lap, no announcement. Collect your phone, step out, and carry the night home. The Irish goodbye was invented for a room exactly like this one.</li>
   </ul>
 </section>
 
@@ -826,7 +808,7 @@
   <div class="section-marker">
     <div class="marker-line"></div>
     <div class="marker-text">The Foundation of Everything</div>
-    <div class="marker-line" style="background: linear-gradient(to left, var(--gold-dim), transparent);"></div>
+    <div class="marker-line" style="background: linear-gradient(to left, var(--bronze-dim), transparent);"></div>
   </div>
 
   <h2 class="section-title">Consent is Continuous</h2>
@@ -837,7 +819,7 @@
     <p>Presence does not imply consent. A yes in one moment is not a yes in the next. The most sophisticated people in this room understand this most completely.</p>
   </div>
 
-  <p>For any encounter outside your marriage: protection is provided throughout every space in the penthouse. Its use is not a suggestion. It is an expectation of every couple in this room.</p>
+  <p>For any encounter outside your marriage: protection is provided throughout every space in the house. Its use is not a suggestion. It is an expectation of every couple in this room.</p>
 </section>
 
 <div class="full-divider"></div>
@@ -852,7 +834,7 @@
   <div class="closing-rule"></div>
   <h2>We Will See You Saturday</h2>
   <p>If anything arises before the evening, a question, a feeling, something you need to say, we are here. Come to us with anything during the night as well. There is no concern too small and nothing you will say that will surprise us. We built this room for you. We are honored you chose to be in it.</p>
-  <div class="closing-brand">Voluptas · Devotion First · Desire Always</div>
+  <div class="closing-brand">Voluptas &middot; Devotion First &middot; Desire Always</div>
 </section>
 
 </main>
