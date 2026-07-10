@@ -323,7 +323,7 @@
 <body>
 
 <!-- ============================================================
-     PASSWORD GATE. Key set to: founders
+     PASSWORD GATE. Key set to: isawit
      ============================================================ -->
 <div id="gate">
   <img class="gate-logo" src="images/Logo.png" alt="">
@@ -440,10 +440,9 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       Founders is the only active tier right now (private, two installments of $750).
-       Before going public: delete the Founders row below, the Founders form near the
-       bottom of the file, and the 'founders' line in submitPayment(). Found in Plain
-       Sight (two installments of $850) then becomes the active tier.
+       Found in Plain Sight is the active tier (two installments of $850).
+       To advance a release as it sells: move class "active" onto the next row and set
+       the sold one to "inactive".
        NOTE: display only. The Auth.net Buy Now item for each tier must be set to the
        deposit amount (the per-installment figure) for the button to charge half. -->
   <section class="band band--bone">
@@ -451,14 +450,7 @@
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
       <div class="fade-in">
 
-        <!-- FOUNDERS TIER (private). Remove this whole row before going public. -->
-        <div class="tier-row active" id="tier-founders">
-          <div class="tier-name">Founders</div>
-          <div class="tier-price"><span class="inst-label">Two Installments of</span>$750</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('founders')">Accept Invitation</button></div>
-        </div>
-
-        <div class="tier-row inactive" id="tier-found">
+        <div class="tier-row active" id="tier-found">
           <div class="tier-name">Found in Plain Sight</div>
           <div class="tier-price"><span class="inst-label">Two Installments of</span>$850</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('found')">Accept Invitation</button></div>
@@ -609,10 +601,6 @@
      >>> REPLACE every LinkId with a NEW Scottsdale Auth.net SimpleCheckout LinkId.
          These placeholders will NOT process.
      ============================================================ -->
-<!-- FOUNDERS FORM (private). Remove before going public. -->
-<form name="form-founders" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="ebf333c9-bc77-4010-a0a7-7440b1450852">
-</form>
 <form name="form-found" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
   <input type="hidden" name="LinkId" value="dcf6c368-62ac-4964-925a-e1a533f8ef2b">
 </form>
@@ -633,7 +621,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   /* ===== PASSWORD GATE ===== */
-  var CORRECT_KEY = 'founders';
+  var CORRECT_KEY = 'isawit';
 
   var keyInput = document.getElementById('keyInput');
   var gateError = document.getElementById('gateError');
@@ -699,8 +687,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.submitPayment = function() {
-    if (currentTier === 'founders') document.forms['form-founders'].submit();
-    else if (currentTier === 'found') document.forms['form-found'].submit();
+    if (currentTier === 'found') document.forms['form-found'].submit();
     else if (currentTier === 'first') document.forms['form-first'].submit();
     else if (currentTier === 'second') document.forms['form-second'].submit();
     else if (currentTier === 'third') document.forms['form-third'].submit();
