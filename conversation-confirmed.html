@@ -430,15 +430,16 @@ html, body {
     </div>
 
     <p class="pre-headline">Confirm your conversation below.</p>
-    <h1 class="headline"><em>If we're the right fit,</em> this becomes your first month inside the Inner Ring.</h1>
+    <h1 class="headline">A conversation to see if we fit. <em>A week to know if it's true.</em></h1>
 
     <div class="rule"></div>
 
     <!-- OFFER CARD -->
     <div class="offer-card">
       <p class="offer-desc">
-        When you confirm your alignment conversation it also counts as your <strong>first month inside the Inner Ring.</strong>
-        If we speak and the fit isn't there, it comes back to you in full.
+        Your reservation holds your call and, if aligned, becomes your <strong>first week inside the Society.</strong>
+        That week gives you and your spouse the time to feel, with no pressure, whether this is right for your marriage.
+        If we speak and it isn't the right fit, it comes back to you in full.
       </p>
       <span class="guarantee">Fully refunded if we're not the right fit.</span>
     </div>
@@ -478,4 +479,10 @@ setTimeout(function() {
   var name = params.get('invitee_full_name') || params.get('name') || '';
   if (name) {
     var first = name.split(' ')[0];
-    var h1 = document.querySelector('.headli
+    var h1 = document.querySelector('.headline');
+  }
+})();
+</script>
+
+</body>
+</html>
