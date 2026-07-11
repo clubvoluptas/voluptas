@@ -253,6 +253,13 @@
   .tier-row.inactive .tier-price,
   .tier-row.inactive .tier-cta { display: none; }
 
+  /* sold tier: visible, no price, no button */
+  .tier-row.committed { opacity: 0.7; }
+  .tier-price .committed-label {
+    display: inline-block; font-family: 'Cinzel', serif; font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); white-space: nowrap;
+  }
+
   .cta-btn {
     background: transparent; border: 1px solid var(--bronze); color: var(--bronze-deep);
     font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
@@ -440,15 +447,23 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
+       Founders shows as "Fully Committed" (class "committed"): visible, no price, no button.
        Found in Plain Sight is the active tier (two installments of $850).
        To advance a release as it sells: move class "active" onto the next row and set
-       the sold one to "inactive".
+       the sold one to "inactive" (or "committed" to show it as fully committed).
        NOTE: display only. The Auth.net Buy Now item for each tier must be set to the
        deposit amount (the per-installment figure) for the button to charge half. -->
   <section class="band band--bone">
     <div class="page-wrap">
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
       <div class="fade-in">
+
+        <!-- FOUNDERS: closed. Display only, no price, no button, no form. -->
+        <div class="tier-row committed" id="tier-founders">
+          <div class="tier-name">Founders</div>
+          <div class="tier-price"><span class="committed-label">Fully Committed</span></div>
+          <div class="tier-cta"></div>
+        </div>
 
         <div class="tier-row active" id="tier-found">
           <div class="tier-name">Found in Plain Sight</div>
