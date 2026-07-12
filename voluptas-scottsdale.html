@@ -447,10 +447,10 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       Founders shows as "Fully Committed" (class "committed"): visible, no price, no button.
-       Found in Plain Sight is the active tier (two installments of $850).
-       To advance a release as it sells: move class "active" onto the next row and set
-       the sold one to "inactive" (or "committed" to show it as fully committed).
+       Founders and Found in Plain Sight show as "Fully Committed" (class "committed").
+       First Release is the active tier (two installments of $950).
+       To advance a release as it sells: set the filled row to "committed" (drop its price
+       and button per the pattern above) and set the next row from "inactive" to "active".
        NOTE: display only. The Auth.net Buy Now item for each tier must be set to the
        deposit amount (the per-installment figure) for the button to charge half. -->
   <section class="band band--bone">
@@ -465,13 +465,13 @@
           <div class="tier-cta"></div>
         </div>
 
-        <div class="tier-row active" id="tier-found">
+        <div class="tier-row committed" id="tier-found">
           <div class="tier-name">Found in Plain Sight</div>
-          <div class="tier-price"><span class="inst-label">Two Installments of</span>$850</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('found')">Accept Invitation</button></div>
+          <div class="tier-price"><span class="committed-label">Fully Committed</span></div>
+          <div class="tier-cta"></div>
         </div>
 
-        <div class="tier-row inactive" id="tier-first">
+        <div class="tier-row active" id="tier-first">
           <div class="tier-name">First Release</div>
           <div class="tier-price"><span class="inst-label">Two Installments of</span>$950</div>
           <div class="tier-cta"><button class="cta-btn" onclick="openNDA('first')">Accept Invitation</button></div>
