@@ -260,6 +260,23 @@
     letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); white-space: nowrap;
   }
 
+  /* whole-event sold banner */
+  .committed-banner {
+    text-align: center;
+    background: linear-gradient(135deg, var(--bronze-deep) 0%, var(--bronze) 55%, var(--bronze-lt) 100%);
+    border: 1px solid var(--bronze-deep);
+    padding: 32px 32px; margin-bottom: 44px;
+  }
+  .committed-banner .cb-label {
+    font-family: 'Cinzel', serif; font-size: clamp(16px, 3.2vw, 22px); font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--paper); margin: 0;
+  }
+  .committed-banner .cb-rule { width: 44px; height: 1px; background: rgba(245,240,230,0.5); margin: 16px auto; }
+  .committed-banner .cb-sub {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px;
+    color: rgba(245,240,230,0.92); letter-spacing: 0.04em; margin: 0;
+  }
+
   .cta-btn {
     background: transparent; border: 1px solid var(--bronze); color: var(--bronze-deep);
     font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
@@ -454,6 +471,11 @@
        and confirm the matching Auth.net Buy Now item and description. -->
   <section class="band band--bone">
     <div class="page-wrap">
+      <div class="committed-banner fade-in">
+        <p class="cb-label">Fully Committed</p>
+        <div class="cb-rule"></div>
+        <p class="cb-sub">Every place for this experience has been claimed.</p>
+      </div>
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
       <div class="fade-in">
 
