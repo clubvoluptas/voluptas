@@ -260,6 +260,22 @@
     letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); white-space: nowrap;
   }
 
+  /* top-of-page sold banner */
+  .top-committed {
+    background: linear-gradient(135deg, var(--bronze-deep) 0%, var(--bronze) 60%, var(--bronze-lt) 100%);
+    border-top: 1px solid var(--bronze-deep); border-bottom: 1px solid var(--bronze-deep);
+    text-align: center; padding: 18px 24px;
+    display: flex; flex-direction: column; gap: 5px; align-items: center;
+  }
+  .top-committed .tc-label {
+    font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--paper); font-weight: 500;
+  }
+  .top-committed .tc-sub {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px;
+    letter-spacing: 0.04em; color: rgba(245,240,230,0.92);
+  }
+
   /* whole-event sold banner */
   .committed-banner {
     text-align: center;
@@ -368,6 +384,12 @@
     <div class="event-dateline fade-in">September 19 &amp; 20, 2026</div>
     <p class="hero-line fade-in">In Plain Sight</p>
   </header>
+
+  <!-- top-of-page sold banner -->
+  <div class="top-committed fade-in">
+    <span class="tc-label">Fully Committed</span>
+    <span class="tc-sub">Every place for this experience has been claimed</span>
+  </div>
 
   <div class="fullbleed strip fade-in" aria-hidden="true"></div>
 
