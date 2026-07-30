@@ -447,12 +447,11 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       Founders, Found in Plain Sight, First Release, Second Release, and Third Release show as "Fully Committed" (class "committed").
-       Final Release is the active tier (two installments of $1,200).
-       To advance a release as it sells: set the filled row to "committed" (drop its price
-       and button per the pattern above) and set the next row from "inactive" to "active".
-       NOTE: display only. The Auth.net Buy Now item for each tier must be set to the
-       deposit amount (the per-installment figure) for the button to charge half. -->
+       FULLY COMMITTED. All six tiers show as "Fully Committed" (class "committed").
+       No active tier, nothing buyable. The NDA modal and payment forms are now dormant
+       (no button calls openNDA), which is harmless.
+       To reopen a tier: set its row back to "active", restore its price and Accept button,
+       and confirm the matching Auth.net Buy Now item and description. -->
   <section class="band band--bone">
     <div class="page-wrap">
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
@@ -489,10 +488,10 @@
           <div class="tier-cta"></div>
         </div>
 
-        <div class="tier-row active" id="tier-final">
+        <div class="tier-row committed" id="tier-final">
           <div class="tier-name">Final Release</div>
-          <div class="tier-price"><span class="inst-label">Two Installments of</span>$1,200</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
+          <div class="tier-price"><span class="committed-label">Fully Committed</span></div>
+          <div class="tier-cta"></div>
         </div>
 
       </div>
