@@ -486,11 +486,10 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       FULLY COMMITTED. All six tiers show as "Fully Committed" (class "committed").
-       No active tier, nothing buyable. The NDA modal and payment forms are now dormant
-       (no button calls openNDA), which is harmless.
-       To reopen a tier: set its row back to "active", restore its price and Accept button,
-       and confirm the matching Auth.net Buy Now item and description. -->
+       The two "Fully Committed" banners (top of page and top of this section) are
+       intentionally left up. Final Release is reopened as active (two installments of
+       $1,200) to sell one more invitation. The five rows above it stay "committed".
+       To close it again: set tier-final back to "committed" (drop its price and button). -->
   <section class="band band--bone">
     <div class="page-wrap">
       <div class="committed-banner fade-in">
@@ -532,10 +531,10 @@
           <div class="tier-cta"></div>
         </div>
 
-        <div class="tier-row committed" id="tier-final">
+        <div class="tier-row active" id="tier-final">
           <div class="tier-name">Final Release</div>
-          <div class="tier-price"><span class="committed-label">Fully Committed</span></div>
-          <div class="tier-cta"></div>
+          <div class="tier-price"><span class="inst-label">Two Installments of</span>$1,200</div>
+          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
         </div>
 
       </div>
