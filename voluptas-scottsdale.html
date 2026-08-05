@@ -376,6 +376,12 @@
 <!-- ============================================================ MAIN CONTENT ============================================================ -->
 <div id="content">
 
+  <!-- top-of-page sold banner (shows instantly, above the hero) -->
+  <div class="top-committed">
+    <span class="tc-label">Fully Committed</span>
+    <span class="tc-sub">Every place for this experience has been claimed</span>
+  </div>
+
   <!-- ===== HERO ===== -->
   <header class="hero">
     <img class="header-logo" src="images/Logo.png" alt="Club Voluptas">
@@ -384,12 +390,6 @@
     <div class="event-dateline fade-in">September 19 &amp; 20, 2026</div>
     <p class="hero-line fade-in">In Plain Sight</p>
   </header>
-
-  <!-- top-of-page sold banner -->
-  <div class="top-committed fade-in">
-    <span class="tc-label">Fully Committed</span>
-    <span class="tc-sub">Every place for this experience has been claimed</span>
-  </div>
 
   <div class="fullbleed strip fade-in" aria-hidden="true"></div>
 
@@ -531,10 +531,10 @@
           <div class="tier-cta"></div>
         </div>
 
-        <div class="tier-row active" id="tier-final">
+        <div class="tier-row committed" id="tier-final">
           <div class="tier-name">Final Release</div>
-          <div class="tier-price"><span class="inst-label">Two Installments of</span>$1,200</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
+          <div class="tier-price"><span class="committed-label">Fully Committed</span></div>
+          <div class="tier-cta"></div>
         </div>
 
       </div>
@@ -654,25 +654,10 @@
 </div>
 
 <!-- ============================================================
-     HIDDEN PAYMENT FORMS
-     >>> REPLACE every LinkId with a NEW Scottsdale Auth.net SimpleCheckout LinkId.
-         These placeholders will NOT process.
+     PAYMENT FORMS REMOVED. Event is fully committed, nothing is for sale.
+     To reopen: restore the tier's hidden form here, its Accept button, and its
+     submitPayment branch, and reactivate the Auth.net item.
      ============================================================ -->
-<form name="form-found" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="dcf6c368-62ac-4964-925a-e1a533f8ef2b">
-</form>
-<form name="form-first" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="4a302d0d-8dc0-46eb-8be4-2dd528bc4f53">
-</form>
-<form name="form-second" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="ec6be302-ceea-496d-ac8d-50dbddf81322">
-</form>
-<form name="form-third" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="7518c71d-69ac-4168-b496-a0cf0bea27a0">
-</form>
-<form name="form-final" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="b77f8a92-775b-421a-afe0-3df98534e33e">
-</form>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -719,37 +704,22 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
   }
 
-  /* ===== NDA FLOW ===== */
+  /* ===== NDA / PAYMENT FLOW — DISABLED =====
+     Event is fully committed. No tier has a button, the payment forms are removed,
+     and these handlers are inert no-ops so nothing can trigger a charge.
+     To reopen: restore a tier's button and form, and the submitPayment branch below. */
   var currentTier = null;
 
-  window.openNDA = function(tier) {
-    currentTier = tier;
-    document.getElementById('ndaModal').classList.add('open');
-  };
+  window.openNDA = function() { /* disabled: fully committed */ };
 
   window.closeNDA = function() {
-    document.getElementById('ndaModal').classList.remove('open');
-    currentTier = null;
-    var cb = document.getElementById('signedConfirm');
-    if (cb) cb.checked = false;
-    var btn = document.getElementById('paymentBtn');
-    if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
+    var m = document.getElementById('ndaModal');
+    if (m) m.classList.remove('open');
   };
 
-  window.togglePaymentBtn = function() {
-    var checked = document.getElementById('signedConfirm').checked;
-    var btn = document.getElementById('paymentBtn');
-    btn.style.opacity = checked ? '1' : '0.35';
-    btn.style.pointerEvents = checked ? 'auto' : 'none';
-  };
+  window.togglePaymentBtn = function() { /* disabled: fully committed */ };
 
-  window.submitPayment = function() {
-    if (currentTier === 'found') document.forms['form-found'].submit();
-    else if (currentTier === 'first') document.forms['form-first'].submit();
-    else if (currentTier === 'second') document.forms['form-second'].submit();
-    else if (currentTier === 'third') document.forms['form-third'].submit();
-    else if (currentTier === 'final') document.forms['form-final'].submit();
-  };
+  window.submitPayment = function() { /* disabled: fully committed */ };
 
   document.getElementById('ndaModal').addEventListener('click', function(e) {
     if (e.target === this) window.closeNDA();
