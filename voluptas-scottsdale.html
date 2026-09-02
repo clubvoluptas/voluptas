@@ -486,14 +486,12 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       The two "Fully Committed" banners (top of page and top of this section) are
-       intentionally left up. Founders and Found in Plain Sight rows were removed.
-       First Release is reopened as active (two installments of $950) for a last-minute
-       invitation. Second, Third, and Final stay "committed".
-       Second installment now bills TWO WEEKS after the first (Term 07, the checkbox,
-       and the confirmed email all say two weeks).
-       To close it again: set tier-first back to "committed" (drop its price and button),
-       remove the form-first below, and the 'first' branch in submitPayment(). -->
+       FULLY COMMITTED (again). Both banners are up, all four remaining tiers show
+       "Fully Committed", no active tier, no buttons, forms removed, payment JS inert.
+       (Founders and Found in Plain Sight rows were removed earlier and are not coming back.)
+       To reopen a tier: set its row to "active", restore its price and Accept button,
+       restore its hidden form and submitPayment branch, and reactivate the Auth.net item.
+       Note: installment verbiage is currently set to TWO WEEKS. -->
   <section class="band band--bone">
     <div class="page-wrap">
       <div class="committed-banner fade-in">
@@ -504,11 +502,10 @@
       <h2 class="block-title fade-in" style="text-align:center; margin-bottom: 48px;">Invitations</h2>
       <div class="fade-in">
 
-        <!-- LAST-MINUTE INVITE: First Release reopened. -->
-        <div class="tier-row active" id="tier-first">
+        <div class="tier-row committed" id="tier-first">
           <div class="tier-name">First Release</div>
-          <div class="tier-price"><span class="inst-label">Two Installments of</span>$950</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('first')">Accept Invitation</button></div>
+          <div class="tier-price"><span class="committed-label">Fully Committed</span></div>
+          <div class="tier-cta"></div>
         </div>
 
         <div class="tier-row committed" id="tier-second">
@@ -646,12 +643,10 @@
 </div>
 
 <!-- ============================================================
-     HIDDEN PAYMENT FORM. First Release only (last-minute invite).
-     Set the Auth.net item to the $950 deposit and name the second charge in its description.
+     PAYMENT FORMS REMOVED. Event is fully committed, nothing is for sale.
+     To reopen: restore the tier's hidden form here, its Accept button, and its
+     submitPayment branch, and reactivate the Auth.net item.
      ============================================================ -->
-<form name="form-first" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="4a302d0d-8dc0-46eb-8be4-2dd528bc4f53">
-</form>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -698,33 +693,22 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
   }
 
-  /* ===== NDA / PAYMENT FLOW ===== */
+  /* ===== NDA / PAYMENT FLOW — DISABLED =====
+     Event is fully committed. No tier has a button, the payment forms are removed,
+     and these handlers are inert no-ops so nothing can trigger a charge.
+     To reopen: restore a tier's button and form, and the submitPayment branch below. */
   var currentTier = null;
 
-  window.openNDA = function(tier) {
-    currentTier = tier;
-    document.getElementById('ndaModal').classList.add('open');
-  };
+  window.openNDA = function() { /* disabled: fully committed */ };
 
   window.closeNDA = function() {
-    document.getElementById('ndaModal').classList.remove('open');
-    currentTier = null;
-    var cb = document.getElementById('signedConfirm');
-    if (cb) cb.checked = false;
-    var btn = document.getElementById('paymentBtn');
-    if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
+    var m = document.getElementById('ndaModal');
+    if (m) m.classList.remove('open');
   };
 
-  window.togglePaymentBtn = function() {
-    var checked = document.getElementById('signedConfirm').checked;
-    var btn = document.getElementById('paymentBtn');
-    btn.style.opacity = checked ? '1' : '0.35';
-    btn.style.pointerEvents = checked ? 'auto' : 'none';
-  };
+  window.togglePaymentBtn = function() { /* disabled: fully committed */ };
 
-  window.submitPayment = function() {
-    if (currentTier === 'first') document.forms['form-first'].submit();
-  };
+  window.submitPayment = function() { /* disabled: fully committed */ };
 
   document.getElementById('ndaModal').addEventListener('click', function(e) {
     if (e.target === this) window.closeNDA();
