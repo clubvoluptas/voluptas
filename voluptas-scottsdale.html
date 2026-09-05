@@ -486,12 +486,12 @@
   </section>
 
   <!-- ===== INVITATIONS / PRICING =====
-       Both banners are up. First, Second, and Third stay "Fully Committed".
-       Final Release is reopened as active (two installments of $1,200) for a last-minute
-       invitation (most expensive tier).
-       Installment verbiage is set to TWO WEEKS (Term 07, checkbox, confirmed email).
-       To close it again: set tier-final back to "committed" (drop its price and button),
-       remove the form-final below, and disable the payment JS. -->
+       FULLY COMMITTED. Both banners are up, all four remaining tiers show
+       "Fully Committed", no active tier, no buttons, forms removed, payment JS inert.
+       (Founders and Found in Plain Sight rows were removed earlier and are not coming back.)
+       To reopen a tier: set its row to "active", restore its price and Accept button,
+       restore its hidden form and submitPayment branch, and reactivate the Auth.net item.
+       Note: installment verbiage is set to TWO WEEKS. -->
   <section class="band band--bone">
     <div class="page-wrap">
       <div class="committed-banner fade-in">
@@ -520,11 +520,10 @@
           <div class="tier-cta"></div>
         </div>
 
-        <!-- LAST-MINUTE INVITE: Final Release reopened (most expensive tier). -->
-        <div class="tier-row active" id="tier-final">
+        <div class="tier-row committed" id="tier-final">
           <div class="tier-name">Final Release</div>
-          <div class="tier-price"><span class="inst-label">Two Installments of</span>$1,200</div>
-          <div class="tier-cta"><button class="cta-btn" onclick="openNDA('final')">Accept Invitation</button></div>
+          <div class="tier-price"><span class="committed-label">Fully Committed</span></div>
+          <div class="tier-cta"></div>
         </div>
 
       </div>
@@ -644,12 +643,10 @@
 </div>
 
 <!-- ============================================================
-     HIDDEN PAYMENT FORM. Final Release only (last-minute invite).
-     Set the Auth.net item to the $1,200 deposit and name the second charge in its description.
+     PAYMENT FORMS REMOVED. Event is fully committed, nothing is for sale.
+     To reopen: restore the tier's hidden form here, its Accept button, and its
+     submitPayment branch, and reactivate the Auth.net item.
      ============================================================ -->
-<form name="form-final" class="auth-form" method="post" action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
-  <input type="hidden" name="LinkId" value="b77f8a92-775b-421a-afe0-3df98534e33e">
-</form>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -696,33 +693,22 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
   }
 
-  /* ===== NDA / PAYMENT FLOW ===== */
+  /* ===== NDA / PAYMENT FLOW — DISABLED =====
+     Event is fully committed. No tier has a button, the payment forms are removed,
+     and these handlers are inert no-ops so nothing can trigger a charge.
+     To reopen: restore a tier's button and form, and the submitPayment branch below. */
   var currentTier = null;
 
-  window.openNDA = function(tier) {
-    currentTier = tier;
-    document.getElementById('ndaModal').classList.add('open');
-  };
+  window.openNDA = function() { /* disabled: fully committed */ };
 
   window.closeNDA = function() {
-    document.getElementById('ndaModal').classList.remove('open');
-    currentTier = null;
-    var cb = document.getElementById('signedConfirm');
-    if (cb) cb.checked = false;
-    var btn = document.getElementById('paymentBtn');
-    if (btn) { btn.style.opacity = '0.35'; btn.style.pointerEvents = 'none'; }
+    var m = document.getElementById('ndaModal');
+    if (m) m.classList.remove('open');
   };
 
-  window.togglePaymentBtn = function() {
-    var checked = document.getElementById('signedConfirm').checked;
-    var btn = document.getElementById('paymentBtn');
-    btn.style.opacity = checked ? '1' : '0.35';
-    btn.style.pointerEvents = checked ? 'auto' : 'none';
-  };
+  window.togglePaymentBtn = function() { /* disabled: fully committed */ };
 
-  window.submitPayment = function() {
-    if (currentTier === 'final') document.forms['form-final'].submit();
-  };
+  window.submitPayment = function() { /* disabled: fully committed */ };
 
   document.getElementById('ndaModal').addEventListener('click', function(e) {
     if (e.target === this) window.closeNDA();
