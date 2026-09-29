@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Feminine | Naples, Club Voluptas</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B2A22">
+<link rel="icon" type="image/png" href="images/Favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & ROOT ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+:root {
+  --sand:          #FBF4EC;
+  --shell:         #F7E7DD;
+  --blush:         #FBE3E6;
+  --flamingo:      #EC4F93;
+  --flamingo-deep: #D23A7E;
+  --flamingo-soft: #F4A6C4;
+  --coral:         #F07A5F;
+  --palm:          #0F3B2F;
+  --palm-deep:     #0A2A21;
+  --lagoon:        #1F7A74;
+  --gold:          #C9A24A;
+  --gold-light:    #DDBB6A;
+  --wine:          #3A0E20;
+  --wine-mid:      #5E1A33;
+  --ink:           #2A1A1F;
+  --ink-mid:       #5A4148;
+  --muted:         #8C747A;
+  --cream:         #FBF4EC;
+  --cream-dim:     rgba(251,244,236,0.78);
+  --cream-faint:   rgba(251,244,236,0.45);
+
+  --g-dusk:   linear-gradient(165deg, #F9B8A4 0%, #F0819F 30%, #C8457F 55%, #5E1A4A 80%, #0F3B2F 100%);
+  --g-lagoon: linear-gradient(155deg, #BFE8DE 0%, #5DB3A6 35%, #1F7A74 65%, #0A2A21 100%);
+  --g-blush:  linear-gradient(155deg, #FFF0EE 0%, #F9C6D3 45%, #EC7FAE 100%);
+  --g-sand:   linear-gradient(155deg, #FBF4EC 0%, #F5DCC9 55%, #EBB49E 100%);
+  --g-night:  linear-gradient(165deg, #12070F 0%, #3A0E20 45%, #7A2150 80%, #EC4F93 130%);
+}
+
+body { font-family: 'Cormorant Garamond', Georgia, serif; background: var(--sand); color: var(--ink); overflow-x: hidden; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; }
+
+[hidden] { display: none !important; }
+.script { font-family: 'Pinyon Script', 'Playfair Display', cursive; font-weight: 400; color: var(--flamingo); line-height: 1; }
+
+/* ── FADE-UP ── */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; } .delay-5 { transition-delay: 0.5s; }
+@media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; transition: none; } .hero-content { animation: none !important; } }
+
+/* ── LAYOUT ── */
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+.page-wrap--narrow { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+
+/* ── IMAGE SLOTS (designed fallback shows until the photo is uploaded) ── */
+.slot { position: relative; overflow: hidden; background: var(--g-dusk); }
+.slot > img { position: absolute; inset: 0; z-index: 1; transition: transform 0.8s ease, opacity 0.5s ease; }
+.slot > img.gone { display: none; }
+.slot-fallback { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.slot-fallback svg { position: absolute; fill: rgba(10,42,33,0.28); aspect-ratio: 600 / 680; height: auto; }
+.slot-fallback .fb-a { width: 62%; left: -14%; bottom: -8%; }
+.slot-fallback .fb-b { width: 48%; right: -10%; top: -6%; transform: scaleX(-1) rotate(8deg); opacity: 0.8; }
+.slot-name { position: absolute; left: 14px; bottom: 12px; font-family: 'Lato', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.slot.dusk { background: var(--g-dusk); } .slot.lagoon { background: var(--g-lagoon); }
+.slot.blush { background: var(--g-blush); } .slot.sandy { background: var(--g-sand); } .slot.night { background: var(--g-night); }
+.slot.blush .slot-fallback svg, .slot.sandy .slot-fallback svg { fill: rgba(210,58,126,0.18); }
+.slot.blush .slot-name, .slot.sandy .slot-name { color: rgba(90,65,72,0.55); }
+
+/* ══ HERO ══ */
+.hero { position: relative; height: 100vh; min-height: 640px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--palm-deep); }
+.hero-bg { position: absolute; inset: -6% 0 0 0; will-change: transform; }
+.hero-bg.slot > img { object-position: center 40%; }
+.hero-palms { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero-palms svg { position: absolute; bottom: -2%; fill: rgba(10,34,28,0.78); aspect-ratio: 600 / 680; width: auto; }
+.hero-palms .p1 { left: -11%; height: 74%; }
+.hero-palms .p2 { right: -12%; height: 62%; transform: scaleX(-1); }
+.hero-palms .p3 { left: 13%; height: 40%; opacity: 0.45; }
+.hero-sun { position: absolute; left: 50%; top: 58%; width: 44vmin; height: 44vmin; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,214,170,0.95) 0%, rgba(255,170,150,0.55) 40%, rgba(255,140,160,0) 70%); z-index: 0; }
+.hero-gradient { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(8,22,18,0.25) 0%, rgba(8,22,18,0.05) 35%, rgba(8,22,18,0.45) 75%, rgba(8,22,18,0.88) 100%); }
+.hero-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; animation: heroFadeIn 1.8s ease both; }
+@keyframes heroFadeIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.hero-script { font-size: clamp(64px, 12vw, 150px); color: var(--flamingo-soft); text-shadow: 0 2px 30px rgba(236,79,147,0.45), 0 1px 2px rgba(0,0,0,0.3); margin-bottom: 18px; display: inline-block; position: relative; }
+.hero-script .heart { display: inline-block; width: 0.26em; height: 0.24em; margin-left: 0.02em; vertical-align: 0.55em; }
+.hero-headline { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(26px, 4.4vw, 52px); color: var(--cream); line-height: 1.2; margin: 0 auto 30px; max-width: 760px; text-shadow: 0 2px 24px rgba(0,0,0,0.35); }
+.hero-rule { width: 48px; height: 1px; background: var(--flamingo-soft); margin: 0 auto 22px; opacity: 0.9; }
+.hero-subhead { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase; color: rgba(251,244,236,0.82); line-height: 2.3; }
+.committed-banner { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.45em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.72); display: inline-block; padding: 12px 28px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.15); }
+.m-br { display: none; }
+@media (max-width: 767px) { .m-br { display: inline; } .hero-subhead .sep { display: none; } }
+.scroll-cue { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; width: 1px; height: 52px; background: linear-gradient(to bottom, rgba(244,166,196,0), rgba(244,166,196,0.9)); animation: cue 2.4s ease-in-out infinite; }
+@keyframes cue { 0%,100% { opacity: 0.25; transform: translate(-50%, -6px); } 50% { opacity: 1; transform: translate(-50%, 4px); } }
+
+/* ══ HOOK ══ */
+.hook { background: var(--sand); padding: 112px 0 96px; text-align: center; position: relative; overflow: hidden; }
+.hook-line { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: clamp(22px, 3.4vw, 36px); color: var(--ink); line-height: 1.55; margin: 0 auto 40px; max-width: 700px; }
+.pink-rule { width: 60px; height: 1px; background: var(--flamingo); margin: 0 auto 28px; opacity: 0.6; }
+.hook-script { font-size: clamp(40px, 6vw, 64px); }
+.hook-body { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--muted); letter-spacing: 0.04em; font-style: italic; margin-top: 10px; }
+.hook .corner-frond { position: absolute; width: 340px; aspect-ratio: 400 / 330; height: auto; fill: rgba(236,79,147,0.07); pointer-events: none; }
+.hook .cf-1 { left: -120px; top: -40px; transform: rotate(20deg); }
+.hook .cf-2 { right: -130px; bottom: -60px; transform: scaleX(-1) rotate(30deg); }
+
+/* ══ SCRIPT BAND ══ */
+.script-band { height: 78vh; min-height: 460px; max-height: 820px; }
+.script-band .band-overlay { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 24px; background: linear-gradient(to bottom, rgba(10,42,33,0.15), rgba(10,42,33,0.45)); }
+.band-script { font-size: clamp(72px, 13vw, 170px); color: var(--flamingo-soft); text-shadow: 0 4px 40px rgba(236,79,147,0.5), 0 1px 3px rgba(0,0,0,0.35); }
+.band-sub { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--cream); margin-top: 18px; opacity: 0.9; }
+
+/* ══ MONTANA ══ */
+.montana { background: var(--palm); color: var(--cream); padding: 112px 0 104px; position: relative; overflow: hidden; }
+.montana::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 90% 0%, rgba(31,122,116,0.45), transparent 55%), radial-gradient(ellipse at 0% 100%, rgba(31,122,116,0.3), transparent 60%); pointer-events: none; }
+.montana .page-wrap { position: relative; }
+.eyebrow { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 10px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--flamingo); margin-bottom: 20px; display: block; }
+.on-dark .eyebrow, .montana .eyebrow, .experiences .eyebrow { color: var(--flamingo-soft); }
+.montana-head { text-align: center; max-width: 720px; margin: 0 auto 72px; }
+.montana-headline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.2; margin-bottom: 28px; }
+.montana-intro { font-size: 19px; line-height: 1.9; color: var(--cream-dim); font-style: italic; }
+.feature-quote { text-align: center; max-width: 820px; margin: 0 auto 80px; }
+.feature-quote blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(22px, 3.2vw, 36px); line-height: 1.5; color: var(--cream); }
+.feature-quote blockquote .hl { color: var(--flamingo-soft); }
+.q-mark { font-family: 'Playfair Display', serif; font-size: 90px; line-height: 0.6; color: var(--flamingo); opacity: 0.7; display: block; margin-bottom: 18px; }
+.q-attr { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--cream-faint); margin-top: 26px; display: block; }
+.quote-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(244,166,196,0.14); border: 1px solid rgba(244,166,196,0.14); }
+.quote-card { background: var(--palm); padding: 44px 40px 40px; transition: background 0.4s ease; }
+.quote-card:hover { background: #12453A; }
+.quote-card p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; line-height: 1.7; color: var(--cream-dim); }
+.quote-card .q-attr { margin-top: 22px; color: var(--flamingo-soft); opacity: 0.85; }
+.montana-coda { text-align: center; margin-top: 72px; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(19px, 2.5vw, 26px); color: var(--gold-light); }
+
+/* ══ PROPERTY ══ */
+.property { background: var(--sand); }
+.property-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+.property-image { min-height: 480px; }
+.property-image:hover > img { transform: scale(1.03); }
+.property-copy { padding: 88px 64px 88px 60px; display: flex; flex-direction: column; justify-content: center; }
+.section-headline { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(26px, 3.2vw, 40px); color: var(--ink); line-height: 1.3; margin-bottom: 34px; font-weight: 400; }
+.body-copy { font-size: 18.5px; line-height: 1.9; color: var(--ink-mid); margin-bottom: 22px; }
+.body-copy:last-child { margin-bottom: 0; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(236,79,147,0.18); border-bottom: 1px solid rgba(236,79,147,0.18); background: var(--shell); }
+.stat { text-align: center; padding: 34px 12px; border-right: 1px solid rgba(236,79,147,0.14); }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(30px, 3.6vw, 44px); color: var(--flamingo-deep); display: block; line-height: 1.1; }
+.stat-label { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 10px; line-height: 1.8; }
+
+/* ══ FULL BLEED ══ */
+.full-bleed { width: 100%; height: 70vh; min-height: 400px; max-height: 720px; }
+.bleed-overlay { position: absolute; inset: 0; z-index: 2; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 64px; background: linear-gradient(to bottom, transparent 35%, rgba(10,20,16,0.62) 100%); }
+.bleed-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(20px, 3vw, 34px); color: var(--cream); text-align: center; max-width: 640px; line-height: 1.5; padding: 0 32px; }
+
+/* ══ EXPERIENCES ══ */
+.experiences { background: var(--palm-deep); padding: 108px 0 92px; position: relative; overflow: hidden; }
+.experiences::after { content: ''; position: absolute; right: -10%; top: -20%; width: 60%; height: 80%; background: radial-gradient(circle, rgba(236,79,147,0.12), transparent 65%); pointer-events: none; }
+.experiences .page-wrap { position: relative; z-index: 1; }
+.experiences-headline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(30px, 4vw, 50px); color: var(--cream); text-align: center; margin-bottom: 76px; }
+.exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px 36px; margin-bottom: 80px; }
+.exp-num { font-family: 'Pinyon Script', cursive; font-size: 44px; color: var(--flamingo); display: block; line-height: 1; margin-bottom: 10px; opacity: 0.9; }
+.exp-col-label { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 10px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--flamingo-soft); margin-bottom: 18px; display: block; }
+.exp-col-body { font-size: 17px; line-height: 1.95; color: var(--cream-dim); }
+.exp-quote { text-align: center; max-width: 700px; margin: 0 auto; }
+.exp-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(20px, 2.8vw, 30px); color: var(--cream); line-height: 1.55; }
+.exp-quote .q-attr { color: var(--cream-faint); }
+.exp-quote .answer { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(20px, 2.8vw, 30px); color: var(--flamingo-soft); margin-top: 40px; display: block; }
+
+/* ══ PHOTO PAIR ══ */
+.photo-pair { display: grid; grid-template-columns: 1fr 1fr; }
+.photo-pair .slot { height: 58vh; min-height: 340px; }
+.photo-pair .slot:hover > img { transform: scale(1.04); }
+
+/* ══ GALENTINE'S ══ */
+.galentines { background: var(--blush); padding: 112px 0 0; position: relative; overflow: hidden; }
+.galentines .hearts { position: absolute; inset: 0; pointer-events: none; }
+.galentines .hearts svg { position: absolute; fill: var(--flamingo); opacity: 0.1; animation: floaty 9s ease-in-out infinite; }
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-18px) rotate(4deg); } }
+.gal-head { text-align: center; position: relative; }
+.gal-script { font-size: clamp(76px, 12vw, 150px); color: var(--flamingo); }
+.gal-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(22px, 3vw, 34px); color: var(--ink); margin-top: 4px; }
+.gal-body { max-width: 680px; margin: 44px auto 0; text-align: center; font-size: 20px; line-height: 1.9; color: var(--ink-mid); position: relative; }
+.gal-body strong { font-weight: 400; color: var(--flamingo-deep); font-style: italic; }
+.portraits { display: grid; grid-template-columns: 1.05fr 0.95fr; margin-top: 96px; position: relative; }
+.portraits .slot { min-height: 620px; }
+.portraits-copy { background: var(--wine); color: var(--cream); padding: 88px 64px; display: flex; flex-direction: column; justify-content: center; }
+.portraits-copy .eyebrow { color: var(--flamingo-soft); }
+.portraits-copy .section-headline { color: var(--cream); }
+.portraits-copy .body-copy { color: var(--cream-dim); }
+.portraits-quote { border-left: 2px solid var(--flamingo); padding-left: 22px; margin-top: 12px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 21px; line-height: 1.55; color: var(--flamingo-soft); }
+.portraits-quote .q-attr { margin-top: 12px; }
+
+/* ══ ARC ══ */
+.arc { background: var(--sand); padding: 108px 0 100px; }
+.arc-headline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 4vw, 46px); color: var(--ink); text-align: center; margin-bottom: 16px; }
+.arc-sub { text-align: center; font-style: italic; font-size: 19px; color: var(--muted); margin-bottom: 64px; }
+.arc-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.arc-track::before { content: ''; position: absolute; left: 12.5%; right: 12.5%; top: 29px; height: 1px; background: linear-gradient(to right, var(--flamingo-soft), var(--flamingo), var(--wine-mid)); opacity: 0.55; }
+.arc-day { text-align: center; padding: 0 20px; position: relative; }
+.arc-dot { width: 58px; height: 58px; border-radius: 50%; margin: 0 auto 26px; background: var(--sand); border: 1px solid var(--flamingo-soft); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--flamingo-deep); position: relative; z-index: 1; transition: background 0.3s ease, color 0.3s ease; }
+.arc-day:hover .arc-dot { background: var(--flamingo); color: #fff; }
+.arc-day:last-child .arc-dot { background: var(--flamingo); color: #fff; border-color: var(--flamingo); }
+.arc-when { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 9.5px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 10px; }
+.arc-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 23px; color: var(--ink); margin-bottom: 14px; font-weight: 400; }
+.arc-body { font-size: 16.5px; line-height: 1.85; color: var(--ink-mid); }
+
+/* ══ WHO ══ */
+.who { background: var(--shell); padding: 112px 0 104px; text-align: center; }
+.who-headline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 4vw, 46px); color: var(--ink); margin-bottom: 52px; }
+.who-body { font-size: 19px; line-height: 1.95; color: var(--ink-mid); margin-bottom: 26px; text-align: left; }
+.who-final { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(19px, 2.5vw, 27px); color: var(--flamingo-deep); margin-top: 40px; line-height: 1.6; }
+
+/* ══ INCLUSIONS ══ */
+.inclusions { background: var(--sand); padding: 104px 0 100px; }
+.inclusions-headline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 4vw, 46px); color: var(--ink); text-align: center; margin-bottom: 16px; }
+.inclusions-subhead { font-style: italic; font-size: 19px; color: var(--muted); text-align: center; margin-bottom: 60px; }
+.inclusions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; margin-bottom: 64px; }
+.inclusion-item { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(236,79,147,0.14); }
+.inclusion-item:last-child { border-bottom: none; }
+.inclusion-heart { width: 12px; height: 12px; flex-shrink: 0; margin-top: 7px; fill: var(--flamingo); }
+.inclusion-text { font-size: 17.5px; color: var(--ink-mid); line-height: 1.65; }
+.inclusions-coda { font-style: italic; font-size: 19px; line-height: 1.95; color: var(--ink-mid); text-align: center; max-width: 700px; margin: 0 auto 24px; }
+.inclusions-final { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(18px, 2.3vw, 24px); color: var(--flamingo-deep); text-align: center; max-width: 620px; margin: 0 auto; }
+
+/* ══ ROOMS ══ */
+.rooms { background: var(--palm); padding: 108px 0 104px; position: relative; overflow: hidden; }
+.rooms::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(31,122,116,0.5), transparent 60%); pointer-events: none; }
+.rooms .page-wrap { position: relative; }
+.rooms-headline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(30px, 4vw, 50px); color: var(--cream); text-align: center; margin-bottom: 16px; }
+.rooms-sub { font-style: italic; font-size: 19px; color: var(--cream-dim); text-align: center; max-width: 620px; margin: 0 auto 64px; line-height: 1.75; }
+.room-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.room-card { background: rgba(251,244,236,0.04); border: 1px solid rgba(244,166,196,0.18); cursor: pointer; transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; display: flex; flex-direction: column; text-align: left; color: inherit; font: inherit; padding: 0; width: 100%; }
+.room-card:hover { transform: translateY(-4px); border-color: rgba(244,166,196,0.55); box-shadow: 0 18px 40px rgba(0,0,0,0.28); }
+.room-card .slot { height: 220px; }
+.room-card:hover .slot > img { transform: scale(1.05); }
+.room-card .slot .card-flower { position: absolute; z-index: 0; right: 18px; top: 16px; font-family: 'Pinyon Script', cursive; font-size: 34px; color: rgba(255,255,255,0.8); }
+.room-body { padding: 26px 24px 28px; display: flex; flex-direction: column; flex: 1; }
+.room-badge { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--flamingo-soft); margin-bottom: 10px; display: block; }
+.room-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 23px; color: var(--cream); margin-bottom: 12px; line-height: 1.2; font-weight: 400; }
+.room-seductive { font-style: italic; font-size: 15.5px; color: var(--gold-light); line-height: 1.55; margin-bottom: 14px; opacity: 0.85; }
+.room-amen { font-size: 14.5px; color: var(--cream-faint); line-height: 1.7; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid rgba(244,166,196,0.12); }
+.room-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.room-price { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--cream); font-weight: 300; line-height: 1.1; }
+.room-price small { display: block; font-family: 'Lato', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream-faint); margin-top: 6px; }
+.room-price.tbd { font-style: italic; font-size: 17px; color: var(--cream-dim); }
+.room-view { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--flamingo-soft); white-space: nowrap; border-bottom: 1px solid transparent; transition: border-color 0.3s; padding-bottom: 2px; }
+.room-card:hover .room-view { border-bottom-color: var(--flamingo-soft); }
+.room-card.reserved { opacity: 0.62; }
+.room-card.featured { grid-column: span 2; }
+.room-card.featured .slot { height: 300px; }
+.room-card.featured .room-name { font-size: 30px; }
+.slot.blush .card-flower, .slot.sandy .card-flower { color: rgba(210,58,126,0.75); }
+.room-card.reserved .slot > img { filter: grayscale(0.5); }
+.stamp { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--flamingo-soft); border-left: 3px solid var(--flamingo); padding-left: 12px; display: inline-block; }
+.urgency { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--coral); border-left: 3px solid var(--coral); padding-left: 12px; display: inline-block; margin-bottom: 16px; }
+.rooms-cta { text-align: center; margin-top: 64px; }
+.rooms-note { font-style: italic; font-size: 16px; color: var(--cream-faint); margin-top: 22px; }
+.btn { display: inline-block; padding: 18px 52px; border: 1px solid var(--flamingo-soft); color: var(--flamingo-soft); font-family: 'Lato', sans-serif; font-weight: 300; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; text-decoration: none; background: transparent; transition: all 0.35s ease; cursor: pointer; }
+.btn:hover { background: var(--flamingo); border-color: var(--flamingo); color: #fff; }
+.btn.solid { background: var(--flamingo); border-color: var(--flamingo); color: #fff; }
+.btn.solid:hover { background: var(--flamingo-deep); border-color: var(--flamingo-deep); }
+
+/* ══ MODAL ══ */
+.modal-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(10,20,16,0.94); overflow-y: auto; padding: 40px 20px; display: none; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; animation: fadeIn 0.35s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal { background: var(--palm-deep); border: 1px solid rgba(244,166,196,0.22); max-width: 860px; width: 100%; margin: auto; position: relative; }
+.modal-close { position: absolute; top: 16px; right: 16px; z-index: 5; background: rgba(10,42,33,0.7); border: 1px solid rgba(251,244,236,0.2); color: var(--cream); font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; transition: background 0.3s; }
+.modal-close:hover { background: var(--flamingo); }
+.modal-photos { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; height: 440px; }
+.modal-photos .slot { cursor: zoom-in; }
+.modal-photos .slot:first-child { grid-row: 1 / 3; }
+.modal-photos.count-1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+.modal-photos.count-1 .slot:first-child { grid-row: auto; }
+.modal-photos.count-2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+.modal-photos.count-2 .slot:first-child { grid-row: auto; }
+.modal-photos.count-4 { grid-template-columns: 2fr 1fr 1fr; }
+.modal-photos.count-4 .slot:nth-child(4) { grid-column: 2 / 4; }
+.modal-body { padding: 44px 52px 52px; }
+.modal-name { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 4vw, 40px); color: var(--cream); margin-bottom: 10px; }
+.modal-seductive { font-style: italic; font-size: 19px; color: var(--gold-light); margin-bottom: 22px; }
+.modal-price { font-size: 30px; color: var(--cream); font-weight: 300; display: block; margin-bottom: 26px; }
+.modal-price small { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream-faint); margin-left: 8px; }
+.modal-price.tbd { font-style: italic; font-size: 21px; color: var(--cream-dim); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.tag { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--flamingo-soft); border: 1px solid rgba(244,166,196,0.3); padding: 8px 12px; }
+.modal-desc p { font-size: 18px; line-height: 1.9; color: var(--cream-dim); margin-bottom: 18px; }
+.modal-actions { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.modal-actions .fine { font-style: italic; font-size: 15px; color: var(--cream-faint); }
+
+/* ══ LIGHTBOX ══ */
+.lightbox { position: fixed; inset: 0; z-index: 900; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 90vh; width: auto; height: auto; object-fit: contain; }
+.lightbox button { position: absolute; top: 20px; right: 24px; background: none; border: none; color: rgba(251,244,236,0.7); font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.2em; cursor: pointer; }
+
+/* ══ CLOSE ══ */
+.close { background: var(--g-night); padding: 120px 0 112px; text-align: center; position: relative; overflow: hidden; }
+.close .close-palm { position: absolute; bottom: -4%; right: -6%; height: 70%; aspect-ratio: 600 / 680; width: auto; fill: rgba(0,0,0,0.28); transform: scaleX(-1); pointer-events: none; }
+.close .page-wrap--narrow { position: relative; }
+.close-body { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(19px, 2.5vw, 26px); color: var(--cream); line-height: 1.85; margin: 0 auto 26px; max-width: 580px; }
+.close-sign { margin: 44px 0 44px; }
+.close-sign .script { font-size: clamp(48px, 7vw, 72px); color: var(--flamingo-soft); display: block; }
+.close-sign .name { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--cream-dim); display: block; margin-top: 10px; }
+
+/* ══ FOOTER ══ */
+footer { background: #0B060A; padding: 60px 0; text-align: center; border-top: 1px solid rgba(236,79,147,0.12); }
+.footer-wordmark { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 12px; letter-spacing: 0.55em; text-transform: uppercase; color: var(--cream); margin-bottom: 12px; }
+.footer-sub { font-style: italic; font-size: 13px; color: var(--muted); letter-spacing: 0.06em; }
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft); outline-offset: 3px; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 1023px) {
+  .exp-grid { grid-template-columns: 1fr 1fr; gap: 44px 36px; }
+  .room-grid { grid-template-columns: 1fr 1fr; }
+  .arc-track { grid-template-columns: 1fr 1fr; gap: 48px 0; }
+  .arc-track::before { display: none; }
+  .property-copy, .portraits-copy { padding: 64px 40px; }
+}
+@media (max-width: 767px) {
+  .page-wrap { padding: 0 22px; }
+  .page-wrap--narrow { padding: 0 22px; }
+  .hero-palms .p1 { left: -42%; height: 40%; } .hero-palms .p2 { right: -46%; height: 34%; } .hero-palms .p3 { display: none; }
+  .property-split, .portraits { grid-template-columns: 1fr; }
+  .property-image { min-height: 320px; }
+  .portraits .slot { min-height: 420px; }
+  .property-copy, .portraits-copy { padding: 56px 22px; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(2) { border-right: none; }
+  .stat:nth-child(-n+2) { border-bottom: 1px solid rgba(236,79,147,0.14); }
+  .exp-grid, .room-grid, .inclusions-grid, .quote-grid, .photo-pair { grid-template-columns: 1fr; }
+  .room-card.featured { grid-column: auto; }
+  .room-card.featured .slot { height: 240px; }
+  .inclusions-grid { gap: 0; }
+  .quote-card { padding: 34px 26px; }
+  .photo-pair .slot { height: 44vh; }
+  .arc-track { grid-template-columns: 1fr; gap: 44px; }
+  .full-bleed { height: 52vh; }
+  .modal-overlay { padding: 0; }
+  .modal { border: none; min-height: 100%; }
+  .modal-photos, .modal-photos.count-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 120px 120px; height: auto; }
+  .modal-photos .slot:first-child { grid-row: auto; grid-column: 1 / 3; }
+  .modal-photos.count-4 .slot:nth-child(4) { grid-column: auto; }
+  .modal-photos.count-3 { grid-template-rows: 240px 140px; }
+  .modal-photos.count-2 { grid-template-rows: 240px 140px; }
+  .modal-photos.count-1 { grid-template-rows: 280px; }
+  .modal-body { padding: 34px 22px 44px; }
+  .hook .corner-frond { width: 220px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Shared SVG shapes: palm frond + heart -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="frond" d="M0.6,2.4 L8.0,0.7 L15.4,-0.8 L22.8,-2.1 L30.3,-3.2 L37.7,-4.0 L45.1,-4.7 L52.6,-5.1 L60.0,-5.3 L67.4,-5.2 L74.9,-5.0 L82.3,-4.5 L89.8,-3.8 L97.2,-2.9 L104.7,-1.8 L112.2,-0.5 L119.6,1.1 L127.1,2.9 L134.6,4.9 L142.1,7.1 L149.5,9.6 L157.0,12.2 L164.5,15.1 L172.0,18.3 L179.5,21.6 L187.0,25.1 L194.5,28.9 L202.0,32.9 L209.5,37.2 L217.0,41.6 L224.5,46.3 L232.1,51.2 L239.6,56.3 L247.1,61.6 L254.6,67.2 L262.1,73.0 L269.7,79.0 L277.2,85.2 L284.7,91.7 L292.3,98.3 L299.8,105.2 L300.2,104.8 L292.7,97.8 L285.3,91.0 L277.8,84.5 L270.3,78.2 L262.9,72.1 L255.4,66.2 L247.9,60.5 L240.4,55.1 L232.9,49.9 L225.5,44.8 L218.0,40.1 L210.5,35.5 L203.0,31.2 L195.5,27.0 L188.0,23.1 L180.5,19.5 L173.0,16.0 L165.5,12.7 L158.0,9.7 L150.5,6.9 L142.9,4.4 L135.4,2.0 L127.9,-0.1 L120.4,-2.1 L112.8,-3.8 L105.3,-5.2 L97.8,-6.5 L90.2,-7.5 L82.7,-8.3 L75.1,-8.9 L67.6,-9.2 L60.0,-9.4 L52.4,-9.3 L44.9,-9.0 L37.3,-8.4 L29.7,-7.7 L22.2,-6.7 L14.6,-5.5 L7.0,-4.1 L-0.6,-2.4Z M34.4,-5.9 Q53.3,13.4 79.7,43.1 Q58.6,8.5 34.4,-5.9Z M34.4,-5.9 Q56.0,-21.7 72.2,-28.8 Q52.2,-27.9 34.4,-5.9Z M44.8,-6.8 Q66.2,16.3 95.3,53.0 Q71.6,11.7 44.8,-6.8Z M44.8,-6.8 Q69.8,-25.2 89.9,-32.3 Q66.3,-31.4 44.8,-6.8Z M55.2,-7.3 Q78.3,19.6 109.3,63.0 Q83.8,15.3 55.2,-7.3Z M55.2,-7.3 Q83.4,-27.8 107.1,-34.6 Q80.2,-34.0 55.2,-7.3Z M65.5,-7.3 Q89.7,23.2 121.9,73.0 Q95.3,19.3 65.5,-7.3Z M65.5,-7.3 Q96.8,-29.5 123.8,-35.7 Q93.8,-35.7 65.5,-7.3Z M75.9,-6.9 Q100.5,27.1 133.2,82.8 Q106.2,23.5 75.9,-6.9Z M75.9,-6.9 Q110.0,-30.4 140.1,-35.9 Q107.2,-36.5 75.9,-6.9Z M86.3,-6.1 Q110.7,31.3 143.2,92.3 Q116.4,28.0 86.3,-6.1Z M86.3,-6.1 Q122.9,-30.4 155.9,-35.0 Q120.4,-36.5 86.3,-6.1Z M96.7,-4.8 Q120.3,35.5 152.1,101.4 Q126.1,32.6 96.7,-4.8Z M96.7,-4.8 Q135.5,-29.6 171.0,-33.3 Q133.2,-35.7 96.7,-4.8Z M107.1,-3.1 Q129.5,39.9 160.1,109.9 Q135.2,37.2 107.1,-3.1Z M107.1,-3.1 Q147.8,-28.1 185.6,-30.7 Q145.7,-34.1 107.1,-3.1Z M117.5,-1.1 Q138.3,44.3 167.2,117.8 Q144.0,41.9 117.5,-1.1Z M117.5,-1.1 Q159.8,-25.8 199.4,-27.4 Q157.9,-31.7 117.5,-1.1Z M127.8,1.5 Q146.7,48.6 173.6,124.9 Q152.3,46.5 127.8,1.5Z M127.8,1.5 Q171.4,-22.9 212.6,-23.4 Q169.7,-28.7 127.8,1.5Z M138.2,4.4 Q154.8,52.9 179.4,131.1 Q160.4,51.0 138.2,4.4Z M138.2,4.4 Q182.7,-19.2 224.9,-18.7 Q181.1,-25.0 138.2,4.4Z M148.6,7.8 Q162.7,57.0 184.8,136.5 Q168.3,55.5 148.6,7.8Z M148.6,7.8 Q193.5,-15.0 236.4,-13.4 Q192.1,-20.6 148.6,7.8Z M159.0,11.6 Q170.5,61.1 190.0,140.8 Q176.0,59.8 159.0,11.6Z M159.0,11.6 Q203.9,-10.1 247.1,-7.6 Q202.7,-15.6 159.0,11.6Z M169.4,15.8 Q178.3,65.0 195.0,144.2 Q183.7,63.9 169.4,15.8Z M169.4,15.8 Q213.9,-4.7 257.0,-1.3 Q212.9,-10.1 169.4,15.8Z M179.8,20.4 Q186.1,68.7 200.0,146.5 Q191.4,67.9 179.8,20.4Z M179.8,20.4 Q223.5,1.4 265.9,5.4 Q222.6,-4.0 179.8,20.4Z M190.2,25.5 Q194.0,72.3 205.2,147.9 Q199.2,71.7 190.2,25.5Z M190.2,25.5 Q232.6,7.9 274.0,12.5 Q231.8,2.7 190.2,25.5Z M200.5,31.0 Q202.0,75.8 210.7,148.3 Q207.1,75.4 200.5,31.0Z M200.5,31.0 Q241.3,15.0 281.2,20.0 Q240.6,9.9 200.5,31.0Z M210.9,36.9 Q210.2,79.2 216.7,147.7 Q215.2,78.9 210.9,36.9Z M210.9,36.9 Q249.6,22.5 287.4,27.7 Q249.0,17.6 210.9,36.9Z M221.3,43.2 Q218.7,82.4 223.1,146.2 Q223.6,82.3 221.3,43.2Z M221.3,43.2 Q257.4,30.6 292.7,35.8 Q256.9,25.8 221.3,43.2Z M231.7,50.0 Q227.6,85.5 230.2,143.7 Q232.3,85.6 231.7,50.0Z M231.7,50.0 Q264.7,39.2 297.1,44.1 Q264.3,34.4 231.7,50.0Z M242.1,57.2 Q236.8,88.6 238.1,140.3 Q241.4,88.8 242.1,57.2Z M242.1,57.2 Q271.5,48.2 300.5,52.6 Q271.2,43.6 242.1,57.2Z M252.5,64.8 Q246.4,91.5 246.8,135.8 Q250.9,91.8 252.5,64.8Z M252.5,64.8 Q277.8,57.8 302.7,61.5 Q277.5,53.3 252.5,64.8Z M262.8,72.8 Q256.6,94.2 256.5,130.0 Q260.9,94.6 262.8,72.8Z M262.8,72.8 Q283.4,67.9 303.7,70.6 Q283.2,63.5 262.8,72.8Z M273.2,81.2 Q267.4,96.4 267.4,122.3 Q271.5,96.9 273.2,81.2Z M273.2,81.2 Q288.1,78.6 302.8,79.9 Q287.9,74.4 273.2,81.2Z M283.6,90.1 Q279.1,96.8 280.3,109.2 Q283.1,97.5 283.6,90.1Z M283.6,90.1 Q290.7,90.4 297.5,89.6 Q290.5,86.4 283.6,90.1Z M294.0,99.4 Q290.2,102.7 291.9,109.7 Q294.1,103.5 294.0,99.4Z M294.0,99.4 Q297.8,100.9 301.5,99.2 Q297.7,96.9 294.0,99.4Z"/>
+    <symbol id="palm" viewBox="-300 -330 600 680">
+      <path d="M-6,350 C-12,210 12,90 0,0 L12,0 C26,95 8,210 16,350Z"/>
+      <g transform="translate(6,0)">
+        <use href="#frond" transform="rotate(-28)"/>
+        <use href="#frond" transform="rotate(12) scale(0.95)"/>
+        <use href="#frond" transform="rotate(48) scale(0.82)"/>
+        <use href="#frond" transform="rotate(-70) scale(0.72)"/>
+        <use href="#frond" transform="scale(-1,1) rotate(-22) scale(0.98)"/>
+        <use href="#frond" transform="scale(-1,1) rotate(18) scale(0.9)"/>
+        <use href="#frond" transform="scale(-1,1) rotate(55) scale(0.78)"/>
+        <use href="#frond" transform="scale(-1,1) rotate(-64) scale(0.7)"/>
+      </g>
+    </symbol>
+    <symbol id="frondsym" viewBox="-10 -120 400 330"><use href="#frond" transform="scale(1.1)"/></symbol>
+    <symbol id="heart" viewBox="0 0 32 29"><path d="M16 29 C16 29 0 18.6 0 8.6 C0 3.6 3.8 0 8.4 0 C11.6 0 14.4 1.8 16 4.6 C17.6 1.8 20.4 0 23.6 0 C28.2 0 32 3.6 32 8.6 C32 18.6 16 29 16 29Z"/></symbol>
+  </defs>
+</svg>
+
+<!-- HERO -->
+<section class="hero" aria-label="The Feminine Naples">
+  <div class="hero-bg slot dusk" id="heroBg" aria-hidden="true">
+    <div class="slot-fallback">
+      <div class="hero-sun"></div>
+      <div class="hero-palms">
+        <svg class="p1" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+        <svg class="p3" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+        <svg class="p2" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+      </div>
+    </div>
+    <img src="images/naples-hero.jpg" alt="" onerror="this.classList.add('gone')">
+  </div>
+  <div class="hero-gradient" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="committed-banner" id="committedBanner" hidden>Fully Committed</p>
+    <div class="hero-script script" aria-hidden="true">With Love, Naples<svg class="heart" style="fill:var(--flamingo-soft)"><use href="#heart"/></svg></div>
+    <h1 class="hero-headline">Before you are his Valentine,<br>be your own.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-subhead">The Feminine | Naples<br>February 11&#8211;14<span class="sep"> &nbsp;·&nbsp; </span><br class="m-br">Inner Ring Only</p>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</section>
+
+<!-- HOOK -->
+<section class="hook">
+  <svg class="corner-frond cf-1" viewBox="-10 -120 400 330" aria-hidden="true"><use href="#frondsym" x="-10" y="-120" width="400" height="330"/></svg>
+  <svg class="corner-frond cf-2" viewBox="-10 -120 400 330" aria-hidden="true"><use href="#frondsym" x="-10" y="-120" width="400" height="330"/></svg>
+  <div class="page-wrap--narrow">
+    <p class="hook-line fade-up">Four warm days on the Gulf with the women who understand you. Then, on the fourteenth, you fly home to him carrying all of it.</p>
+    <div class="pink-rule fade-up delay-1"></div>
+    <p class="script hook-script fade-up delay-2">Galentine&#8217;s</p>
+    <p class="hook-body fade-up delay-3">the Voluptas way.</p>
+  </div>
+</section>
+
+<!-- SCRIPT BAND -->
+<section class="script-band slot lagoon" aria-label="Naples">
+  <div class="slot-fallback" aria-hidden="true">
+    <svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+    <svg class="fb-b" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+    <span class="slot-name">images/naples-pool-dusk.jpg</span>
+  </div>
+  <img src="images/naples-pool-dusk.jpg" alt="The estate pool at dusk, palms lit against a pink sky" loading="lazy" onerror="this.classList.add('gone')">
+  <div class="band-overlay">
+    <p class="script band-script fade-up">Naples</p>
+    <p class="band-sub fade-up delay-2">Florida &nbsp;·&nbsp; Thursday to Valentine&#8217;s Day</p>
+  </div>
+</section>
+
+<!-- MONTANA -->
+<section class="montana" aria-labelledby="montanaHead">
+  <div class="page-wrap">
+    <div class="montana-head">
+      <span class="eyebrow fade-up">The Feminine | Glacier &nbsp;·&nbsp; August</span>
+      <h2 class="montana-headline fade-up delay-1" id="montanaHead">Montana was the beginning.</h2>
+      <p class="montana-intro fade-up delay-2">Last August, a group of women took fifteen acres in the Montana mountains for themselves. Nobody came home the same. A few words from what they wrote afterwards.</p>
+    </div>
+
+    <figure class="feature-quote fade-up">
+      <span class="q-mark" aria-hidden="true">&#8220;</span>
+      <blockquote>I didn&#8217;t expect to come home feeling like I&#8217;d met <span class="hl">a version of myself</span> I hadn&#8217;t given enough room to exist before.</blockquote>
+      <figcaption class="q-attr">The Feminine | Glacier</figcaption>
+    </figure>
+
+    <div class="quote-grid">
+      <figure class="quote-card fade-up">
+        <p>&#8220;My cheeks hurting from laughing, my eyes red from crying, and my heart happy.&#8221;</p>
+      </figure>
+      <figure class="quote-card fade-up delay-1">
+        <p>&#8220;I don&#8217;t have to ask permission from anyone but myself to experience pleasure.&#8221;</p>
+      </figure>
+    </div>
+
+    <p class="montana-coda fade-up">Some of them are coming back. There is room for you beside them.</p>
+  </div>
+</section>
+
+<!-- PROPERTY -->
+<section class="property" aria-labelledby="propHead">
+  <div class="property-split">
+    <div class="property-image slot dusk">
+      <div class="slot-fallback" aria-hidden="true">
+        <svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+        <span class="slot-name">images/naples-estate.jpg</span>
+      </div>
+      <img src="images/naples-estate.jpg" alt="The Naples estate, glass walls and palms at golden hour" loading="lazy" onerror="this.classList.add('gone')">
+    </div>
+    <div class="property-copy">
+      <span class="eyebrow fade-up">The Estate</span>
+      <h2 class="section-headline fade-up delay-1" id="propHead">Two and a half tropical acres.<br>A waterfall.<br>No one else.</h2>
+      <p class="body-copy fade-up delay-2">Nine thousand square feet of glass, art, and air. Twenty five foot windows pour the Florida light into the great room. More than ninety works of art on the walls. A chef&#8217;s kitchen that will keep producing things you swore you would not eat.</p>
+      <p class="body-copy fade-up delay-3">Outside, a 150 foot heated saltwater pool runs the length of the grounds. A twenty foot rain curtain waterfall pours into it. A moat curls around the house. The hot tub seats fourteen, which means it seats all of us at once, champagne included.</p>
+      <p class="body-copy fade-up delay-4">Across the lawn, a Bali inspired guest house with its own hot tub and a wraparound porch that looks straight into the falling water.</p>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat fade-up"><span class="stat-num">150 ft</span><span class="stat-label">Heated saltwater pool</span></div>
+    <div class="stat fade-up delay-1"><span class="stat-num">20 ft</span><span class="stat-label">Rain curtain waterfall</span></div>
+    <div class="stat fade-up delay-2"><span class="stat-num">2</span><span class="stat-label">Private hot tubs</span></div>
+    <div class="stat fade-up delay-3"><span class="stat-num">11</span><span class="stat-label">Bedrooms, two houses</span></div>
+  </div>
+</section>
+
+<!-- WATERFALL BLEED -->
+<div class="full-bleed slot night">
+  <div class="slot-fallback" aria-hidden="true">
+    <svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+    <svg class="fb-b" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+    <span class="slot-name">images/naples-waterfall.jpg</span>
+  </div>
+  <img src="images/naples-waterfall.jpg" alt="The rain curtain waterfall pouring into the pool at night" loading="lazy" onerror="this.classList.add('gone')">
+  <div class="bleed-overlay"><p class="bleed-text fade-up">The water is warm in February. So is everything else.</p></div>
+</div>
+
+<!-- EXPERIENCES -->
+<section class="experiences" aria-labelledby="expHead">
+  <div class="page-wrap">
+    <h2 class="experiences-headline fade-up" id="expHead">What we have planned for you.</h2>
+    <div class="exp-grid">
+      <div class="fade-up delay-1">
+        <span class="exp-num" aria-hidden="true">i.</span>
+        <span class="exp-col-label">The Estate</span>
+        <p class="exp-col-body">The whole property, gated, for four days. Mornings by the pool before anyone else is awake. An infrared sauna for when you want the heat. Bikes and a golf cart for getting from your room to the water. Late nights in the hot tub under the palms, where the conversation goes somewhere it would never go at brunch.</p>
+      </div>
+      <div class="fade-up delay-2">
+        <span class="exp-num" aria-hidden="true">ii.</span>
+        <span class="exp-col-label">The Ritual</span>
+        <p class="exp-col-body">Spa treatments brought to the estate by a private med spa team. Bodywork in the open air. Slow yoga on the lawn, sun already warm on your shoulders. The kind of care you spend the other fifty one weeks of the year giving to everyone else.</p>
+      </div>
+      <div class="fade-up delay-3">
+        <span class="exp-num" aria-hidden="true">iii.</span>
+        <span class="exp-col-label">The Water</span>
+        <p class="exp-col-body">One afternoon on a private yacht in the Gulf. Bare feet on warm teak. Sun on bare shoulders. Champagne in a real glass. Then the sunset Naples is famous for, from the one vantage point where nobody else can see you watching it.</p>
+      </div>
+      <div class="fade-up delay-4">
+        <span class="exp-num" aria-hidden="true">iv.</span>
+        <span class="exp-col-label">The Table</span>
+        <p class="exp-col-body">A private chef at the estate. Espresso martinis, because it is Galentine&#8217;s. Long lunches in the shade. And one evening out on Fifth Avenue South, dressed for it, at a table where the cocktails are thoughtful and nobody asks you to be anyone but who you are this weekend.</p>
+      </div>
+    </div>
+    <figure class="exp-quote fade-up">
+      <p>&#8220;Having this experience on my own made me miss him deeply.&#8221;</p>
+      <figcaption class="q-attr">The Feminine | Glacier</figcaption>
+      <span class="answer">This time, he gets you back on Valentine&#8217;s Day.</span>
+    </figure>
+  </div>
+</section>
+
+<!-- PHOTO PAIR -->
+<div class="photo-pair" aria-hidden="true">
+  <div class="slot blush">
+    <div class="slot-fallback"><svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg><span class="slot-name">images/naples-yoga.jpg</span></div>
+    <img src="images/naples-yoga.jpg" alt="" loading="lazy" onerror="this.classList.add('gone')">
+  </div>
+  <div class="slot dusk">
+    <div class="slot-fallback"><svg class="fb-b" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg><span class="slot-name">images/naples-martini.jpg</span></div>
+    <img src="images/naples-martini.jpg" alt="" loading="lazy" onerror="this.classList.add('gone')">
+  </div>
+</div>
+
+<!-- GALENTINE'S -->
+<section class="galentines" aria-labelledby="galHead">
+  <div class="hearts" aria-hidden="true">
+    <svg style="width:70px;height:64px;left:8%;top:12%;"><use href="#heart"/></svg>
+    <svg style="width:40px;height:36px;left:20%;top:34%;animation-delay:-3s;"><use href="#heart"/></svg>
+    <svg style="width:90px;height:82px;right:9%;top:8%;animation-delay:-5s;"><use href="#heart"/></svg>
+    <svg style="width:46px;height:42px;right:22%;top:30%;animation-delay:-1.5s;"><use href="#heart"/></svg>
+  </div>
+  <div class="page-wrap">
+    <div class="gal-head">
+      <p class="script gal-script fade-up" id="galHead">Galentine&#8217;s</p>
+      <p class="gal-sub fade-up delay-1">is a sacred holiday. We intend to observe it properly.</p>
+    </div>
+    <p class="gal-body fade-up delay-2">Pink champagne. Heart balloons drifting over the pool. Gifts chosen for the woman you are when nobody needs anything from you. A night in silk with the girls, because <strong>some things never stop being fun</strong>, and some women never stop being worth staying up for.</p>
+  </div>
+
+  <div class="portraits">
+    <div class="slot night">
+      <div class="slot-fallback" aria-hidden="true"><svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg><span class="slot-name">images/naples-portraits.jpg</span></div>
+      <img src="images/naples-portraits.jpg" alt="A sensual portrait in soft red light" loading="lazy" onerror="this.classList.add('gone')">
+    </div>
+    <div class="portraits-copy">
+      <span class="eyebrow fade-up">The Portraits</span>
+      <h3 class="section-headline fade-up delay-1">See yourself the way he sees you.<br>Then a little further.</h3>
+      <p class="body-copy fade-up delay-2">A private portrait session, sensual and unhurried, with a photographer who knows how to make you forget the camera is there. Yours to keep. Yours to give him on the fourteenth, if you are feeling generous.</p>
+      <div class="portraits-quote fade-up delay-3">&#8220;When I was shown one of myself, I didn&#8217;t believe it was me at first glance.&#8221;<span class="q-attr">The Feminine | Glacier</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARC -->
+<section class="arc" aria-labelledby="arcHead">
+  <div class="page-wrap">
+    <h2 class="arc-headline fade-up" id="arcHead">The shape of four days.</h2>
+    <p class="arc-sub fade-up delay-1">Loosely held. Nobody checks the time.</p>
+    <div class="arc-track">
+      <div class="arc-day fade-up">
+        <div class="arc-dot">11</div>
+        <span class="arc-when">Thursday</span>
+        <h3 class="arc-title">Arrival</h3>
+        <p class="arc-body">Champagne the moment you walk in. The pool, the palms, the first real exhale. Dinner at the estate with the women you will know very well by Sunday.</p>
+      </div>
+      <div class="arc-day fade-up delay-1">
+        <div class="arc-dot">12</div>
+        <span class="arc-when">Friday</span>
+        <h3 class="arc-title">The Water</h3>
+        <p class="arc-body">Yoga on the lawn. A slow morning. Then out onto the Gulf on a private yacht, back just in time for a sunset nobody will photograph well enough.</p>
+      </div>
+      <div class="arc-day fade-up delay-2">
+        <div class="arc-dot">13</div>
+        <span class="arc-when">Saturday</span>
+        <h3 class="arc-title">Galentine&#8217;s</h3>
+        <p class="arc-body">Spa treatments and portraits by day. Dressed for dinner on Fifth Avenue South by night. Silk, pink champagne, and gifts when we get home.</p>
+      </div>
+      <div class="arc-day fade-up delay-3">
+        <div class="arc-dot">14</div>
+        <span class="arc-when">Sunday</span>
+        <h3 class="arc-title">Valentine&#8217;s</h3>
+        <p class="arc-body">A long brunch by the water. Hugs that go on too long. Then home to him, softer, louder, more yourself than when you left.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="who" aria-labelledby="whoHead">
+  <div class="page-wrap--narrow">
+    <h2 class="who-headline fade-up" id="whoHead">This is not for everyone.</h2>
+    <p class="who-body fade-up delay-1">The Feminine | Naples is a private gathering of women who are happily married and still hungry. Who chose their husbands and choose them still. Who understand that desire is not a problem to be managed but a fire to be fed.</p>
+    <p class="who-body fade-up delay-2">Some of you were in Montana. Some of you have been reading their words and wondering what it would feel like to be in that room. Both of you belong here.</p>
+    <p class="who-body fade-up delay-3">Every woman here has been curated. Every woman here lives in the same world you do. Nothing you feel here requires an explanation. Nothing you discover here requires an apology.</p>
+    <p class="who-final fade-up delay-4">The palms keep secrets. So do we.</p>
+  </div>
+</section>
+
+<!-- INCLUSIONS -->
+<section class="inclusions" aria-labelledby="incHead">
+  <div class="page-wrap">
+    <h2 class="inclusions-headline fade-up" id="incHead">Everything is included.</h2>
+    <p class="inclusions-subhead fade-up delay-1">You land. You exhale. Someone else has thought of everything.</p>
+    <div class="inclusions-grid">
+      <div>
+        <div class="inclusion-item fade-up"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Welcome champagne on arrival</span></div>
+        <div class="inclusion-item fade-up delay-1"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">The entire private estate: 150 foot heated saltwater pool, rain curtain waterfall, two hot tubs</span></div>
+        <div class="inclusion-item fade-up delay-2"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">On-site spa treatments and bodywork</span></div>
+        <div class="inclusion-item fade-up delay-3"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Infrared sauna and private wellness center</span></div>
+        <div class="inclusion-item fade-up delay-4"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Morning yoga on the lawn</span></div>
+        <div class="inclusion-item fade-up delay-5"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">A private portrait session</span></div>
+      </div>
+      <div>
+        <div class="inclusion-item fade-up"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Private chef at the estate, every meal</span></div>
+        <div class="inclusion-item fade-up delay-1"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">A private yacht afternoon on the Gulf, sunset included</span></div>
+        <div class="inclusion-item fade-up delay-2"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">One evening out on Fifth Avenue South, dinner and cocktails</span></div>
+        <div class="inclusion-item fade-up delay-3"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Galentine&#8217;s night: gifts, pink champagne, silk</span></div>
+        <div class="inclusion-item fade-up delay-4"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Valentine&#8217;s brunch before you fly home to him</span></div>
+        <div class="inclusion-item fade-up delay-5"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">February 11&#8211;14, 2027</span></div>
+      </div>
+    </div>
+    <p class="inclusions-coda fade-up">There is something that happens when a woman spends four days completely in herself. Unhurried. Seen. Alive in her body in ways she forgot were available to her. She does not leave that on the Gulf. She carries it home. Her husband feels it before she says a word. And this time, she walks through the door on Valentine&#8217;s Day.</p>
+    <p class="inclusions-final fade-up delay-2">That is not a side effect of this experience. That is the whole point.</p>
+  </div>
+</section>
+
+<!-- GREAT ROOM BLEED -->
+<div class="full-bleed slot sandy" style="height:56vh;">
+  <div class="slot-fallback" aria-hidden="true">
+    <svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+    <span class="slot-name">images/naples-greatroom.jpg</span>
+  </div>
+  <img src="images/naples-greatroom.jpg" alt="The great room, twenty five foot windows and art on every wall" loading="lazy" onerror="this.classList.add('gone')">
+</div>
+
+<!-- ROOMS -->
+<section class="rooms" id="rooms" aria-labelledby="roomsHead">
+  <div class="page-wrap">
+    <span class="eyebrow fade-up" style="text-align:center;">Eleven rooms &nbsp;·&nbsp; Two houses</span>
+    <h2 class="rooms-headline fade-up delay-1" id="roomsHead">Choose your room.</h2>
+    <p class="rooms-sub fade-up delay-2">Every room has its own character. Tap one to step inside. Pricing reflects the experience, not a hierarchy.</p>
+    <div class="room-grid" id="roomGrid"></div>
+    <div class="rooms-cta fade-up">
+      <a class="btn solid" id="ctaMain" href="#" target="_blank" rel="noopener">DM Jenn to Request Your Room</a>
+      <p class="rooms-note">Every room is handled personally. Flexible payment arrangements available.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close" aria-label="A note from Jenn">
+  <svg class="close-palm" viewBox="-300 -330 600 680" aria-hidden="true"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+  <div class="page-wrap--narrow">
+    <p class="close-body fade-up">Montana changed something in all of us. I read every word those women wrote, and I laughed and cried through most of them.</p>
+    <p class="close-body fade-up delay-1">So we are doing it again. Somewhere warm this time. Four days under the palms with the right women, a pool that never ends, and champagne that does not either.</p>
+    <p class="close-body fade-up delay-2">And then, on Valentine&#8217;s Day, you go home to him. He will not know exactly what happened in Naples. He will just know he likes it.</p>
+    <p class="close-body fade-up delay-3">I will be there. Not as a host with a clipboard. Just as a woman who lives in the same world you do.</p>
+    <p class="close-body fade-up delay-4">Come join me.</p>
+    <div class="close-sign fade-up delay-5">
+      <span class="script">With love,</span>
+      <span class="name">Jenn</span>
+    </div>
+    <a class="btn fade-up" id="ctaClose" href="#" target="_blank" rel="noopener">DM Jenn</a>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-wordmark">Voluptas</p>
+  <p class="footer-sub">A private society. By invitation only.</p>
+</footer>
+
+<!-- ROOM MODAL -->
+<div class="modal-overlay" id="roomModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <div class="modal">
+    <button class="modal-close" type="button" id="modalClose">&#10005; Close</button>
+    <div class="modal-photos" id="modalPhotos"></div>
+    <div class="modal-body">
+      <span class="eyebrow" id="modalBadge"></span>
+      <h3 class="modal-name" id="modalName"></h3>
+      <p class="modal-seductive" id="modalSeductive"></p>
+      <span class="modal-price" id="modalPrice"></span>
+      <div class="tags" id="modalTags"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo">
+  <img id="lightboxImg" src="" alt="">
+  <button type="button" aria-label="Close photo">&#10005; CLOSE</button>
+</div>
+
+<script>
+/* ═════════════════════════════════════════════════════════════
+   EDIT HERE. Everything below this block runs on its own.
+   ─────────────────────────────────────────────────────────────
+   FULLY_COMMITTED: true shows the "Fully Committed" banner in the hero.
+   DM_LINK: where every "DM Jenn" button goes.
+   Each room:
+     price:  a number like 4800 shows "$4,800". null shows "Pricing from Jenn".
+     status: 'open' | 'few' (shows "One spot remains") | 'reserved'
+     photos: files in /images. Missing files are skipped automatically.
+   ═════════════════════════════════════════════════════════════ */
+const FULLY_COMMITTED = false;
+const DM_LINK = 'https://society.clubvoluptas.com/messages/';
+const PRICE_NOTE_PRIVATE = 'per woman · all-inclusive';
+const PRICE_NOTE_SHARED  = 'per woman · shared · all-inclusive';
+
+const ROOMS = [
+  { id: 'flamingo', flower: 'Flamingo', name: 'The Flamingo Suite', badge: 'The Primary Suite', status: 'open', price: null, shared: false, look: 'dusk',
+    seductive: 'The biggest bed in the house and a bath with nobody waiting on the other side of the door.',
+    amenities: 'King bed · Private en suite bath · Primary suite',
+    tags: ['King Bed', 'Private En Suite', 'Primary Suite', 'Room to Spread Out'],
+    desc: ['The primary suite of the estate. A king bed, a private en suite bath, and room enough to lay out everything you packed and everything you bought on Fifth Avenue.', 'For the woman who wants the best room in the house and has decided, this once, not to feel guilty about it.'] },
+
+  { id: 'hibiscus', flower: 'Hibiscus', name: 'The Hibiscus', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'blush',
+    seductive: 'Wake up slow. The pool is not going anywhere.',
+    amenities: 'King bed · Private en suite bath',
+    tags: ['King Bed', 'Private En Suite'],
+    desc: ['A king bed and a bath of your own. Close enough to the pool to hear the waterfall, private enough to sleep as late as you like.'] },
+
+  { id: 'plumeria', flower: 'Plumeria', name: 'The Plumeria', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
+    seductive: 'Leave the window open. Fall asleep to falling water.',
+    amenities: 'King bed · Private en suite bath',
+    tags: ['King Bed', 'Private En Suite'],
+    desc: ['A king bed, a private bath, and the particular quiet of a room that belongs only to you for four days.'] },
+
+  { id: 'paradise', flower: 'Paradise', name: 'The Bird of Paradise', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
+    seductive: 'For the woman who plans to take up the whole bed.',
+    amenities: 'King bed · Private en suite bath',
+    tags: ['King Bed', 'Private En Suite'],
+    desc: ['A king bed and a private en suite. Spread out. Stretch. Nobody is stealing the covers this weekend.'] },
+
+  { id: 'bougainvillea', flower: 'Bougainvillea', name: 'The Bougainvillea', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'dusk',
+    seductive: 'A bath of your own. Nothing to share but the stories.',
+    amenities: 'King bed · Private en suite bath',
+    tags: ['King Bed', 'Private En Suite'],
+    desc: ['A king bed and a private bath. Come back from the hot tub at two in the morning and have the whole room to yourself.'] },
+
+  { id: 'lagoon', flower: 'Lagoon', name: 'The Lagoon', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
+    seductive: 'Close enough to hear the laughter. Far enough to choose when you join it.',
+    amenities: 'King bed · Private en suite bath',
+    tags: ['King Bed', 'Private En Suite'],
+    desc: ['Private, quiet, and yours. A king bed and an en suite bath for the woman who recharges alone and then shows up fully.'] },
+
+  { id: 'mangrove', flower: 'Mangrove', name: 'The Mangrove', badge: 'Queen · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
+    seductive: 'Small, intimate, and entirely yours.',
+    amenities: 'Queen bed · Private en suite bath',
+    tags: ['Queen Bed', 'Private En Suite'],
+    desc: ['A queen bed and a private en suite bath. Everything you need, nothing you have to share.'] },
+
+  { id: 'seagrape', flower: 'Sea Grape', name: 'The Sea Grape', badge: 'Queen · Private Room', status: 'open', price: null, shared: false, look: 'blush',
+    seductive: 'Tucked away for the woman who sleeps best alone.',
+    amenities: 'Queen bed · Bath nearby',
+    tags: ['Queen Bed', 'Private Room'],
+    desc: ['A private room with a queen bed and a bath just down the hall. The easiest way to have a room of your own at the estate.'] },
+
+  { id: 'palm', flower: 'Palm', name: 'The Palm Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'lagoon',
+    seductive: 'Share it with the sister you met in Montana. Or the one you are about to meet.',
+    amenities: 'Two queen beds · Shared by two women',
+    tags: ['Two Queen Beds', 'Shared by Two'],
+    desc: ['Two queen beds, two women, one very late conversation after the lights go out.', 'Bring a friend from Glacier, or let Jenn pair you with someone she already knows you will love.'] },
+
+  { id: 'orchid', flower: 'Orchid', name: 'The Orchid Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'dusk',
+    seductive: 'Two queens, two women, one very late night.',
+    amenities: 'Two queen beds · Shared by two women',
+    tags: ['Two Queen Beds', 'Shared by Two'],
+    desc: ['Two queen beds and a roommate who will be telling you her secrets by Friday.'] },
+
+  { id: 'sleepover', flower: 'Sleepover', name: 'The Sleepover', badge: 'Bunk Room · Up to Four', status: 'open', price: null, shared: true, look: 'blush',
+    seductive: 'Four bunks, one bath, zero chance anyone sleeps early.',
+    amenities: 'Two bunk beds · Private en suite bath · Up to four women',
+    tags: ['Two Bunk Beds', 'En Suite Bath', 'Up to Four'],
+    desc: ['The slumber party room, all grown up. Two sets of bunks, a private en suite, and the four women who will be laughing loudest at breakfast.', 'The most playful way into Naples.'] }
+];
+
+/* ═════════════ Nothing below needs editing ═════════════ */
+const $ = (s, r = document) => r.querySelector(s);
+const fmtPrice = p => '$' + Number(p).toLocaleString('en-US');
+const PALM_SVG = '<svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>';
+
+function photoList(r) { return [1, 2, 3, 4].map(n => `images/naples-room-${r.id}-${n}.jpg`); }
+
+function priceHTML(r, cls) {
+  if (r.price == null) return `<span class="${cls} tbd">Pricing from Jenn</span>`;
+  return `<span class="${cls}">${fmtPrice(r.price)}<small>${r.shared ? PRICE_NOTE_SHARED : PRICE_NOTE_PRIVATE}</small></span>`;
+}
+
+function renderRooms() {
+  const grid = $('#roomGrid');
+  grid.innerHTML = ROOMS.map((r, i) => {
+    const reserved = r.status === 'reserved';
+    return `
+    <button type="button" class="room-card fade-up delay-${i % 3} ${reserved ? 'reserved' : ''} ${i === 0 ? 'featured' : ''}" data-room="${r.id}" aria-label="View ${r.name}">
+      <div class="slot ${r.look}">
+        <div class="slot-fallback" aria-hidden="true">${PALM_SVG}<span class="card-flower">${r.flower}</span></div>
+        <img src="${photoList(r)[0]}" alt="" loading="lazy" onerror="this.classList.add('gone')">
+      </div>
+      <div class="room-body">
+        <span class="room-badge">${r.badge}${reserved ? ' · Reserved' : ''}</span>
+        <h3 class="room-name">${r.name}</h3>
+        <p class="room-seductive">${r.seductive}</p>
+        <p class="room-amen">${r.amenities}</p>
+        ${r.status === 'few' ? '<span class="urgency">One spot remains</span>' : ''}
+        <div class="room-foot">
+          ${reserved ? '<span class="stamp">Reserved</span>' : priceHTML(r, 'room-price')}
+          <span class="room-view">View room &#8594;</span>
+        </div>
+      </div>
+    </button>`;
+  }).join('');
+  grid.querySelectorAll('.room-card').forEach(c => c.addEventListener('click', () => openRoom(c.dataset.room, c)));
+}
+
+let lastFocus = null;
+function openRoom(id, trigger) {
+  const r = ROOMS.find(x => x.id === id); if (!r) return;
+  lastFocus = trigger || null;
+  const reserved = r.status === 'reserved';
+  $('#modalBadge').textContent = r.badge;
+  $('#modalName').textContent = r.name;
+  $('#modalSeductive').textContent = r.seductive;
+  $('#modalPrice').outerHTML = reserved ? '<span class="modal-price" id="modalPrice"><span class="stamp">Reserved</span></span>' : priceHTML(r, 'modal-price').replace('<span class="modal-price', '<span id="modalPrice" class="modal-price');
+  $('#modalTags').innerHTML = r.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  $('#modalDesc').innerHTML = r.desc.map(p => `<p>${p}</p>`).join('');
+  $('#modalActions').innerHTML = reserved
+    ? '<span class="fine">This room has been reserved. DM Jenn to be placed on the waitlist.</span><a class="btn" href="' + DM_LINK + '" target="_blank" rel="noopener">DM Jenn</a>'
+    : '<a class="btn solid" href="' + DM_LINK + '" target="_blank" rel="noopener">DM Jenn to Request</a><span class="fine">Handled personally. Flexible payment arrangements available.</span>';
+
+  // photos: load all four, keep the ones that exist, fall back to one designed placeholder
+  const box = $('#modalPhotos');
+  box.className = 'modal-photos count-1';
+  box.innerHTML = `<div class="slot ${r.look}"><div class="slot-fallback" aria-hidden="true">${PALM_SVG}<span class="slot-name">images/naples-room-${r.id}-1.jpg</span></div></div>`;
+  const srcs = photoList(r);
+  Promise.all(srcs.map(src => new Promise(res => { const im = new Image(); im.onload = () => res(src); im.onerror = () => res(null); im.src = src; })))
+    .then(found => {
+      found = found.filter(Boolean);
+      if (!found.length || !$('#roomModal').classList.contains('open')) return;
+      box.className = 'modal-photos count-' + found.length;
+      box.innerHTML = found.map(src => `<div class="slot ${r.look}" data-src="${src}"><img src="${src}" alt="${r.name}"></div>`).join('');
+      box.querySelectorAll('.slot').forEach(s => s.addEventListener('click', () => openLightbox(s.dataset.src, r.name)));
+    });
+
+  $('#roomModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  $('#roomModal').scrollTop = 0;
+  $('#modalClose').focus();
+}
+function closeRoom() {
+  $('#roomModal').classList.remove('open');
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+function openLightbox(src, alt) { $('#lightboxImg').src = src; $('#lightboxImg').alt = alt || ''; $('#lightbox').classList.add('open'); }
+function closeLightbox() { $('#lightbox').classList.remove('open'); }
+
+$('#modalClose').addEventListener('click', closeRoom);
+$('#roomModal').addEventListener('click', e => { if (e.target.id === 'roomModal') closeRoom(); });
+$('#lightbox').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if ($('#lightbox').classList.contains('open')) closeLightbox(); else if ($('#roomModal').classList.contains('open')) closeRoom();
+});
+
+// config wiring
+$('#ctaMain').href = DM_LINK; $('#ctaClose').href = DM_LINK;
+if (FULLY_COMMITTED) $('#committedBanner').hidden = false;
+renderRooms();
+
+// fade-up
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObserver.unobserve(entry.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+// hero parallax
+const heroBg = $('#heroBg'); const hero = $('.hero'); let ticking = false;
+window.addEventListener('scroll', () => {
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY, h = hero.offsetHeight;
+    if (y <= h) heroBg.style.transform = `translateY(${(y / h) * 10}%)`;
+    ticking = false;
+  });
+}, { passive: true });
+</script>
+
+</body>
+</html>
