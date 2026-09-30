@@ -97,8 +97,6 @@ a { color: inherit; }
 .hero-rule { width: 48px; height: 1px; background: var(--flamingo-soft); margin: 0 auto 22px; opacity: 0.9; }
 .hero-subhead { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase; color: rgba(251,244,236,0.82); line-height: 2.3; }
 .committed-banner { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.45em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.72); display: inline-block; padding: 12px 28px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.15); }
-.m-br { display: none; }
-@media (max-width: 767px) { .m-br { display: inline; } .hero-subhead .sep { display: none; } }
 .scroll-cue { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; width: 1px; height: 52px; background: linear-gradient(to bottom, rgba(244,166,196,0), rgba(244,166,196,0.9)); animation: cue 2.4s ease-in-out infinite; }
 @keyframes cue { 0%,100% { opacity: 0.25; transform: translate(-50%, -6px); } 50% { opacity: 1; transform: translate(-50%, 4px); } }
 
@@ -144,6 +142,7 @@ a { color: inherit; }
 .property-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
 .property-image { min-height: 480px; }
 .property-image:hover > img { transform: scale(1.03); }
+.town { background: var(--shell); }
 .property-copy { padding: 88px 64px 88px 60px; display: flex; flex-direction: column; justify-content: center; }
 .section-headline { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(26px, 3.2vw, 40px); color: var(--ink); line-height: 1.3; margin-bottom: 34px; font-weight: 400; }
 .body-copy { font-size: 18.5px; line-height: 1.9; color: var(--ink-mid); margin-bottom: 22px; }
@@ -330,6 +329,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
   .page-wrap--narrow { padding: 0 22px; }
   .hero-palms .p1 { left: -42%; height: 40%; } .hero-palms .p2 { right: -46%; height: 34%; } .hero-palms .p3 { display: none; }
   .property-split, .portraits { grid-template-columns: 1fr; }
+  .town .property-image { order: -1; }
   .property-image { min-height: 320px; }
   .portraits .slot { min-height: 420px; }
   .property-copy, .portraits-copy { padding: 56px 22px; }
@@ -398,9 +398,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
   <div class="hero-content">
     <p class="committed-banner" id="committedBanner" hidden>Fully Committed</p>
     <div class="hero-script script" aria-hidden="true">With Love, Naples<svg class="heart" style="fill:var(--flamingo-soft)"><use href="#heart"/></svg></div>
-    <h1 class="hero-headline">Before you are his Valentine,<br>be your own.</h1>
+    <h1 class="hero-headline">This Valentine&#8217;s Day,<br>be your own.</h1>
     <div class="hero-rule"></div>
-    <p class="hero-subhead">The Feminine | Naples<br>February 11&#8211;14<span class="sep"> &nbsp;·&nbsp; </span><br class="m-br">Inner Ring Only</p>
+    <p class="hero-subhead">The Feminine | Naples<br>February 14&#8211;17</p>
   </div>
   <div class="scroll-cue" aria-hidden="true"></div>
 </section>
@@ -410,7 +410,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
   <svg class="corner-frond cf-1" viewBox="-10 -120 400 330" aria-hidden="true"><use href="#frondsym" x="-10" y="-120" width="400" height="330"/></svg>
   <svg class="corner-frond cf-2" viewBox="-10 -120 400 330" aria-hidden="true"><use href="#frondsym" x="-10" y="-120" width="400" height="330"/></svg>
   <div class="page-wrap--narrow">
-    <p class="hook-line fade-up">Four warm days on the Gulf with the women who understand you. Then, on the fourteenth, you fly home to him carrying all of it.</p>
+    <p class="hook-line fade-up">Valentine&#8217;s Day on the Gulf with the women who understand you. Four warm days that belong to no one but you. Then home to him, carrying all of it.</p>
     <div class="pink-rule fade-up delay-1"></div>
     <p class="script hook-script fade-up delay-2">Galentine&#8217;s</p>
     <p class="hook-body fade-up delay-3">the Voluptas way.</p>
@@ -427,23 +427,43 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
   <img src="images/naples-pool-dusk.jpg" alt="The estate pool at dusk, palms lit against a pink sky" loading="lazy" onerror="this.classList.add('gone')">
   <div class="band-overlay">
     <p class="script band-script fade-up">Naples</p>
-    <p class="band-sub fade-up delay-2">Florida &nbsp;·&nbsp; Thursday to Valentine&#8217;s Day</p>
+    <p class="band-sub fade-up delay-2">Florida &nbsp;·&nbsp; February 14&#8211;17</p>
   </div>
 </section>
 
-<!-- MONTANA -->
+<!-- THE TOWN -->
+<section class="property town" aria-labelledby="townHead">
+  <div class="property-split">
+    <div class="property-copy">
+      <span class="eyebrow fade-up">The Town</span>
+      <h2 class="section-headline fade-up delay-1" id="townHead">Naples does not try.<br>It doesn&#8217;t have to.</h2>
+      <p class="body-copy fade-up delay-2">Old Florida elegance with very new money. Quiet streets under the banyans. Boutiques on Third Street South. A Fifth Avenue where the patios fill at golden hour and everyone is dressed a little better than they need to be.</p>
+      <p class="body-copy fade-up delay-3">White sand beaches with nobody shouting on them. Sunsets off the pier that people move here for. It is the kind of town that never raises its voice, because it has never needed to.</p>
+      <p class="body-copy fade-up delay-4">We will take one evening in town, dressed for it. The rest of the time, Naples can wait. The estate is better.</p>
+    </div>
+    <div class="property-image slot blush">
+      <div class="slot-fallback" aria-hidden="true">
+        <svg class="fb-b" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
+        <span class="slot-name">images/naples-town.jpg</span>
+      </div>
+      <img src="images/naples-town.jpg" alt="Fifth Avenue South in Naples at golden hour" loading="lazy" onerror="this.classList.add('gone')">
+    </div>
+  </div>
+</section>
+
+<!-- LAST AUGUST -->
 <section class="montana" aria-labelledby="montanaHead">
   <div class="page-wrap">
     <div class="montana-head">
-      <span class="eyebrow fade-up">The Feminine | Glacier &nbsp;·&nbsp; August</span>
-      <h2 class="montana-headline fade-up delay-1" id="montanaHead">Montana was the beginning.</h2>
-      <p class="montana-intro fade-up delay-2">Last August, a group of women took fifteen acres in the Montana mountains for themselves. Nobody came home the same. A few words from what they wrote afterwards.</p>
+      <span class="eyebrow fade-up">In Their Words</span>
+      <h2 class="montana-headline fade-up delay-1" id="montanaHead">It began last August.</h2>
+      <p class="montana-intro fade-up delay-2">A small group of women went away together for four days. Nobody came home the same. A few words from what they wrote afterwards.</p>
     </div>
 
     <figure class="feature-quote fade-up">
       <span class="q-mark" aria-hidden="true">&#8220;</span>
       <blockquote>I didn&#8217;t expect to come home feeling like I&#8217;d met <span class="hl">a version of myself</span> I hadn&#8217;t given enough room to exist before.</blockquote>
-      <figcaption class="q-attr">The Feminine | Glacier</figcaption>
+      <figcaption class="q-attr">Last August</figcaption>
     </figure>
 
     <div class="quote-grid">
@@ -519,13 +539,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
       <div class="fade-up delay-4">
         <span class="exp-num" aria-hidden="true">iv.</span>
         <span class="exp-col-label">The Table</span>
-        <p class="exp-col-body">A private chef at the estate. Espresso martinis, because it is Galentine&#8217;s. Long lunches in the shade. And one evening out on Fifth Avenue South, dressed for it, at a table where the cocktails are thoughtful and nobody asks you to be anyone but who you are this weekend.</p>
+        <p class="exp-col-body">A private chef at the estate. Espresso martinis, because it is Valentine&#8217;s. Long lunches in the shade. And one evening out on Fifth Avenue South, dressed for it, at a table where the cocktails are thoughtful and nobody asks you to be anyone but who you are this weekend.</p>
       </div>
     </div>
     <figure class="exp-quote fade-up">
       <p>&#8220;Having this experience on my own made me miss him deeply.&#8221;</p>
-      <figcaption class="q-attr">The Feminine | Glacier</figcaption>
-      <span class="answer">This time, he gets you back on Valentine&#8217;s Day.</span>
+      <figcaption class="q-attr">Last August</figcaption>
+      <span class="answer">He gets you back on the seventeenth. It will have been worth the wait.</span>
     </figure>
   </div>
 </section>
@@ -553,7 +573,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
   <div class="page-wrap">
     <div class="gal-head">
       <p class="script gal-script fade-up" id="galHead">Galentine&#8217;s</p>
-      <p class="gal-sub fade-up delay-1">is a sacred holiday. We intend to observe it properly.</p>
+      <p class="gal-sub fade-up delay-1">This year, Valentine&#8217;s Day belongs to the girls.</p>
     </div>
     <p class="gal-body fade-up delay-2">Pink champagne. Heart balloons drifting over the pool. Gifts chosen for the woman you are when nobody needs anything from you. A night in silk with the girls, because <strong>some things never stop being fun</strong>, and some women never stop being worth staying up for.</p>
   </div>
@@ -566,8 +586,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
     <div class="portraits-copy">
       <span class="eyebrow fade-up">The Portraits</span>
       <h3 class="section-headline fade-up delay-1">See yourself the way he sees you.<br>Then a little further.</h3>
-      <p class="body-copy fade-up delay-2">A private portrait session, sensual and unhurried, with a photographer who knows how to make you forget the camera is there. Yours to keep. Yours to give him on the fourteenth, if you are feeling generous.</p>
-      <div class="portraits-quote fade-up delay-3">&#8220;When I was shown one of myself, I didn&#8217;t believe it was me at first glance.&#8221;<span class="q-attr">The Feminine | Glacier</span></div>
+      <p class="body-copy fade-up delay-2">A private portrait session, sensual and unhurried, with a photographer who knows how to make you forget the camera is there. Yours to keep. Yours to give him when you get home, the best Valentine he will get this year, three days late and entirely worth it.</p>
+      <div class="portraits-quote fade-up delay-3">&#8220;When I was shown one of myself, I didn&#8217;t believe it was me at first glance.&#8221;<span class="q-attr">Last August</span></div>
     </div>
   </div>
 </section>
@@ -579,27 +599,27 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
     <p class="arc-sub fade-up delay-1">Loosely held. Nobody checks the time.</p>
     <div class="arc-track">
       <div class="arc-day fade-up">
-        <div class="arc-dot">11</div>
-        <span class="arc-when">Thursday</span>
-        <h3 class="arc-title">Arrival</h3>
-        <p class="arc-body">Champagne the moment you walk in. The pool, the palms, the first real exhale. Dinner at the estate with the women you will know very well by Sunday.</p>
+        <div class="arc-dot">14</div>
+        <span class="arc-when">Sunday</span>
+        <h3 class="arc-title">Valentine&#8217;s</h3>
+        <p class="arc-body">Champagne the moment you walk in. The pool, the palms, the first real exhale. Then Valentine&#8217;s night at the estate: a long dinner, gifts, pink champagne, and silk.</p>
       </div>
       <div class="arc-day fade-up delay-1">
-        <div class="arc-dot">12</div>
-        <span class="arc-when">Friday</span>
+        <div class="arc-dot">15</div>
+        <span class="arc-when">Monday</span>
         <h3 class="arc-title">The Water</h3>
         <p class="arc-body">Yoga on the lawn. A slow morning. Then out onto the Gulf on a private yacht, back just in time for a sunset nobody will photograph well enough.</p>
       </div>
       <div class="arc-day fade-up delay-2">
-        <div class="arc-dot">13</div>
-        <span class="arc-when">Saturday</span>
-        <h3 class="arc-title">Galentine&#8217;s</h3>
-        <p class="arc-body">Spa treatments and portraits by day. Dressed for dinner on Fifth Avenue South by night. Silk, pink champagne, and gifts when we get home.</p>
+        <div class="arc-dot">16</div>
+        <span class="arc-when">Tuesday</span>
+        <h3 class="arc-title">The Ritual</h3>
+        <p class="arc-body">Spa treatments and portraits by day. Dressed for dinner on Fifth Avenue South by night. The hot tub under the palms when we get back.</p>
       </div>
       <div class="arc-day fade-up delay-3">
-        <div class="arc-dot">14</div>
-        <span class="arc-when">Sunday</span>
-        <h3 class="arc-title">Valentine&#8217;s</h3>
+        <div class="arc-dot">17</div>
+        <span class="arc-when">Wednesday</span>
+        <h3 class="arc-title">Home to Him</h3>
         <p class="arc-body">A long brunch by the water. Hugs that go on too long. Then home to him, softer, louder, more yourself than when you left.</p>
       </div>
     </div>
@@ -611,7 +631,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
   <div class="page-wrap--narrow">
     <h2 class="who-headline fade-up" id="whoHead">This is not for everyone.</h2>
     <p class="who-body fade-up delay-1">The Feminine | Naples is a private gathering of women who are happily married and still hungry. Who chose their husbands and choose them still. Who understand that desire is not a problem to be managed but a fire to be fed.</p>
-    <p class="who-body fade-up delay-2">Some of you were in Montana. Some of you have been reading their words and wondering what it would feel like to be in that room. Both of you belong here.</p>
+    <p class="who-body fade-up delay-2">Some of you were there last August. Some of you have been reading their words and wondering what it would feel like to be in that room. Both of you belong here.</p>
     <p class="who-body fade-up delay-3">Every woman here has been curated. Every woman here lives in the same world you do. Nothing you feel here requires an explanation. Nothing you discover here requires an apology.</p>
     <p class="who-final fade-up delay-4">The palms keep secrets. So do we.</p>
   </div>
@@ -635,12 +655,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
         <div class="inclusion-item fade-up"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Private chef at the estate, every meal</span></div>
         <div class="inclusion-item fade-up delay-1"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">A private yacht afternoon on the Gulf, sunset included</span></div>
         <div class="inclusion-item fade-up delay-2"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">One evening out on Fifth Avenue South, dinner and cocktails</span></div>
-        <div class="inclusion-item fade-up delay-3"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Galentine&#8217;s night: gifts, pink champagne, silk</span></div>
-        <div class="inclusion-item fade-up delay-4"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Valentine&#8217;s brunch before you fly home to him</span></div>
-        <div class="inclusion-item fade-up delay-5"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">February 11&#8211;14, 2027</span></div>
+        <div class="inclusion-item fade-up delay-3"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Valentine&#8217;s night at the estate: gifts, pink champagne, silk</span></div>
+        <div class="inclusion-item fade-up delay-4"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">A long farewell brunch before you fly home to him</span></div>
+        <div class="inclusion-item fade-up delay-5"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">February 14&#8211;17, 2027</span></div>
       </div>
     </div>
-    <p class="inclusions-coda fade-up">There is something that happens when a woman spends four days completely in herself. Unhurried. Seen. Alive in her body in ways she forgot were available to her. She does not leave that on the Gulf. She carries it home. Her husband feels it before she says a word. And this time, she walks through the door on Valentine&#8217;s Day.</p>
+    <p class="inclusions-coda fade-up">There is something that happens when a woman spends four days completely in herself. Unhurried. Seen. Alive in her body in ways she forgot were available to her. She does not leave that on the Gulf. She carries it home. Her husband feels it before she says a word. She spent Valentine&#8217;s Day on herself. He gets everything she brings home.</p>
     <p class="inclusions-final fade-up delay-2">That is not a side effect of this experience. That is the whole point.</p>
   </div>
 </section>
@@ -672,9 +692,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
 <section class="close" aria-label="A note from Jenn">
   <svg class="close-palm" viewBox="-300 -330 600 680" aria-hidden="true"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg>
   <div class="page-wrap--narrow">
-    <p class="close-body fade-up">Montana changed something in all of us. I read every word those women wrote, and I laughed and cried through most of them.</p>
+    <p class="close-body fade-up">Last August changed something in all of us. I read every word those women wrote, and I laughed and cried through most of them.</p>
     <p class="close-body fade-up delay-1">So we are doing it again. Somewhere warm this time. Four days under the palms with the right women, a pool that never ends, and champagne that does not either.</p>
-    <p class="close-body fade-up delay-2">And then, on Valentine&#8217;s Day, you go home to him. He will not know exactly what happened in Naples. He will just know he likes it.</p>
+    <p class="close-body fade-up delay-2">We begin on Valentine&#8217;s Day, and then you go home to him. He will not know exactly what happened in Naples. He will just know he likes it.</p>
     <p class="close-body fade-up delay-3">I will be there. Not as a host with a clipboard. Just as a woman who lives in the same world you do.</p>
     <p class="close-body fade-up delay-4">Come join me.</p>
     <div class="close-sign fade-up delay-5">
@@ -779,16 +799,16 @@ const ROOMS = [
     desc: ['A private room with a queen bed and a bath just down the hall. The easiest way to have a room of your own at the estate.'] },
 
   { id: 'palm', flower: 'Palm', name: 'The Palm Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'lagoon',
-    seductive: 'Share it with the sister you met in Montana. Or the one you are about to meet.',
+    seductive: 'Share it with the sister you met last August. Or the one you are about to meet.',
     amenities: 'Two queen beds · Shared by two women',
     tags: ['Two Queen Beds', 'Shared by Two'],
-    desc: ['Two queen beds, two women, one very late conversation after the lights go out.', 'Bring a friend from Glacier, or let Jenn pair you with someone she already knows you will love.'] },
+    desc: ['Two queen beds, two women, one very late conversation after the lights go out.', 'Bring a friend from last August, or let Jenn pair you with someone she already knows you will love.'] },
 
   { id: 'orchid', flower: 'Orchid', name: 'The Orchid Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'dusk',
     seductive: 'Two queens, two women, one very late night.',
     amenities: 'Two queen beds · Shared by two women',
     tags: ['Two Queen Beds', 'Shared by Two'],
-    desc: ['Two queen beds and a roommate who will be telling you her secrets by Friday.'] },
+    desc: ['Two queen beds and a roommate who will be telling you her secrets by Monday night.'] },
 
   { id: 'sleepover', flower: 'Sleepover', name: 'The Sleepover', badge: 'Bunk Room · Up to Four', status: 'open', price: null, shared: true, look: 'blush',
     seductive: 'Four bunks, one bath, zero chance anyone sleeps early.',
