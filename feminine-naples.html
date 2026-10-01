@@ -279,6 +279,21 @@ a { color: inherit; }
 .btn.solid { background: var(--flamingo); border-color: var(--flamingo); color: #fff; }
 .btn.solid:hover { background: var(--flamingo-deep); border-color: var(--flamingo-deep); }
 
+.spots { margin: 0 0 20px; border-top: 1px solid rgba(244,166,196,0.14); }
+.spot { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "label price" "left price"; gap: 2px 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(244,166,196,0.12); }
+.spot-label { grid-area: label; font-family: 'Lato', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream); }
+.spot-label em { font-style: normal; color: var(--flamingo-soft); letter-spacing: 0.1em; }
+.spot-left { grid-area: left; font-style: italic; font-size: 14px; color: var(--cream-faint); }
+.spot-left.few { color: var(--coral); }
+.spot-left.gone { color: var(--flamingo-soft); }
+.spot-price { grid-area: price; text-align: right; font-size: 20px; color: var(--cream); font-weight: 300; line-height: 1.1; }
+.spot-price small { display: block; font-family: 'Lato', sans-serif; font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream-faint); margin-top: 4px; }
+.spot-price.tbd { font-style: italic; font-size: 15px; color: var(--cream-dim); }
+.spot.is-gone .spot-label { color: var(--cream-faint); text-decoration: line-through; text-decoration-color: rgba(244,166,196,0.4); }
+.spots.in-modal { max-width: 460px; }
+.spots.in-modal .spot-label { font-size: 11px; }
+.spots.in-modal .spot-price { font-size: 24px; }
+
 /* ══ MODAL ══ */
 .modal-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(10,20,16,0.94); overflow-y: auto; padding: 40px 20px; display: none; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; animation: fadeIn 0.35s ease; }
@@ -772,6 +787,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
      price:  a number like 4800 shows "$4,800". null shows "Pricing from Jenn".
      status: 'open' | 'few' (shows "One spot remains") | 'reserved'
      photos: files in /images. Missing files are skipped automatically.
+   Shared rooms sell by the bed. Each has a "spots" list instead of one price:
+     { label: 'Lower Queen', count: 2, left: 2, price: null }
+     count: how many of that bed exist. left: how many are still open
+     (0 shows "Reserved", 1 shows "1 remaining"). price works like above.
    ═════════════════════════════════════════════════════════════ */
 const FULLY_COMMITTED = false;
 const DM_LINK = 'https://society.clubvoluptas.com/messages/';
@@ -797,7 +816,8 @@ const ROOMS = [
     tags: ['King Bed', 'Loft Style', 'Two Story Ceiling', 'En Suite Bath'],
     desc: ['The boldest room in the house. Hot pink walls rising two stories, open loft space, gold accents, a sculptural king bed, and a bathroom wrapped in pink floral wallpaper. Somewhere between a jewel box and a boudoir.', 'A staircase inside the suite leads up to the Rose Room, and the two rooms share the bathroom. Ideal for friends who want to be close without sharing a bed.'] },
 
-  { id: 'rose', flower: 'Rose', name: 'The Rose Room', badge: 'Two Queens · Loft Above the Flamingo', status: 'open', price: null, shared: true, look: 'dusk',
+  { id: 'rose', flower: 'Rose', name: 'The Rose Room', badge: 'Two Queens · Loft Above the Flamingo', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 2, price: null } ],
+    look: 'dusk',
     seductive: 'Two queens, crimson pillows, and a staircase down into the Flamingo Suite.',
     amenities: 'Two queen beds · Shared by two women · Shares the Flamingo Suite bath',
     tags: ['Two Queen Beds', 'Shared by Two', 'Loft Level', 'Shared Bath'],
@@ -815,7 +835,8 @@ const ROOMS = [
     tags: ['King Bed', 'Loft Style', 'Two Story Ceiling', 'En Suite Bath'],
     desc: ['Ocean blue walls under a soaring loft ceiling, a king bed, a reading chair, and a bathroom dressed in floral wallpaper and marble.', 'The Banyan Room sits on the loft level overlooking the Lagoon, and the two rooms share the bathroom. Close enough to hear the laughter, far enough to choose when you join it.'] },
 
-  { id: 'banyan', flower: 'Banyan', name: 'The Banyan Room', badge: 'Two Queens · Loft Above the Lagoon', status: 'open', price: null, shared: true, look: 'sandy',
+  { id: 'banyan', flower: 'Banyan', name: 'The Banyan Room', badge: 'Two Queens · Loft Above the Lagoon', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 2, price: null } ],
+    look: 'sandy',
     seductive: 'Share it with the sister you met last August. Or the one you are about to meet.',
     amenities: 'Two queen beds · Shared by two women · Shares the Lagoon bath',
     tags: ['Two Queen Beds', 'Shared by Two', 'Loft Level', 'Shared Bath'],
@@ -839,10 +860,11 @@ const ROOMS = [
     tags: ['Queen Bed', 'Private Room', 'Bali Guest House'],
     desc: ['A calm white room with a soft sage arch, a queen bed, and garden light, inside the detached Bali inspired guest house. The easiest way to have a room of your own, a few steps from the hammocks.'] },
 
-  { id: 'sleepover', flower: 'Sleepover', name: 'The Sleepover', badge: 'Bunk Room · Bali Guest House', status: 'open', price: null, shared: true, look: 'blush',
+  { id: 'sleepover', flower: 'Sleepover', name: 'The Sleepover', badge: 'Bunk Room · Bali Guest House', status: 'open', price: null, shared: true, spots: [ { label: 'Lower Queen', count: 2, left: 2, price: null }, { label: 'Upper Bunk', count: 2, left: 2, price: null } ],
+    look: 'blush',
     seductive: 'Four bunks, four women, zero chance anyone sleeps early.',
-    amenities: 'Two bunk beds · Up to four women · In the Bali inspired guest house',
-    tags: ['Two Bunk Beds', 'Up to Four', 'Bali Guest House'],
+    amenities: 'Two bunk beds, lower queens and upper bunks · Up to four women · In the Bali inspired guest house',
+    tags: ['Two Lower Queens', 'Two Upper Bunks', 'Up to Four', 'Bali Guest House'],
     desc: ['The slumber party room, all grown up, out in the detached Bali inspired guest house. Two sets of bunks and the four women who will be laughing loudest at breakfast.', 'The most playful way into Naples.'] }
 ];
 
@@ -858,10 +880,29 @@ function priceHTML(r, cls) {
   return `<span class="${cls}">${fmtPrice(r.price)}<small>${r.shared ? PRICE_NOTE_SHARED : PRICE_NOTE_PRIVATE}</small></span>`;
 }
 
+function spotLine(sp) {
+  return sp.left <= 0 ? '<span class="spot-left gone">Reserved</span>'
+       : sp.left === 1 ? '<span class="spot-left few">1 remaining</span>'
+       : `<span class="spot-left">${sp.left} available</span>`;
+}
+function spotPrice(sp) {
+  return sp.price == null ? '<span class="spot-price tbd">Pricing from Jenn</span>'
+       : `<span class="spot-price">${fmtPrice(sp.price)}<small>per woman</small></span>`;
+}
+function spotsHTML(r, cls) {
+  return `<div class="spots ${cls}">` + r.spots.map(sp => `
+    <div class="spot ${sp.left <= 0 ? 'is-gone' : ''}">
+      <span class="spot-label">${sp.label}${sp.count > 1 ? ` <em>× ${sp.count}</em>` : ''}</span>
+      ${spotLine(sp)}
+      ${sp.left <= 0 ? '' : spotPrice(sp)}
+    </div>`).join('') + `</div>`;
+}
+function roomFull(r) { return r.spots ? r.spots.every(s => s.left <= 0) : r.status === 'reserved'; }
+
 function renderRooms() {
   const grid = $('#roomGrid');
   grid.innerHTML = ROOMS.map((r, i) => {
-    const reserved = r.status === 'reserved';
+    const reserved = roomFull(r);
     return `
     <button type="button" class="room-card fade-up delay-${i % 3} ${reserved ? 'reserved' : ''} ${i === 0 ? 'featured' : ''}" data-room="${r.id}" aria-label="View ${r.name}">
       <div class="slot ${r.look}">
@@ -874,9 +915,10 @@ function renderRooms() {
         <h3 class="room-name">${r.name}</h3>
         <p class="room-seductive">${r.seductive}</p>
         <p class="room-amen">${r.amenities}</p>
-        ${r.status === 'few' ? '<span class="urgency">One spot remains</span>' : ''}
+        ${r.status === 'few' && !r.spots ? '<span class="urgency">One spot remains</span>' : ''}
+        ${r.spots ? spotsHTML(r, 'on-card') : ''}
         <div class="room-foot">
-          ${reserved ? '<span class="stamp">Reserved</span>' : priceHTML(r, 'room-price')}
+          ${r.spots ? '<span class="room-price tbd">Priced by the bed</span>' : (reserved ? '<span class="stamp">Reserved</span>' : priceHTML(r, 'room-price'))}
           <span class="room-view">View room &#8594;</span>
         </div>
       </div>
@@ -889,11 +931,11 @@ let lastFocus = null;
 function openRoom(id, trigger) {
   const r = ROOMS.find(x => x.id === id); if (!r) return;
   lastFocus = trigger || null;
-  const reserved = r.status === 'reserved';
+  const reserved = roomFull(r);
   $('#modalBadge').textContent = r.badge;
   $('#modalName').textContent = r.name;
   $('#modalSeductive').textContent = r.seductive;
-  $('#modalPrice').outerHTML = reserved ? '<span class="modal-price" id="modalPrice"><span class="stamp">Reserved</span></span>' : priceHTML(r, 'modal-price').replace('<span class="modal-price', '<span id="modalPrice" class="modal-price');
+  $('#modalPrice').outerHTML = r.spots ? '<div class="modal-price" id="modalPrice">' + spotsHTML(r, 'in-modal') + '</div>' : reserved ? '<span class="modal-price" id="modalPrice"><span class="stamp">Reserved</span></span>' : priceHTML(r, 'modal-price').replace('<span class="modal-price', '<span id="modalPrice" class="modal-price');
   $('#modalTags').innerHTML = r.tags.map(t => `<span class="tag">${t}</span>`).join('');
   $('#modalDesc').innerHTML = r.desc.map(p => `<p>${p}</p>`).join('');
   $('#modalActions').innerHTML = reserved
