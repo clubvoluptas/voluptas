@@ -751,6 +751,18 @@ const PRICE_NOTE_PRIVATE = 'per woman · all-inclusive';
 const PRICE_NOTE_SHARED  = 'per woman · shared · all-inclusive';
 
 const ROOMS = [
+  { id: 'paradise', flower: 'Paradise', name: 'The Bird of Paradise', badge: 'King · First Floor Master', status: 'open', price: null, shared: false, look: 'sandy',
+    seductive: 'A Japanese soaking tub, a private outdoor shower, and sunset tones everywhere.',
+    amenities: 'King bed · First floor master · Japanese soaking tub · Private outdoor shower',
+    tags: ['King Bed', 'First Floor Master', 'Japanese Soaking Tub', 'Private Outdoor Shower', 'Garden Doors'],
+    desc: ['The master suite of the main house, on the first floor. Warm terracotta and burnt orange, a plush king bed with a velvet bench at its foot, and glass doors that open toward the green.', 'Then the bathroom: dark stone, a deep Japanese soaking tub, a long double vanity, and a private outdoor shower under the palms. You will not want to share it, and you do not have to.'] },
+
+  { id: 'marigold', flower: 'Marigold', name: 'The Marigold', badge: 'King · En Suite · Upstairs', status: 'open', price: null, shared: false, look: 'sandy',
+    seductive: 'A golden velvet bed and a soaking tub under the rain shower.',
+    amenities: 'King bed · Private en suite · Soaking tub and rain shower',
+    tags: ['King Bed', 'Private En Suite', 'Soaking Tub', 'Rain Shower'],
+    desc: ['Upstairs in the main house. A mustard velvet king bed, warm soft walls, and a gallery of small framed pieces.', 'The bathroom is the secret: floral wallpaper, copper fixtures, and a stone wet room with a freestanding soaking tub beneath a rain shower. Spread out. Nobody is stealing the covers, or the bath, this weekend.'] },
+
   { id: 'flamingo', flower: 'Flamingo', name: 'The Flamingo Suite', badge: 'King · Loft Suite', status: 'open', price: null, shared: false, look: 'dusk',
     seductive: 'Hot pink walls, soaring ceilings, and a bed you will not want to leave.',
     amenities: 'King bed · Loft style, two story ceiling · En suite bath, shared with the Rose Room',
@@ -762,6 +774,12 @@ const ROOMS = [
     amenities: 'Two queen beds · Shared by two women · Shares the Flamingo Suite bath',
     tags: ['Two Queen Beds', 'Shared by Two', 'Loft Level', 'Shared Bath'],
     desc: ['Two queen beds dressed in crimson and blush, up on the loft level above the Flamingo Suite. Your staircase comes down into the Flamingo, and you share its pink wallpapered bathroom.', 'Perfect for friends who want to land in the middle of everything, with a roommate who will be telling you her secrets by Monday night.'] },
+
+  { id: 'palm', flower: 'Palm', name: 'The Palm', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
+    seductive: 'Jungle green walls and a lit vanity made for getting ready together.',
+    amenities: 'King bed · Private en suite bath · Vanity',
+    tags: ['King Bed', 'Private En Suite', 'Lit Vanity'],
+    desc: ['Vivid green walls, trailing plants, a king bed, and a private en suite with a softly lit vanity. The room everyone will end up getting ready in before dinner.'] },
 
   { id: 'lagoon', flower: 'Lagoon', name: 'The Lagoon', badge: 'King · Loft Suite', status: 'open', price: null, shared: false, look: 'lagoon',
     seductive: 'Deep blue walls and ceilings that keep going.',
@@ -775,35 +793,17 @@ const ROOMS = [
     tags: ['Two Queen Beds', 'Shared by Two', 'Loft Level', 'Shared Bath'],
     desc: ['Two queen beds on the loft level, overlooking the Lagoon below. You share the Lagoon&#8217;s floral wallpapered bathroom.', 'Bring a friend from last August, or let Jenn pair you with someone she already knows you will love.'] },
 
-  { id: 'paradise', flower: 'Paradise', name: 'The Bird of Paradise', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
-    seductive: 'Sunset tones and a velvet bench at the foot of the bed.',
-    amenities: 'King bed · Private en suite bath · Garden doors',
-    tags: ['King Bed', 'Private En Suite', 'Garden Doors'],
-    desc: ['Warm terracotta and burnt orange, a plush king bed, and glass doors that open toward the green. A room that feels like golden hour all day long.'] },
-
-  { id: 'palm', flower: 'Palm', name: 'The Palm', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
-    seductive: 'Jungle green walls and a lit vanity made for getting ready together.',
-    amenities: 'King bed · Private en suite bath · Vanity',
-    tags: ['King Bed', 'Private En Suite', 'Lit Vanity'],
-    desc: ['Vivid green walls, trailing plants, a king bed, and a private en suite with a softly lit vanity. The room everyone will end up getting ready in before dinner.'] },
-
-  { id: 'marigold', flower: 'Marigold', name: 'The Marigold', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
-    seductive: 'A golden velvet bed for the woman who plans to take up all of it.',
-    amenities: 'King bed · Private en suite bath',
-    tags: ['King Bed', 'Private En Suite'],
-    desc: ['A mustard velvet king bed, warm soft walls, a gallery of small framed pieces, and a private en suite. Spread out. Nobody is stealing the covers this weekend.'] },
-
   { id: 'gardenia', flower: 'Gardenia', name: 'The Gardenia', badge: 'Queen · En Suite', status: 'open', price: null, shared: false, look: 'night',
     seductive: 'Black, white, and quietly dramatic.',
     amenities: 'Queen bed · Private en suite bath',
     tags: ['Queen Bed', 'Private En Suite'],
     desc: ['A graphic black and white room with a wall of windows onto the trees, a queen bed, and a private en suite. Everything you need, nothing you have to share.'] },
 
-  { id: 'mangrove', flower: 'Mangrove', name: 'The Mangrove', badge: 'King · En Suite · Bali Guest House', status: 'open', price: null, shared: false, look: 'lagoon',
-    seductive: 'Sage walls and a door that opens straight onto a hammock.',
-    amenities: 'King bed · Private en suite bath · In the Bali inspired guest house',
-    tags: ['King Bed', 'Private En Suite', 'Bali Guest House', 'Porch with Hammocks'],
-    desc: ['The master of the detached Bali inspired guest house. Soft sage walls, linen curtains, a king bed, and a private en suite with a wood vanity and palms.', 'Step through the glass onto the wraparound porch and you are in a hammock with your coffee, looking out over the pool and the falling water.'] },
+  { id: 'mangrove', flower: 'Mangrove', name: 'The Mangrove', badge: 'King · Premium · Bali Guest House', status: 'open', price: null, shared: false, look: 'lagoon',
+    seductive: 'A private steam shower and doors that open straight onto the porch.',
+    amenities: 'King bed · En suite with steam shower · Doors to the porch · Bali inspired guest house',
+    tags: ['King Bed', 'Private En Suite', 'Steam Shower', 'Doors to the Porch', 'Bali Guest House'],
+    desc: ['The master of the detached Bali inspired guest house. Soft sage walls, linen curtains, a king bed, and a private en suite with its own steam shower.', 'Open the doors and you are on the wraparound porch, a hammock and your coffee waiting, looking out over the pool and the falling water.'] },
 
   { id: 'seagrape', flower: 'Sea Grape', name: 'The Sea Grape', badge: 'Queen · Bali Guest House', status: 'open', price: null, shared: false, look: 'blush',
     seductive: 'Tucked away for the woman who sleeps best alone.',
