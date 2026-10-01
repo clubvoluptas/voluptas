@@ -239,7 +239,8 @@ a { color: inherit; }
 .room-card:hover { transform: translateY(-4px); border-color: rgba(244,166,196,0.55); box-shadow: 0 18px 40px rgba(0,0,0,0.28); }
 .room-card .slot { height: 220px; }
 .room-card:hover .slot > img { transform: scale(1.05); }
-.room-card .slot .card-flower { position: absolute; z-index: 0; right: 18px; top: 16px; font-family: 'Pinyon Script', cursive; font-size: 34px; color: rgba(255,255,255,0.8); }
+.room-card .slot::after { content: ''; position: absolute; inset: 0 0 auto 0; height: 45%; z-index: 2; background: linear-gradient(to bottom, rgba(10,20,16,0.38), transparent); pointer-events: none; }
+.room-card .slot .card-flower { position: absolute; z-index: 3; right: 18px; top: 14px; font-family: 'Pinyon Script', cursive; font-size: 34px; color: #FFD9E8; text-shadow: 0 1px 12px rgba(0,0,0,0.45); }
 .room-body { padding: 26px 24px 28px; display: flex; flex-direction: column; flex: 1; }
 .room-badge { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--flamingo-soft); margin-bottom: 10px; display: block; }
 .room-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 23px; color: var(--cream); margin-bottom: 12px; line-height: 1.2; font-weight: 400; }
@@ -255,7 +256,7 @@ a { color: inherit; }
 .room-card.featured { grid-column: span 2; }
 .room-card.featured .slot { height: 300px; }
 .room-card.featured .room-name { font-size: 30px; }
-.slot.blush .card-flower, .slot.sandy .card-flower { color: rgba(210,58,126,0.75); }
+.slot.blush .card-flower, .slot.sandy .card-flower { color: #FFF4F8; }
 .room-card.reserved .slot > img { filter: grayscale(0.5); }
 .stamp { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--flamingo-soft); border-left: 3px solid var(--flamingo); padding-left: 12px; display: inline-block; }
 .urgency { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--coral); border-left: 3px solid var(--coral); padding-left: 12px; display: inline-block; margin-bottom: 16px; }
@@ -524,7 +525,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
       <div class="fade-up delay-1">
         <span class="exp-num" aria-hidden="true">i.</span>
         <span class="exp-col-label">The Estate</span>
-        <p class="exp-col-body">The whole property, gated, for four days. Mornings by the pool before anyone else is awake. Bikes and a golf cart for getting from your room to the water. Late nights in the hot tub under the palms, where the conversation goes somewhere it would never go at brunch.</p>
+        <p class="exp-col-body">The whole property, gated, for four days. Mornings by the pool before anyone else is awake. Clean modern architecture, walls of glass, and art at every turn, all of it softened by tropical green. Late nights in the hot tub under the palms, where the conversation goes somewhere it would never go at brunch.</p>
       </div>
       <div class="fade-up delay-2">
         <span class="exp-num" aria-hidden="true">ii.</span>
@@ -750,65 +751,65 @@ const PRICE_NOTE_PRIVATE = 'per woman · all-inclusive';
 const PRICE_NOTE_SHARED  = 'per woman · shared · all-inclusive';
 
 const ROOMS = [
-  { id: 'flamingo', flower: 'Flamingo', name: 'The Flamingo Suite', badge: 'The Primary Suite', status: 'open', price: null, shared: false, look: 'dusk',
-    seductive: 'The biggest bed in the house and a bath with nobody waiting on the other side of the door.',
-    amenities: 'King bed · Private en suite bath · Primary suite',
-    tags: ['King Bed', 'Private En Suite', 'Primary Suite', 'Room to Spread Out'],
-    desc: ['The primary suite of the estate. A king bed, a private en suite bath, and room enough to lay out everything you packed and everything you bought on Fifth Avenue.', 'For the woman who wants the best room in the house and has decided, this once, not to feel guilty about it.'] },
-
-  { id: 'hibiscus', flower: 'Hibiscus', name: 'The Hibiscus', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'blush',
-    seductive: 'Wake up slow. The pool is not going anywhere.',
-    amenities: 'King bed · Private en suite bath',
-    tags: ['King Bed', 'Private En Suite'],
-    desc: ['A king bed and a bath of your own. Close enough to the pool to hear the waterfall, private enough to sleep as late as you like.'] },
-
-  { id: 'plumeria', flower: 'Plumeria', name: 'The Plumeria', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
-    seductive: 'Leave the window open. Fall asleep to falling water.',
-    amenities: 'King bed · Private en suite bath',
-    tags: ['King Bed', 'Private En Suite'],
-    desc: ['A king bed, a private bath, and the particular quiet of a room that belongs only to you for four days.'] },
-
-  { id: 'paradise', flower: 'Paradise', name: 'The Bird of Paradise', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
-    seductive: 'For the woman who plans to take up the whole bed.',
-    amenities: 'King bed · Private en suite bath',
-    tags: ['King Bed', 'Private En Suite'],
-    desc: ['A king bed and a private en suite. Spread out. Stretch. Nobody is stealing the covers this weekend.'] },
-
-  { id: 'bougainvillea', flower: 'Bougainvillea', name: 'The Bougainvillea', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'dusk',
-    seductive: 'A bath of your own. Nothing to share but the stories.',
-    amenities: 'King bed · Private en suite bath',
-    tags: ['King Bed', 'Private En Suite'],
-    desc: ['A king bed and a private bath. Come back from the hot tub at two in the morning and have the whole room to yourself.'] },
+  { id: 'flamingo', flower: 'Flamingo', name: 'The Flamingo Suite', badge: 'The Signature Suite', status: 'open', price: null, shared: false, look: 'dusk',
+    seductive: 'Hot pink walls, gold light, and a bed you will not want to leave.',
+    amenities: 'King bed · Private en suite bath · Two story ceiling',
+    tags: ['King Bed', 'Private En Suite', 'Two Story Ceiling', 'Statement Art'],
+    desc: ['The boldest room in the house. Hot pink walls rising two stories, gold accents, a sculptural king bed, and a private en suite. Somewhere between a jewel box and a boudoir.', 'For the woman who wants the best room in the house and has decided, this once, not to feel guilty about it.'] },
 
   { id: 'lagoon', flower: 'Lagoon', name: 'The Lagoon', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
-    seductive: 'Close enough to hear the laughter. Far enough to choose when you join it.',
+    seductive: 'Deep blue walls and ceilings that keep going.',
+    amenities: 'King bed · Private en suite bath · Two story ceiling',
+    tags: ['King Bed', 'Private En Suite', 'Two Story Ceiling'],
+    desc: ['Ocean blue walls under a soaring ceiling, a king bed, a reading chair, and a private en suite. Close enough to hear the laughter, far enough to choose when you join it.'] },
+
+  { id: 'paradise', flower: 'Paradise', name: 'The Bird of Paradise', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
+    seductive: 'Sunset tones and a velvet bench at the foot of the bed.',
+    amenities: 'King bed · Private en suite bath · Garden doors',
+    tags: ['King Bed', 'Private En Suite', 'Garden Doors'],
+    desc: ['Warm terracotta and burnt orange, a plush king bed, and glass doors that open toward the green. A room that feels like golden hour all day long.'] },
+
+  { id: 'palm', flower: 'Palm', name: 'The Palm', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
+    seductive: 'Jungle green walls and a lit vanity made for getting ready together.',
+    amenities: 'King bed · Private en suite bath · Vanity',
+    tags: ['King Bed', 'Private En Suite', 'Lit Vanity'],
+    desc: ['Vivid green walls, trailing plants, a king bed, and a private en suite with a softly lit vanity. The room everyone will end up getting ready in before dinner.'] },
+
+  { id: 'marigold', flower: 'Marigold', name: 'The Marigold', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
+    seductive: 'A golden velvet bed for the woman who plans to take up all of it.',
     amenities: 'King bed · Private en suite bath',
     tags: ['King Bed', 'Private En Suite'],
-    desc: ['Private, quiet, and yours. A king bed and an en suite bath for the woman who recharges alone and then shows up fully.'] },
+    desc: ['A mustard velvet king bed, warm soft walls, a gallery of small framed pieces, and a private en suite. Spread out. Nobody is stealing the covers this weekend.'] },
 
-  { id: 'mangrove', flower: 'Mangrove', name: 'The Mangrove', badge: 'Queen · En Suite', status: 'open', price: null, shared: false, look: 'sandy',
-    seductive: 'Small, intimate, and entirely yours.',
+  { id: 'mangrove', flower: 'Mangrove', name: 'The Mangrove', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
+    seductive: 'Sage walls and a door that opens straight onto a hammock.',
+    amenities: 'King bed · Private en suite bath · Garden patio',
+    tags: ['King Bed', 'Private En Suite', 'Patio with Hammock'],
+    desc: ['Soft sage walls, linen curtains, a king bed, and a private en suite. Step through the glass and you are in a hammock in the garden with your coffee.'] },
+
+  { id: 'gardenia', flower: 'Gardenia', name: 'The Gardenia', badge: 'Queen · En Suite', status: 'open', price: null, shared: false, look: 'night',
+    seductive: 'Black, white, and quietly dramatic.',
     amenities: 'Queen bed · Private en suite bath',
     tags: ['Queen Bed', 'Private En Suite'],
-    desc: ['A queen bed and a private en suite bath. Everything you need, nothing you have to share.'] },
+    desc: ['A graphic black and white room with a wall of windows onto the trees, a queen bed, and a private en suite. Everything you need, nothing you have to share.'] },
 
   { id: 'seagrape', flower: 'Sea Grape', name: 'The Sea Grape', badge: 'Queen · Private Room', status: 'open', price: null, shared: false, look: 'blush',
     seductive: 'Tucked away for the woman who sleeps best alone.',
     amenities: 'Queen bed · Bath nearby',
     tags: ['Queen Bed', 'Private Room'],
-    desc: ['A private room with a queen bed and a bath just down the hall. The easiest way to have a room of your own at the estate.'] },
+    desc: ['A calm white room with a soft sage arch, a queen bed, and garden light. The easiest way to have a room of your own at the estate.'] },
 
-  { id: 'palm', flower: 'Palm', name: 'The Palm Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'lagoon',
+  { id: 'rose', flower: 'Rose', name: 'The Rose Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'dusk',
+    seductive: 'Two queens, crimson pillows, one very late night.',
+    amenities: 'Two queen beds · Shared by two women',
+    tags: ['Two Queen Beds', 'Shared by Two'],
+    desc: ['Two queen beds dressed in crimson and blush, and a roommate who will be telling you her secrets by Monday night.'] },
+
+  { id: 'banyan', flower: 'Banyan', name: 'The Banyan Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'sandy',
     seductive: 'Share it with the sister you met last August. Or the one you are about to meet.',
     amenities: 'Two queen beds · Shared by two women',
     tags: ['Two Queen Beds', 'Shared by Two'],
     desc: ['Two queen beds, two women, one very late conversation after the lights go out.', 'Bring a friend from last August, or let Jenn pair you with someone she already knows you will love.'] },
-
-  { id: 'orchid', flower: 'Orchid', name: 'The Orchid Room', badge: 'Two Queens · Shared', status: 'open', price: null, shared: true, look: 'dusk',
-    seductive: 'Two queens, two women, one very late night.',
-    amenities: 'Two queen beds · Shared by two women',
-    tags: ['Two Queen Beds', 'Shared by Two'],
-    desc: ['Two queen beds and a roommate who will be telling you her secrets by Monday night.'] },
 
   { id: 'sleepover', flower: 'Sleepover', name: 'The Sleepover', badge: 'Bunk Room · Up to Four', status: 'open', price: null, shared: true, look: 'blush',
     seductive: 'Four bunks, one bath, zero chance anyone sleeps early.',
@@ -836,8 +837,9 @@ function renderRooms() {
     return `
     <button type="button" class="room-card fade-up delay-${i % 3} ${reserved ? 'reserved' : ''} ${i === 0 ? 'featured' : ''}" data-room="${r.id}" aria-label="View ${r.name}">
       <div class="slot ${r.look}">
-        <div class="slot-fallback" aria-hidden="true">${PALM_SVG}<span class="card-flower">${r.flower}</span></div>
+        <div class="slot-fallback" aria-hidden="true">${PALM_SVG}</div>
         <img src="${photoList(r)[0]}" alt="" loading="lazy" onerror="this.classList.add('gone')">
+        <span class="card-flower" aria-hidden="true">${r.flower}</span>
       </div>
       <div class="room-body">
         <span class="room-badge">${r.badge}${reserved ? ' · Reserved' : ''}</span>
