@@ -196,6 +196,16 @@ a { color: inherit; }
 .portraits-quote { border-left: 2px solid var(--flamingo); padding-left: 22px; margin-top: 12px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 21px; line-height: 1.55; color: var(--flamingo-soft); }
 .portraits-quote .q-attr { margin-top: 12px; }
 
+.afterdark { position: relative; min-height: 92vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+.afterdark .slot { position: absolute; inset: 0; }
+.afterdark .slot > img { object-position: center 60%; }
+.afterdark-veil { position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(18,6,14,0.78), rgba(18,6,14,0.55) 60%, rgba(18,6,14,0.75) 100%); }
+.afterdark-copy { position: relative; z-index: 2; max-width: 640px; padding: 120px 28px; }
+.afterdark-copy .eyebrow { color: var(--flamingo-soft); }
+.afterdark-headline { font-family: 'Pinyon Script', cursive; font-weight: 400; font-size: clamp(64px, 10vw, 120px); color: var(--flamingo-soft); line-height: 1; margin-bottom: 36px; text-shadow: 0 4px 30px rgba(236,79,147,0.35); }
+.afterdark-body { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(19px, 2.4vw, 25px); line-height: 1.8; color: var(--cream); margin-bottom: 26px; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+.afterdark-final { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase; color: #FFD9E8; margin-top: 40px; line-height: 2.2; text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
+
 /* ══ ARC ══ */
 .arc { background: var(--sand); padding: 108px 0 100px; }
 .arc-headline { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 4vw, 46px); color: var(--ink); text-align: center; margin-bottom: 16px; }
@@ -527,7 +537,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
       <div class="fade-up delay-1">
         <span class="exp-num" aria-hidden="true">i.</span>
         <span class="exp-col-label">The Estate</span>
-        <p class="exp-col-body">The whole property, gated, for four days. Mornings by the pool before anyone else is awake. Clean modern architecture, walls of glass, and art at every turn, all of it softened by tropical green. Late nights in the hot tub under the palms, where the conversation goes somewhere it would never go at brunch.</p>
+        <p class="exp-col-body">The whole property, gated, for four days. Mornings by the pool before anyone else is awake. Clean modern architecture, walls of glass, and art at every turn, all of it softened by tropical green. The nights, and whatever you make of them, where the conversation goes somewhere it would never go at brunch.</p>
       </div>
       <div class="fade-up delay-2">
         <span class="exp-num" aria-hidden="true">ii.</span>
@@ -595,6 +605,21 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
   </div>
 </section>
 
+<!-- AFTER DARK -->
+<section class="afterdark" aria-labelledby="afterHead">
+  <div class="slot night" aria-hidden="true">
+    <div class="slot-fallback"><svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm" x="-300" y="-330" width="600" height="680"/></svg></div>
+    <img src="images/naples-afterdark.jpg" alt="" loading="lazy" onerror="this.classList.add('gone')">
+  </div>
+  <div class="afterdark-veil" aria-hidden="true"></div>
+  <div class="afterdark-copy">
+    <h2 class="afterdark-headline fade-up" id="afterHead">After dark.</h2>
+    <p class="afterdark-body fade-up delay-1">And then there are the nights. Candlelight. Silk. The hot tub under the palms long after the dinner plates are cleared. Women who have stopped pretending they came only for the spa.</p>
+    <p class="afterdark-body fade-up delay-2">Whatever happens after dark happens because you wanted it to.</p>
+    <p class="afterdark-final fade-up delay-3">Nothing is expected.<br>Everything is permitted.</p>
+  </div>
+</section>
+
 <!-- ARC -->
 <section class="arc" aria-labelledby="arcHead">
   <div class="page-wrap">
@@ -659,7 +684,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
         <div class="inclusion-item fade-up delay-1"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">A long, lazy brunch together</span></div>
         <div class="inclusion-item fade-up delay-2"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">An afternoon of flowers, tea, and everything feminine</span></div>
         <div class="inclusion-item fade-up delay-3"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">One evening out on Fifth Avenue South, dinner and cocktails</span></div>
-        <div class="inclusion-item fade-up delay-4"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">Late nights in the hot tub under the palms</span></div>
+        <div class="inclusion-item fade-up delay-4"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">The nights, and whatever you make of them</span></div>
         <div class="inclusion-item fade-up delay-5"><svg class="inclusion-heart" aria-hidden="true"><use href="#heart"/></svg><span class="inclusion-text">February 14&#8211;17, 2027</span></div>
       </div>
     </div>
