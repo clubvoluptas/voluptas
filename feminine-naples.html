@@ -784,7 +784,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--flamingo-soft);
    FULLY_COMMITTED: true shows the "Fully Committed" banner in the hero.
    DM_LINK: where every "DM Jenn" button goes.
    Each room:
-     price:  a number like 4800 shows "$4,800". null shows "Pricing from Jenn".
+     price:  a number like 4800 shows "$4,800". 'inquire' shows "Inquire". null shows "Pricing from Jenn".
      status: 'open' | 'few' (shows "One spot remains") | 'reserved'
      photos: files in /images. Missing files are skipped automatically.
    Shared rooms sell by the bed. Each has a "spots" list instead of one price:
@@ -798,69 +798,69 @@ const PRICE_NOTE_PRIVATE = 'per woman · all-inclusive';
 const PRICE_NOTE_SHARED  = 'per woman · shared · all-inclusive';
 
 const ROOMS = [
-  { id: 'paradise', flower: 'Paradise', name: 'The Bird of Paradise', badge: 'King · First Floor Master', status: 'open', price: null, shared: false, look: 'sandy',
+  { id: 'paradise', flower: 'Paradise', name: 'The Bird of Paradise', badge: 'King · First Floor Master', status: 'open', price: 'inquire', shared: false, look: 'sandy',
     seductive: 'A Japanese soaking tub, a private outdoor shower, and sunset tones everywhere.',
     amenities: 'King bed · First floor master · Japanese soaking tub · Private outdoor shower',
     tags: ['King Bed', 'First Floor Master', 'Japanese Soaking Tub', 'Private Outdoor Shower', 'Garden Doors'],
     desc: ['The master suite of the main house, on the first floor. Warm terracotta and burnt orange, a plush king bed with a velvet bench at its foot, and glass doors that open toward the green.', 'Then the bathroom: dark stone, a deep Japanese soaking tub, a long double vanity, and through the glass, a private outdoor shower open to the night sky, strung with soft lights. You will not want to share it, and you do not have to.'] },
 
-  { id: 'marigold', flower: 'Marigold', name: 'The Marigold', badge: 'King · En Suite · Upstairs', status: 'open', price: null, shared: false, look: 'sandy',
+  { id: 'marigold', flower: 'Marigold', name: 'The Marigold', badge: 'King · En Suite · Upstairs', status: 'open', price: 6400, shared: false, look: 'sandy',
     seductive: 'A golden velvet bed and a soaking tub under the rain shower.',
     amenities: 'King bed · Private en suite · Soaking tub and rain shower',
     tags: ['King Bed', 'Private En Suite', 'Soaking Tub', 'Rain Shower'],
     desc: ['Upstairs in the main house. A mustard velvet king bed, warm soft walls, and a gallery of small framed pieces.', 'The bathroom is the secret: floral wallpaper, copper fixtures, and a stone wet room with a freestanding soaking tub beneath a rain shower. Spread out. Nobody is stealing the covers, or the bath, this weekend.'] },
 
-  { id: 'flamingo', flower: 'Flamingo', name: 'The Flamingo Suite', badge: 'King · Loft Suite', status: 'open', price: null, shared: false, look: 'dusk',
+  { id: 'flamingo', flower: 'Flamingo', name: 'The Flamingo Suite', badge: 'King · Loft Suite', status: 'open', price: 5700, shared: false, look: 'dusk',
     seductive: 'Hot pink walls, soaring ceilings, and a bed you will not want to leave.',
     amenities: 'King bed · Loft style, two story ceiling · En suite bath, shared with the Rose Room',
     tags: ['King Bed', 'Loft Style', 'Two Story Ceiling', 'En Suite Bath'],
     desc: ['The boldest room in the house. Hot pink walls rising two stories, open loft space, gold accents, a sculptural king bed, and a bathroom wrapped in pink floral wallpaper. Somewhere between a jewel box and a boudoir.', 'A staircase inside the suite leads up to the Rose Room, and the two rooms share the bathroom. Ideal for friends who want to be close without sharing a bed.'] },
 
-  { id: 'rose', flower: 'Rose', name: 'The Rose Room', badge: 'Two Queens · Loft Above the Flamingo', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 2, price: null } ],
+  { id: 'rose', flower: 'Rose', name: 'The Rose Room', badge: 'Two Queens · Loft Above the Flamingo', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 2, price: 4600 } ],
     look: 'dusk',
     seductive: 'Two queens, crimson pillows, and a staircase down into the Flamingo Suite.',
     amenities: 'Two queen beds · Shared by two women · Shares the Flamingo Suite bath',
     tags: ['Two Queen Beds', 'Shared by Two', 'Loft Level', 'Shared Bath'],
     desc: ['Two queen beds dressed in crimson and blush, up on the loft level above the Flamingo Suite. Your staircase comes down into the Flamingo, and you share its pink wallpapered bathroom.', 'Perfect for friends who want to land in the middle of everything, with a roommate who will be telling you her secrets by Monday night.'] },
 
-  { id: 'palm', flower: 'Palm', name: 'The Palm', badge: 'King · En Suite', status: 'open', price: null, shared: false, look: 'lagoon',
+  { id: 'palm', flower: 'Palm', name: 'The Palm', badge: 'King · En Suite', status: 'open', price: 'inquire', shared: false, look: 'lagoon',
     seductive: 'Jungle green walls and a lit vanity made for getting ready together.',
     amenities: 'King bed · Private en suite bath · Vanity',
     tags: ['King Bed', 'Private En Suite', 'Lit Vanity'],
     desc: ['Vivid green walls, trailing plants, a king bed, and a private en suite with a softly lit vanity. The room everyone will end up getting ready in before dinner.'] },
 
-  { id: 'lagoon', flower: 'Lagoon', name: 'The Lagoon', badge: 'King · Loft Suite', status: 'open', price: null, shared: false, look: 'lagoon',
+  { id: 'lagoon', flower: 'Lagoon', name: 'The Lagoon', badge: 'King · Loft Suite', status: 'open', price: 5700, shared: false, look: 'lagoon',
     seductive: 'Deep blue walls and ceilings that keep going.',
     amenities: 'King bed · Loft style, two story ceiling · En suite bath, shared with the Banyan Room',
     tags: ['King Bed', 'Loft Style', 'Two Story Ceiling', 'En Suite Bath'],
     desc: ['Ocean blue walls under a soaring loft ceiling, a king bed, a reading chair, and a bathroom dressed in floral wallpaper and marble.', 'The Banyan Room sits on the loft level overlooking the Lagoon, and the two rooms share the bathroom. Close enough to hear the laughter, far enough to choose when you join it.'] },
 
-  { id: 'banyan', flower: 'Banyan', name: 'The Banyan Room', badge: 'Two Queens · Loft Above the Lagoon', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 2, price: null } ],
+  { id: 'banyan', flower: 'Banyan', name: 'The Banyan Room', badge: 'Two Queens · Loft Above the Lagoon', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 2, price: 4600 } ],
     look: 'sandy',
     seductive: 'Share it with the sister you met last August. Or the one you are about to meet.',
     amenities: 'Two queen beds · Shared by two women · Shares the Lagoon bath',
     tags: ['Two Queen Beds', 'Shared by Two', 'Loft Level', 'Shared Bath'],
     desc: ['Two queen beds on the loft level, overlooking the Lagoon below. You share the Lagoon&#8217;s floral wallpapered bathroom.', 'Bring a friend from last August, or let Jenn pair you with someone she already knows you will love.'] },
 
-  { id: 'gardenia', flower: 'Gardenia', name: 'The Gardenia', badge: 'Queen · Attached Half Bath', status: 'open', price: null, shared: false, look: 'night',
+  { id: 'gardenia', flower: 'Gardenia', name: 'The Gardenia', badge: 'Queen · Attached Half Bath', status: 'open', price: 5100, shared: false, look: 'night',
     seductive: 'Black, white, and quietly dramatic.',
     amenities: 'Queen bed · Attached half bath · Shower nearby',
     tags: ['Queen Bed', 'Private Room', 'Attached Half Bath', 'Shower Nearby'],
     desc: ['A graphic black and white room with a wall of windows onto the trees and a queen bed, all to yourself.', 'Your own attached half bath for the essentials, with a full shower just down the hall.'] },
 
-  { id: 'mangrove', flower: 'Mangrove', name: 'The Mangrove', badge: 'King · Premium · Bali Guest House', status: 'open', price: null, shared: false, look: 'lagoon',
+  { id: 'mangrove', flower: 'Mangrove', name: 'The Mangrove', badge: 'King · Premium · Bali Guest House', status: 'open', price: 6900, shared: false, look: 'lagoon',
     seductive: 'A private steam shower and doors that open straight onto the porch.',
     amenities: 'King bed · En suite with steam shower · Doors to the porch · Bali inspired guest house',
     tags: ['King Bed', 'Private En Suite', 'Steam Shower', 'Doors to the Porch', 'Bali Guest House'],
     desc: ['The master of the detached Bali inspired guest house. Soft sage walls, linen curtains, a king bed, and a private en suite with its own steam shower.', 'Open the doors and you are on the wraparound porch, a hammock and your coffee waiting, looking out over the pool and the falling water.'] },
 
-  { id: 'seagrape', flower: 'Sea Grape', name: 'The Sea Grape', badge: 'Queen · Bali Guest House', status: 'open', price: null, shared: false, look: 'blush',
+  { id: 'seagrape', flower: 'Sea Grape', name: 'The Sea Grape', badge: 'Queen · Bali Guest House', status: 'open', price: 4900, shared: false, look: 'blush',
     seductive: 'Tucked away for the woman who sleeps best alone.',
     amenities: 'Queen bed · Bath nearby · In the Bali inspired guest house',
     tags: ['Queen Bed', 'Private Room', 'Bali Guest House'],
     desc: ['A calm white room with a soft sage arch, a queen bed, and garden light, inside the detached Bali inspired guest house. The easiest way to have a room of your own, a few steps from the hammocks.'] },
 
-  { id: 'sleepover', flower: 'Sleepover', name: 'The Sleepover', badge: 'Bunk Room · Bali Guest House', status: 'open', price: null, shared: true, spots: [ { label: 'Lower Queen', count: 2, left: 2, price: null }, { label: 'Upper Bunk', count: 2, left: 2, price: null } ],
+  { id: 'sleepover', flower: 'Sleepover', name: 'The Sleepover', badge: 'Bunk Room · Bali Guest House', status: 'open', price: null, shared: true, spots: [ { label: 'Lower Queen', count: 2, left: 2, price: 'inquire' }, { label: 'Upper Bunk', count: 2, left: 2, price: 'inquire' } ],
     look: 'blush',
     seductive: 'Four bunks, four women, zero chance anyone sleeps early.',
     amenities: 'Two bunk beds, lower queens and upper bunks · Up to four women · In the Bali inspired guest house',
@@ -876,6 +876,7 @@ const PALM_SVG = '<svg class="fb-a" viewBox="-300 -330 600 680"><use href="#palm
 function photoList(r) { return [1, 2, 3, 4].map(n => `images/naples-room-${r.id}-${n}.jpg`); }
 
 function priceHTML(r, cls) {
+  if (r.price === 'inquire') return `<span class="${cls} tbd">Inquire</span>`;
   if (r.price == null) return `<span class="${cls} tbd">Pricing from Jenn</span>`;
   return `<span class="${cls}">${fmtPrice(r.price)}<small>${r.shared ? PRICE_NOTE_SHARED : PRICE_NOTE_PRIVATE}</small></span>`;
 }
@@ -886,7 +887,8 @@ function spotLine(sp) {
        : `<span class="spot-left">${sp.left} available</span>`;
 }
 function spotPrice(sp) {
-  return sp.price == null ? '<span class="spot-price tbd">Pricing from Jenn</span>'
+  return sp.price === 'inquire' ? '<span class="spot-price tbd">Inquire</span>'
+       : sp.price == null ? '<span class="spot-price tbd">Pricing from Jenn</span>'
        : `<span class="spot-price">${fmtPrice(sp.price)}<small>per woman</small></span>`;
 }
 function spotsHTML(r, cls) {
