@@ -264,12 +264,15 @@ a { color: inherit; }
 .room-price.tbd { font-style: italic; font-size: 17px; color: var(--cream-dim); }
 .room-view { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--flamingo-soft); white-space: nowrap; border-bottom: 1px solid transparent; transition: border-color 0.3s; padding-bottom: 2px; }
 .room-card:hover .room-view { border-bottom-color: var(--flamingo-soft); }
-.room-card.reserved { opacity: 0.62; }
+.room-card.reserved { opacity: 1; }
+.room-card.reserved .room-name, .room-card.reserved .room-seductive { opacity: 0.85; }
+.reserved-band { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; background: linear-gradient(90deg, rgba(210,58,126,0.95), rgba(236,79,147,0.95)); color: #fff; text-align: center; font-family: 'Lato', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.55em; text-transform: uppercase; padding: 12px 0 12px 0.55em; box-shadow: 0 -6px 20px rgba(0,0,0,0.18); }
+.waitlist { font-style: italic; font-size: 16px; color: var(--flamingo-soft); }
 .room-card.featured { grid-column: span 2; }
 .room-card.featured .slot { height: 300px; }
 .room-card.featured .room-name { font-size: 30px; }
 .slot.blush .card-flower, .slot.sandy .card-flower { color: #FFF4F8; }
-.room-card.reserved .slot > img { filter: grayscale(0.5); }
+.room-card.reserved .slot > img { filter: saturate(0.75) brightness(0.92); }
 .stamp { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--flamingo-soft); border-left: 3px solid var(--flamingo); padding-left: 12px; display: inline-block; }
 .urgency { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--coral); border-left: 3px solid var(--coral); padding-left: 12px; display: inline-block; margin-bottom: 16px; }
 .rooms-cta { text-align: center; margin-top: 64px; }
@@ -922,16 +925,17 @@ function renderRooms() {
         <div class="slot-fallback" aria-hidden="true">${PALM_SVG}</div>
         <img src="${photoList(r)[0]}" alt="" loading="lazy" onerror="this.classList.add('gone')">
         <span class="card-flower" aria-hidden="true">${r.flower}</span>
+        ${reserved ? '<span class="reserved-band">Reserved</span>' : ''}
       </div>
       <div class="room-body">
-        <span class="room-badge">${r.badge}${reserved ? ' · Reserved' : ''}</span>
+        <span class="room-badge">${r.badge}</span>
         <h3 class="room-name">${r.name}</h3>
         <p class="room-seductive">${r.seductive}</p>
         <p class="room-amen">${r.amenities}</p>
         ${r.status === 'few' && !r.spots ? '<span class="urgency">One spot remains</span>' : ''}
         ${r.spots ? spotsHTML(r, 'on-card') : ''}
         <div class="room-foot">
-          ${r.spots ? '<span class="room-price tbd">Priced by the bed</span>' : (reserved ? '<span class="stamp">Reserved</span>' : priceHTML(r, 'room-price'))}
+          ${r.spots ? '<span class="room-price tbd">Priced by the bed</span>' : (reserved ? '<span class="waitlist">Waitlist available</span>' : priceHTML(r, 'room-price'))}
           <span class="room-view">View room &#8594;</span>
         </div>
       </div>
