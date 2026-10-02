@@ -147,6 +147,19 @@ body::after {
 .scene--montana.flicker::before { background: radial-gradient(ellipse 30% 28% at 26% 70%, rgba(255,120,40,0.35), transparent 70%); }
 @keyframes flicker { 0%,100% { opacity: .35; } 20% { opacity: .55; } 35% { opacity: .3; } 55% { opacity: .6; } 75% { opacity: .4; } }
 
+/* ══ OPENING SCENE ══ */
+.scene--open { display: block; overflow: clip; border-top: none; }
+.scene--open .scene-bg img { position: sticky; top: 0; inset: auto; height: 100vh; }
+.scene--open .scene-shade { background: linear-gradient(180deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.3) 22%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.92) 100%); }
+.scene--open .scene-inner { display: block; padding-top: 0; }
+.open-head { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+.open-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(60px, 11vw, 176px); line-height: 0.95; padding: 0 0.08em 0.1em; opacity: 0; animation: focus 2.4s cubic-bezier(.2,.7,.2,1) .3s forwards, foil 14s ease-in-out infinite alternate; }
+@keyframes focus { from { opacity: 0; filter: blur(14px); } to { opacity: 1; filter: blur(0); } }
+.open-head .scroll-cue { bottom: 34px; }
+.scene--open .scene-card { padding-bottom: 20px; }
+@media (max-width: 680px) { .open-head { min-height: 92vh; } }
+@media (prefers-reduced-motion: reduce) { .open-title { opacity: 1; } }
+
 /* ══ YOURS ══ */
 .yours { position: relative; padding: 170px 0; text-align: center; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(201,162,74,0.10), transparent 70%), var(--ink); border-top: 1px solid rgba(201,162,74,0.08); }
 .yours .slate { justify-content: center; }
@@ -292,24 +305,16 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
   </a>
 </nav>
 
-<!-- ══ HERO ══ -->
-<header class="hero" id="top">
-  <canvas class="rain" data-fx="rain" data-density="1"></canvas>
-  <div class="hero-lamp" aria-hidden="true"></div>
-  <div class="hero-reflect" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <h1 class="hero-title foil">Details matter.</h1>
-  </div>
-  <a class="scroll-cue" href="#paris" aria-label="Scroll"></a>
-</header>
-
 <!-- 01 · PARIS  (optional photo: images/bespoke-paris.jpg) -->
-<section class="scene scene--paris" id="paris" aria-label="The Rain">
-  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1697899245842-b75fee1ba17c?w=2400&q=75&auto=format" alt="" loading="lazy" onerror="this.remove()"></div>
-  <canvas class="fx" data-fx="rain" data-density="0.8"></canvas>
+<section class="scene scene--paris scene--open" id="top" aria-label="The Rain">
+  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1697899245842-b75fee1ba17c?w=2400&q=75&auto=format" alt="" fetchpriority="high" onerror="this.remove()"></div>
   <div class="scene-shade"></div>
   <div class="scene-inner">
-    <div class="scene-card fade-up">
+    <div class="open-head">
+      <h1 class="open-title foil">Details matter.</h1>
+      <a class="scroll-cue" href="#story" aria-label="Scroll"></a>
+    </div>
+    <div class="scene-card fade-up" id="story">
       <div class="slate"><span class="slate-no">01</span><span class="slate-place">Paris <i>·</i> 11:40 P.M.</span></div>
       <h3 class="scene-title">The Rain</h3>
       <p class="scene-body">It has been raining in Paris since dinner. A little café in the Sixth Arrondissement. Your wife is at the end of the bar in the black dress you chose, and she has been alone a little longer than she should be. The man who takes the seat beside her speaks to her only in French. She understands more than she lets on.</p>
@@ -360,7 +365,7 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
 
 <!-- 02 · LISBON  (optional photo: images/bespoke-lisbon.jpg) -->
 <section class="scene scene--lisbon scene--right flicker" aria-label="Her Turn">
-  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1663437555931-d385ee04b8d1?w=2400&q=75&auto=format" alt="" loading="lazy" onerror="this.remove()"></div>
+  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1790202689195-f71d37e69df3?w=2400&q=75&auto=format" alt="" loading="lazy" onerror="this.remove()"></div>
   <div class="scene-shade"></div>
   <div class="scene-inner">
     <div class="scene-card fade-up">
