@@ -128,7 +128,7 @@ body::after {
 .scene--right .scene-card { justify-self: end; }
 .slate { display: flex; align-items: baseline; gap: 22px; margin-bottom: 18px; }
 .slate-no { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(84px, 10vw, 140px); line-height: 0.8; color: transparent; -webkit-text-stroke: 1px rgba(201,162,74,0.7); }
-.slate-place { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-light); }
+.slate-place { white-space: nowrap; font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-light); }
 .slate-place i { font-style: normal; color: var(--gold-dim); margin: 0 0.5em; }
 .scene-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(46px, 6vw, 84px); line-height: 1; margin-bottom: 30px; color: var(--bone); text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
 .scene-body { font-size: 22px; line-height: 1.72; color: var(--bone-dim); text-shadow: 0 1px 16px rgba(0,0,0,0.6); }
@@ -199,6 +199,7 @@ body::after {
 .terms h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.1; margin-top: 26px; }
 .term { padding: 32px 0; border-bottom: 1px solid var(--gold-faint); }
 .term:first-child { padding-top: 0; }
+.term:last-child h3 { margin-bottom: 0; }
 .term h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 27px; color: var(--bone); margin-bottom: 10px; }
 .term p { font-size: 20px; line-height: 1.66; color: var(--bone-dim); }
 
@@ -281,6 +282,7 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
   .scene-body { font-size: 20px; }
   .detail { grid-template-columns: 1fr; gap: 12px; }
   .slate { gap: 14px; }
+  .slate-place { font-size: 10px; letter-spacing: 0.26em; }
   .steps { grid-template-columns: 1fr; gap: 54px; }
   .step, .step:first-child { border-left: none; padding: 0; }
   .row { grid-template-columns: 1fr; }
@@ -308,7 +310,7 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
 
 <!-- 01 · PARIS  (optional photo: images/bespoke-paris.jpg) -->
 <section class="scene scene--paris scene--open" id="top" aria-label="The Rain">
-  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1697899245842-b75fee1ba17c?w=2400&q=75&auto=format" alt="" fetchpriority="high" onerror="this.remove()"><canvas class="fx open-rain" data-fx="rain" data-density="1.1" data-bright="2.4"></canvas></div>
+  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1697899245842-b75fee1ba17c?w=2400&q=75&auto=format" alt="" fetchpriority="high" onerror="this.remove()"><canvas class="fx open-rain" data-fx="rain" data-density="1" data-bright="1.25"></canvas></div>
   <div class="scene-shade"></div>
   <div class="scene-inner">
     <div class="open-head">
@@ -495,7 +497,6 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
         </div>
         <div class="term fade-up">
           <h3>Some requests we decline.</h3>
-          <p>Fewer than you would think.</p>
         </div>
       </div>
     </div>
