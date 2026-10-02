@@ -164,9 +164,9 @@ body::after {
 .ledger-list li:first-child { border-top: 1px solid var(--gold-faint); }
 .ledger-list .n { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.3em; color: var(--gold); }
 .ledger-list .t { font-family: 'Cormorant Garamond', serif; font-size: clamp(23px, 2.3vw, 30px); line-height: 1.35; color: var(--bone); }
-.ledger-list .t em { color: var(--gold-light); }
+.ledger-list .t em, .coda span { background: var(--foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.08em; animation: foil 14s ease-in-out infinite alternate; }
 .coda { margin-top: 70px; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.5; color: var(--bone); }
-.coda span { color: var(--gold-light); }
+
 
 /* ══ PROCESS ══ */
 .process { padding: 150px 0; background: linear-gradient(180deg, var(--noir) 0%, var(--ink) 100%); }
@@ -313,7 +313,7 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
     <div class="scene-card fade-up">
       <div class="slate"><span class="slate-no">01</span><span class="slate-place">Paris <i>·</i> 11:40 P.M.</span></div>
       <h3 class="scene-title">The Rain</h3>
-      <p class="scene-body">It has been raining in Paris since dinner. She is at the end of the bar in a little café in the Sixth Arrondissement, in the black dress you chose, alone, a little longer than she should be. The man who takes the seat beside her speaks to her only in French. She understands more than she lets on.</p>
+      <p class="scene-body">It has been raining in Paris since dinner. A little café in the Sixth Arrondissement. Your wife is at the end of the bar in the black dress you chose, and she has been alone a little longer than she should be. The man who takes the seat beside her speaks to her only in French. She understands more than she lets on.</p>
       <p class="scene-body">You are in the corner banquette. Close enough to see her laugh. Too far to hear what made her. The bartender already knows your drink.</p>
       <div class="detail"><span class="detail-label">The Detail</span><p>We can't promise the rain. So we hold the room for three nights.</p></div>
     </div>
@@ -382,9 +382,9 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
     <div class="scene-card fade-up">
       <div class="slate"><span class="slate-no">03</span><span class="slate-place">New York <i>·</i> 9:00 P.M.</span></div>
       <h3 class="scene-title">Strangers</h3>
-      <p class="scene-body">A courier delivers two sealed envelopes. Inside each, a name, a profession, a past, and the address of a hotel bar. Neither of you reads the other's.</p>
-      <p class="scene-body">At nine o'clock someone sits down beside you and asks if the seat is taken. You have never met. You will spend the whole night finding out who they are, and you will not break character until morning.</p>
-      <div class="detail"><span class="detail-label">The Detail</span><p>The two stories are written to collide. One of them holds a secret about the other.</p></div>
+      <p class="scene-body">A courier delivers two sealed envelopes, one for each of you. Inside each, a new name, a past, and an address somewhere in the city. Neither of you reads the other's.</p>
+      <p class="scene-body">At nine o'clock you leave the hotel separately. Someone is waiting for each of you. Neither of you knows where the other has gone, and neither of you breaks character until you come back together, as husband and wife, in the morning.</p>
+      <div class="detail"><span class="detail-label">The Detail</span><p>Breakfast is set for two. Who tells their story first is the one detail we leave to you.</p></div>
     </div>
   </div>
 </section>
@@ -412,7 +412,7 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
       <div class="ledger-head fade-up">
         <p class="eyebrow">Our Only Rule</p>
         <h2 class="foil">Details<br>matter.</h2>
-        <p>Every fantasy is made or broken on the details.</p>
+        <p>A fantasy lives or dies in the details.</p>
       </div>
       <div>
         <ol class="ledger-list">
