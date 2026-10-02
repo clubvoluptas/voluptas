@@ -149,10 +149,10 @@ body::after {
 
 /* ══ OPENING SCENE ══ */
 .scene--open { display: block; overflow: clip; border-top: none; }
-.scene--open .scene-bg img { position: sticky; top: 0; inset: auto; height: 100vh; }
+.scene--open .scene-bg img { position: sticky; inset: auto; top: 0; height: 100vh; }
 .scene--open .scene-shade { background: linear-gradient(180deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.3) 22%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.92) 100%); }
 .scene--open .scene-inner { display: block; padding-top: 0; }
-.open-head { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+.open-head { filter: drop-shadow(0 3px 28px rgba(0,0,0,0.65)); position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
 .open-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(60px, 11vw, 176px); line-height: 0.95; padding: 0 0.08em 0.1em; opacity: 0; animation: focus 2.4s cubic-bezier(.2,.7,.2,1) .3s forwards, foil 14s ease-in-out infinite alternate; }
 @keyframes focus { from { opacity: 0; filter: blur(14px); } to { opacity: 1; filter: blur(0); } }
 .open-head .scroll-cue { bottom: 34px; }
