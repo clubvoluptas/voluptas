@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bespoke Experiences | Voluptas</title>
+<meta name="description" content="Private fantasies, produced anywhere in the world, for one couple at a time. Details matter.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A0908">
+<link rel="icon" type="image/png" href="images/Favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & ROOT ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+:root {
+  --ink:        #0A0908;
+  --noir:       #110E0C;
+  --noir-2:     #17120F;
+  --smoke:      #241C17;
+  --gold:       #C9A24A;
+  --gold-light: #E6C97A;
+  --gold-dim:   rgba(201,162,74,0.35);
+  --gold-faint: rgba(201,162,74,0.14);
+  --bone:       #EDE6DA;
+  --bone-dim:   rgba(237,230,218,0.74);
+  --bone-faint: rgba(237,230,218,0.42);
+  --wine:       #3E0C16;
+  --foil: linear-gradient(100deg, #7E5F25 0%, #D9B866 16%, #F3E1A6 30%, #B8913F 46%, #EBD08A 62%, #9C7731 80%, #E2C47A 100%);
+}
+
+html, body { overflow-x: clip; }
+body { font-family: 'Cormorant Garamond', Georgia, serif; background: var(--ink); color: var(--bone); }
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+::selection { background: rgba(201,162,74,0.35); color: var(--bone); }
+
+/* film grain over everything */
+body::after {
+  content: ""; position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-3%,2%)} 40%{transform:translate(2%,-3%)} 60%{transform:translate(-2%,-1%)} 80%{transform:translate(3%,3%)} 100%{transform:translate(0,0)} }
+
+.foil {
+  background: var(--foil); background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: foil 14s ease-in-out infinite alternate;
+}
+@keyframes foil { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+.eyebrow { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.46em; text-transform: uppercase; color: var(--gold); }
+.eyebrow i { font-style: normal; color: var(--gold-dim); margin: 0 0.6em; }
+.rule { width: 56px; height: 1px; background: var(--gold); opacity: 0.7; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.wrap--narrow { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+/* fade up */
+.fade-up { opacity: 0; transform: translateY(26px); transition: opacity 1s ease, transform 1s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: .12s; } .d2 { transition-delay: .24s; } .d3 { transition-delay: .36s; } .d4 { transition-delay: .48s; }
+
+/* ══ NAV ══ */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 26px 48px; transition: background .5s ease, padding .5s ease; }
+.nav.scrolled { background: rgba(10,9,8,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 16px 48px; border-bottom: 1px solid var(--gold-faint); }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-logo { width: 34px; height: 34px; object-fit: contain; }
+.brand-word { font-family: 'Cinzel', serif; font-weight: 400; font-size: 13px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--bone); }
+.nav-cta { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold-light); border: 1px solid var(--gold-dim); padding: 12px 22px; transition: background .4s ease, color .4s ease, border-color .4s ease; }
+.nav-cta:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+/* ══ HERO ══ */
+.hero { position: relative; height: 100vh; min-height: 680px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 45% at 78% 18%, rgba(226,170,90,0.16), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 15% 85%, rgba(62,12,22,0.55), transparent 70%),
+    linear-gradient(180deg, #0D0C0E 0%, #0A0908 60%, #0A0908 100%);
+}
+.hero canvas.rain { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.hero-lamp { position: absolute; right: 18%; top: 14%; width: 9px; height: 9px; border-radius: 50%; background: #FFE2A8; box-shadow: 0 0 40px 18px rgba(255,200,120,0.22), 0 0 140px 60px rgba(255,190,110,0.08); z-index: 0; animation: lamp 7s ease-in-out infinite; }
+@keyframes lamp { 0%,100% { opacity: .85; } 47% { opacity: .85; } 50% { opacity: .55; } 53% { opacity: .9; } }
+.hero-reflect { position: absolute; right: calc(18% - 2px); top: 62%; width: 14px; height: 30%; background: linear-gradient(to bottom, rgba(255,205,130,0.18), transparent); filter: blur(6px); z-index: 0; }
+.hero-inner { position: relative; z-index: 2; padding: 0 24px; }
+.hero .eyebrow { opacity: 0; animation: rise 1.6s ease .3s forwards; }
+.hero-title { margin: 0 !important; font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(64px, 12.5vw, 196px); line-height: 0.95; letter-spacing: -0.01em; margin: 34px 0 40px; padding: 0 0.08em 0.08em; opacity: 0; filter: blur(14px); animation: focus 2.6s cubic-bezier(.2,.7,.2,1) .6s forwards, foil 14s ease-in-out infinite alternate; }
+@keyframes focus { to { opacity: 1; filter: blur(0); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero .rule { margin: 0 auto 30px; opacity: 0; animation: rise 1.4s ease 1.6s forwards; }
+.hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(20px, 2.3vw, 27px); line-height: 1.6; color: var(--bone-dim); max-width: 640px; margin: 0 auto; opacity: 0; animation: rise 1.6s ease 1.9s forwards; }
+.hero-sub b { font-weight: 400; color: var(--bone); }
+.scroll-cue { position: absolute; bottom: 30px; left: 50%; z-index: 2; width: 1px; height: 58px; background: linear-gradient(to bottom, rgba(201,162,74,0), rgba(201,162,74,0.9)); animation: cue 2.6s ease-in-out infinite; }
+@keyframes cue { 0%,100% { opacity: .25; transform: translate(-50%,-6px); } 50% { opacity: 1; transform: translate(-50%,4px); } }
+
+/* ══ ACCESS ══ */
+.access { position: relative; padding: 150px 0 140px; background: linear-gradient(180deg, var(--ink) 0%, var(--noir) 100%); }
+.access-head { max-width: 720px; margin: 0 auto; text-align: center; }
+.access h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(38px, 4.6vw, 64px); line-height: 1.08; margin-top: 26px; }
+.access-copy p { font-size: 22px; line-height: 1.7; color: var(--bone-dim); margin-bottom: 26px; }
+.access-copy p:first-child { font-size: 27px; line-height: 1.5; color: var(--bone); font-style: italic; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 110px; border-top: 1px solid var(--gold-faint); }
+.pillar { padding: 46px 40px 10px 0; }
+.pillar + .pillar { padding-left: 40px; border-left: 1px solid var(--gold-faint); }
+.pillar-n { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold); }
+.pillar h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 30px; margin: 18px 0 16px; color: var(--bone); }
+.pillar p { font-size: 19px; line-height: 1.65; color: var(--bone-dim); }
+
+/* ══ SCENES INTRO ══ */
+.scenes-intro { padding: 150px 0 120px; text-align: center; background: var(--noir); }
+.scenes-intro h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(40px, 5.4vw, 76px); line-height: 1.08; margin: 26px auto 30px; max-width: 900px; }
+.scenes-intro p:not(.eyebrow):not(.invest-figure) { font-size: 23px; font-style: italic; color: var(--bone-dim); max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+/* ══ SCENES ══ */
+.scene { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; border-top: 1px solid rgba(201,162,74,0.08); }
+.scene-bg { position: absolute; inset: 0; z-index: -3; }
+.scene-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7) contrast(1.05) brightness(0.62); }
+.scene canvas.fx { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+.scene-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.1) 30%, rgba(10,9,8,0.55) 65%, rgba(10,9,8,0.94) 100%); }
+.scene-inner { width: 100%; max-width: 1160px; margin: 0 auto; padding: 140px 48px 120px; display: grid; grid-template-columns: 1fr; }
+.scene-card { max-width: 600px; }
+.scene--right .scene-card { justify-self: end; }
+.slate { display: flex; align-items: baseline; gap: 22px; margin-bottom: 18px; }
+.slate-no { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(84px, 10vw, 140px); line-height: 0.8; color: transparent; -webkit-text-stroke: 1px rgba(201,162,74,0.7); }
+.slate-place { font-family: 'Lato', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-light); }
+.slate-place i { font-style: normal; color: var(--gold-dim); margin: 0 0.5em; }
+.scene-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(46px, 6vw, 84px); line-height: 1; margin-bottom: 30px; color: var(--bone); text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
+.scene-body { font-size: 22px; line-height: 1.72; color: var(--bone-dim); text-shadow: 0 1px 16px rgba(0,0,0,0.6); }
+.scene-body + .scene-body { margin-top: 18px; }
+.detail { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--gold-dim); display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: baseline; }
+.detail-label { font-family: 'Lato', sans-serif; font-size: 9px; letter-spacing: 0.44em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+.detail p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 21px; line-height: 1.5; color: var(--gold-light); }
+
+/* per-scene atmospheres (photos optional: drop images/bespoke-*.jpg into the repo) */
+.scene--paris   { background: radial-gradient(ellipse 40% 30% at 22% 30%, rgba(255,196,120,0.20), transparent 70%), radial-gradient(ellipse 70% 50% at 70% 100%, rgba(60,80,110,0.35), transparent 70%), linear-gradient(180deg, #0B0E13 0%, #10141A 50%, #0A0908 100%); }
+.scene--lisbon  { background: radial-gradient(ellipse 30% 26% at 72% 42%, rgba(255,170,90,0.26), transparent 70%), radial-gradient(ellipse 60% 50% at 30% 80%, rgba(120,30,50,0.40), transparent 70%), linear-gradient(180deg, #150C0C 0%, #120A0B 60%, #0A0908 100%); }
+.scene--ny      { background: radial-gradient(ellipse 35% 40% at 80% 35%, rgba(170,25,40,0.32), transparent 70%), radial-gradient(ellipse 30% 30% at 20% 25%, rgba(230,190,120,0.12), transparent 70%), linear-gradient(180deg, #0E0A0C 0%, #0B090A 100%); }
+.scene--montana { background: radial-gradient(ellipse 38% 34% at 26% 70%, rgba(255,130,50,0.26), transparent 70%), radial-gradient(ellipse 70% 40% at 70% 10%, rgba(120,150,190,0.18), transparent 70%), linear-gradient(180deg, #0D1016 0%, #0D0C0C 55%, #0A0908 100%); }
+.flicker::before { content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none; background: inherit; animation: flicker 5s ease-in-out infinite; mix-blend-mode: screen; opacity: 0; }
+.scene--lisbon.flicker::before { background: radial-gradient(ellipse 22% 20% at 72% 42%, rgba(255,170,90,0.35), transparent 70%); }
+.scene--montana.flicker::before { background: radial-gradient(ellipse 30% 28% at 26% 70%, rgba(255,120,40,0.35), transparent 70%); }
+@keyframes flicker { 0%,100% { opacity: .35; } 20% { opacity: .55; } 35% { opacity: .3; } 55% { opacity: .6; } 75% { opacity: .4; } }
+
+/* ══ YOURS ══ */
+.yours { position: relative; padding: 170px 0; text-align: center; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(201,162,74,0.10), transparent 70%), var(--ink); border-top: 1px solid rgba(201,162,74,0.08); }
+.yours .slate { justify-content: center; }
+.yours h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(44px, 6vw, 88px); line-height: 1.05; margin: 10px auto 30px; max-width: 900px; }
+.yours p:not(.eyebrow):not(.invest-figure) { font-size: 23px; font-style: italic; color: var(--bone-dim); line-height: 1.6; max-width: 540px; margin: 0 auto; }
+
+/* ══ LEDGER ══ */
+.ledger { padding: 160px 0; background: var(--noir); }
+.ledger-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 90px; align-items: start; }
+.ledger-head { position: sticky; top: 140px; }
+.ledger-head h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(56px, 7.4vw, 108px); line-height: 0.98; margin: 26px 0 30px; padding-bottom: 0.08em; }
+.ledger-head p:not(.eyebrow):not(.invest-figure) { font-size: 21px; line-height: 1.7; color: var(--bone-dim); max-width: 380px; }
+.ledger-list { list-style: none; }
+.ledger-list li { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: baseline; padding: 30px 0; border-bottom: 1px solid var(--gold-faint); }
+.ledger-list li:first-child { border-top: 1px solid var(--gold-faint); }
+.ledger-list .n { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.3em; color: var(--gold); }
+.ledger-list .t { font-family: 'Cormorant Garamond', serif; font-size: clamp(23px, 2.3vw, 30px); line-height: 1.35; color: var(--bone); }
+.ledger-list .t em { color: var(--gold-light); }
+.coda { margin-top: 70px; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.5; color: var(--bone); }
+.coda span { color: var(--gold-light); }
+
+/* ══ PROCESS ══ */
+.process { padding: 150px 0; background: linear-gradient(180deg, var(--noir) 0%, var(--ink) 100%); }
+.process-head { text-align: center; margin-bottom: 100px; }
+.process-head h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(38px, 4.8vw, 66px); margin-top: 26px; line-height: 1.1; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.step { padding: 0 34px; border-left: 1px solid var(--gold-faint); }
+.step:first-child { border-left: none; padding-left: 0; }
+.step-roman { font-family: 'Playfair Display', serif; font-style: italic; font-size: 54px; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(201,162,74,0.75); }
+.step h3 { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-light); margin: 26px 0 18px; }
+.step p { font-size: 19px; line-height: 1.68; color: var(--bone-dim); }
+
+/* ══ TERMS ══ */
+.terms { padding: 150px 0 130px; background: var(--ink); }
+.terms-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 90px; }
+.terms h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(38px, 4.4vw, 60px); line-height: 1.1; margin-top: 26px; }
+.term { padding: 32px 0; border-bottom: 1px solid var(--gold-faint); }
+.term:first-child { padding-top: 0; }
+.term h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 27px; color: var(--bone); margin-bottom: 10px; }
+.term p { font-size: 20px; line-height: 1.66; color: var(--bone-dim); }
+
+/* ══ INVESTMENT ══ */
+.invest { position: relative; padding: 140px 0; text-align: center; background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(62,12,22,0.55), transparent 75%), var(--ink); border-top: 1px solid rgba(201,162,74,0.08); border-bottom: 1px solid rgba(201,162,74,0.08); }
+.invest-figure { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(54px, 8vw, 116px); line-height: 1; margin: 30px 0 34px; padding-bottom: 0.06em; }
+.invest-figure small { display: block; font-family: 'Lato', sans-serif; font-style: normal; font-size: 10px; letter-spacing: 0.46em; text-transform: uppercase; color: var(--bone-faint); margin-bottom: 22px; -webkit-text-fill-color: var(--bone-faint); }
+.invest p:not(.eyebrow):not(.invest-figure) { font-size: 22px; line-height: 1.7; color: var(--bone-dim); max-width: 600px; margin: 0 auto; }
+.invest p:not(.eyebrow):not(.invest-figure) + p:not(.eyebrow):not(.invest-figure) { margin-top: 14px; font-style: italic; color: var(--bone); }
+
+/* ══ INQUIRE ══ */
+.inquire { padding: 160px 0 150px; background: var(--noir); }
+.inquire-head { text-align: center; margin-bottom: 80px; }
+.inquire-head h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(42px, 5.6vw, 80px); line-height: 1.05; margin: 26px 0 22px; }
+.inquire-head p:not(.eyebrow):not(.invest-figure) { font-size: 23px; font-style: italic; color: var(--bone-dim); }
+form { max-width: 760px; margin: 0 auto; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+.field { margin-bottom: 44px; }
+.field label, .field .label { display: block; font-family: 'Lato', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.field input, .field textarea, .field select {
+  width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(237,230,218,0.22); color: var(--bone);
+  font-family: 'Cormorant Garamond', serif; font-size: 23px; padding: 6px 0 12px; outline: none; border-radius: 0; transition: border-color .4s ease;
+  -webkit-appearance: none; appearance: none;
+}
+.field select { cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 12px) 55%, calc(100% - 6px) 55%; background-size: 6px 6px; background-repeat: no-repeat; }
+.field select option { background: var(--noir); color: var(--bone); }
+.field textarea { min-height: 170px; resize: vertical; line-height: 1.6; font-style: italic; }
+.field input::placeholder, .field textarea::placeholder { color: rgba(237,230,218,0.3); font-style: italic; }
+.field input:focus, .field textarea:focus, .field select:focus { border-bottom-color: var(--gold); }
+.choices { display: flex; flex-wrap: wrap; gap: 12px; }
+.field .choice { position: relative; display: inline-block; margin: 0; font: inherit; letter-spacing: normal; text-transform: none; color: inherit; }
+.choice input { position: absolute; left: 0; top: 0; opacity: 0; pointer-events: none; }
+.choice span { display: inline-block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; padding: 10px 22px; border: 1px solid rgba(237,230,218,0.2); color: var(--bone-dim); cursor: pointer; transition: all .35s ease; }
+.choice input:checked + span { border-color: var(--gold); color: var(--ink); background: var(--gold); }
+.choice input:focus-visible + span { outline: 1px solid var(--gold-light); outline-offset: 3px; }
+.hint { font-size: 17px; font-style: italic; color: var(--bone-faint); margin-top: 12px; line-height: 1.5; }
+.submit-wrap { text-align: center; margin-top: 30px; }
+.submit { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.44em; text-transform: uppercase; color: var(--ink); background: var(--foil); background-size: 200% 100%; border: none; padding: 22px 54px; cursor: pointer; transition: background-position .8s ease, transform .3s ease; }
+.submit:hover { background-position: 100% 50%; transform: translateY(-1px); }
+.fineprint { margin-top: 26px; font-size: 16px; font-style: italic; color: var(--bone-faint); }
+.sent { display: none; text-align: center; max-width: 620px; margin: 0 auto; }
+.sent h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 44px; margin-bottom: 20px; }
+.sent p:not(.eyebrow):not(.invest-figure) { font-size: 21px; line-height: 1.7; color: var(--bone-dim); }
+.sent a { color: var(--gold-light); border-bottom: 1px solid var(--gold-dim); }
+.inquire.done form { display: none; }
+.inquire.done .sent { display: block; }
+
+.dm { max-width: 640px; margin: 0 auto; text-align: center; }
+.dm-lead { font-size: 23px; line-height: 1.7; color: var(--bone-dim); margin-bottom: 46px; }
+.dm .submit { display: inline-block; }
+.dm-note { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--gold-faint); font-size: 18px; font-style: italic; line-height: 1.6; color: var(--bone-faint); }
+
+/* ══ FOOTER ══ */
+footer { background: #070606; padding: 80px 0 70px; text-align: center; border-top: 1px solid var(--gold-faint); }
+.footer-logo { width: 64px; height: 64px; object-fit: contain; margin: 0 auto; }
+.footer-word { font-family: 'Cinzel', serif; font-weight: 400; font-size: 15px; letter-spacing: 0.5em; text-transform: uppercase; margin: 22px 0 14px; color: var(--bone); padding-left: 0.6em; }
+.footer-sub { font-style: italic; font-size: 16px; color: var(--bone-faint); letter-spacing: 0.04em; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 980px) {
+  .access-head, .ledger-grid, .terms-grid { grid-template-columns: 1fr; gap: 48px; }
+  .ledger-head { position: static; }
+  .pillars { grid-template-columns: 1fr; margin-top: 70px; }
+  .pillar, .pillar + .pillar { padding: 38px 0 30px; border-left: none; }
+  .pillar + .pillar { border-top: 1px solid var(--gold-faint); }
+  .steps { grid-template-columns: 1fr 1fr; gap: 64px 0; }
+  .step:nth-child(3) { border-left: none; padding-left: 0; }
+}
+@media (max-width: 680px) {
+  .wrap, .wrap--narrow { padding: 0 22px; }
+  .nav, .nav.scrolled { padding: 16px 20px; }
+  .brand-word { display: none; }
+  .nav-cta { padding: 10px 16px; letter-spacing: 0.3em; }
+  .hero-sub br { display: none; }
+  .access, .scenes-intro, .ledger, .process, .terms, .inquire { padding-top: 104px; padding-bottom: 100px; }
+  .access-copy p { font-size: 20px; } .access-copy p:first-child { font-size: 23px; }
+  .scene { min-height: 92vh; }
+  .scene-inner { padding: 120px 22px 80px; }
+  .scene-body { font-size: 20px; }
+  .detail { grid-template-columns: 1fr; gap: 12px; }
+  .slate { gap: 14px; }
+  .steps { grid-template-columns: 1fr; gap: 54px; }
+  .step, .step:first-child { border-left: none; padding: 0; }
+  .row { grid-template-columns: 1fr; }
+  .yours, .invest { padding: 110px 0; }
+  .eyebrow { letter-spacing: 0.34em; font-size: 10px; }
+  .spot { width: 90vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01s !important; animation-iteration-count: 1 !important; transition: none !important; }
+  .fade-up { opacity: 1; transform: none; }
+  .hero-title, .hero .eyebrow, .hero .rule, .hero-sub { opacity: 1; filter: none; }
+  body::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Voluptas">
+    <img class="brand-logo" src="images/Logo-web.png" alt="Voluptas">
+    <span class="brand-word">Voluptas</span>
+  </a>
+  <a class="nav-cta" href="#inquire">Begin a Commission</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="hero" id="top">
+  <canvas class="rain" data-fx="rain" data-density="1"></canvas>
+  <div class="hero-lamp" aria-hidden="true"></div>
+  <div class="hero-reflect" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title foil">Details matter.</h1>
+  </div>
+  <a class="scroll-cue" href="#paris" aria-label="Scroll"></a>
+</header>
+
+<!-- 01 · PARIS  (optional photo: images/bespoke-paris.jpg) -->
+<section class="scene scene--paris" id="paris" aria-label="The Rain">
+  <div class="scene-bg"><img src="images/bespoke-paris.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+  <canvas class="fx" data-fx="rain" data-density="0.8"></canvas>
+  <div class="scene-shade"></div>
+  <div class="scene-inner">
+    <div class="scene-card fade-up">
+      <div class="slate"><span class="slate-no">01</span><span class="slate-place">Paris <i>·</i> 11:40 P.M.</span></div>
+      <h3 class="scene-title">The Rain</h3>
+      <p class="scene-body">It has been raining since dinner. She is at the end of the bar in the black dress you chose, alone, a little longer than she should be. The man who takes the seat beside her speaks to her only in French. She understands more than she lets on.</p>
+      <p class="scene-body">You are in the corner banquette. Close enough to see her laugh. Too far to hear what made her. The bartender already knows your drink.</p>
+      <div class="detail"><span class="detail-label">The Detail</span><p>We can't promise the rain. So we hold the room for three nights.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACCESS ══ -->
+<section class="access" id="access">
+  <div class="wrap">
+    <div class="access-head">
+      <div class="access-copy">
+        <p class="fade-up d1">Anyone can book the suite. Very few can fill it.</p>
+        <p class="fade-up d2">Voluptas has spent years inside a private world of couples, hosts, artists, and houses that do not advertise. Bespoke Experiences opens that world to one couple at a time, and builds a single night, or an entire week, around the two of you. Anywhere in the world.</p>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar fade-up">
+        <span class="pillar-n">I</span>
+        <h3>The Circle</h3>
+        <p>A private network of vetted, discreet, and very attractive adults across many cities. Every introduction is mutual. Everyone you meet has chosen to be there.</p>
+      </div>
+      <div class="pillar fade-up d1">
+        <span class="pillar-n">II</span>
+        <h3>The Rooms</h3>
+        <p>Private residences, galleries after closing, villas that never rent, suites held under names other than yours. Places you won't find on any map.</p>
+      </div>
+      <div class="pillar fade-up d2">
+        <span class="pillar-n">III</span>
+        <h3>The Hand</h3>
+        <p>Wardrobe, scent, music, cars, staff, and timing. The invisible production that makes a night feel as though it simply happened.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCENES INTRO ══ -->
+<section class="scenes-intro" id="scenes">
+  <div class="wrap">
+    <p class="eyebrow fade-up">The Experiences</p>
+    <h2 class="fade-up d1">Three more nights,<br>already imagined.</h2>
+    <p class="fade-up d2">A few of the things we have been asked for. Yours will look like none of them. That is the point.</p>
+  </div>
+</section>
+
+<!-- 02 · LISBON  (optional photo: images/bespoke-lisbon.jpg) -->
+<section class="scene scene--lisbon scene--right flicker" aria-label="Her Turn">
+  <div class="scene-bg"><img src="images/bespoke-lisbon.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+  <div class="scene-shade"></div>
+  <div class="scene-inner">
+    <div class="scene-card fade-up">
+      <div class="slate"><span class="slate-no">02</span><span class="slate-place">Lisbon <i>·</i> After Dinner</span></div>
+      <h3 class="scene-title">Her Turn</h3>
+      <p class="scene-body">She has wondered about a woman for years. She may never have said it out loud, not even to you.</p>
+      <p class="scene-body">An apartment above the river. Candles, open windows, a record she loves already playing. The woman waiting there is elegant, unhurried, and entirely sure of herself. You may stay in the room, or you may hear about it later. That part is hers to decide.</p>
+      <div class="detail"><span class="detail-label">The Detail</span><p>She learns the woman's first name at the door. Her last name, never.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · NEW YORK  (optional photo: images/bespoke-newyork.jpg) -->
+<section class="scene scene--ny" aria-label="Strangers">
+  <div class="scene-bg"><img src="images/bespoke-newyork.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+  <div class="scene-shade"></div>
+  <div class="scene-inner">
+    <div class="scene-card fade-up">
+      <div class="slate"><span class="slate-no">03</span><span class="slate-place">New York <i>·</i> 9:00 P.M.</span></div>
+      <h3 class="scene-title">Strangers</h3>
+      <p class="scene-body">A courier delivers two sealed envelopes. Inside each, a name, a profession, a past, and the address of a hotel bar. Neither of you reads the other's.</p>
+      <p class="scene-body">At nine o'clock someone sits down beside you and asks if the seat is taken. You have never met. You will spend the whole night finding out who they are, and you will not break character until morning.</p>
+      <div class="detail"><span class="detail-label">The Detail</span><p>The two stories are written to collide. One of them holds a secret about the other.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · MONTANA  (optional photo: images/bespoke-montana.jpg) -->
+<section class="scene scene--montana scene--right flicker" aria-label="The Stranger">
+  <div class="scene-bg"><img src="images/bespoke-montana.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+  <canvas class="fx" data-fx="snow"></canvas>
+  <div class="scene-shade"></div>
+  <div class="scene-inner">
+    <div class="scene-card fade-up">
+      <div class="slate"><span class="slate-no">04</span><span class="slate-place">Montana <i>·</i> Snowbound</span></div>
+      <h3 class="scene-title">The Stranger</h3>
+      <p class="scene-body">A cabin above a frozen lake. A fire already lit, two feet of fresh snow, and the road closed until morning.</p>
+      <p class="scene-body">Near midnight, a knock. His truck went into the ditch a mile down. He is cold, polite, and staying the night. There is only one fire.</p>
+      <div class="detail"><span class="detail-label">The Detail</span><p>The snow is real. The ditch is not.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · YOURS -->
+<section class="yours">
+  <div class="wrap">
+    <div class="slate fade-up"><span class="slate-no">05</span><span class="slate-place">Anywhere <i>·</i> Anytime</span></div>
+    <h3 class="fade-up d1">The one you have never<br>said out loud.</h3>
+    <p class="fade-up d2">Every experience on this page began as a single sentence from a couple like you. Bring us yours.</p>
+  </div>
+</section>
+
+<!-- ══ LEDGER ══ -->
+<section class="ledger" id="details">
+  <div class="wrap">
+    <div class="ledger-grid">
+      <div class="ledger-head fade-up">
+        <p class="eyebrow">Our Only Rule</p>
+        <h2 class="foil">Details<br>matter.</h2>
+        <p>Fantasies rarely fall apart on the big things. They fall apart on the small ones. The small ones are the whole job.</p>
+      </div>
+      <div>
+        <ol class="ledger-list">
+          <li class="fade-up"><span class="n">01</span><span class="t">The song that is playing <em>as she walks in.</em></span></li>
+          <li class="fade-up"><span class="n">02</span><span class="t">Which side of the bar she sits on, <em>and why.</em></span></li>
+          <li class="fade-up"><span class="n">03</span><span class="t">The name on the reservation. <em>It isn't yours.</em></span></li>
+          <li class="fade-up"><span class="n">04</span><span class="t">The perfume on the pillow. <em>Not hers.</em></span></li>
+          <li class="fade-up"><span class="n">05</span><span class="t">The driver who never <em>looks in the mirror.</em></span></li>
+          <li class="fade-up"><span class="n">06</span><span class="t">How cold the champagne is <em>at one in the morning.</em></span></li>
+          <li class="fade-up"><span class="n">07</span><span class="t">A note on the pillow, in handwriting <em>she doesn't recognize.</em></span></li>
+          <li class="fade-up"><span class="n">08</span><span class="t">The exit, planned <em>before the entrance.</em></span></li>
+        </ol>
+        <p class="coda fade-up">You will notice almost none of this. <span>That is how you'll know it worked.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="process-head fade-up">
+      <p class="eyebrow">The Commission</p>
+      <h2>How it unfolds.</h2>
+    </div>
+    <div class="steps">
+      <div class="step fade-up">
+        <span class="step-roman">I</span>
+        <h3>The Conversation</h3>
+        <p>A private call with the two of you, together and then, if you wish, apart. We listen to what you say, and to what you keep circling.</p>
+      </div>
+      <div class="step fade-up d1">
+        <span class="step-roman">II</span>
+        <h3>The Design</h3>
+        <p>We write the experience as one confidential document. Every place, every person, every minute that matters. Some couples read every line. Some want one of them to read nothing. We design for both.</p>
+      </div>
+      <div class="step fade-up d2">
+        <span class="step-roman">III</span>
+        <h3>The Night</h3>
+        <p>We are there, unseen, until the moment we are no longer needed. Then we are gone.</p>
+      </div>
+      <div class="step fade-up d3">
+        <span class="step-roman">IV</span>
+        <h3>The Morning</h3>
+        <p>Breakfast for two. A car when you want it. Nothing left behind except what you choose to keep.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TERMS ══ -->
+<section class="terms" id="terms">
+  <div class="wrap">
+    <div class="terms-grid">
+      <div class="fade-up">
+        <p class="eyebrow">The Terms We Keep</p>
+        <h2>The things we<br>never leave<br>to chance.</h2>
+      </div>
+      <div>
+        <div class="term fade-up">
+          <h3>Everyone chooses to be there.</h3>
+          <p>Every introduction is mutual and every guest is vetted. Desire is the only reason anyone walks through the door.</p>
+        </div>
+        <div class="term fade-up">
+          <h3>One word ends it.</h3>
+          <p>Either of you, at any moment, for any reason, without explanation. The car is always outside.</p>
+        </div>
+        <div class="term fade-up">
+          <h3>You both agree to the shape of the night.</h3>
+          <p>Only the details are a surprise.</p>
+        </div>
+        <div class="term fade-up">
+          <h3>Discretion runs both ways.</h3>
+          <p>Mutual nondisclosure. No photographs unless you commission them. Nothing written down that does not need to be.</p>
+        </div>
+        <div class="term fade-up">
+          <h3>Some requests we decline.</h3>
+          <p>Fewer than you would think.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INVESTMENT ══ -->
+<section class="invest">
+  <div class="wrap--narrow">
+    <p class="eyebrow fade-up">The Investment</p>
+    <p class="invest-figure foil fade-up d1"><small>Commissions begin at</small>$10,000</p>
+    <p class="fade-up d2">Travel, venues, and production are quoted once the experience is designed.</p>
+    <p class="fade-up d3">We accept a limited number of commissions each year.</p>
+  </div>
+</section>
+
+<!-- ══ INQUIRE ══ -->
+<section class="inquire" id="inquire">
+  <div class="wrap">
+    <div class="inquire-head fade-up">
+      <p class="eyebrow">Begin a Commission</p>
+      <h2>Start with one sentence.</h2>
+      <p>Tell us the fantasy. We'll handle the weather.</p>
+    </div>
+
+    <div class="dm fade-up d1">
+      <p class="dm-lead">Write to us privately in the Society. Tell us where in the world, roughly when, whether this is for both of you or a gift, and the fantasy itself.</p>
+      <a class="submit" href="https://society.clubvoluptas.com/messages/" target="_blank" rel="noopener">Message @voluptas</a>
+      <p class="fineprint">Opens your private messages in the Society. Read only by the people who will design your experience.</p>
+      <p class="dm-note">Planning it as a gift? Before anything is produced, both partners agree to the shape of the experience. Only the details stay secret.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <img class="footer-logo" src="images/Logo-web.png" alt="Voluptas" loading="lazy">
+  <p class="footer-word">Voluptas</p>
+  <p class="footer-sub">Bespoke Experiences</p>
+</footer>
+
+<script>
+/* ── NAV ── */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+/* ── FADE UP ── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+/* ── ATMOSPHERE: rain, snow, stars ── */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function makeFx(canvas) {
+  const kind = canvas.dataset.fx;
+  const density = parseFloat(canvas.dataset.density || '1');
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0, dpr = 1, parts = [], running = false, raf = 0;
+
+  function size() {
+    const r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = r.width; h = r.height;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    seed();
+  }
+  function seed() {
+    const area = w * h;
+    if (kind === 'rain') {
+      const n = Math.round(area / 5200 * density);
+      parts = Array.from({ length: n }, () => ({ x: Math.random() * w, y: Math.random() * h, l: 10 + Math.random() * 24, v: 9 + Math.random() * 11, a: 0.05 + Math.random() * 0.16 }));
+    } else if (kind === 'snow') {
+      const n = Math.round(area / 9000);
+      parts = Array.from({ length: n }, () => ({ x: Math.random() * w, y: Math.random() * h, r: 0.6 + Math.random() * 2.1, v: 0.3 + Math.random() * 0.9, s: Math.random() * 6.28, a: 0.25 + Math.random() * 0.5 }));
+    } else {
+      const n = Math.round(area / 6500);
+      parts = Array.from({ length: n }, () => ({ x: Math.random() * w, y: Math.random() * h * 0.75, r: 0.3 + Math.random() * 1.1, s: Math.random() * 6.28, a: 0.2 + Math.random() * 0.6 }));
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    if (kind === 'rain') {
+      ctx.lineWidth = 1; ctx.lineCap = 'round';
+      for (const p of parts) {
+        ctx.strokeStyle = `rgba(205,215,230,${p.a})`;
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - p.l * 0.18, p.y + p.l); ctx.stroke();
+        if (!reduceMotion) { p.y += p.v; p.x -= p.v * 0.18; if (p.y > h) { p.y = -p.l; p.x = Math.random() * (w + 60); } }
+      }
+    } else if (kind === 'snow') {
+      for (const p of parts) {
+        ctx.fillStyle = `rgba(240,244,250,${p.a})`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+        if (!reduceMotion) { p.s += 0.01; p.y += p.v; p.x += Math.sin(p.s) * 0.4; if (p.y > h + 4) { p.y = -4; p.x = Math.random() * w; } }
+      }
+    } else {
+      for (const p of parts) {
+        p.s += 0.015;
+        ctx.fillStyle = `rgba(235,230,215,${p.a * (0.6 + 0.4 * Math.sin(p.s))})`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+      }
+    }
+    if (running && !reduceMotion) raf = requestAnimationFrame(draw);
+  }
+  size();
+  window.addEventListener('resize', () => { size(); if (!running) draw(); });
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !running) { running = true; draw(); }
+    else if (!e.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+  }).observe(canvas);
+  draw();
+}
+document.querySelectorAll('canvas[data-fx]').forEach(makeFx);
+
+</script>
+</body>
+</html>
