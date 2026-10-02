@@ -150,6 +150,7 @@ body::after {
 /* ══ OPENING SCENE ══ */
 .scene--open { display: block; overflow: clip; border-top: none; }
 .scene--open .scene-bg img { position: sticky; inset: auto; top: 0; height: 100vh; }
+.scene--open canvas.open-rain { position: sticky; inset: auto; top: 0; display: block; width: 100%; height: 100vh; margin-top: -100vh; z-index: 1; }
 .scene--open .scene-shade { background: linear-gradient(180deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.3) 22%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.92) 100%); }
 .scene--open .scene-inner { display: block; padding-top: 0; }
 .open-head { filter: drop-shadow(0 3px 28px rgba(0,0,0,0.65)); position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
@@ -307,7 +308,7 @@ footer { background: #070606; padding: 80px 0 70px; text-align: center; border-t
 
 <!-- 01 · PARIS  (optional photo: images/bespoke-paris.jpg) -->
 <section class="scene scene--paris scene--open" id="top" aria-label="The Rain">
-  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1697899245842-b75fee1ba17c?w=2400&q=75&auto=format" alt="" fetchpriority="high" onerror="this.remove()"></div>
+  <div class="scene-bg"><img src="https://images.unsplash.com/photo-1697899245842-b75fee1ba17c?w=2400&q=75&auto=format" alt="" fetchpriority="high" onerror="this.remove()"><canvas class="fx open-rain" data-fx="rain" data-density="1.1" data-bright="2.4"></canvas></div>
   <div class="scene-shade"></div>
   <div class="scene-inner">
     <div class="open-head">
@@ -552,6 +553,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 function makeFx(canvas) {
   const kind = canvas.dataset.fx;
   const density = parseFloat(canvas.dataset.density || '1');
+  const bright = parseFloat(canvas.dataset.bright || '1');
   const ctx = canvas.getContext('2d');
   let w = 0, h = 0, dpr = 1, parts = [], running = false, raf = 0;
 
@@ -581,7 +583,7 @@ function makeFx(canvas) {
     if (kind === 'rain') {
       ctx.lineWidth = 1; ctx.lineCap = 'round';
       for (const p of parts) {
-        ctx.strokeStyle = `rgba(205,215,230,${p.a})`;
+        ctx.strokeStyle = `rgba(215,222,235,${Math.min(p.a * bright, 0.85)})`;
         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - p.l * 0.18, p.y + p.l); ctx.stroke();
         if (!reduceMotion) { p.y += p.v; p.x -= p.v * 0.18; if (p.y > h) { p.y = -p.l; p.x = Math.random() * (w + 60); } }
       }
