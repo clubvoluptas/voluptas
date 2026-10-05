@@ -267,6 +267,7 @@ a { color: inherit; }
 .room-card.reserved { opacity: 1; }
 .room-card.reserved .room-name, .room-card.reserved .room-seductive { opacity: 0.85; }
 .reserved-band { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; background: linear-gradient(90deg, rgba(210,58,126,0.95), rgba(236,79,147,0.95)); color: #fff; text-align: center; font-family: 'Lato', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.55em; text-transform: uppercase; padding: 12px 0 12px 0.55em; box-shadow: 0 -6px 20px rgba(0,0,0,0.18); }
+.remaining-band { background: linear-gradient(90deg, rgba(240,122,95,0.95), rgba(236,79,147,0.92)); }
 .waitlist { font-style: italic; font-size: 16px; color: var(--flamingo-soft); }
 .room-card.featured { grid-column: span 2; }
 .room-card.featured .slot { height: 300px; }
@@ -849,7 +850,7 @@ const ROOMS = [
     tags: ['King Bed', 'Loft Style', 'Two Story Ceiling', 'En Suite Bath'],
     desc: ['Ocean blue walls under a soaring loft ceiling, a king bed, a reading chair, and a bathroom dressed in floral wallpaper and marble.', 'The Banyan Room sits on the loft level overlooking the Lagoon, and the two rooms share the bathroom. Close enough to hear the laughter, far enough to choose when you join it.'] },
 
-  { id: 'banyan', flower: 'Banyan', name: 'The Banyan Room', badge: 'Two Queens · Loft Above the Lagoon', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 2, price: 4600 } ],
+  { id: 'banyan', flower: 'Banyan', name: 'The Banyan Room', badge: 'Two Queens · Loft Above the Lagoon', status: 'open', price: null, shared: true, spots: [ { label: 'Queen Bed', count: 2, left: 1, price: 4600 } ],
     look: 'sandy',
     seductive: 'Share it with the sister you met last August. Or the one you are about to meet.',
     amenities: 'Two queen beds · Shared by two women · Shares the Lagoon bath',
@@ -913,6 +914,12 @@ function spotsHTML(r, cls) {
       ${sp.left <= 0 ? '' : spotPrice(sp)}
     </div>`).join('') + `</div>`;
 }
+function partialBand(r) {
+  if (!r.spots) return '';
+  const total = r.spots.reduce((a, s) => a + s.count, 0), left = r.spots.reduce((a, s) => a + Math.max(0, s.left), 0);
+  if (left <= 0 || left >= total) return '';
+  return `<span class="reserved-band remaining-band">${left === 1 ? 'Only 1 Remaining' : left + ' Remaining'}</span>`;
+}
 function roomFull(r) { return r.spots ? r.spots.every(s => s.left <= 0) : r.status === 'reserved'; }
 
 function renderRooms() {
@@ -925,7 +932,7 @@ function renderRooms() {
         <div class="slot-fallback" aria-hidden="true">${PALM_SVG}</div>
         <img src="${photoList(r)[0]}" alt="" loading="lazy" onerror="this.classList.add('gone')">
         <span class="card-flower" aria-hidden="true">${r.flower}</span>
-        ${reserved ? '<span class="reserved-band">Reserved</span>' : ''}
+        ${reserved ? '<span class="reserved-band">Reserved</span>' : partialBand(r)}
       </div>
       <div class="room-body">
         <span class="room-badge">${r.badge}</span>
