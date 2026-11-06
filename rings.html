@@ -136,6 +136,20 @@ header .label{color:var(--muted);letter-spacing:.22em;font-size:10px}
 .gift-head{font-size:24px;line-height:1.2;margin:0 0 8px;color:var(--night-ink)}
 .gift-head em{color:var(--gold)}
 
+/* The Innermost: invitation-only tier, no price shown */
+.innermost{background:var(--night);color:var(--night-ink)}
+.innermost .inner{padding-block:88px}
+.im-box{max-width:780px;margin:0 auto;box-shadow:inset 0 0 0 1px rgba(166,131,79,.45);padding:56px 40px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px}
+.innermost .label{color:var(--gold)}
+.innermost h2{font-size:clamp(44px,6vw,68px);line-height:1;font-style:italic}
+.im-lede{margin:0;font-size:22px;color:var(--night-muted);max-width:34ch}
+.im-list{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;font-size:19px}
+.im-list li{display:flex;align-items:center;gap:10px}
+.im-list li::before{content:"";width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+.im-ask{margin:10px 0 0;font-size:17px;font-style:italic;color:var(--night-muted)}
+.innermost .sel{color:var(--night-ink)}
+@media (max-width:520px){.im-box{padding:40px 22px}.im-list{flex-direction:column;align-items:center}}
+
 /* The math */
 .math{background:var(--sand)}
 .math .inner{padding-block:104px;display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:center}
@@ -345,6 +359,22 @@ footer .label{color:var(--muted);letter-spacing:.2em;font-size:10px}
           </ul>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="innermost gutter" aria-labelledby="im-name">
+  <div class="inner">
+    <div class="im-box">
+      <p class="label">By invitation only</p>
+      <h2 id="im-name">The Innermost</h2>
+      <p class="im-lede">Beyond the Inner Ring, a very small circle of couples who want everything arranged for them.</p>
+      <ul class="im-list">
+        <li>Every gathering and every retreat, included</li>
+        <li>Private time with Jenn and Rob</li>
+        <li>A voice in where the Society goes next</li>
+      </ul>
+      <p class="im-ask">Its price is shared in conversation. To ask, write to Jenn at <span class="sel">jenn@clubvoluptas.com</span>.</p>
     </div>
   </div>
 </section>
