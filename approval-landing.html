@@ -7,519 +7,103 @@
 <title>Voluptas · A Note from Jenn</title>
 <link rel="icon" type="image/png" href="images/Favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- Calendly popup CSS -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 
 <style>
+  /* Matches clubvoluptas.com: warm paper, sand bands, Cormorant Garamond with italic second lines,
+     small tracked Lato labels in gold, square ink buttons, the VOLUPTAS wordmark. */
   :root {
-    --black:      #0a0806;
-    --near-black: #110e0a;
-    --gold:       #c9a96e;
-    --gold-light: #e2c98a;
-    --gold-dim:   #8a6f3e;
-    --cream:      #f0ead8;
-    --cream-dim:  #c4b89a;
-    --text-body:  #d4c8b0;
-    --text-mid:   #a09070;
-    --text-dim:   #7a6d58;
+    --paper:  #f6f2eb;
+    --sand:   #ece5da;
+    --ink:    #241c17;
+    --muted:  #6a5c4f;
+    --gold:   #a6834f;
+    --line:   rgba(36,28,23,0.14);
+    --serif:  'Cormorant Garamond', Cormorant, Garamond, 'Times New Roman', serif;
+    --sans:   Lato, 'Helvetica Neue', Arial, sans-serif;
+    color-scheme: light;
   }
-
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 20px; line-height: 1.7; overflow-x: hidden; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  em { font-style: italic; color: var(--muted); }
 
-  body {
-    background: var(--black);
-    color: var(--text-body);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 18px;
-    line-height: 1.85;
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
+  .page { max-width: 680px; margin: 0 auto; padding: 0 max(24px, env(safe-area-inset-right, 0px)) 80px max(24px, env(safe-area-inset-left, 0px)); }
 
-  /* ── AMBIENT GRAIN OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    background-size: 180px;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.55;
-  }
+  .label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+  .wordmark { font-family: var(--serif); font-weight: 500; font-size: 20px; letter-spacing: 0.42em; padding-left: 0.42em; color: var(--ink); }
 
-  /* ── LAYOUT ── */
-  .page {
-    position: relative;
-    z-index: 2;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 28px 80px;
-  }
+  /* Header */
+  .header { padding: 64px 0 48px; text-align: center; border-bottom: 1px solid var(--line); margin-bottom: 52px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .header h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(40px, 7vw, 60px); line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); text-wrap: balance; }
+  .header h1 em { display: block; }
 
-  /* ── HEADER ── */
-  .header {
-    padding: 56px 0 44px;
-    text-align: center;
-    border-bottom: 1px solid rgba(201,169,110,0.10);
-    margin-bottom: 52px;
-  }
+  /* Video */
+  .video-section { margin-bottom: 44px; }
+  .video-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--ink); overflow: hidden; }
+  @media (max-width: 520px) { .video-wrap { aspect-ratio: 9 / 16; } }
+  .video-wrap video, .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none; }
+  .video-caption { margin-top: 14px; text-align: center; font-family: var(--sans); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
 
-  .logo-mark {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 32px;
-    opacity: 0.88;
-    display: block;
-  }
+  /* Buttons */
+  .btn { font-family: var(--sans); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--paper); background: var(--ink); border: 0; border-radius: 0; padding: 19px 38px; cursor: pointer; transition: background 0.2s; }
+  .btn:hover { background: #3a2e26; }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .cta-top { text-align: center; margin-bottom: 56px; }
+  .cta-top .hint { margin-top: 16px; font-size: 17px; color: var(--muted); font-style: italic; }
 
-  /* SVG logo inline since images/Logo.png path may not resolve */
-  .logo-svg {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 32px;
-    display: block;
-  }
+  /* Letter */
+  .letter { margin-bottom: 52px; padding-bottom: 52px; border-bottom: 1px solid var(--line); }
+  .letter p { font-size: 21px; line-height: 1.75; color: var(--ink); margin-bottom: 22px; }
+  .letter p:last-of-type { margin-bottom: 0; }
+  .letter .sig { margin-top: 36px; font-style: italic; font-size: 26px; color: var(--ink); line-height: 1.3; }
+  .letter .sig .role { display: block; margin-top: 6px; font-style: normal; }
 
-  .eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 9.5px;
-    letter-spacing: 0.55em;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-
-  .header h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(20px, 4.5vw, 30px);
-    font-weight: 400;
-    color: var(--cream);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    line-height: 1.4;
-    margin-bottom: 14px;
-  }
-
-  .header .sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 17px;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    width: 48px;
-    height: 1px;
-    background: var(--gold-dim);
-    margin: 0 auto;
-    opacity: 0.5;
-  }
-
-  /* ── VIDEO BLOCK ── */
-  .video-section {
-    margin-bottom: 52px;
-  }
-
-  .video-wrap {
-    position: relative;
-    width: 100%;
-    /* Portrait 9:16 on mobile, landscape 16:9 on desktop */
-    aspect-ratio: 16 / 9;
-    background: var(--near-black);
-    border: 1px solid rgba(201,169,110,0.14);
-    overflow: hidden;
-  }
-
-  @media (max-width: 520px) {
-    .video-wrap {
-      aspect-ratio: 9 / 16;
-    }
-  }
-
-  .video-wrap video,
-  .video-wrap iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: none;
-  }
-
-  /* YouTube fallback embed */
-  .video-wrap .yt-embed {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Video placeholder — shown while no src set */
-  .video-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    color: var(--text-dim);
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-  }
-
-  .video-placeholder .play-ring {
-    width: 56px;
-    height: 56px;
-    border: 1px solid rgba(201,169,110,0.3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .video-placeholder .play-ring svg {
-    width: 18px;
-    height: 18px;
-    fill: var(--gold-dim);
-    margin-left: 3px;
-  }
-
-  .video-caption {
-    margin-top: 14px;
-    text-align: center;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--text-dim);
-    letter-spacing: 0.07em;
-  }
-
-  /* ── LETTER ── */
-  .letter {
-    margin-bottom: 52px;
-    padding-bottom: 52px;
-    border-bottom: 1px solid rgba(201,169,110,0.08);
-  }
-
-  .letter-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 9.5px;
-    letter-spacing: 0.5em;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
-
-  .letter p {
-    font-size: 19px;
-    line-height: 2;
-    color: var(--text-body);
-    margin-bottom: 24px;
-  }
-
-  .letter p:last-child { margin-bottom: 0; }
-
-  .letter em {
-    color: var(--cream-dim);
-    font-style: italic;
-  }
-
-  .letter .sig {
-    margin-top: 36px;
-    font-style: italic;
-    font-size: 20px;
-    color: var(--cream-dim);
-    letter-spacing: 0.06em;
-  }
-
-  /* ── WHAT TO EXPECT ── */
-  .expect {
-    margin-bottom: 52px;
-    padding-bottom: 52px;
-    border-bottom: 1px solid rgba(201,169,110,0.08);
-  }
-
-  .expect-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 9.5px;
-    letter-spacing: 0.5em;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    margin-bottom: 28px;
-  }
-
-  .expect h2 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(16px, 3vw, 21px);
-    font-weight: 400;
-    color: var(--cream);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 36px;
-    line-height: 1.5;
-  }
-
-  .expect-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .expect-list li {
-    display: flex;
-    gap: 22px;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(201,169,110,0.06);
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--text-body);
-    align-items: flex-start;
-  }
-
-  .expect-list li:last-child { border-bottom: none; }
-
-  .expect-list .num {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    color: var(--gold-dim);
-    flex-shrink: 0;
-    padding-top: 4px;
-    min-width: 28px;
-  }
-
-  /* ── RESERVATION NOTE ── */
-  .reservation-note {
-    background: rgba(201,169,110,0.04);
-    border: 1px solid rgba(201,169,110,0.16);
-    padding: 28px 32px;
-    margin-bottom: 52px;
-  }
-
-  .reservation-note .rn-label {
-    font-family: 'Cinzel', serif;
-    font-size: 9.5px;
-    letter-spacing: 0.45em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .reservation-note p {
-    font-size: 17px;
-    line-height: 1.9;
-    color: var(--text-body);
-    margin-bottom: 12px;
-  }
-
+  /* Reservation note */
+  .reservation-note { background: var(--sand); padding: 34px 36px; margin-bottom: 56px; }
+  .reservation-note .rn-label { margin-bottom: 16px; }
+  .reservation-note p { font-size: 19px; line-height: 1.75; color: var(--ink); margin-bottom: 14px; }
   .reservation-note p:last-child { margin-bottom: 0; }
 
-  .reservation-note em {
-    color: var(--cream-dim);
-    font-style: italic;
-  }
+  /* Calendly */
+  .calendly-section { margin-bottom: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .calendly-section h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(32px, 5.5vw, 44px); line-height: 1.1; color: var(--ink); margin-bottom: 14px; text-wrap: balance; }
+  .calendly-section h2 em { display: block; }
 
-  /* ── CALENDLY SECTION ── */
-  .calendly-section {
-    margin-bottom: 20px;
-  }
+  /* Footer */
+  .footer { margin-top: 64px; padding-top: 30px; border-top: 1px solid var(--line); text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .footer p { font-size: 16px; color: var(--muted); font-style: italic; }
+  .sel { user-select: all; color: var(--ink); font-style: normal; }
 
-  .calendly-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 9.5px;
-    letter-spacing: 0.5em;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+  /* Fade in */
+  .fade-up { opacity: 0; transform: translateY(18px); transition: opacity 0.85s ease, transform 0.85s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; transition: none; } }
 
-  .calendly-section h2 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(18px, 3.5vw, 24px);
-    font-weight: 400;
-    color: var(--cream);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  .calendly-section .cal-sub {
-    font-style: italic;
-    font-size: 16px;
-    color: var(--text-dim);
-    text-align: center;
-    margin-bottom: 36px;
-    letter-spacing: 0.05em;
-  }
-
-  /* Calendly widget wrapper */
-  .calendly-inline-widget {
-    min-width: 320px;
-    height: 700px;
-    border: 1px solid rgba(201,169,110,0.12);
-    overflow: hidden;
-    border-radius: 2px;
-  }
-
-  /* Force Calendly's internal iframe to inherit dark bg */
-  .calendly-inline-widget iframe {
-    filter: invert(0);
-    color-scheme: dark;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    margin-top: 64px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(201,169,110,0.08);
-    text-align: center;
-  }
-
-  .footer .footer-logo {
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.5em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .footer p {
-    font-size: 13px;
-    color: var(--text-dim);
-    font-style: italic;
-    letter-spacing: 0.05em;
-    margin: 0;
-  }
-
-  /* ── FADE IN ANIMATIONS ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.85s ease, transform 0.85s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Stagger delays */
-  .fade-up:nth-child(1) { transition-delay: 0.05s; }
-  .fade-up:nth-child(2) { transition-delay: 0.12s; }
-  .fade-up:nth-child(3) { transition-delay: 0.19s; }
-  .fade-up:nth-child(4) { transition-delay: 0.26s; }
-  .fade-up:nth-child(5) { transition-delay: 0.33s; }
-
-  /* Gold line ornament */
-  .ornament {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-
-  .ornament-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,169,110,0.25));
-  }
-
-  .ornament-line.right {
-    background: linear-gradient(to left, transparent, rgba(201,169,110,0.25));
-  }
-
-  .ornament-diamond {
-    width: 5px;
-    height: 5px;
-    background: var(--gold-dim);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
-
-  /* ── PASSWORD GATE ── */
-  #gate {
-    position: fixed;
-    inset: 0;
-    background: var(--black);
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 24px;
-    transition: opacity 0.8s ease;
-  }
-
-  #gate .gate-logo {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 40px;
-    opacity: 0.9;
-  }
-
-  #gate .gate-label {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.45em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
-
-  #gate input[type="password"] {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--gold-dim);
-    color: var(--cream);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    letter-spacing: 0.15em;
-    text-align: center;
-    width: 260px;
-    padding: 12px 0;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-
-  #gate input[type="password"]:focus { border-bottom-color: var(--gold); }
-  #gate input[type="password"]::placeholder { color: var(--text-dim); font-size: 13px; letter-spacing: 0.25em; }
-
-  #gate .gate-error {
-    margin-top: 24px;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    color: #8a2020;
-    font-style: italic;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
+  /* Gate */
+  #gate { position: fixed; inset: 0; background: var(--paper); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; transition: opacity 0.8s ease; }
+  #gate .wordmark { font-size: 22px; margin-bottom: 44px; }
+  #gate .gate-label { margin-bottom: 18px; }
+  #gate input[type="password"] { background: transparent; border: none; border-bottom: 1px solid var(--gold); border-radius: 0; color: var(--ink); font-family: var(--serif); font-size: 22px; letter-spacing: 0.12em; text-align: center; width: min(280px, 100%); padding: 12px 0; outline: none; transition: border-color 0.3s; }
+  #gate input[type="password"]:focus { border-bottom-color: var(--ink); }
+  #gate input[type="password"]::placeholder { color: #a99a86; font-size: 14px; letter-spacing: 0.3em; }
+  #gate .gate-error { margin-top: 20px; font-size: 17px; color: #7A1A1A; font-style: italic; opacity: 0; transition: opacity 0.3s; }
   #gate .gate-error.visible { opacity: 1; }
 
   #content { display: none; opacity: 0; transition: opacity 1.2s ease; }
   #content.visible { display: block; opacity: 1; }
-
 </style>
 </head>
 <body>
 
 <!-- ── GATE ── -->
 <div id="gate">
-  <img class="gate-logo" src="images/Logo.png" alt="Voluptas">
-  <div class="gate-label">Enter the Key</div>
+  <span class="wordmark">VOLUPTAS</span>
+  <div class="gate-label label">Enter the Key</div>
   <input type="password" id="gateInput" placeholder="&middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;" autocomplete="off">
   <div class="gate-error" id="gateError">This key does not fit this door.</div>
 </div>
@@ -531,10 +115,9 @@
   <!-- ── HEADER ── -->
   <header class="header fade-up">
 
-    <img class="logo-svg" src="images/Logo.png" alt="Voluptas">
-
-    <div class="eyebrow">Voluptas · Private Correspondence</div>
-    <h1>A Personal Note<br>from Jenn</h1>
+    <span class="wordmark">VOLUPTAS</span>
+    <div class="label">Private Correspondence</div>
+    <h1>A personal note <em>from Jenn.</em></h1>
   </header>
 
   <!-- ── VIDEO ── -->
@@ -572,14 +155,10 @@
   </section>
 
   <!-- ── CTA TOP ── -->
-  <div class="fade-up" style="text-align:center;margin-bottom:52px;">
+  <div class="fade-up cta-top">
     <button
-      onclick="Calendly.initPopupWidget({url:'https://calendly.com/robert-clubvoluptas/alignment-call?background_color=0d0b09background_color=0a0806&text_color=ffffff&primary_color=c9a96etext_color=ffffffbackground_color=0a0806&text_color=ffffff&primary_color=c9a96eprimary_color=ffffff'});return false;"
-      style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.45em;text-transform:uppercase;color:var(--black);background:var(--gold);border:none;padding:20px 48px;cursor:pointer;transition:background 0.3s;"
-      onmouseover="this.style.background='var(--gold-light)'"
-      onmouseout="this.style.background='var(--gold)'"
-    >Reserve Your Conversation</button>
-    <p style="margin-top:16px;font-size:13px;color:var(--text-dim);font-style:italic;letter-spacing:0.06em;">Or keep reading to learn more</p>
+      onclick="Calendly.initPopupWidget({url:'https://calendly.com/robert-clubvoluptas/alignment-call?background_color=f6f2eb&text_color=241c17&primary_color=241c17'});return false;" class="btn">Reserve Your Conversation</button>
+    <p class="hint">Or keep reading to learn more</p>
   </div>
   <section class="letter fade-up">
     <p>I read through what you shared with us, and you feel like our people.</p>
@@ -588,13 +167,13 @@
     <p>That's who fills this Society. Devoted. Deeply married. Hungry for something most couples never admit to wanting, let alone pursue together.</p>
     <p>This call is simply us meeting. I'll walk you through how the evenings work, what the Society looks like between gatherings, and how couples move through the room entirely on their own terms. You ask everything. We decide honestly together whether this is the right fit.</p>
     <p>Thirty minutes. Both of you, together.</p>
-    <div class="sig">Jenn<br><span style="font-size:14px;letter-spacing:0.2em;font-style:normal;font-family:'Cinzel',serif;color:var(--text-dim);">FOUNDER, VOLUPTAS</span></div>
+    <div class="sig">Jenn<span class="role label">Founder, Voluptas</span></div>
   </section>
 
   <!-- ── RESERVATION NOTE ── -->
   <section class="reservation-note fade-up">
-    <div class="rn-label">After We Speak</div>
-    <p>If we're aligned, a <em>fifty dollar reservation</em> holds your place and, if aligned, opens your first week inside the Inner Ring, where the Society lives between gatherings. Event dates, invitations, and member connection exist only inside. None of it is ever posted publicly.</p>
+    <div class="rn-label label">After We Speak</div>
+    <p>If we're aligned, a <em>fifty dollar reservation</em> holds your place and, if aligned, opens your first week inside the Society, where it lives between gatherings. Event dates, invitations, and member connection exist only inside. None of it is ever posted publicly.</p>
     <p>Membership continues monthly or annually, only as long as it feels right.</p>
     <p>If after we speak this isn't the fit, your reservation comes back to you in full. No friction. No awkward follow-up.</p>
     <p>But if it is the fit, what follows will be something you talk about on the drive home, and again over coffee the next morning, and again six months from now when you're already planning the next one.</p>
@@ -602,35 +181,20 @@
 
   <!-- ── CALENDLY ── -->
   <section class="calendly-section fade-up">
-    <div class="calendly-eyebrow">Reserve Your Conversation</div>
-    <h2>Choose a Time<br>That Works for You</h2>
+    <div class="label">Reserve Your Conversation</div>
+    <h2>Choose a time <em>that works for you.</em></h2>
 
     <div style="text-align:center;">
       <button
-        onclick="Calendly.initPopupWidget({url:'https://calendly.com/robert-clubvoluptas/alignment-call?background_color=0d0b09background_color=0a0806&text_color=ffffff&primary_color=c9a96etext_color=ffffffbackground_color=0a0806&text_color=ffffff&primary_color=c9a96eprimary_color=ffffff'});return false;"
-        style="
-          font-family:'Cinzel',serif;
-          font-size:11px;
-          letter-spacing:0.45em;
-          text-transform:uppercase;
-          color:var(--black);
-          background:var(--gold);
-          border:none;
-          padding:20px 48px;
-          cursor:pointer;
-          transition:background 0.3s, transform 0.2s;
-        "
-        onmouseover="this.style.background='var(--gold-light)'"
-        onmouseout="this.style.background='var(--gold)'"
-      >Reserve Your Conversation</button>
+        onclick="Calendly.initPopupWidget({url:'https://calendly.com/robert-clubvoluptas/alignment-call?background_color=f6f2eb&text_color=241c17&primary_color=241c17'});return false;" class="btn">Reserve Your Conversation</button>
     </div>
   </section>
 
   <!-- ── FOOTER ── -->
   <footer class="footer">
-    <div class="footer-logo">Voluptas</div>
+    <span class="wordmark" style="font-size:15px">VOLUPTAS</span>
     <p>Private · Invitation Only · This page is not publicly indexed</p>
-    <p style="margin-top:8px;">Questions? Reply to Jenn's text directly.</p>
+    <p>Questions? Reply to Jenn directly, or write to <span class="sel">jenn@clubvoluptas.com</span>.</p>
   </footer>
 
 </div>
@@ -661,7 +225,7 @@
       input.value = '';
       input.style.borderBottomColor = '#8a2020';
       setTimeout(function() {
-        input.style.borderBottomColor = 'var(--gold-dim)';
+        input.style.borderBottomColor = 'var(--gold)';
         error.classList.remove('visible');
       }, 2000);
     }
