@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>The Voluptas Rings</title>
+<link rel="icon" type="image/png" href="images/Favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@400;700&display=swap">
+<style>
+/* Layout: clubvoluptas.com's own system. Paper and sand bands, one dark band, hairline eyebrows, square ink buttons. Single light theme with a dark band, matching the live site. */
+:root{
+  --paper:#f6f2eb; --sand:#ece5da; --ink:#241c17; --muted:#6a5c4f; --gold:#a6834f;
+  --night:#15110e; --night-2:#241c17; --night-ink:#eee6d8; --night-muted:#a99a86;
+  --line:rgba(36,28,23,.16); --night-line:rgba(238,230,216,.16);
+  --serif:"Cormorant Garamond", Cormorant, Garamond, "Times New Roman", serif;
+  --sans:Lato, "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:20px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased}
+.gutter{padding-left:max(24px, env(safe-area-inset-left, 0px));padding-right:max(24px, env(safe-area-inset-right, 0px))}
+.inner{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;text-wrap:balance}
+em{font-style:italic;color:var(--muted)}
+.label{font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.eyebrow{display:flex;align-items:center;gap:18px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+.num{font-variant-numeric:lining-nums tabular-nums}
+.pm{font-size:.5em;vertical-align:.45em;margin-right:.08em;opacity:.75;font-weight:400}
+
+/* Key gate, matching the Society's other private pages */
+#gate{position:fixed;inset:0;z-index:100;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px max(24px, env(safe-area-inset-right, 0px)) 40px max(24px, env(safe-area-inset-left, 0px));transition:opacity .8s ease}
+#gate .wordmark{font-size:22px;margin-bottom:44px}
+#gate .gate-label{font-family:var(--sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+#gate input{background:transparent;border:0;border-bottom:1px solid var(--gold);color:var(--ink);font-family:var(--serif);font-size:22px;letter-spacing:.12em;text-align:center;width:min(280px,100%);padding:12px 0;outline:none;border-radius:0;transition:border-color .3s}
+#gate input:focus{border-bottom-color:var(--ink)}
+#gate input::placeholder{color:var(--night-muted);font-size:14px;letter-spacing:.3em}
+#gate .gate-error{margin:20px 0 0;font-style:italic;font-size:16px;color:#7A1A1A;opacity:0;transition:opacity .3s}
+#gate .gate-error.visible{opacity:1}
+#gate .gate-hint{margin:52px 0 0;font-style:italic;font-size:16px;color:var(--muted);max-width:34ch}
+body.locked{overflow:hidden}
+
+/* Header */
+header{border-bottom:1px solid var(--line)}
+header .inner{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
+.wordmark{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:.42em;color:var(--ink);text-decoration:none}
+header .label{color:var(--muted);letter-spacing:.22em;font-size:10px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-size:11px;letter-spacing:.26em;text-transform:uppercase;text-decoration:none;padding:18px 26px;border:0;border-radius:0;cursor:pointer;transition:background .2s,color .2s}
+.btn.ink{background:var(--ink);color:var(--paper)}
+.btn.ink:hover{background:#3a2e26}
+.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.line:hover{background:var(--ink);color:var(--paper)}
+.btn.gold{background:var(--gold);color:var(--night)}
+.btn.gold:hover{background:#b8955e}
+.btn.ghost{background:transparent;color:var(--night-ink);box-shadow:inset 0 0 0 1px var(--night-line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1px var(--night-ink)}
+.btn:focus-visible,.textlink:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.textlink{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+
+/* Hero */
+.hero .inner{padding-block:96px 88px;display:grid;grid-template-columns:1.25fr 1fr;gap:64px;align-items:end}
+.hero h1{font-size:clamp(46px,7vw,82px);line-height:1.02;letter-spacing:-.01em;margin-top:22px}
+.hero h1 em{display:block}
+.hero .lede{font-size:23px;color:var(--muted);max-width:30ch;margin:0 0 28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+
+/* Drive home */
+.after{background:var(--sand)}
+.after .inner{padding-block:96px}
+.after .quote{font-size:clamp(34px,4.6vw,56px);line-height:1.12;font-weight:300;margin:34px 0 0;max-width:20ch}
+.after .quote span{display:block}
+.after .quote span:nth-child(n+2){font-style:italic;color:var(--muted)}
+.after p.small{max-width:46ch;color:var(--muted);margin:30px 0 0}
+
+/* Dream outcome */
+/* Background: the candlelit woman from the Bespoke page, darkened. */
+.fire::before{content:"";position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1790202689195-f71d37e69df3?w=2000&q=75&auto=format") 70% 50%/cover no-repeat;filter:brightness(.62) contrast(1.1);opacity:.9}
+.fire{position:relative;overflow:hidden;background:var(--night);color:var(--night-ink)}
+.fire::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(21,17,14,.86) 0%, rgba(21,17,14,.62) 42%, rgba(21,17,14,.52) 100%)}
+.fire .inner{position:relative;z-index:1}
+.fire .inner{padding-block:112px;display:grid;grid-template-columns:1fr 1.15fr;gap:24px 72px;align-items:start}
+.fire .label{color:var(--gold)}
+.fire .eyebrow::after{background:var(--night-line)}
+.fire-h{font-size:clamp(56px,8.4vw,108px);line-height:.96;margin-top:28px;letter-spacing:-.01em}
+.fire-h em{display:block;color:var(--gold)}
+.scenes{list-style:none;margin:0;padding:0}
+.scenes li{font-size:clamp(23px,2.5vw,29px);line-height:1.3;padding:17px 0;border-top:1px solid var(--night-line)}
+.scenes li:last-child{border-bottom:1px solid var(--night-line)}
+.scenes li em{color:var(--night-muted)}
+.fire-close{margin:34px 0 0;color:var(--night-muted);font-size:21px;font-style:italic;max-width:46ch}
+
+/* Memberships */
+.memberships .inner{padding-block:104px;display:flex;flex-direction:column;gap:44px}
+.memberships .head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.memberships h2{font-size:clamp(36px,4.8vw,54px);line-height:1.08}
+.memberships .head p{margin:0;color:var(--muted);max-width:38ch}
+.cards{display:grid;grid-template-columns:1fr 1.12fr;gap:22px;align-items:stretch}
+.card{display:flex;flex-direction:column;gap:26px;padding:40px 36px;min-width:0}
+.card.ring{background:#fbf8f3;box-shadow:inset 0 0 0 1px var(--line)}
+.card.inner-ring{background:var(--night-2);color:var(--night-ink)}
+.card.inner-ring em{color:var(--night-muted)}
+.card.inner-ring .label{color:var(--gold)}
+.card h3{font-size:46px;line-height:1}
+.card .tag{font-style:italic;font-size:22px;color:var(--muted);margin:-12px 0 0}
+.card.inner-ring .tag{color:var(--night-muted)}
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.price{display:flex;flex-direction:column;gap:12px;padding:20px 18px;box-shadow:inset 0 0 0 1px var(--line)}
+.card.inner-ring .price{box-shadow:inset 0 0 0 1px var(--night-line)}
+.price.feature{box-shadow:inset 0 0 0 1px var(--gold)}
+.price .amt{font-size:40px;line-height:1;font-weight:400}
+.price .per{font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.card.inner-ring .price .per{color:var(--night-muted)}
+.price .note{font-size:17px;font-style:italic;color:var(--muted);min-height:1.4em}
+.card.inner-ring .price .note{color:var(--gold)}
+.price .btn{width:100%;padding:16px 12px}
+.price .trial{font-size:15px;line-height:1.35;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.card.inner-ring .price .trial{color:var(--night-muted);border-top-color:var(--night-line)}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.list li{display:grid;grid-template-columns:1fr auto;gap:16px;padding:13px 0;border-top:1px solid var(--line);font-size:19px;line-height:1.35}
+.card.inner-ring .list li{border-top-color:var(--night-line)}
+.list li small{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);align-self:center;white-space:nowrap}
+.list li span.d{display:block;font-size:16px;color:var(--muted);font-style:italic}
+.card.inner-ring .list li span.d{color:var(--night-muted)}
+.annual{background:rgba(166,131,79,.12);padding:22px 22px 8px;display:flex;flex-direction:column;gap:6px}
+.annual .label{margin-bottom:4px}
+.annual .list li:first-child{border-top:0}
+.list li.bridge{font-style:italic;font-size:21px}
+.card.inner-ring .list li.bridge{color:var(--night-ink)}
+.gift-head{font-size:24px;line-height:1.2;margin:0 0 8px;color:var(--night-ink)}
+.gift-head em{color:var(--gold)}
+
+/* The math */
+.math{background:var(--sand)}
+.math .inner{padding-block:104px;display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:center}
+.math h2{font-size:clamp(36px,4.6vw,54px);line-height:1.08;margin-top:22px}
+.math h2 em{display:block}
+.math p{color:var(--muted);max-width:38ch}
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.leaf{background:var(--paper);padding:28px 24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.leaf.ir{background:var(--night-2);color:var(--night-ink)}
+.leaf h3{font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;color:var(--muted);margin-bottom:6px}
+.leaf.ir h3{color:var(--gold)}
+.row{display:flex;justify-content:space-between;gap:10px;font-size:19px}
+.row span:last-child{font-variant-numeric:lining-nums tabular-nums}
+.leaf .total{border-top:1px solid var(--line);margin-top:6px;padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;font-size:40px;font-weight:400}
+.leaf.ir .total{border-top-color:var(--night-line);color:var(--night-ink)}
+.leaf .plus{font-style:italic;font-size:17px;color:var(--night-muted);margin-top:4px}
+.math p.after-line{max-width:none}
+.after-line{grid-column:1/-1;font-size:17px;color:var(--muted);font-style:italic;margin:2px 0 0}
+
+/* Dark band */
+.night{background:var(--night);color:var(--night-ink)}
+.night .inner{padding-block:110px;display:flex;flex-direction:column;gap:56px}
+.night .label{color:var(--night-muted)}
+.night .eyebrow::after{background:var(--night-line)}
+.night h2{font-size:clamp(42px,6vw,72px);line-height:1.04;font-style:italic;font-weight:300;max-width:16ch}
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.room{padding:6px 32px 6px 0;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--night-line);margin-right:32px;min-width:0}
+.room:last-child{border-right:0;margin-right:0;padding-right:0}
+.room h3{font-size:32px;line-height:1.1}
+.room p{margin:0;color:var(--night-muted);font-size:19px}
+.room .label{color:var(--gold)}
+
+/* Whispers */
+.whispers .inner{padding-block:100px;display:flex;flex-direction:column;gap:40px}
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.w{border-top:1px solid var(--line);padding-top:22px;display:flex;flex-direction:column;gap:16px}
+.w q{font-style:italic;font-size:25px;line-height:1.3;quotes:none}
+.w .label{color:var(--muted);letter-spacing:.2em}
+
+/* Promise + fine print */
+.promise{background:var(--sand)}
+.promise .inner{padding-block:96px;display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.promise h2{font-size:clamp(34px,4.4vw,50px);line-height:1.1;margin-top:22px}
+.promise h2 em{display:block}
+.promise .body p{margin:0 0 18px;max-width:42ch}
+.fine{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.fine li{padding:12px 0;border-top:1px solid var(--line);font-size:17px;color:var(--muted)}
+.fine li b{font-weight:500;color:var(--ink)}
+
+/* Door */
+.door .inner{padding-block:110px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}
+.door h2{font-size:clamp(40px,5.6vw,66px);line-height:1.05}
+.door h2 em{display:block}
+.door .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:10px}
+.door .sub{color:var(--muted);margin:0;max-width:40ch}
+footer{border-top:1px solid var(--line)}
+footer .inner{padding-block:30px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px}
+footer .label{color:var(--muted);letter-spacing:.2em;font-size:10px}
+.sel{user-select:all;color:var(--ink)}
+
+@media (max-width:900px){
+  .hero .inner,.memberships .head,.math .inner,.promise .inner,.fire .inner{grid-template-columns:1fr;gap:32px}
+  .cards{grid-template-columns:1fr}
+  .rooms{grid-template-columns:1fr;gap:36px}
+  .room{border-right:0;margin-right:0;padding-right:0;padding-bottom:30px;border-bottom:1px solid var(--night-line)}
+  .room:last-child{border-bottom:0;padding-bottom:0}
+  .wgrid{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  body{font-size:19px}
+  .card{padding:30px 20px}
+  .card h3{font-size:40px}
+  .prices,.ledger{grid-template-columns:1fr}
+  .hero .inner{padding-block:64px 60px}
+  .memberships .inner,.math .inner,.night .inner,.whispers .inner,.promise .inner,.door .inner,.fire .inner{padding-block:72px}
+}
+</style>
+</head>
+<body>
+
+<div id="gate" role="dialog" aria-label="Enter the key">
+  <span class="wordmark">VOLUPTAS</span>
+  <p class="gate-label">Enter the Key</p>
+  <input type="password" id="keyInput" placeholder="&middot; &middot; &middot; &middot; &middot; &middot;" autocomplete="off" aria-label="Enter the key">
+  <p class="gate-error" id="gateError">This key does not fit this door.</p>
+  <p class="gate-hint">This page is private. It exists for you, and only you.</p>
+</div>
+
+<header class="gutter">
+  <div class="inner">
+    <a class="wordmark" href="https://clubvoluptas.com">VOLUPTAS</a>
+    <span class="label">For approved couples</span>
+  </div>
+</header>
+
+<section class="hero gutter">
+  <div class="inner">
+    <div>
+      <p class="label eyebrow">Welcome. It seems we chose each other.</p>
+      <h1>Two Rings. <em>Choose how close.</em></h1>
+    </div>
+    <div>
+      <p class="lede">Both Rings open the Society. Only the Inner Ring opens every room in it.</p>
+      <div class="ctas">
+        <a class="btn ink" href="#memberships">See the Rings</a>
+        <a class="textlink" href="#inner-ring">Inside the Inner Ring</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fire gutter">
+  <div class="inner">
+    <div>
+      <p class="label eyebrow">What waits inside</p>
+      <h2 class="fire-h">Your marriage, <em>on fire.</em></h2>
+      <p class="fire-close">Eroticism and connection, with the two of you at the center of it.</p>
+    </div>
+    <ul class="scenes">
+      <li>Candlelight on bare shoulders.</li>
+      <li><em>His hand at the small of your back, in a room full of beautiful couples.</em></li>
+      <li>Lingerie beneath your dinner dress, and only he knows.</li>
+      <li><em>A glance across the room that says later.</em></li>
+      <li>New friends who understand the two of you, unlike anyone else in your life.</li>
+      <li><em>The elevator doors closing, and neither of you able to wait.</em></li>
+      <li>Weeks later, still talking about it.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="memberships gutter" id="memberships">
+  <div class="inner">
+    <div class="head">
+      <div>
+        <p class="label eyebrow">The Rings</p>
+        <h2 style="margin-top:22px">The Ring and <em>the Inner Ring.</em></h2>
+      </div>
+      <p>Both Rings grant access to the Society. Paid annually, each includes two months on us.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card ring" aria-labelledby="ring-name">
+        <div>
+          <p class="label">The heart of the Society</p>
+        </div>
+        <h3 id="ring-name">The Ring</h3>
+        <p class="tag">For the couple who keeps their evenings close to home.</p>
+        <div class="prices">
+          <div class="price">
+            <span class="amt num">$100</span><span class="per">Per month</span>
+            <span class="note">&nbsp;</span>
+            <span class="trial">Your first seven days are complimentary, to be sure we fit your marriage.</span>
+            <a class="btn line" data-checkout="ringMonthly" href="#">Join monthly</a>
+          </div>
+          <div class="price">
+            <span class="amt num">$1,000</span><span class="per">Per year</span>
+            <span class="note">Two months on us</span>
+            <span class="trial">Your first seven days are complimentary, to be sure we fit your marriage.</span>
+            <a class="btn ink" data-checkout="ringAnnual" href="#">Join for the year</a>
+          </div>
+        </div>
+        <ul class="list">
+          <li><span>The Salon<span class="d">Authors, experts and speakers, in private conversation.</span></span></li>
+          <li><span>The Study<span class="d">For the wives. The book club that reads every chapter.</span></span></li>
+          <li><span>The Gallery<span class="d">The members' private collection of erotic art.</span></span></li>
+          <li><span>Your calling card<span class="d">In Members of the Society.</span></span></li>
+          <li><span>The Table<span class="d">Small dinners, hosted by members in their own cities.</span></span></li>
+          <li><span>Voluptas Nights<span class="d">Bookable at full price, once the Inner Ring has had first choice.</span></span></li>
+        </ul>
+      </article>
+
+      <article class="card inner-ring" id="inner-ring" aria-labelledby="ir-name">
+        <div>
+          <p class="label">Everything in The Ring, plus</p>
+        </div>
+        <h3 id="ir-name">The Inner Ring</h3>
+        <p class="tag">For the couple ready to step forward.</p>
+        <div class="prices">
+          <div class="price">
+            <span class="amt num">$200</span><span class="per">Per month</span>
+            <span class="note">&nbsp;</span>
+            <span class="trial">Your first seven days are complimentary, to be sure we fit your marriage.</span>
+            <a class="btn ghost" data-checkout="innerMonthly" href="#">Join monthly</a>
+          </div>
+          <div class="price feature">
+            <span class="amt num">$2,000</span><span class="per">Per year</span>
+            <span class="note">A Voluptas Night, the Welcome Gift, two months on us</span>
+            <span class="trial">Your first seven days are complimentary, to be sure we fit your marriage.</span>
+            <a class="btn gold" data-checkout="innerAnnual" href="#">Enter for the year</a>
+          </div>
+        </div>
+        <ul class="list">
+          <li class="bridge"><span>Every room in the house:</span></li>
+          <li><span>Invitations to the Weekend Experiences<span class="d">Private estates and the full arc. Reserved separately.</span></span><small>Inner Ring only</small></li>
+          <li><span>Invitations to the Deeper Experiences<span class="d">Several nights away, built around the two of you. Reserved separately.</span></span><small>Inner Ring only</small></li>
+          <li><span>Upstairs<span class="d">The private rooms of the Society, by dynamic.</span></span><small>Inner Ring only</small></li>
+          <li><span>10% off every Voluptas Night</span><small>Inner Ring only</small></li>
+          <li><span>First to book<span class="d">Every gathering opens to you seven days early.</span></span><small>Inner Ring only</small></li>
+          <li><span>Your rate, held<span class="d">For as long as you stay.</span></span><small>Inner Ring only</small></li>
+        </ul>
+        <div class="annual">
+          <p class="gift-head">Paying annually? <em>These are gifts to you.</em></p>
+          <ul class="list">
+            <li><span>One Voluptas Night, on us<span class="d">Any city, within your year.</span></span><small class="num"><span class="pm">&plusmn;</span>$1,200</small></li>
+            <li><span>The Welcome Gift<span class="d">Silk blindfold and tie, with a handwritten note from Jenn and Rob.</span></span><small>Within a week</small></li>
+            <li><span>Two months on us</span><small class="num">$400</small></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="math gutter">
+  <div class="inner">
+    <div>
+      <p class="label eyebrow">The arithmetic</p>
+      <h2>Attend one Voluptas Night your first year, <em>and the Inner Ring costs less.</em></h2>
+      <p>The Voluptas Night comes with the year. Everything else in the Inner Ring comes with it too.</p>
+    </div>
+    <div class="ledger num">
+      <div class="leaf">
+        <h3>The Ring, for the year</h3>
+        <div class="row"><span>The year</span><span>$1,000</span></div>
+        <div class="row"><span>One Voluptas Night</span><span><span class="pm">&plusmn;</span>$1,200</span></div>
+        <div class="total"><span style="font-size:20px">Total</span><span><span class="pm">&plusmn;</span>$2,200</span></div>
+      </div>
+      <div class="leaf ir">
+        <h3>The Inner Ring, for the year</h3>
+        <div class="row"><span>The year</span><span>$2,000</span></div>
+        <div class="row"><span>One Voluptas Night</span><span>Included</span></div>
+        <div class="total"><span style="font-size:20px">Only</span><span>$2,000</span></div>
+        <p class="plus">With Invitations to the Weekend Experiences, Upstairs, and the silk.</p>
+      </div>
+      <p class="after-line">Every Voluptas Night after the first: <span class="pm">&plusmn;</span>$1,080 for the Inner Ring. Voluptas Night prices are set by venue.</p>
+    </div>
+  </div>
+</section>
+
+<section class="night gutter">
+  <div class="inner">
+    <div>
+      <p class="label eyebrow">Only the Inner Ring</p>
+      <h2 style="margin-top:26px">Some rooms keep their own list.</h2>
+    </div>
+    <div class="rooms">
+      <div class="room">
+        <p class="label">Weekends</p>
+        <h3>The Weekend Experience</h3>
+        <p>A private estate and the full arc: the women's morning, the evening, the afterglow. Next: South Beach, February.</p>
+      </div>
+      <div class="room">
+        <p class="label">Retreats</p>
+        <h3>The Deeper Experience</h3>
+        <p>Several nights away from everything, in places worth the trip.</p>
+      </div>
+      <div class="room">
+        <p class="label">Upstairs</p>
+        <h3>The private rooms</h3>
+        <p>For couples who know their dynamic, and want a room where everyone shares it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="whispers gutter">
+  <div class="inner">
+    <p class="label eyebrow">Whispers from inside</p>
+    <div class="wgrid">
+      <figure class="w" style="margin:0"><q>Since we've been home, every time I hold my wife I don't want to let her go.</q><figcaption class="label">S + C</figcaption></figure>
+      <figure class="w" style="margin:0"><q>There was this instant feeling of, &ldquo;Yep&hellip; we found our group.&rdquo;</q><figcaption class="label">A + T</figcaption></figure>
+      <figure class="w" style="margin:0"><q>Our hearts grew bigger over these four days, and our family grew too.</q><figcaption class="label">D + O</figcaption></figure>
+      <figure class="w" style="margin:0"><q>Did they know they were creating a family none of us could have ever imagined we needed?</q><figcaption class="label">C + N</figcaption></figure>
+      <figure class="w" style="margin:0"><q>I gave myself permission to want.</q><figcaption class="label">S · The Feminine</figcaption></figure>
+      <figure class="w" style="margin:0"><q>It's a true gift to have women you can share your innermost secrets and desires and not feel judged.</q><figcaption class="label">J · The Feminine</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="promise gutter">
+  <div class="inner">
+    <div>
+      <p class="label eyebrow">Before you choose</p>
+      <h2>Seven days inside. <em>On us.</em></h2>
+      <div class="body" style="margin-top:26px">
+        <p>Every Ring begins with seven days in the Society, free. Walk the rooms. Sit in on the Salon. See who else is here.</p>
+        <p>Your first payment comes on day eight. In the Inner Ring, your rate then holds for as long as you stay.</p>
+      </div>
+    </div>
+    <ul class="fine">
+      <li><b>The included Voluptas Night</b> is yours in any city within your year, and closes at renewal.</li>
+      <li><b>Booking it</b> uses a private code, sent with your first annual payment. A Voluptas Night booked and missed counts as used.</li>
+      <li><b>The year</b> is non-refundable once your Voluptas Night is booked.</li>
+      <li><b>Voluptas Nights</b> are priced by venue. The Inner Ring's 10% applies to every one.</li>
+      <li><b>Weekend and Deeper Experiences</b> are reserved and priced separately. The Inner Ring holds the Invitation.</li>
+      <li><b>Discretion</b> is the condition of entry. Every member has signed a nondisclosure agreement.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="door gutter">
+  <div class="inner">
+    <p class="label">The door is open</p>
+    <h2>Choose your Ring. <em>The rest is yours.</em></h2>
+    <div class="ctas">
+      <a class="btn gold" data-checkout="innerAnnual" href="#">The Inner Ring · $2,000 a year</a>
+      <a class="btn ink" data-checkout="innerMonthly" href="#">The Inner Ring · $200 a month</a>
+    </div>
+    <div class="ctas">
+      <a class="btn line" data-checkout="ringAnnual" href="#">The Ring · $1,000 a year</a>
+      <a class="btn line" data-checkout="ringMonthly" href="#">The Ring · $100 a month</a>
+    </div>
+    <p class="sub" style="margin-top:14px">Questions before you choose? Write to Jenn at <span class="sel">jenn@clubvoluptas.com</span>.</p>
+  </div>
+</section>
+
+<footer class="gutter">
+  <div class="inner">
+    <span class="label">Voluptas · A private society for happily married couples</span>
+    <span class="label">By application. Always.</span>
+  </div>
+</footer>
+
+<script>
+/* Key gate. The page stores only a hash of the key. The four Circle checkout links are sealed
+   with AES-GCM under the key, so they cannot be read from the page source without it. */
+(function(){
+  const KEY_HASH = "7be403e3cc82262248913b70f596a31b93f656e0da8ce5d1bf757c63ef7a8db4";
+  const SEALED = {"s": "nqvyUHOzitQTu2Gwq3Xe+A==", "i": "R+xsdnVKlvvIeUgY", "d": "fSvM3gKJmF3w3xoOpAnpNNXCHZ5WIJRtF38RpUyG/VKsDpDsPqYiXFPiR5PROMiQJrIzxnE9GZ1WTjfqiD5nyQNlr2uYyPH6Fw5H6Dgqplez1XhZghuJsKYSOdHu+8uQnI7w/PAUh3tcWOvi5xyF38SI3ReS08aFyWYfRraqTLJE5tS0r4XPkC8Aa8Fe5U3aEcCAhJIez/puGMTtmNxkbS6qpsV8lST54T4PTmjkuGemMpAdVziUU4dOHUpUNDMxLAs/Qd1/tZIYUpPQfGAYLCSMaIjocwZnoyIruYDAG/JdUmSjb8Gt5P8eqYjYm4W5hKGBfJgfSnZEEUPpWAWMAbwmVn8Mz8D/r0AEhg6iIT8PA7C4wogdblAniiN4XumEHR6UFZaxliU6TNQDZe8bQ8hxkY48al4FVG5pC4ZIM4WM30VB3X3cmxLFCzbkSIqaRTZDEBqLlzqyCoQ3P4qr3Jn580VAXQ0nkksqLj7+uAZaXQ7ANwZDOClxQeer"};
+  const gate = document.getElementById("gate"), input = document.getElementById("keyInput"), err = document.getElementById("gateError");
+  const norm = s => s.trim().toLowerCase();
+  const enc = s => new TextEncoder().encode(s);
+  const bytes = s => Uint8Array.from(atob(s), ch => ch.charCodeAt(0));
+  const hash = async s => [...new Uint8Array(await crypto.subtle.digest("SHA-256", enc(norm(s))))].map(x => x.toString(16).padStart(2, "0")).join("");
+  const unseal = async pass => {
+    const base = await crypto.subtle.importKey("raw", enc(pass), "PBKDF2", false, ["deriveKey"]);
+    const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: bytes(SEALED.s), iterations: 150000, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: bytes(SEALED.i) }, key, bytes(SEALED.d));
+    return JSON.parse(new TextDecoder().decode(plain));
+  };
+  const links = document.querySelectorAll("[data-checkout]");
+  links.forEach(a => a.addEventListener("click", e => { if (a.getAttribute("href") === "#") e.preventDefault(); }));
+  const wire = urls => links.forEach(a => { const u = urls[a.dataset.checkout]; if (u) { a.href = u; a.rel = "noopener"; } });
+  const lock = () => { gate.hidden = false; gate.style.opacity = "1"; document.body.classList.add("locked"); input.focus(); };
+  const open = () => { gate.style.opacity = "0"; document.body.classList.remove("locked"); setTimeout(() => { gate.hidden = true; }, 800); };
+  const fail = () => { err.classList.add("visible"); input.value = ""; };
+  let busy = false;
+  const tryKey = async final => {
+    if (busy) return;
+    const pass = norm(input.value);
+    if (await hash(pass) !== KEY_HASH) { if (final) fail(); return; }
+    busy = true;
+    try { wire(await unseal(pass)); try { sessionStorage.setItem("vx-k", pass); } catch (e) {} open(); }
+    catch (e) { fail(); }
+    busy = false;
+  };
+  let saved = null; try { saved = sessionStorage.getItem("vx-k"); } catch (e) {}
+  if (saved) { gate.hidden = true; unseal(saved).then(wire).catch(lock); return; }
+  lock();
+  input.addEventListener("input", () => { err.classList.remove("visible"); tryKey(false); });
+  input.addEventListener("keydown", e => { if (e.key === "Enter") tryKey(true); });
+})();
+</script>
+</body>
+</html>
