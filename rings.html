@@ -43,13 +43,17 @@ em{font-style:italic;color:var(--muted)}
 #gate .gate-error{margin:20px 0 0;font-style:italic;font-size:16px;color:#7A1A1A;opacity:0;transition:opacity .3s}
 #gate .gate-error.visible{opacity:1}
 #gate .gate-hint{margin:52px 0 0;font-style:italic;font-size:16px;color:var(--muted);max-width:34ch}
+#gate[hidden]{display:none}
+#gate.leaving{pointer-events:none}
 body.locked{overflow:hidden}
 
 /* Header */
 header{border-bottom:1px solid var(--line)}
-header .inner{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
+header .inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 20px;padding-block:22px}
 .wordmark{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:.42em;color:var(--ink);text-decoration:none}
 header .label{color:var(--muted);letter-spacing:.22em;font-size:10px}
+.welcome{font-size:14px;letter-spacing:.34em;margin:0 0 22px}
+@media (max-width:560px){header .inner{padding-block:18px}header .wordmark{font-size:16px;letter-spacing:.36em}header .label{font-size:9px;letter-spacing:.18em}}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-size:11px;letter-spacing:.26em;text-transform:uppercase;text-decoration:none;padding:18px 26px;border:0;border-radius:0;cursor:pointer;transition:background .2s,color .2s}
@@ -248,7 +252,7 @@ footer .label{color:var(--muted);letter-spacing:.2em;font-size:10px}
 <section class="hero gutter">
   <div class="inner">
     <div>
-      <p class="label eyebrow">Welcome. It seems we chose each other.</p>
+      <p class="label eyebrow welcome">Welcome</p>
       <h1>Two Rings. <em>Choose how close.</em></h1>
     </div>
     <div>
@@ -510,8 +514,8 @@ footer .label{color:var(--muted);letter-spacing:.2em;font-size:10px}
   const links = document.querySelectorAll("[data-checkout]");
   links.forEach(a => a.addEventListener("click", e => { if (a.getAttribute("href") === "#") e.preventDefault(); }));
   const wire = urls => links.forEach(a => { const u = urls[a.dataset.checkout]; if (u) { a.href = u; a.rel = "noopener"; } });
-  const lock = () => { gate.hidden = false; gate.style.opacity = "1"; document.body.classList.add("locked"); input.focus(); };
-  const open = () => { gate.style.opacity = "0"; document.body.classList.remove("locked"); setTimeout(() => { gate.hidden = true; }, 800); };
+  const lock = () => { gate.classList.remove("leaving"); gate.hidden = false; gate.style.opacity = "1"; document.body.classList.add("locked"); input.focus(); };
+  const open = () => { gate.classList.add("leaving"); gate.style.opacity = "0"; document.body.classList.remove("locked"); setTimeout(() => { gate.hidden = true; }, 800); };
   const fail = () => { err.classList.add("visible"); input.value = ""; };
   let busy = false;
   const tryKey = async final => {
