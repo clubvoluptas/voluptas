@@ -84,6 +84,20 @@
   .fade-up.visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; transition: none; } }
 
+  /* What waits inside */
+  .inside { margin-bottom: 56px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .scenes { list-style: none; width: 100%; }
+  .scenes li { font-size: clamp(24px, 4vw, 30px); line-height: 1.3; font-weight: 300; padding: 18px 0; border-top: 1px solid var(--line); text-wrap: balance; }
+  .scenes li:last-child { border-bottom: 1px solid var(--line); }
+
+  /* Whispers */
+  .whispers { margin-bottom: 64px; display: flex; flex-direction: column; gap: 26px; }
+  .wgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+  .w { margin: 0; border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .w q { quotes: none; font-style: italic; font-size: 22px; line-height: 1.35; color: var(--ink); }
+  .w .label { color: var(--muted); letter-spacing: 0.2em; font-size: 10px; }
+  @media (max-width: 560px) { .wgrid { grid-template-columns: 1fr; } }
+
   /* Gate */
   #gate { position: fixed; inset: 0; background: var(--paper); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; transition: opacity 0.8s ease; }
   #gate .wordmark { font-size: 22px; margin-bottom: 44px; }
@@ -162,12 +176,22 @@
   </div>
   <section class="letter fade-up">
     <p>I read through what you shared with us, and you feel like our people.</p>
-    <p>Not because of what you're curious about. Because of why.</p>
-    <p>The couples who belong here aren't looking for an escape from their marriage. They're looking for more of each other, in a room that makes that possible. They made a decision somewhere along the way that good wasn't enough. That the heat their marriage was capable of deserved to be honored, not quietly accepted as something that belonged to their twenties.</p>
+    <p>It was the why behind your curiosity that told me.</p>
+    <p>The couples who belong here want more of each other, in a room that makes that possible. They made a decision somewhere along the way that good wasn't enough. That the heat their marriage is capable of deserves to be honored now, in the best years of their life together.</p>
     <p>That's who fills this Society. Devoted. Deeply married. Hungry for something most couples never admit to wanting, let alone pursue together.</p>
     <p>This call is simply us meeting. I'll walk you through how the evenings work, what the Society looks like between gatherings, and how couples move through the room entirely on their own terms. You ask everything. We decide honestly together whether this is the right fit.</p>
     <p>Thirty minutes. Both of you, together.</p>
     <div class="sig">Jenn<span class="role label">Founder, Voluptas</span></div>
+  </section>
+
+  <!-- ── WHAT WAITS INSIDE ── -->
+  <section class="inside fade-up" aria-label="What waits inside">
+    <div class="label">What waits inside</div>
+    <ul class="scenes">
+      <li>Candlelight on bare shoulders.</li>
+      <li><em>A glance across the room that says later.</em></li>
+      <li>New friends who understand the two of you, unlike anyone else in your life.</li>
+    </ul>
   </section>
 
   <!-- ── RESERVATION NOTE ── -->
@@ -176,7 +200,20 @@
     <p>If we're aligned, a <em>one hundred dollar reservation</em> holds your place and, if aligned, opens your first week inside the Society, where it lives between gatherings. Event dates, invitations, and member connection exist only inside. None of it is ever posted publicly.</p>
     <p>Membership continues monthly or annually, only as long as it feels right.</p>
     <p>If after we speak this isn't the fit, your reservation comes back to you in full. No friction. No awkward follow-up.</p>
-    <p>But if it is the fit, what follows will be something you talk about on the drive home, and again over coffee the next morning, and again six months from now when you're already planning the next one.</p>
+    <p>But if it is the fit, what follows will be something you talk about in the hotel room that night, again over coffee the next morning, and again six months from now when you're already planning the next one.</p>
+  </section>
+
+  <!-- ── WHISPERS FROM INSIDE ── -->
+  <section class="whispers fade-up" aria-label="Whispers from inside">
+    <div class="label">Whispers from inside</div>
+    <div class="wgrid">
+      <figure class="w"><q>If you have YET to do an event with V, I would ask you&hellip; what are you waiting for?</q><figcaption class="label">A + B</figcaption></figure>
+      <figure class="w"><q>Sexy, playful, respectful, and just a little dangerous in the best way.</q><figcaption class="label">A + T</figcaption></figure>
+      <figure class="w"><q>You two have created a society that has allowed us to reach a heightened level in our marriage that we never knew could exist.</q><figcaption class="label">S + C</figcaption></figure>
+      <figure class="w"><q>We have never experienced this much warmth and love anywhere else.</q><figcaption class="label">D + O</figcaption></figure>
+      <figure class="w"><q>To say you'll be changed after attending a Voluptas event is an understatement.</q><figcaption class="label">J &middot; The Feminine</figcaption></figure>
+      <figure class="w"><q>I can't remember a time when I felt so open, honest, and comfortable.</q><figcaption class="label">E &middot; The Feminine</figcaption></figure>
+    </div>
   </section>
 
   <!-- ── CALENDLY ── -->
