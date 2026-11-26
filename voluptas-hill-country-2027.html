@@ -705,7 +705,8 @@ function openSuite(id){
   document.getElementById('mTitle').textContent = s.name;
   document.getElementById('mPrice').textContent = s.price;
   document.getElementById('mDesc').innerHTML = s.desc.map(p => `<p>${p}</p>`).join('');
-  document.getElementById('mFeats').innerHTML = s.feats.map(f => `<li>${f}</li>`).join('');
+  const gift = (s.id === 'corner' || s.id === 'terrace') ? 'Premium gift bag' : 'Welcome gift';
+  document.getElementById('mFeats').innerHTML = [...s.feats, gift].map(f => `<li>${f}</li>`).join('');
   show(0);
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
