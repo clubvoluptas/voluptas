@@ -226,7 +226,8 @@ p{max-width:34em;}
 .request{padding:clamp(96px,12vw,170px) 0;}
 .request-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(40px,7vw,110px);align-items:end;}
 .request h2{font-size:clamp(44px,6vw,84px);line-height:1.02;}
-.request p{color:var(--umber);margin-bottom:32px;}
+.request p{color:var(--umber);margin-bottom:18px;}
+.request p:last-of-type{margin-bottom:32px;}
 .request .email{display:block;margin-top:22px;font-size:17px;color:var(--umber);}
 
 /* ── FOOTER ── */
@@ -248,8 +249,9 @@ p{max-width:34em;}
 .modal-close{position:absolute;top:14px;right:14px;width:44px;height:44px;font-size:26px;color:var(--umber);}
 .modal-close:hover{color:var(--ink);}
 .modal-body h3{font-size:clamp(30px,3vw,38px);margin:4px 0 6px;}
-.modal-price{font-size:20px;color:var(--umber);margin-bottom:22px;}
+.modal-price{font-size:20px;color:var(--umber);margin-bottom:6px;}
 .modal-price small{font-family:var(--label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-left:8px;}
+.modal-hold{font-size:16px;color:var(--gold);margin-bottom:22px;}
 .modal-desc p{font-size:18px;color:var(--umber);}
 .modal-desc p + p{margin-top:14px;}
 .modal-feats{list-style:none;margin:22px 0 30px;border-top:1px solid var(--stone);}
@@ -312,7 +314,7 @@ p{max-width:34em;}
   <img class="hero-bg" src="images/hc27-hero-pool.jpg" alt="The pool and hot tub at dusk, oaks lit purple, the Hill Country and a pink sunset beyond" fetchpriority="high">
   <div class="hero-shade"></div>
   <div class="wrap hero-inner">
-    <div class="label short">Hill Country · October 2027</div>
+    <div class="label short"><span>Hill Country · October 2027 · <span style="white-space:nowrap">Pre-sale open</span></span></div>
     <h1>Inhibitions optional.</h1>
     <p class="lede">A private estate in the Texas Hill Country and nowhere to be but here. Cocktails at golden hour, a private chef at every meal, conversations that go somewhere they never go at home, and nights that get bolder every time the sun goes down.</p>
     <div class="hero-actions">
@@ -493,7 +495,7 @@ p{max-width:34em;}
         <div class="label">The main house</div>
         <h2>Nine suites, each with its own door.</h2>
       </div>
-      <p>Every suite is priced per couple and all-inclusive: every meal, the open bar, the programming, and the full estate. Select a suite for photos and details.</p>
+      <p>Every suite is priced per couple and all-inclusive: every meal, the open bar, the programming, and the full estate. During the pre-sale, a $1,000 deposit holds any suite. Select a suite for photos and details.</p>
     </div>
     <div class="suite-grid" id="suiteGrid"></div>
   </div>
@@ -544,11 +546,12 @@ p{max-width:34em;}
 <section class="request" id="request">
   <div class="wrap request-grid">
     <div>
-      <div class="label short">Hill Country 2027</div>
+      <div class="label short">The pre-sale</div>
       <h2>Eleven suites. Request yours.</h2>
     </div>
     <div>
-      <p>Exact dates for October are coming soon. Send Jenn a message in the Society with the suite you have in mind.</p>
+      <p>We are opening Hill Country early, before dates are set. A $1,000 deposit holds your suite now, and you will be the first to know when October is on the calendar.</p>
+      <p>Send Jenn a message in the Society with the suite you have in mind.</p>
       <a class="btn" href="https://society.clubvoluptas.com/messages/" target="_blank" rel="noopener">Request a suite</a>
     </div>
   </div>
@@ -578,6 +581,7 @@ p{max-width:34em;}
       <span class="suite-tag" id="mTag"></span>
       <h3 id="mTitle"></h3>
       <div class="modal-price"><span id="mPrice"></span><small>per couple, all-inclusive</small></div>
+      <p class="modal-hold">A $1,000 deposit holds this suite during the pre-sale.</p>
       <div class="modal-desc" id="mDesc"></div>
       <ul class="modal-feats" id="mFeats"></ul>
       <a class="btn" id="mCta" href="https://society.clubvoluptas.com/messages/" target="_blank" rel="noopener">Request this suite</a>
