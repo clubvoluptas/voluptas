@@ -277,7 +277,7 @@ p{max-width:34em;}
 <section class="hero">
   <div class="hero-copy">
     <div class="label short">Hill Country 2027</div>
-    <h1>The estate is ours again in October.</h1>
+    <h1>Some doors you walk through together.</h1>
     <p class="lede">Four nights in a private estate in the Texas Hill Country, for eleven married couples. Exact dates are coming soon.</p>
     <div class="hero-actions">
       <a class="btn" href="#request">Request a suite</a>
@@ -285,15 +285,17 @@ p{max-width:34em;}
     </div>
   </div>
   <figure class="hero-media">
-    <img src="images/hc27-pool-dusk-wide.jpg" alt="The pool and hot tub at dusk, oaks lit purple against the Hill Country sunset" fetchpriority="high">
-    <figcaption>The pool at dusk, 2026</figcaption>
+    <video id="heroVideo" autoplay muted playsinline preload="auto" poster="images/hc27-front-doors-start.jpg" aria-label="Walking up the front steps to the glass doors of the main house at night, the hall glowing red and gold inside">
+      <source src="images/hc27-front-doors.mp4" type="video/mp4">
+    </video>
+    <figcaption>The front doors, after dark</figcaption>
   </figure>
 </section>
 
 <!-- RETURN -->
 <section class="return">
   <div class="wrap return-grid">
-    <p class="return-statement">Last October, eleven couples spent four nights on this hilltop. In 2027 we go back to the same estate, with the same eleven suites, and the whole property to ourselves again.</p>
+    <p class="return-statement">Ten other married couples who want what you want. No other guests on the property, a private chef at every meal, and evenings that go a little further than the one before.</p>
     <dl class="facts">
       <div><dt>Where</dt><dd>A private estate forty minutes from Austin's airport</dd></div>
       <div><dt>When</dt><dd>October 2027. Dates to be announced</dd></div>
@@ -490,12 +492,11 @@ p{max-width:34em;}
   <div class="wrap request-grid">
     <div>
       <div class="label short">Hill Country 2027</div>
-      <h2>Eleven suites. Write to Jenn for yours.</h2>
+      <h2>Eleven suites. Request yours.</h2>
     </div>
     <div>
-      <p>Exact dates for October are coming soon. Tell Jenn which suite you have in mind and she will take it from there.</p>
-      <a class="btn" href="mailto:jenn@clubvoluptas.com?subject=Hill%20Country%202027%20suite%20request">Request a suite</a>
-      <span class="email">jenn@clubvoluptas.com</span>
+      <p>Exact dates for October are coming soon. Send Jenn a message in the Society with the suite you have in mind.</p>
+      <a class="btn" href="https://society.clubvoluptas.com/messages/" target="_blank" rel="noopener">Request a suite</a>
     </div>
   </div>
 </section>
@@ -526,7 +527,7 @@ p{max-width:34em;}
       <div class="modal-price"><span id="mPrice"></span><small>per couple, all-inclusive</small></div>
       <div class="modal-desc" id="mDesc"></div>
       <ul class="modal-feats" id="mFeats"></ul>
-      <a class="btn" id="mCta" href="#">Request this suite</a>
+      <a class="btn" id="mCta" href="https://society.clubvoluptas.com/messages/" target="_blank" rel="noopener">Request this suite</a>
     </div>
   </div>
 </div>
@@ -607,7 +608,6 @@ const CASITA = [
 ];
 
 const ALL = [...SUITES, ...CASITA];
-const mailto = name => `mailto:jenn@clubvoluptas.com?subject=${encodeURIComponent('Hill Country 2027: ' + name)}`;
 
 // Render main house suites
 document.getElementById('suiteGrid').innerHTML = SUITES.map(s => `
@@ -653,7 +653,6 @@ function openSuite(id){
   document.getElementById('mPrice').textContent = s.price;
   document.getElementById('mDesc').innerHTML = s.desc.map(p => `<p>${p}</p>`).join('');
   document.getElementById('mFeats').innerHTML = s.feats.map(f => `<li>${f}</li>`).join('');
-  document.getElementById('mCta').href = mailto(s.name);
   show(0);
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -676,9 +675,11 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') show(idx + 1);
 });
 
-// Respect reduced motion: pause any video
+// Hero: the walk to the door plays once and rests on the last frame.
+// With reduced motion, show that last frame as a still.
+const hv = document.getElementById('heroVideo');
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
+  hv.removeAttribute('autoplay'); hv.pause(); hv.poster = 'images/hc27-front-doors-end.jpg';
 }
 </script>
 </body>
