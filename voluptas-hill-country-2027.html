@@ -285,10 +285,8 @@ p{max-width:34em;}
     </div>
   </div>
   <figure class="hero-media">
-    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="images/hc27-terrace-poster.jpg" aria-label="Walking the stone terrace toward the pool at dusk, Hill Country 2026">
-      <source src="images/hc27-terrace-loop.mp4" type="video/mp4">
-    </video>
-    <figcaption>The terrace at dusk, 2026</figcaption>
+    <img src="images/hc27-pool-dusk-wide.jpg" alt="The pool and hot tub at dusk, oaks lit purple against the Hill Country sunset" fetchpriority="high">
+    <figcaption>The pool at dusk, 2026</figcaption>
   </figure>
 </section>
 
@@ -678,7 +676,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') show(idx + 1);
 });
 
-// Respect reduced motion: hold the hero video on its poster frame
+// Respect reduced motion: pause any video
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
 }
