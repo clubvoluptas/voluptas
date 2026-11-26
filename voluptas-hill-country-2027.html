@@ -131,17 +131,19 @@ p{max-width:34em;}
 .table-photos figure,.table-photos .ph{height:100%;}
 .table-photos .ph{overflow:hidden;background:var(--stone);}
 .table-photos .ph img{width:100%;height:100%;object-fit:cover;}
-.table-note{margin-top:44px;color:var(--umber);max-width:40em;}
+.table-note{margin-top:64px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(32px,6vw,96px);align-items:end;border-top:1px solid var(--stone);padding-top:44px;}
+.table-note .statement{font-size:clamp(28px,3vw,40px);line-height:1.25;color:var(--ink);max-width:20em;}
+.table-note .detail{font-size:17px;color:var(--umber);}
 
 /* ── AFTER DARK (the one dark band) ── */
 .afterdark{background:var(--night);color:var(--night-fg);padding:clamp(80px,10vw,140px) 0;}
 .ad-top{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:center;}
-.ad-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(40px,5vw,72px);}
+.ad-wide{margin-top:clamp(40px,5vw,72px);}
 .afterdark figure .ph{overflow:hidden;background:#0d0907;}
 .ad-main .ph{aspect-ratio:4/3;}
-.ad-pair .ph{aspect-ratio:1/1;}
+.ad-wide .ph{aspect-ratio:21/9;}
 .afterdark figure img,.afterdark figure video{width:100%;height:100%;object-fit:cover;}
-.ad-pair figure:last-child img{object-position:center 58%;}
+.ad-wide img{object-position:center 54%;}
 .afterdark figcaption{font-size:16px;color:var(--night-muted);padding-top:10px;}
 .afterdark .label{color:var(--ember);}
 .afterdark .label::after{background:rgba(180,81,58,.35);}
@@ -229,7 +231,8 @@ p{max-width:34em;}
   .hero-copy{padding:56px var(--gutter) 48px;}
   .hero-media{height:78vh;min-height:460px;}
   .return-grid,.hall-grid,.grounds-head,.suites-head,.casita-grid,.request-grid{grid-template-columns:1fr;}
-  .table-head,.ad-top{grid-template-columns:1fr;}
+  .table-head,.ad-top,.table-note{grid-template-columns:1fr;}
+  .ad-wide .ph{aspect-ratio:4/5;}
   .table-days{grid-template-columns:1fr 1fr;}
   .table-photos{grid-template-columns:1fr 1fr;}
   .table-photos figure:first-child{grid-column:1 / -1;}
@@ -339,7 +342,7 @@ p{max-width:34em;}
       </figure>
       <figure class="c3">
         <div class="ph"><img src="images/hc27-champagne.jpg" alt="A bottle of Dom Pérignon beside a carved frame" loading="lazy"></div>
-        <figcaption>Dom Pérignon, in the room.</figcaption>
+        <figcaption>Mornings that start slowly.</figcaption>
       </figure>
       <figure class="c4">
         <div class="ph"><img src="images/pool-warm.jpg" alt="The outdoor glass sauna and cold plunge at sunset" loading="lazy"></div>
@@ -407,7 +410,10 @@ p{max-width:34em;}
         <div class="ph"><img src="images/food-spread.jpg" alt="A chef-plated main course with grilled vegetables" loading="lazy"></div>
       </figure>
     </div>
-    <p class="table-note">Breakfast is laid out before you wake: pastries, fresh fruit, good coffee. Lunch arrives mid-day, local and seasonal. Every dietary need is accommodated. You will not stand in a kitchen, and you will not leave the estate for a meal.</p>
+    <div class="table-note">
+      <p class="statement">A private chef who knows your group, knows your weekend, and cooks for it every single night.</p>
+      <p class="detail">Mornings open with an artisan spread of pastries, fresh fruit and good coffee. Lunch is local and seasonal. Every dietary need is accommodated, and every menu is built from scratch for the weekend.</p>
+    </div>
   </div>
 </section>
 
@@ -426,20 +432,10 @@ p{max-width:34em;}
         <figcaption>The great room, after dark.</figcaption>
       </figure>
     </div>
-    <div class="ad-pair">
-      <figure>
-        <div class="ph">
-          <video class="loop" autoplay muted loop playsinline preload="none" poster="images/hc27-hall-doors-poster.jpg" aria-label="Walking up to the glass doors of the hall at night">
-            <source src="images/hc27-hall-doors-loop.mp4" type="video/mp4">
-          </video>
-        </div>
-        <figcaption>The doors to the hall.</figcaption>
-      </figure>
-      <figure>
-        <div class="ph"><img src="images/hc27-redwindows-stars.jpg" alt="The main house at night under the stars, its windows glowing red" loading="lazy"></div>
-        <figcaption>The main house, late.</figcaption>
-      </figure>
-    </div>
+    <figure class="ad-wide">
+      <div class="ph"><img src="images/hc27-redwindows-stars.jpg" alt="The main house at night under the stars, its windows glowing red" loading="lazy"></div>
+      <figcaption>The main house, late.</figcaption>
+    </figure>
   </div>
 </section>
 
