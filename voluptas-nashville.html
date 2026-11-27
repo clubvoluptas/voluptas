@@ -154,7 +154,7 @@
     mix-blend-mode: screen;
   }
   @keyframes record-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .hero > * { position: relative; z-index: 1; }
+  .hero > *:not(.hero-record) { position: relative; z-index: 1; }
   .header-logo { width: 88px; height: 88px; object-fit: contain; margin-bottom: 36px; opacity: 0.95; }
   .hero .eyebrow {
     font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em;
