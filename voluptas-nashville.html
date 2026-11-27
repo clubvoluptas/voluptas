@@ -109,9 +109,10 @@
      --rec-op controls how present it is (0.10 barely there, 0.30 bold). */
   .hero-record {
     --rec-op: 0.46;
-    position: absolute; left: 50%; top: 50%; z-index: 0; pointer-events: none;
-    width: min(118vmin, 980px); aspect-ratio: 1 / 1;
-    transform: translate(-50%, -50%);
+    /* pushed up into the top-left corner, mostly off the page, so "Off the Record" sits literally off it */
+    position: absolute; left: 0; top: 0; z-index: 0; pointer-events: none;
+    width: min(112vmin, 980px); aspect-ratio: 1 / 1;
+    transform: translate(-34%, -36%);
     opacity: var(--rec-op);
   }
   .hero-record .disc {
