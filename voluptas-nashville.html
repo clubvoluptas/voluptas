@@ -104,101 +104,58 @@
   p:last-child { margin-bottom: 0; }
   em { color: var(--tobacco); font-style: italic; }
 
-  /* ============ HERO. lamplight on a record ============ */
+  /* ============ HERO. a gold record turning, lit low ============
+     Real photograph (Unsplash, free licence) behind the title. Shaded on the type side so it reads.
+     One slow push-in on the photo; off under reduced motion. */
   .hero {
-    position: relative; min-height: 90vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 80px 24px 64px;
-    background:
-      radial-gradient(120% 80% at 50% 12%, rgba(255,250,240,0.9) 0%, rgba(239,231,218,0) 58%),
-      linear-gradient(180deg, #f5efe4 0%, var(--linen) 62%, var(--linen-2) 100%);
-    border-bottom: 1px solid var(--hair);
+    position: relative; min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    text-align: left; padding: 96px max(7vw, 56px) 80px;
+    background: #120c08; color: #efe6d6;
     overflow: hidden;
   }
-  /* ============ THE RECORD ============
-     A real LP behind the title, turned way down so it reads as a watermark.
-     Grooves, gaps between tracks, the glossy run-out, a printed centre label and a spindle hole.
-     The disc and label turn slowly; the glare stays still, the way light sits on a spinning record.
-     --rec-op controls how present it is (0.10 barely there, 0.30 bold). */
-  .hero-record {
-    --rec-op: 0.46;
-    /* pushed up into the top-left corner, mostly off the page, so "Off the Record" sits literally off it */
-    position: absolute; left: 0; top: 0; z-index: 0; pointer-events: none;
-    width: min(112vmin, 980px); aspect-ratio: 1 / 1;
-    transform: translate(-34%, -36%);
-    opacity: var(--rec-op);
+  .hero-photo {
+    position: absolute; inset: -2%; z-index: 0;
+    background: #120c08 url('https://images.unsplash.com/photo-1616714109948-c74fe5029a4d?auto=format&fit=crop&w=2600&q=82') 62% 50% / cover no-repeat;
+    animation: hero-drift 26s ease-in-out infinite alternate;
   }
-  .hero-record .disc {
-    position: absolute; inset: 0; border-radius: 50%;
+  @keyframes hero-drift { from { transform: scale(1); } to { transform: scale(1.06); } }
+  .hero-shade {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
     background:
-      /* run-out: the smooth glossy band just outside the label */
-      radial-gradient(circle closest-side, transparent 0 34.2%, #241d18 34.3% 39.6%, transparent 39.7%),
-      /* gaps between tracks */
-      radial-gradient(circle closest-side, transparent 0 50.4%, #2a221c 50.5% 51.3%, transparent 51.4%),
-      radial-gradient(circle closest-side, transparent 0 61.6%, #2a221c 61.7% 62.4%, transparent 62.5%),
-      radial-gradient(circle closest-side, transparent 0 72.2%, #2a221c 72.3% 73.1%, transparent 73.2%),
-      radial-gradient(circle closest-side, transparent 0 83.0%, #2a221c 83.1% 83.8%, transparent 83.9%),
-      /* lead-in and the raised outer lip */
-      radial-gradient(circle closest-side, transparent 0 95.4%, #2a231e 95.5% 98.6%, #0d0a08 98.7% 99.6%, transparent 99.7%),
-      /* the grooves themselves */
-      repeating-radial-gradient(circle closest-side, #110d0a 0, #110d0a 1px, #30271f 1.4px, #30271f 2px, #17120e 2.4px, #17120e 3px),
-      #16110d;
-    box-shadow: 0 40px 90px rgba(42,31,23,0.45);
-    animation: record-turn 36s linear infinite;
+      linear-gradient(90deg, rgba(18,12,8,0.92) 0%, rgba(18,12,8,0.74) 38%, rgba(18,12,8,0.18) 68%, rgba(18,12,8,0) 100%),
+      linear-gradient(180deg, rgba(18,12,8,0.4) 0%, rgba(18,12,8,0) 24%, rgba(18,12,8,0) 74%, rgba(18,12,8,0.55) 100%);
   }
-  .hero-record .label {
-    position: absolute; inset: 32.5%; border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 50%, transparent 0 95%, rgba(42,31,23,0.35) 96% 100%),
-      radial-gradient(circle at 38% 32%, #ecd59c 0%, #cba65a 45%, #a07d36 100%);
-  }
-  .hero-record .label svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .hero-record .label::after { /* spindle hole */
-    content: ''; position: absolute; left: 50%; top: 50%; width: 7%; height: 7%;
-    transform: translate(-50%, -50%); border-radius: 50%;
-    background: #f3ece0; box-shadow: inset 0 1px 2px rgba(42,31,23,0.6);
-  }
-  .hero-record .glare {
-    position: absolute; inset: 0; border-radius: 50%;
-    background: conic-gradient(from 300deg,
-      transparent 0deg, rgba(255,246,226,0.55) 22deg, transparent 46deg,
-      transparent 180deg, rgba(255,246,226,0.38) 204deg, transparent 228deg, transparent 360deg);
-    -webkit-mask-image: radial-gradient(circle closest-side, transparent 0 33%, #000 35%, #000 97%, transparent 99%);
-            mask-image: radial-gradient(circle closest-side, transparent 0 33%, #000 35%, #000 97%, transparent 99%);
-    mix-blend-mode: screen;
-  }
-  @keyframes record-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .hero > *:not(.hero-record) { position: relative; z-index: 1; }
-  .header-logo { width: 88px; height: 88px; object-fit: contain; margin-bottom: 36px; opacity: 0.95; }
+  .hero-inner { position: relative; z-index: 1; max-width: 720px; }
+  .header-logo { width: 72px; height: 72px; object-fit: contain; margin-bottom: 40px; opacity: 0.95; display: block; }
   .hero .eyebrow {
-    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.5em;
-    color: #5a4128; text-transform: uppercase; margin-bottom: 22px;
+    font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.5em;
+    color: var(--gold-lt); text-transform: uppercase; margin-bottom: 18px;
   }
+  .hero .hero-rule { width: 46px; height: 1px; background: rgba(207,174,110,0.6); margin-bottom: 30px; }
   .hero h1 {
-    font-family: 'Cinzel', serif; font-size: clamp(26px, 5.2vw, 52px); font-weight: 500;
-    letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.32; margin-bottom: 14px;
-    color: var(--tobacco); /* fallback for browsers without background-clip:text */
-    background: linear-gradient(180deg, #1b130d 0%, #3b2a1c 42%, #86652a 78%, #ab8645 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 14px rgba(42,31,23,0.20)) drop-shadow(0 1px 0 rgba(255,255,255,0.4));
+    font-family: 'Cinzel', serif; font-size: clamp(20px, 2.6vw, 30px); font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase; line-height: 1.3; margin-bottom: 8px;
+    color: #efe6d6;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.45);
   }
-  /* the city, set big. its own gold gradient so it keeps that colour at any size */
+  /* the city, set big, in record gold */
   .hero h1 .city {
-    display: inline-block; margin-top: 0.08em;
-    font-size: clamp(44px, 10.5vw, 124px); letter-spacing: 0.12em; line-height: 1.02;
-    margin-right: -0.12em; /* optically re-centre: tracking adds space after the last letter */
-    background: linear-gradient(180deg, #5e4417 0%, #86652a 38%, #ab8645 70%, #c9a25e 100%);
+    display: inline-block; margin-top: 0.12em;
+    font-size: clamp(48px, 9vw, 118px); font-weight: 500; letter-spacing: 0.1em; line-height: 1.02;
+    background: linear-gradient(180deg, #f3dc9f 0%, #d4b064 50%, #a88238 100%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
-  }
-  .hero .event-dateline {
-    font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; font-weight: 500;
-    color: #3f2d1a; letter-spacing: 0.18em; margin-top: 8px;
+    text-shadow: none;
+    filter: drop-shadow(0 3px 20px rgba(0,0,0,0.5));
   }
   .hero .hero-line {
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(19px,3vw,23px);
-    color: var(--tobacco); letter-spacing: 0.04em; margin-top: 32px; max-width: 500px;
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(24px, 3vw, 34px);
+    color: #efe6d6; letter-spacing: 0.02em; margin: 18px 0 0;
+  }
+  .hero .event-dateline {
+    font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.36em; text-transform: uppercase;
+    color: rgba(239,230,214,0.72); margin-top: 34px;
   }
 
   /* ============ FULL-BLEED PHOTO PANELS ============
@@ -236,7 +193,7 @@
     background-color: #1c1411;
     background-image:
       linear-gradient(180deg, rgba(28,20,17,0.30), rgba(28,20,17,0.18)),
-      url('https://images.unsplash.com/photo-1616714109948-c74fe5029a4d?auto=format&fit=crop&w=2400&q=80'),
+      url('https://images.unsplash.com/photo-1601053397261-2552332609fc?auto=format&fit=crop&w=2400&q=80'),
       linear-gradient(120deg, #2a1d14 0%, #120c09 100%);
     background-size: cover; background-position: center 40%; background-repeat: no-repeat;
   }
@@ -472,7 +429,12 @@
 
   @media (max-width: 600px) {
     /* phones: let the hero hug its content instead of filling the screen, so no dead space above the skyline */
-    .hero { min-height: 0; padding: 172px 20px 56px; }
+    .hero { min-height: 88vh; padding: 72px 24px 64px; align-items: center; text-align: center; }
+    .hero-photo { background-position: 58% 50%; }
+    .hero-shade { background: linear-gradient(180deg, rgba(18,12,8,0.78) 0%, rgba(18,12,8,0.62) 50%, rgba(18,12,8,0.82) 100%); }
+    .header-logo { margin: 0 auto 32px; }
+    .hero .hero-rule { margin: 0 auto 26px; }
+    .hero .event-dateline { letter-spacing: 0.26em; }
     .page-wrap { padding: 0 20px; }
     .tier-row { grid-template-columns: 1fr; gap: 10px; }
     .modal-head, .modal-intro, .modal-terms, .modal-foot, .ring-body { padding-left: 24px; padding-right: 24px; }
@@ -504,26 +466,16 @@
 
   <!-- ===== HERO ===== -->
   <header class="hero">
-    <div class="hero-record" aria-hidden="true">
-      <div class="disc">
-        <div class="label">
-          <svg viewBox="0 0 200 200">
-            <defs><path id="labelRing" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
-            <text font-family="Cinzel, serif" font-size="11.5" letter-spacing="3.2" fill="#3b2a1c">
-              <textPath href="#labelRing">VOLUPTAS &#183; OFF THE RECORD &#183; NASHVILLE &#183; MMXXVII &#183;</textPath>
-            </text>
-            <text x="100" y="66" text-anchor="middle" font-family="Cinzel, serif" font-size="9" letter-spacing="3" fill="#3b2a1c">SIDE B</text>
-            <text x="100" y="146" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="12" fill="#3b2a1c">33&#8531; rpm</text>
-          </svg>
-        </div>
-      </div>
-      <div class="glare"></div>
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <img class="header-logo" src="https://clubvoluptas.com/images/Logo.png" alt="Club Voluptas">
+      <div class="eyebrow fade-in">Club Voluptas Private Society</div>
+      <div class="hero-rule fade-in"></div>
+      <h1 class="fade-in">The Voluptas Experience<br><span class="city">Nashville</span></h1>
+      <p class="hero-line fade-in">Off the Record</p>
+      <div class="event-dateline fade-in">Weekend of May 21, 2027</div>
     </div>
-    <img class="header-logo" src="https://clubvoluptas.com/images/Logo.png" alt="Club Voluptas">
-    <div class="eyebrow fade-in">Club Voluptas Private Society</div>
-    <h1 class="fade-in">The Voluptas Experience<br><span class="city">Nashville</span></h1>
-    <div class="event-dateline fade-in">Weekend of May 21, 2027</div>
-    <p class="hero-line fade-in">Off the Record</p>
   </header>
 
   <div class="fullbleed strip fade-in" aria-hidden="true"></div>
