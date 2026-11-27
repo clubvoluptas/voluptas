@@ -163,14 +163,13 @@
      To self-host later: download each, drop it in /images, and swap the url().
      Each panel keeps a tuned gradient underneath so it never shows empty. */
   .fullbleed { height: 44vh; min-height: 300px; width: 100%; position: relative; background-size: cover; background-position: center; }
-  .fullbleed.strip {
-    height: clamp(96px, 14vh, 150px); min-height: 96px;
+  /* Nashville skyline at dusk. sits between What Is Included and the Invitations */
+  .fullbleed.skyline {
     background-image:
       linear-gradient(180deg, rgba(27,19,13,0.10), rgba(27,19,13,0.04)),
       url('https://images.unsplash.com/photo-1606762903097-713bf356b8c2?auto=format&fit=crop&w=2400&q=80'),
       linear-gradient(90deg, #e2c9a8 0%, #efe3d0 50%, #e2c9a8 100%);
-    background-size: cover; background-position: center 38%; background-repeat: no-repeat;
-    border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+    background-size: cover; background-position: center 42%; background-repeat: no-repeat;
   }
   /* breadcrumb. a slice of something in the house, mirrored and graded. unexplained on purpose */
   .fullbleed.crumb {
@@ -479,7 +478,6 @@
     </div>
   </header>
 
-  <div class="fullbleed strip fade-in" aria-hidden="true"></div>
 
   <!-- ===== THE PRIVATE LETTER ===== -->
   <section class="band letter-band band--linen">
@@ -576,6 +574,8 @@
       </div>
     </div>
   </section>
+
+  <div class="fullbleed skyline fade-in" aria-hidden="true"></div>
 
   <!-- ===== INVITATIONS / PRICING =====
        ONE PRICE: Inner Ring, $2,400 per couple.
