@@ -401,6 +401,33 @@
   .modal-foot input[type="checkbox"] { width: 16px; height: 16px; margin-top: 3px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
   .modal-foot label span { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--night-text); font-style: italic; line-height: 1.7; letter-spacing: 0.04em; }
   .modal-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  /* ===== Inner Ring check (first step of the modal) ===== */
+  .modal-step[hidden] { display: none !important; }
+  .modal-step { display: flex; flex-direction: column; flex: 1; }
+  .ring-body { padding: 40px 48px 48px; flex: 1; }
+  .ring-body p { font-size: 17px; color: var(--night-text); line-height: 1.9; }
+  .ring-body p.ring-lead { font-size: 19px; color: var(--night-cream); font-style: italic; }
+  .ring-field { margin: 36px 0 12px; }
+  .ring-field label {
+    display: block; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.4em;
+    color: var(--gold-lt); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .ring-field input {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--gold-lt);
+    color: var(--night-cream); font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    letter-spacing: 0.04em; padding: 10px 0; outline: none; border-radius: 0;
+  }
+  .ring-field input::placeholder { color: var(--night-dim); font-style: italic; }
+  .ring-field input:focus { border-bottom-color: var(--night-cream); }
+  .ring-msg { min-height: 28px; font-size: 15px; font-style: italic; color: #d9a08c; letter-spacing: 0.03em; margin: 6px 0 24px; }
+  .btn-sign.busy { opacity: 0.6; pointer-events: none; }
+  .btn-link {
+    display: inline-block; text-decoration: none; background: transparent; border: 1px solid var(--gold-lt); color: var(--gold-lt);
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 16px 32px; transition: all 0.3s;
+  }
+  .btn-link:hover { background: rgba(207,174,110,0.12); }
+
   .btn-sign {
     background: transparent; border: 1px solid var(--gold-lt); color: var(--gold-lt);
     font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
@@ -432,7 +459,7 @@
   @media (max-width: 600px) {
     .page-wrap { padding: 0 20px; }
     .tier-row { grid-template-columns: 1fr; gap: 10px; }
-    .modal-head, .modal-intro, .modal-terms, .modal-foot { padding-left: 24px; padding-right: 24px; }
+    .modal-head, .modal-intro, .modal-terms, .modal-foot, .ring-body { padding-left: 24px; padding-right: 24px; }
     .term-note { padding: 22px 20px; }
   }
 </style>
@@ -479,7 +506,7 @@
     <img class="header-logo" src="https://clubvoluptas.com/images/Logo.png" alt="Club Voluptas">
     <div class="eyebrow fade-in">Club Voluptas Private Society</div>
     <h1 class="fade-in">The Voluptas Experience<br><span class="city">Nashville</span></h1>
-    <div class="event-dateline fade-in">May 22 &amp; 23, 2027</div>
+    <div class="event-dateline fade-in">Weekend of May 21, 2027</div>
     <p class="hero-line fade-in">Off the Record</p>
   </header>
 
@@ -648,6 +675,52 @@
 <div class="modal-overlay" id="ndaModal" role="dialog" aria-modal="true" aria-label="Before you proceed">
   <div class="modal-panel">
 
+    <!-- STEP 1. Inner Ring check. Email is looked up in the Society by
+         counter.clubvoluptas.com/api/ring-check (server-side, Circle token never in this page). -->
+    <div class="modal-step" id="stepVerify">
+      <div class="modal-head">
+        <div>
+          <div class="modal-kicker">The Inner Ring</div>
+          <div class="modal-title">First, Confirm<br>Your Membership.</div>
+        </div>
+        <button class="modal-close" onclick="closeNDA()">close</button>
+      </div>
+      <form class="ring-body" id="ringForm" novalidate>
+        <p class="ring-lead">In-person experiences are held for Inner Ring members.</p>
+        <p>Enter the email you use for the Society and we will confirm your place.</p>
+        <div class="ring-field">
+          <label for="ringEmail">Society Email</label>
+          <input type="email" id="ringEmail" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+        </div>
+        <div class="ring-msg" id="ringMsg" role="status" aria-live="polite"></div>
+        <div class="modal-actions">
+          <button type="submit" class="btn-sign" id="ringBtn">Continue</button>
+          <button type="button" class="btn-cancel" onclick="closeNDA()">Not yet</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- STEP 1b. Society member, but not Inner Ring. -->
+    <div class="modal-step" id="stepDenied" hidden>
+      <div class="modal-head">
+        <div>
+          <div class="modal-kicker">The Inner Ring</div>
+          <div class="modal-title">This Weekend Is<br>for the Inner Ring.</div>
+        </div>
+        <button class="modal-close" onclick="closeNDA()">close</button>
+      </div>
+      <div class="ring-body">
+        <p class="ring-lead">Your Society membership is confirmed. In-person experiences, this one included, are reserved for Inner Ring members.</p>
+        <p>When you are ready to step further in, the way is inside the Society.</p>
+        <div class="modal-actions" style="margin-top: 36px;">
+          <a class="btn-link" href="https://society.clubvoluptas.com">Return to the Society</a>
+          <button type="button" class="btn-cancel" onclick="closeNDA()">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2. Inner Ring confirmed: the conditions and the checkbox. -->
+    <div class="modal-step" id="stepTerms" hidden>
     <div class="modal-head">
       <div>
         <div class="modal-kicker">Before You Proceed</div>
@@ -719,6 +792,7 @@
         <button class="btn-cancel" onclick="closeNDA()">Not yet</button>
       </div>
     </div>
+    </div><!-- /stepTerms -->
 
   </div>
 </div>
@@ -776,20 +850,75 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el, i) { el.style.transitionDelay = (i % 4) * 0.07 + 's'; obs.observe(el); });
   }
 
-  /* ===== NDA / PAYMENT FLOW ===== */
+  /* ===== INNER RING CHECK + NDA / PAYMENT FLOW =====
+     Accept Invitation -> Society email -> ring-check:
+       not found          -> ask them to use their Society email
+       found, not Inner Ring -> "This Weekend Is for the Inner Ring" + link back to the Society
+       Inner Ring         -> conditions + checkbox -> payment
+     A confirmed Inner Ring email is remembered for this visit only. */
+  var RING_CHECK_URL = 'https://counter.clubvoluptas.com/api/ring-check';
   var currentTier = null;
+  var verifiedEmail = null;
   var modal = document.getElementById('ndaModal');
   var confirmBox = document.getElementById('signedConfirm');
   var payBtn = document.getElementById('paymentBtn');
+  var steps = { verify: document.getElementById('stepVerify'), denied: document.getElementById('stepDenied'), terms: document.getElementById('stepTerms') };
+  var ringForm = document.getElementById('ringForm');
+  var ringEmail = document.getElementById('ringEmail');
+  var ringMsg = document.getElementById('ringMsg');
+  var ringBtn = document.getElementById('ringBtn');
+
+  function showStep(name) {
+    Object.keys(steps).forEach(function(k) { steps[k].hidden = (k !== name); });
+    modal.scrollTop = 0;
+    if (name === 'verify') setTimeout(function() { ringEmail.focus(); }, 50);
+  }
 
   window.openNDA = function(tier) {
     currentTier = tier;
     confirmBox.checked = false;
     payBtn.classList.add('disabled');
+    ringMsg.textContent = '';
+    showStep(verifiedEmail ? 'terms' : 'verify');
     modal.classList.add('open');
-    modal.scrollTop = 0;
     document.body.style.overflow = 'hidden';
   };
+
+  ringForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = ringEmail.value.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      ringMsg.textContent = 'Enter the email you use for the Society.';
+      return;
+    }
+    ringMsg.textContent = '';
+    ringBtn.classList.add('busy');
+    ringBtn.textContent = 'Checking';
+    fetch(RING_CHECK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+      .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, d: d }; }); })
+      .then(function(res) {
+        if (!res.ok || !res.d || !res.d.ok) throw new Error('check failed');
+        if (!res.d.found) {
+          ringMsg.textContent = 'We do not see that email in the Society. Use the one you sign in with.';
+        } else if (!res.d.innerRing) {
+          showStep('denied');
+        } else {
+          verifiedEmail = email;
+          showStep('terms');
+        }
+      })
+      .catch(function() {
+        ringMsg.textContent = 'We could not confirm that just now. Try again in a moment, or write to jenn@clubvoluptas.com.';
+      })
+      .then(function() {
+        ringBtn.classList.remove('busy');
+        ringBtn.textContent = 'Continue';
+      });
+  });
 
   window.closeNDA = function() {
     modal.classList.remove('open');
@@ -801,7 +930,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.submitPayment = function() {
-    if (!confirmBox.checked || !currentTier) return;
+    if (!verifiedEmail || !confirmBox.checked || !currentTier) return;
     var form = document.getElementById('form-' + currentTier);
     if (form) form.submit(); /* no form yet = no charge possible */
   };
